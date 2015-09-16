@@ -1,7 +1,11 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+
 import model.dao.SupplierDAOjdbc;
 
 public class SupplierService {
@@ -17,28 +21,62 @@ public class SupplierService {
 		return result;
 	} 
 		
-	public  List<SupplierBean> selectAll(){
-		List<SupplierBean> result = null;
-		
-			result = suppDao.selectAll();
-	
-		return result;
+	public  List<Map<String, Object>> selectAll(){
+		List<Map<String, Object>> results = new LinkedList<Map<String,Object>>();
+		List<SupplierBean> beans = suppDao.selectAll();
+		for(int i=0; i<beans.size(); i++){
+			SupplierBean bean = beans.get(i);
+			Map<String, Object> map1 = new LinkedHashMap<String, Object>();
+			map1.put("SupplierId", bean.getSupplierId());
+			map1.put("SupplierName", bean.getSupplierName());
+			map1.put("SupplierTax", bean.getSupplierTax());
+			map1.put("SupplierContact", bean.getSupplierContact());
+			map1.put("SupplierTel", bean.getSupplierTel());
+			map1.put("SupplierAddr", bean.getSupplierAddr());
+			map1.put("SupplierAcct", bean.getSupplierAcct());
+			map1.put("SupplierDate", bean.getSupplierDate());
+			map1.put("SupplierNote", bean.getSupplierNote());
+			results.add(map1);
+		}
+		return results;
 	}
 	
-	public  SupplierBean selectByTel(String supplierTel){
-		SupplierBean result = null;
+	public  Map<String, Object> selectByTel(String supplierTel){
+		Map<String, Object> results = new LinkedHashMap<String, Object>();
+		SupplierBean bean = null;
 		if(supplierTel != null && supplierTel.length()!=0){
-			result = suppDao.selectByTel(supplierTel);
+			bean = suppDao.selectByTel(supplierTel);
+			results.put("SupplierId", bean.getSupplierId());
+			results.put("SupplierName", bean.getSupplierName());
+			results.put("SupplierTax", bean.getSupplierTax());
+			results.put("SupplierContact", bean.getSupplierContact());
+			results.put("SupplierTel", bean.getSupplierTel());
+			results.put("SupplierAddr", bean.getSupplierAddr());
+			results.put("SupplierAcct", bean.getSupplierAcct());
+			results.put("SupplierDate", bean.getSupplierDate());
+			results.put("SupplierNote", bean.getSupplierNote());
 		}
-		return result;
+		return results;
 	}
 
-	public  List<SupplierBean> selectByName(String supplierName){
-		List<SupplierBean> result = null;
-		if(supplierName!=null && supplierName.length()!=0){
-			result = suppDao.selectByName(supplierName);
+	public  List<Map<String, Object>> selectByName(String supplierName){
+		List<Map<String, Object>> results = new LinkedList<Map<String,Object>>();
+		List<SupplierBean> beans = suppDao.selectByName(supplierName);
+		for(int i=0; i<beans.size(); i++){
+			SupplierBean bean = beans.get(i);
+			Map<String, Object> map1 = new LinkedHashMap<String, Object>();
+			map1.put("SupplierId", bean.getSupplierId());
+			map1.put("SupplierName", bean.getSupplierName());
+			map1.put("SupplierTax", bean.getSupplierTax());
+			map1.put("SupplierContact", bean.getSupplierContact());
+			map1.put("SupplierTel", bean.getSupplierTel());
+			map1.put("SupplierAddr", bean.getSupplierAddr());
+			map1.put("SupplierAcct", bean.getSupplierAcct());
+			map1.put("SupplierDate", bean.getSupplierDate());
+			map1.put("SupplierNote", bean.getSupplierNote());
+			results.add(map1);
 		}
-		return result;
+		return results;
 	}
 
 	public  int insert(SupplierBean bean){
