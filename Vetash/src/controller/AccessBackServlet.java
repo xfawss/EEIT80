@@ -14,9 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
-import model.AccessBackDAO;
 import model.AccessBackService;
-import model.dao.AccessBackDAOHibernate;
 
 @WebServlet("/accessback")
 public class AccessBackServlet extends HttpServlet {
