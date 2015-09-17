@@ -12,19 +12,20 @@ public class test {
 		
 		
 		ProductVO x = new ProductVO();
-		x.setProductId("s6f2e");
-		x.setProductType("手把");
-		x.setProductName("哈哈哈");
+		x.setProductId("dsfsdfsdfs");
+		x.setProductType("案件");
+		x.setProductName("sdfsdf");
 		x.setProductPrice(100);
 		x.setProductCost(50);
 		x.setProductQty(300);
+		x.setProductNote("dsfsdfdsfgghhhhhhhhhhhh");
 		x.setProductImgPath("");
+		
 		dao.insert(x);
 
 	
 
 		
-			
 			
 			
 		
@@ -56,9 +57,9 @@ public class test {
 
 
 			//�� �d��-getAll (�h��emp2.hbm.xml�����]��lazy="false")(�u!)
-			List<ProductVO> list1 = dao.selectType();
-			String xx = list1.toString();
-			System.out.print(xx);
+//			List<ProductVO> list1 = dao.selectType();
+//			String xx = list1.toString();
+//			System.out.print(xx);
 //			List<ProductVO> list = dao.getAll();
 //			for (ProductVO aEmp : list) {
 //				System.out.print(aEmp.getProductId() + ",");
@@ -73,18 +74,18 @@ public class test {
 //				System.out.print(aEmp.getDeptVO().getLoc());
 				
 		
-//		List<ProductVO> list = dao.getAll();
-//		for (ProductVO aEmp : list) {
-//			System.out.print(aEmp.getProductId() + ",");
-//			System.out.print(aEmp.getProductType() + ",");
-//			System.out.print(aEmp.getProductName() + ",");
-//			System.out.print(aEmp.getProductPrice() + ",");
-//			System.out.print(aEmp.getProductCost() + ",");
-//			System.out.print(aEmp.getProductQty() + ",");
-//			System.out.print(aEmp.getProductQty() + ",");
-//	
-//			System.out.println();
-//		}
+		List<ProductVO> list = dao.getAll();
+		for (ProductVO aEmp : list) {
+			System.out.print(aEmp.getProductId() + ",");
+			System.out.print(aEmp.getProductType() + ",");
+			System.out.print(aEmp.getProductName() + ",");
+			System.out.print(aEmp.getProductPrice() + ",");
+			System.out.print(aEmp.getProductCost() + ",");
+			System.out.print(aEmp.getProductQty() + ",");
+			System.out.print(aEmp.getProductNote() + ",");
+	
+			System.out.println();
+		}
 	}
 
 }

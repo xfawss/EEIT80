@@ -26,5 +26,8 @@
         <property name="productImgPath" type="java.lang.String">
             <column name="ProductImgPath" />
         </property>
+        <property name="productNote" type="java.lang.String">
+            <column name="ProductNote" />
+        </property>
     </class>
 </hibernate-mapping>

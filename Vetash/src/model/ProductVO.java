@@ -26,7 +26,16 @@ public class ProductVO implements java.io.Serializable {
 	private int productCost;
 	private int productQty;
 	private String productImgPath;
+	private String productNote;
 	
+	public String getProductNote() {
+		return productNote;
+	}
+
+	public void setProductNote(String productNote) {
+		this.productNote = productNote;
+	}
+
 	//@JoinColumn(name = "ProductId") 
 	public String getProductId() {
 		return productId;
