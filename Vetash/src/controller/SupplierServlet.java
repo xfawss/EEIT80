@@ -20,7 +20,7 @@ import model.SupplierService;
 /**
  * Servlet implementation class SupplierServlet
  */
-@WebServlet(urlPatterns = { "/suppliers" })
+@WebServlet("/suppliers")
 public class SupplierServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private SupplierService service;
@@ -34,20 +34,23 @@ public class SupplierServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse rsp)
 			throws ServletException, IOException {
 
-		System.out.println("go");
+		System.out.println("get");
 
 		// 接收資料
 
 		String name = req.getParameter("supplierName");
 		String tel = req.getParameter("supplierTel");
-		String task = req.getParameter("task");
-
+		String action = req.getParameter("action");
+		System.out.println(name);
+		System.out.println(tel);
+		System.out.println(action);
+		
 		JSONObject jObj = new JSONObject();
 		PrintWriter out = rsp.getWriter();
 
-		if (task != null) {
+		if (action != null) {
 			if (tel == null) {
-				if (task.equals("select")) {
+				if (action.equals("select")) {
 					List<Map<String, Object>> beans = service.selectAll();
 					jObj.put("suppliers", beans);
 					out.print(jObj);
@@ -55,7 +58,7 @@ public class SupplierServlet extends HttpServlet {
 				}
 			}
 			if (tel != null) {
-				if (task.equals("select")) {
+				if (action.equals("select")) {
 					Map<String, Object> result = service.selectByTel(tel);
 					jObj.put("supplier", result);
 					out.print(jObj);
@@ -63,9 +66,8 @@ public class SupplierServlet extends HttpServlet {
 				}
 			}
 			if (name != null) {
-				if (task.equals("select")) {
-					List<Map<String, Object>> result = service
-							.selectByName(name);
+				if (action.equals("select")) {
+					List<Map<String, Object>> result = service.selectByName(name);
 					jObj.put("suppliers", result);
 					out.print(jObj);
 					return;
@@ -85,8 +87,8 @@ public class SupplierServlet extends HttpServlet {
 		// System.out.println(results);
 		//
 		// select by name
-		// List<Map<String, Object>> results = service.selectByName("中");
-		// System.out.println(results);
+//		 List<Map<String, Object>> results = service.selectByName("中");
+//		 System.out.println(results);
 
 		// select all
 		// List<Map<String, Object>> results = service.selectAll();
@@ -129,7 +131,11 @@ public class SupplierServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse rsp)
 			throws ServletException, IOException {
 
+
+		System.out.println("post");
+		
 		// 接收資料
+		String id = req.getParameter("supplierId");
 		String name = req.getParameter("supplierName");
 		String tax = req.getParameter("supplierTax");
 		String contact = req.getParameter("supplierContact");
@@ -138,33 +144,42 @@ public class SupplierServlet extends HttpServlet {
 		String acct = req.getParameter("supplierAcct");
 		String date = req.getParameter("supplierDate");
 		String note = req.getParameter("supplierNote");
-		String task = req.getParameter("task");
-
+		String action = req.getParameter("action");
+		
+		
+		System.out.println(name);
+		System.out.println(tel);
+		System.out.println(addr);
+		System.out.println(acct);
+		System.out.println(date);
+		System.out.println(note);
+		System.out.println(action);
+	
 		// 驗證資料
 		Map<String, String> errs = new HashMap<String, String>();
 		req.setAttribute("errMsg", errs);
 
-		if (task != null) {
-			if (task.equals("insert") || task.equals("update")) {
+		if (action != null) {
+			if (action.equals("insert") || action.equals("update")) {
 				if (name == null || name.length() == 0) {
-					errs.put("supplierName", "請輸入公司名稱");
+					errs.put("supplierName", "新增或修改時公司名稱為必填欄位，請輸入");
 				}
 				if (contact == null || contact.length() == 0) {
-					errs.put("supplierContact", "請輸入聯絡人姓名");
+					errs.put("supplierContact", "新增或修改時聯絡人姓名為必填欄位，請輸入");
 				}
 				if (tel == null || tel.length() == 0) {
-					errs.put("supplierTel", "請輸入電話");
+					errs.put("supplierTel", "新增或修改時聯絡人姓名為必填欄位，請輸入");
 				}
 				if (addr == null || addr.length() == 0) {
-					errs.put("supplierAddr", "請輸入地址");
+					errs.put("supplierAddr", "新增或修改時地址為必填欄位，請輸入");
 				}
 				if (date == null || date.length() == 0) {
-					errs.put("supplierDate", "請輸入首次交易日");
+					errs.put("supplierDate", "新增或修改時首次交易日為必填欄位，請輸入");
 				}
 			}
-			if (task.equals("Delete")) {
+			if (action.equals("Delete")) {
 				if (date == null || date.length() == 0) {
-					errs.put("supplierTel", "請輸入電話");
+					errs.put("supplierTel", "刪除時電話為必填欄位，請輸入");
 				}
 			}
 		}
@@ -178,8 +193,9 @@ public class SupplierServlet extends HttpServlet {
 				errs.put("supplierDate", "日期格式必須如範例:2015-01-01 (西元年4碼-月2碼-日2碼)");
 			}
 		}
+		System.out.println(errs);
 		if (errs != null && !errs.isEmpty()) {
-			req.getRequestDispatcher("/pages/product.jsp").forward(req, rsp);
+			req.getRequestDispatcher("/AlexHo/supplierTest.jsp").forward(req, rsp);
 			return;
 		}
 
@@ -193,10 +209,12 @@ public class SupplierServlet extends HttpServlet {
 		bean.setSupplierAcct(acct);
 		bean.setSupplierDate(firstDate);
 		bean.setSupplierNote(note);
-
+		
+		System.out.println(bean);
+		System.out.println(action+"中");
 		// 根據Model執行結果導向View
-
-		if (task != null && task.equals("insert")) {
+		
+		if (action != null && action.equals("insert")) {
 			int result = service.insert(bean);
 			if (result == 0) {
 				errs.put("result", "新增失敗");
@@ -204,8 +222,8 @@ public class SupplierServlet extends HttpServlet {
 				req.setAttribute("insert", result);
 				errs.put("result", "新增成功1筆");
 			}
-			req.getRequestDispatcher("/pages/product.jsp").forward(req, rsp);
-		} else if (task != null && task.equals("update")) {
+			req.getRequestDispatcher("/AlexHo/supplierTest.jsp").forward(req, rsp);
+		} else if (action != null && action.equals("update")) {
 			int result = service.update(bean);
 			if (result == 0) {
 				errs.put("result", "新增失敗");
@@ -213,8 +231,8 @@ public class SupplierServlet extends HttpServlet {
 				req.setAttribute("insert", result);
 				errs.put("result", "修改成功1筆");
 			}
-			req.getRequestDispatcher("/pages/product.jsp").forward(req, rsp);
-		} else if (task != null && task.equals("delete")) {
+			req.getRequestDispatcher("/AlexHo/supplierTest.jsp").forward(req, rsp);
+		} else if (action != null && action.equals("delete")) {
 			int result = service.delete(bean);
 			if (result == 0) {
 				errs.put("result", "新增失敗");
@@ -222,10 +240,10 @@ public class SupplierServlet extends HttpServlet {
 				req.setAttribute("insert", result);
 				errs.put("result", "刪除成功1筆");
 			}
-			req.getRequestDispatcher("/pages/product.jsp").forward(req, rsp);
+			req.getRequestDispatcher("/AlexHo/supplierTest.jsp").forward(req, rsp);
 		} else {
-			errs.put("result", "不知道您現在要" + task + "什麼");
-			req.getRequestDispatcher("/pages/product.jsp").forward(req, rsp);
+			errs.put("result", "不知道您現在要" + action + "什麼");
+			req.getRequestDispatcher("/AlexHo/supplierTest.jsp").forward(req, rsp);
 		}
 	}
 }

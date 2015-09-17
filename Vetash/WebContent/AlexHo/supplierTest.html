@@ -1,10 +1,72 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>SupplierTest</title>
 </head>
 <body>
+
+<a href="../suppliers?action=select">selectAll</a><br/>
+<a href="../suppliers?supplierTel=0910147520&action=select">selectByTel(0974002547)</a><br/>
+<a href="../suppliers?supplierName=中&action=select">selectByName(中)</a><br/>
+<hr>
+
+<p>Insert</p>
+<form action="/Vetash/suppliers" method="POST">
+	supplierName<br>
+	<input type="text" name="supplierName" value="馬家庄搖桿商">
+	<span >${errMsg.supplierName}</span><br>
+	supplierTax<br>
+	<input type="text" name="supplierTax" value="36954752"><br>
+	supplierContact<br>
+	<input type="text" name="supplierContact" value="馬老師"><br>
+	supplierTel<br>
+	<input type="text" name="supplierTel" value="0910103842"><br>
+	supplierAddr<br>
+	<input type="text" name="supplierAddr" value="cma@gmail.com"><br>
+	supplierAcct<br>
+	<input type="text" name="supplierAcct" value="017-316552356101"><br>
+	supplierDate<br>
+	<input type="text" name="supplierDate" value="2015-03-05"><br>
+	supplierNote
+	<input type="text" name="supplierNote" value="馬老師很帥很幽默"><br>
+	<br>
+	<input type="hidden" name="action" value="insert">
+	<input type="submit" name="action" value="insert">
+</form>
+<hr>
+
+<p>update</p>
+<form action="/Vetash/suppliers" method="POST">
+	supplierName<br>
+	<input type="text" name="supplierName" value="馬家庄搖桿商"><br>
+	supplierTax<br>
+	<input type="text" name="supplierTax" value="36954752"><br>
+	supplierContact<br>
+	<input type="text" name="supplierContact" value="馬老師"><br>
+	supplierTel<br>
+	<input type="text" name="supplierTel" value="0910103842"><br>
+	supplierAddr<br>
+	<input type="text" name="supplierAddr" value="cma@gmail.com"><br>
+	supplierAcct<br>
+	<input type="text" name="supplierAcct" value="017-316552356101"><br>
+	supplierDate<br>
+	<input type="text" name="supplierDate" value="2015-03-05"><br>
+	supplierNote
+	<input type="text" name="supplierNote" value="馬老師很帥很幽默"><br>
+	<br>
+	<input type="hidden" name="action" value="update">
+	<input type="submit" name="action" value="update">
+</form>
+<hr>
+
+<p>delete</p>
+<form action="../suppliers" method="POST">
+	supplierTel
+	<input type="text" name="supplierTel" value="0910103842"><br>
+	<input type="hidden" name="action" value="delete">
+	<input type="submit" value="delete">
+</form>
 
 </body>
 </html>
