@@ -11,7 +11,7 @@
 
 <a href="../suppliers?action=select">selectAll</a><br/>
 <a href="../suppliers?supplierTel=0910147520&action=select">selectByTel(0974002547)</a><br/>
-<a href="../suppliers?supplierName=中&action=select">selectByName(中)</a><br/>
+<a href="../suppliers?supplierName=k&action=select">selectByName(中)</a><br/>
 <hr>
 
 <p>Insert</p>
@@ -41,7 +41,8 @@
 	<input type="text" name="supplierNote" value="馬老師很帥很幽默">
 	<br>
 	<input type="hidden" name="action" value="insert">
-	<input type="submit" name="action" value="insert">
+	<input type="submit" name="action" value="insert"><br>
+	<span >${errMsg.result}</span><br>
 </form>
 <hr>
 
@@ -73,20 +74,21 @@
 	<br>
 	id<br>
 	<input type="text" name="supplierId" value="${param.id}">
-	<span >${errMsg.supplierDate}</span><br>
 	<br>
 	<input type="hidden" name="action" value="update">
-	<input type="submit" name="action" value="update">
+	<input type="submit" name="action" value="update"><br>
+	<span >${errMsg.result}</span><br>
 </form>
 <hr>
 
 <p>delete</p>
 <form action="/Vetash/suppliers" method="POST">
 	supplierTel
-	<input type="text" name="supplierTel" value="0910103842">
-	<span >${errMsg.supplierTel}</span><br><br>
+	<input type="text" name="supplierTel" value="${param.tel}">
+	<span >${errMsg.supplierTel}</span><br>
 	<input type="hidden" name="action" value="delete">
-	<input type="submit" value="delete">
+	<input type="submit" value="delete"><br>
+	<span >${errMsg.result}</span><br>
 </form>
 
 

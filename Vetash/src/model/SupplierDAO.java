@@ -18,6 +18,6 @@ public interface SupplierDAO {
 			,String supplierTel ,String supplierAddr,String supplierAcct
 			,java.util.Date supplierDate,String supplierNote, int supplierId);
 
-	public abstract int delete(int supplierId);
+	public abstract int delete(String supplierTel);
 	
 }

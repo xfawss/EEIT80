@@ -1,6 +1,5 @@
 package controller;
 
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
@@ -12,7 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONObject;
-import misc.Parse;
 import misc.SupplierParse;
 import model.SupplierBean;
 import model.SupplierService;
@@ -31,8 +29,7 @@ public class SupplierServlet extends HttpServlet {
 		super.init();
 	}
 
-	protected void doGet(HttpServletRequest req, HttpServletResponse rsp)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse rsp) throws ServletException, IOException {
 
 		System.out.println("get");
 
@@ -44,7 +41,7 @@ public class SupplierServlet extends HttpServlet {
 		System.out.println(name);
 		System.out.println(tel);
 		System.out.println(action);
-		
+
 		JSONObject jObj = new JSONObject();
 		PrintWriter out = rsp.getWriter();
 
@@ -87,8 +84,8 @@ public class SupplierServlet extends HttpServlet {
 		// System.out.println(results);
 		//
 		// select by name
-//		 List<Map<String, Object>> results = service.selectByName("中");
-//		 System.out.println(results);
+		// List<Map<String, Object>> results = service.selectByName("中");
+		// System.out.println(results);
 
 		// select all
 		// List<Map<String, Object>> results = service.selectAll();
@@ -109,11 +106,12 @@ public class SupplierServlet extends HttpServlet {
 		// bean.setSupplierName("test333");
 		// bean.setSupplierTax("124333");
 		// bean.setSupplierContact("124333");
+		// bean.setSupplierTel("124");
 		// bean.setSupplierAddr("124333");
 		// bean.setSupplierAcct("124333");
 		// bean.setSupplierDate(new java.util.Date());
 		// bean.setSupplierNote("124333");
-		// bean.setSupplierId(6);
+		// bean.setSupplierId(3);
 		// System.out.println(service.update(bean));
 
 		// delete
@@ -128,12 +126,10 @@ public class SupplierServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest req, HttpServletResponse rsp)
-			throws ServletException, IOException {
-
+	protected void doPost(HttpServletRequest req, HttpServletResponse rsp) throws ServletException, IOException {
 
 		System.out.println("post");
-		
+
 		// 接收資料
 		String id = req.getParameter("supplierId");
 		String name = req.getParameter("supplierName");
@@ -145,8 +141,7 @@ public class SupplierServlet extends HttpServlet {
 		String date = req.getParameter("supplierDate");
 		String note = req.getParameter("supplierNote");
 		String action = req.getParameter("action");
-		
-		
+
 		System.out.println(name);
 		System.out.println(tel);
 		System.out.println(addr);
@@ -154,7 +149,7 @@ public class SupplierServlet extends HttpServlet {
 		System.out.println(date);
 		System.out.println(note);
 		System.out.println(action);
-	
+
 		// 驗證資料
 		Map<String, String> errs = new HashMap<String, String>();
 		req.setAttribute("errMsg", errs);
@@ -193,6 +188,12 @@ public class SupplierServlet extends HttpServlet {
 				errs.put("supplierDate", "日期格式必須如範例:2015-01-01 (西元年4碼-月2碼-日2碼)");
 			}
 		}
+
+		int pasrseId = 0;
+		if (id != null && id.length() != 0) {
+			pasrseId = pasrse.convertInt(id);
+		}
+
 		System.out.println(errs);
 		if (errs != null && !errs.isEmpty()) {
 			req.getRequestDispatcher("/AlexHo/supplierTest.jsp").forward(req, rsp);
@@ -209,36 +210,39 @@ public class SupplierServlet extends HttpServlet {
 		bean.setSupplierAcct(acct);
 		bean.setSupplierDate(firstDate);
 		bean.setSupplierNote(note);
-		
+		bean.setSupplierId(pasrseId);
+
 		System.out.println(bean);
-		System.out.println(action+"中");
+
 		// 根據Model執行結果導向View
-		
+
 		if (action != null && action.equals("insert")) {
 			int result = service.insert(bean);
 			if (result == 0) {
 				errs.put("result", "新增失敗");
 			} else {
 				req.setAttribute("insert", result);
-				errs.put("result", "新增成功1筆");
+				errs.put("result", "新增1筆成功");
 			}
 			req.getRequestDispatcher("/AlexHo/supplierTest.jsp").forward(req, rsp);
 		} else if (action != null && action.equals("update")) {
 			int result = service.update(bean);
 			if (result == 0) {
-				errs.put("result", "新增失敗");
+				errs.put("result", "修改失敗");
 			} else {
-				req.setAttribute("insert", result);
-				errs.put("result", "修改成功1筆");
+				req.setAttribute("update", result);
+				errs.put("result", "修改1筆成功");
 			}
 			req.getRequestDispatcher("/AlexHo/supplierTest.jsp").forward(req, rsp);
+			System.out.println(action + "完成");
 		} else if (action != null && action.equals("delete")) {
 			int result = service.delete(bean);
+			// System.out.println(result);
 			if (result == 0) {
-				errs.put("result", "新增失敗");
+				errs.put("result", "刪除失敗");
 			} else {
-				req.setAttribute("insert", result);
-				errs.put("result", "刪除成功1筆");
+				req.setAttribute("delete", result);
+				errs.put("result", "刪除" + result + "筆成功");
 			}
 			req.getRequestDispatcher("/AlexHo/supplierTest.jsp").forward(req, rsp);
 		} else {

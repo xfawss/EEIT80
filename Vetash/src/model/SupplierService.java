@@ -101,7 +101,7 @@ public class SupplierService {
 	public  int delete(SupplierBean bean){
 		int result = 0;
 		if(bean != null ){
-			result =  suppDao.delete(bean.getSupplierId());
+			result =  suppDao.delete(bean.getSupplierTel());
 		}
 		return result;
 	}

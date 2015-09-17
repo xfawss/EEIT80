@@ -207,8 +207,6 @@ public class SupplierDAOjdbc implements SupplierDAO {
 			if(supplierDate!=null) {
 				long time = supplierDate.getTime();
 				stmt.setDate(7, new java.sql.Date(time));
-			} else {
-				stmt.setDate(7, null);				
 			}
 			stmt.setString(8, supplierNote);
 			stmt.setInt(9,supplierId);
@@ -221,15 +219,15 @@ public class SupplierDAOjdbc implements SupplierDAO {
 		return result;
 	}
 
-	private static final String DELETE= "delete from Supplier where SupplierId=?";
+	private static final String DELETE= "delete from Supplier where SupplierTel=?";
 	@Override
-	public int delete(int supplierId) {
+	public int delete(String supplierTel) {
 		int result = 0;
 		try(
 				Connection conn = dataSource.getConnection();
 				PreparedStatement stmt = conn.prepareStatement(DELETE);
 				){
-			stmt.setInt(1, supplierId);
+			stmt.setString(1, supplierTel);
 			result = stmt.executeUpdate();
 			
 		} catch (SQLException e) {

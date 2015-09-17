@@ -15,4 +15,15 @@ public class SupplierParse {
 		}
 		return result;
 	}
+	
+	public static int convertInt(String data) {
+		int result = 0;
+		try {
+			result = Integer.parseInt(data);
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+			result = -1;
+		}
+		return result;
+	}
 }
