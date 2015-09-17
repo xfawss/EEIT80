@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+   <%request.setCharacterEncoding("UTF-8");%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,7 +12,7 @@
 
 <a href="../suppliers?action=select">selectAll</a><br/>
 <a href="../suppliers?supplierTel=0910147520&action=select">selectByTel(0974002547)</a><br/>
-<a href="../suppliers?supplierName=k&action=select">selectByName(中)</a><br/>
+<a href="../suppliers?supplierName=K&action=select">selectByName(中)</a><br/>
 <hr>
 
 <p>Insert</p>

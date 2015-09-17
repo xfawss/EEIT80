@@ -73,7 +73,7 @@ public class SupplierServlet extends HttpServlet {
 		}
 
 		// test
-		// SupplierBean bean = new SupplierBean();
+		SupplierBean bean = new SupplierBean();
 
 		// select by id
 		// bean.setSupplierId(3);
@@ -84,8 +84,8 @@ public class SupplierServlet extends HttpServlet {
 		// System.out.println(results);
 		//
 		// select by name
-		// List<Map<String, Object>> results = service.selectByName("中");
-		// System.out.println(results);
+		List<Map<String, Object>> results = service.selectByName("k");
+		System.out.println(results);
 
 		// select all
 		// List<Map<String, Object>> results = service.selectAll();
@@ -222,7 +222,7 @@ public class SupplierServlet extends HttpServlet {
 				errs.put("result", "新增失敗");
 			} else {
 				req.setAttribute("insert", result);
-				errs.put("result", "新增1筆成功");
+				errs.put("result", "新增" + result + "筆成功");
 			}
 			req.getRequestDispatcher("/AlexHo/supplierTest.jsp").forward(req, rsp);
 		} else if (action != null && action.equals("update")) {
