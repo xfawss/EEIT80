@@ -219,15 +219,15 @@ public class SupplierDAOjdbc implements SupplierDAO {
 		return result;
 	}
 
-	private static final String DELETE= "delete from Supplier where SupplierTel=?";
+	private static final String DELETE= "delete from Supplier where SupplierId=?";
 	@Override
-	public int delete(String supplierTel) {
+	public int delete(int supplierId) {
 		int result = 0;
 		try(
 				Connection conn = dataSource.getConnection();
 				PreparedStatement stmt = conn.prepareStatement(DELETE);
 				){
-			stmt.setString(1, supplierTel);
+			stmt.setInt(1, supplierId);
 			result = stmt.executeUpdate();
 			
 		} catch (SQLException e) {

@@ -20,6 +20,8 @@ public class OpenSessionInViewFilter implements Filter {
 			FilterChain chain) throws IOException, ServletException {
 		try {
 			sessionFactory.getCurrentSession().beginTransaction();
+			req.setCharacterEncoding("UTF-8");
+			resp.setCharacterEncoding("UTF-8");
 			chain.doFilter(req, resp);
 			sessionFactory.getCurrentSession().getTransaction().commit();
 		} catch (Throwable e) {

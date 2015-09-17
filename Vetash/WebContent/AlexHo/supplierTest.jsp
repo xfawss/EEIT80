@@ -84,8 +84,8 @@
 
 <p>delete</p>
 <form action="/Vetash/suppliers" method="POST">
-	supplierTel
-	<input type="text" name="supplierTel" value="${param.tel}">
+	supplierId
+	<input type="text" name="supplierId" value="${param.id}">
 	<span >${errMsg.supplierTel}</span><br>
 	<input type="hidden" name="action" value="delete">
 	<input type="submit" value="delete"><br>
