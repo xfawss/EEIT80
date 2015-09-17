@@ -2,12 +2,12 @@ package model;
 
 import java.util.List;
 
-import model.ProductHibernateDAO;
+import model.ProductService;
 
 public class test {
 
 	public static void main(String[] args) {
-		ProductHibernateDAO dao = new ProductHibernateDAO();
+		ProductService dao = new ProductService();
 		
 		
 		

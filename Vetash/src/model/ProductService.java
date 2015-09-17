@@ -2,14 +2,14 @@ package model;
 
 import java.util.List;
 
-import model.ProductHibernateDAO;
+import model.ProductService;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
 
 import hibernate.util.HibernateUtil;
 
-public class ProductHibernateDAO implements ProductDAO_interface {
+public class ProductService implements ProductDAO_interface {
 	private static final String GET_ALL_STMT = "from ProductVO order by productId";
 	
 
