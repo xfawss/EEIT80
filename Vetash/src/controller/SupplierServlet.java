@@ -31,12 +31,13 @@ public class SupplierServlet extends HttpServlet {
 		super.init();
 	}
 
-	protected void doGet(HttpServletRequest req, HttpServletResponse rsp) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse rsp)
+			throws ServletException, IOException {
 
 		System.out.println("go");
 
 		// 接收資料
-		
+
 		String name = req.getParameter("supplierName");
 		String tel = req.getParameter("supplierTel");
 		String task = req.getParameter("task");
@@ -63,7 +64,8 @@ public class SupplierServlet extends HttpServlet {
 			}
 			if (name != null) {
 				if (task.equals("select")) {
-					List<Map<String, Object>> result = service.selectByName(name);
+					List<Map<String, Object>> result = service
+							.selectByName(name);
 					jObj.put("suppliers", result);
 					out.print(jObj);
 					return;
@@ -124,10 +126,10 @@ public class SupplierServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest req, HttpServletResponse rsp) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse rsp)
+			throws ServletException, IOException {
 
 		// 接收資料
-		String id = req.getParameter("supplierId");
 		String name = req.getParameter("supplierName");
 		String tax = req.getParameter("supplierTax");
 		String contact = req.getParameter("supplierContact");
@@ -143,7 +145,7 @@ public class SupplierServlet extends HttpServlet {
 		req.setAttribute("errMsg", errs);
 
 		if (task != null) {
-			if (task.equals("Insert") || task.equals("Update")) {
+			if (task.equals("insert") || task.equals("update")) {
 				if (name == null || name.length() == 0) {
 					errs.put("supplierName", "請輸入公司名稱");
 				}
@@ -176,6 +178,10 @@ public class SupplierServlet extends HttpServlet {
 				errs.put("supplierDate", "日期格式必須如範例:2015-01-01 (西元年4碼-月2碼-日2碼)");
 			}
 		}
+		if (errs != null && !errs.isEmpty()) {
+			req.getRequestDispatcher("/pages/product.jsp").forward(req, rsp);
+			return;
+		}
 
 		// 呼叫Model
 		SupplierBean bean = new SupplierBean();
@@ -188,6 +194,38 @@ public class SupplierServlet extends HttpServlet {
 		bean.setSupplierDate(firstDate);
 		bean.setSupplierNote(note);
 
-		doGet(req, rsp);
+		// 根據Model執行結果導向View
+
+		if (task != null && task.equals("insert")) {
+			int result = service.insert(bean);
+			if (result == 0) {
+				errs.put("result", "新增失敗");
+			} else {
+				req.setAttribute("insert", result);
+				errs.put("result", "新增成功1筆");
+			}
+			req.getRequestDispatcher("/pages/product.jsp").forward(req, rsp);
+		} else if (task != null && task.equals("update")) {
+			int result = service.update(bean);
+			if (result == 0) {
+				errs.put("result", "新增失敗");
+			} else {
+				req.setAttribute("insert", result);
+				errs.put("result", "修改成功1筆");
+			}
+			req.getRequestDispatcher("/pages/product.jsp").forward(req, rsp);
+		} else if (task != null && task.equals("delete")) {
+			int result = service.delete(bean);
+			if (result == 0) {
+				errs.put("result", "新增失敗");
+			} else {
+				req.setAttribute("insert", result);
+				errs.put("result", "刪除成功1筆");
+			}
+			req.getRequestDispatcher("/pages/product.jsp").forward(req, rsp);
+		} else {
+			errs.put("result", "不知道您現在要" + task + "什麼");
+			req.getRequestDispatcher("/pages/product.jsp").forward(req, rsp);
+		}
 	}
 }

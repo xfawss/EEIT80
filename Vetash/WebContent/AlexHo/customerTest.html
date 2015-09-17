@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>customerTest</title>
+</head>
+<body>
+
+<a href="./Customers?customerTel=">selectAll</a><br/>
+<a href="./Customers?customerTel=0910103842">selectOne(0910103842)</a><br/>
+<a href="./Customers?customerName=何&customerLine=&customerFb=&customerMail=&customerNote=">selectByName(何)</a><br/>
+<hr>
+
+<p>Insert</p>
+<form action="./Customers" method="POST">
+	customerName<br>
+	<input type="text" name="customerName" value="CMA"><br>
+	customerTel<br>
+	<input type="text" name="customerTel" value="0911111111"><br>
+	customerLine<br>
+	<input type="text" name="customerLine" value="cmaLine"><br>
+	customerFb<br>
+	<input type="text" name="customerFb" value="cma@iii.edu.org"><br>
+	customerMail<br>
+	<input type="text" name="customerMail" value="cma@gmail.com"><br>
+	customerAddr<br>
+	<input type="text" name="customerAddr" value="台北市大安路一段366號"><br>
+	customerNote<br>
+	<input type="text" name="customerNote" value="馬老師"><br>
+	<br>
+	<input type="hidden" name="action" value="insert">
+	<input type="submit" value="insert">
+</form>
+<hr>
+
+<p>update</p>
+<form action="./Customers" method="POST">
+	customerName<br>
+	<input type="text" name="customerName" value="CMA"><br>
+	customerTel<br>
+	<input type="text" name="customerTel" value="0911111111"><br>
+	customerLine<br>
+	<input type="text" name="customerLine" value="cmaLine"><br>
+	customerFb<br>
+	<input type="text" name="customerFb" value="cma@iii.edu.org"><br>
+	customerMail<br>
+	<input type="text" name="customerMail" value="cma@gmail.com"><br>
+	customerAddr<br>
+	<input type="text" name="customerAddr" value="台北市大安路一段366號"><br>
+	customerNote<br>
+	<input type="text" name="customerNote" value="馬老師"><br>
+	<br>
+	<input type="hidden" name="action" value="update">
+	<input type="submit" value="update">
+</form>
+<hr>
+
+<p>delete</p>
+<form action="./Customers" method="POST">
+	<input type="text" name="customerTel" value="0911111111"><br>
+	<input type="hidden" name="action" value="delete">
+	<input type="submit" value="delete">
+</form>
+
+</body>
+</html>
