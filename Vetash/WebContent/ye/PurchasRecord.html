@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<form action="/Vetash/PurchaseRecoder" method="post">
+種類:<select name="type">
+	<option value="purchase">purchase</option>
+	<option value="returnoff">returnoff</option>
+</select>
+<br>
+零件編號:<input type="text" name="productId" ><br>
+數量:<input type="text" name="number" ><br>
+進價:<input type="text" name="prize" ><br>
+供應商編號:<input type="text" name="supplierId" ><br>
+備註:<textarea name="notes" cols="20" rows="5" ></textarea><br>
+<input type="reset" value="清除"><input type="submit" value="createOrUpdate">
+</form>
+
+
+
+</body>
+</html>

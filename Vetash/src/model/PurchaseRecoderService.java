@@ -9,6 +9,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import misc.Parse;
+
 @Component(value="PurchaseRecoderService")
 public class PurchaseRecoderService {
 	
@@ -20,7 +22,7 @@ public class PurchaseRecoderService {
 		for(PurchaseRecordBean bean : beans) {
 			Map<String, Object> map = new LinkedHashMap<String, Object>();
 			map.put("RecordNo", bean.getRecordNo());
-			map.put("Date", bean.getDate());
+			map.put("Date", Parse.dateToString(bean.getDate()));
 			map.put("Type", bean.getType());
 			if(bean.getNotes() == null) {
 				map.put("Notes", "");
@@ -54,6 +56,10 @@ public class PurchaseRecoderService {
 	
 	public List<Map<String, Object>> selectBySupplierId(int supplierId){
 		return this.jfomat(dao.selectBySupplierId(supplierId));
+	}
+	
+	public PurchaseRecordBean insert(PurchaseRecordBean bean){
+		return (PurchaseRecordBean)dao.insert(bean);
 	}
 	
 }

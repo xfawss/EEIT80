@@ -19,6 +19,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import misc.Parse;
 import model.PurchaseRecoderService;
+import model.PurchaseRecordBean;
 
 
 @WebServlet("/PurchaseRecoder")
@@ -43,49 +44,51 @@ public class PurchaseRecoderServlet extends HttpServlet {
 		JSONObject jObj = new JSONObject();
 		PrintWriter out = resp.getWriter();
 		
-		if(task==null || task.length()==0 || keyword==null || keyword.length()==0) {
-			errs.put("warning1", "你怎進來的");
-		} else if(task.equals("all")) {
+		if("all".equals(task)) {
 			List<Map<String, Object>> beans = service.select();
 			jObj.put("results", beans);
 			out.print(jObj);
 			return;
-		} else if(task.equals("date")) {
-			java.util.Date date = Parse.convertDate(keyword);
-			if(date.equals(new java.util.Date(0))) {
-				errs.put("warning2", "格式錯誤");
-			} else {
-				List<Map<String, Object>> beans = service.selectByDate(date);
+		} else if("date".equals(task)) {
+			if(keyword!=null && keyword.length()!=0){
+				java.util.Date date = Parse.convertDate(keyword);
+				if (date.equals(new java.util.Date(0))) {
+					errs.put("warning2", "格式錯誤");
+				} else {
+					List<Map<String, Object>> beans = service.selectByDate(date);
+					jObj.put("results", beans);
+					out.print(jObj);
+					return;
+				}
+			}
+		} else if("type".equals(task)) {
+			if(keyword!=null && keyword.length()!=0){
+				List<Map<String, Object>> beans = service.selectByType(keyword);
 				jObj.put("results", beans);
 				out.print(jObj);
 				return;
 			}
-		} else if(task.equals("type")) {
-			List<Map<String, Object>> beans = service.selectByType(keyword);
-			jObj.put("results", beans);
-			out.print(jObj);
-			return;
-		} else if(task.equals("ProductId")) {
-			List<Map<String, Object>> beans = service.selectByProductId(keyword);
-			jObj.put("results", beans);
-			out.print(jObj);
-			return;
-		} else if(task.equals("SupplierId")) {
-			int sid = Parse.convertInt(keyword);
-			if(sid < 1) {
-				errs.put("warning2", "格式錯誤");
-			} else {
-				List<Map<String, Object>> beans = service.selectBySupplierId(sid);
+		} else if("productid".equals(task)) {
+			if(keyword!=null && keyword.length()!=0){
+				List<Map<String, Object>> beans = service.selectByProductId(keyword);
 				jObj.put("results", beans);
 				out.print(jObj);
 				return;
 			}
-		} else {
-			errs.put("warning1", "你怎進來的");
+		} else if("supplierid".equals(task)) {
+			if(keyword!=null && keyword.length()!=0){
+				int sid = Parse.convertInt(keyword);
+				if(sid < 1) {
+					errs.put("warning2", "格式錯誤");
+				} else {
+					List<Map<String, Object>> beans = service.selectBySupplierId(sid);
+					jObj.put("results", beans);
+					out.print(jObj);
+					return;
+				}
+			}
 		}
 		
-		String tempRec = req.getParameter("recordNo");
-		String tempDate = req.getParameter("date");
 		String type = req.getParameter("type");
 		String notes = req.getParameter("notes");
 		String productId = req.getParameter("productId");
@@ -93,22 +96,48 @@ public class PurchaseRecoderServlet extends HttpServlet {
 		String tempPri = req.getParameter("prize");
 		String tempSup = req.getParameter("supplierId");
 		
-		if(tempRec==null || tempRec.length()==0 || tempDate==null || tempDate.length()==0 ||
-					type==null || type.length()==0 || productId==null || productId.length()==0 || tempNum==null ||
+		java.util.Date date2 = new java.util.Date();
+		int number = 0;
+		int prize = 0;
+		int supplierId = 0;
+		if(type==null || type.length()==0 || productId==null || productId.length()==0 || tempNum==null ||
 					tempNum.length()==0 || tempPri==null || tempPri.length()==0 || tempSup==null || tempSup.length()==0) {
 			errs.put("warning3", "有必填欄位空白");
 		} else {
-			int recordNo = Parse.convertInt(tempRec);
-			java.util.Date date = Parse.convertDate(tempDate);
-			int number = Parse.convertInt(tempNum);
-			int prize = Parse.convertInt(tempPri);
-			int supplierId = Parse.convertInt(tempSup);
-			
-			
+			number = Parse.convertInt(tempNum);
+			prize = Parse.convertInt(tempPri);
+			supplierId = Parse.convertInt(tempSup);
+		}
+		if(number<1 || prize<1 || supplierId<1){
+			errs.put("warning2", "格式錯誤");
+		}
+		if(errs!=null && !errs.isEmpty()){
+			req.getRequestDispatcher("/ye/err.jsp").forward(req, resp);
+			return;
 		}
 		
+		PurchaseRecordBean bean = new PurchaseRecordBean();
+		bean.setDate(date2);
+		bean.setType(type);
+		bean.setNotes(notes);
+		bean.setProductId(productId);
+		bean.setPrize(prize);
+		bean.setSupplierId(supplierId);
+		bean.setNumber(number);
 		
-		
+		if(type.equals("purchase")){
+			service.insert(bean);
+			errs.put("warning2", "SUCCESSFUL!!");
+			req.getRequestDispatcher("/ye/err.jsp").forward(req, resp);
+		} else if(type.equals("returnoff")){
+			service.insert(bean);
+			errs.put("warning2", "SUCCESSFUL!!");
+			req.getRequestDispatcher("/ye/err.jsp").forward(req, resp);
+		} else {
+			System.out.println("WTF!!!");
+			errs.put("warning2", "??!!");
+			req.getRequestDispatcher("/ye/err.jsp").forward(req, resp);
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

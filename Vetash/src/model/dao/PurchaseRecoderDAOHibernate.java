@@ -23,12 +23,8 @@ public class PurchaseRecoderDAOHibernate implements PurchaseRecoderDAO {
 	
 	@Override
 	public PurchaseRecordBean insert(PurchaseRecordBean bean) {
-		PurchaseRecordBean result = (PurchaseRecordBean) this.getSession().get(PurchaseRecordBean.class, bean.getRecordNo());
-		if(result == null) {
-			this.getSession().save(bean);
-			return bean;
-		}
-		return null;
+		this.getSession().save(bean);
+		return bean;
 	}
 
 	@Override

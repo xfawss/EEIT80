@@ -8,16 +8,14 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.apache.naming.java.javaURLContextFactory;
-
 @Entity
 @Table(name="PurchaseRecord")
 public class PurchaseRecordBean {
 	
 	@Id
 	@Column(name="RecordNo")
-	@SequenceGenerator(name="xxx", allocationSize=1)
-	@GeneratedValue(strategy = GenerationType.IDENTITY, generator="xxx")
+	@SequenceGenerator(name="PurchaseRecord", allocationSize=1)
+	@GeneratedValue(strategy = GenerationType.IDENTITY, generator="PurchaseRecord")
 	private int recordNo;
 	
 	@Column(name="Date")
