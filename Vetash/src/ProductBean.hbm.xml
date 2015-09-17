@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 2015/9/14 ?U?? 05:22:33 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="model.ProductVO" table="Product">
+    <class name="model.ProductBean" table="Product">
         <id name="productId" type="java.lang.String">
             <column name="ProductId" />
             <generator class="assigned" />

@@ -9,16 +9,16 @@ import org.hibernate.Session;
 
 import hibernate.util.HibernateUtil;
 
-public class ProductService implements ProductDAO_interface {
-	private static final String GET_ALL_STMT = "from ProductVO order by productId";
+public class ProductService implements ProductDAO {
+	private static final String GET_ALL_STMT = "from ProductBean order by productId";
 	
 
 	@Override
-	public void insert(ProductVO productVO) {
+	public void insert(ProductBean productBean) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
-			session.saveOrUpdate(productVO);
+			session.saveOrUpdate(productBean);
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
 			session.getTransaction().rollback();
@@ -27,11 +27,11 @@ public class ProductService implements ProductDAO_interface {
 	}
 
 	@Override
-	public void update(ProductVO productVO) {
+	public void update(ProductBean productBean) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
-			session.saveOrUpdate(productVO);
+			session.saveOrUpdate(productBean);
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
 			session.getTransaction().rollback();
@@ -44,9 +44,9 @@ public class ProductService implements ProductDAO_interface {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
-			ProductVO productVO = new ProductVO();
-			productVO.setProductId(productId);
-			session.delete(productVO);
+			ProductBean productBean = new ProductBean();
+			productBean.setProductId(productId);
+			session.delete(productBean);
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
 			session.getTransaction().rollback();
@@ -55,53 +55,53 @@ public class ProductService implements ProductDAO_interface {
 	}
 
 	@Override
-	public ProductVO selectByName(String productName) {
-		ProductVO productVO = null;
+	public ProductBean selectByName(String productName) {
+		ProductBean productBean = null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
-			productVO = (ProductVO) session.get(ProductVO.class, productName);
+			productBean = (ProductBean) session.get(ProductBean.class, productName);
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
 			session.getTransaction().rollback();
 			throw ex;
 		}
-		return productVO;
+		return productBean;
 	}
 
 	@Override
-	public ProductVO selectByType(String productType) {
-		ProductVO productVO = null;
+	public ProductBean selectByType(String productType) {
+		ProductBean productBean = null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
-			productVO = (ProductVO) session.get(ProductVO.class, productType);
+			productBean = (ProductBean) session.get(ProductBean.class, productType);
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
 			session.getTransaction().rollback();
 			throw ex;
 		}
-		return productVO;
+		return productBean;
 	}
 	
 	@Override
-	public ProductVO selectById(String productId) {
-		ProductVO productVO = null;
+	public ProductBean selectById(String productId) {
+		ProductBean productBean = null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
-			productVO = (ProductVO) session.get(ProductVO.class, productId);
+			productBean = (ProductBean) session.get(ProductBean.class, productId);
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
 			session.getTransaction().rollback();
 			throw ex;
 		}
-		return productVO;
+		return productBean;
 	}
 	
 	@Override
-	public List<ProductVO> selectType() {
-		List<ProductVO> list = null;
+	public List<ProductBean> selectType() {
+		List<ProductBean> list = null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
@@ -119,8 +119,8 @@ public class ProductService implements ProductDAO_interface {
 	
 	
 	@Override
-	public List<ProductVO> getAll() {
-		List<ProductVO> list = null;
+	public List<ProductBean> getAll() {
+		List<ProductBean> list = null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();

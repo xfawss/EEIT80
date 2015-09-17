@@ -1,27 +1,26 @@
-package model;
+package model.dao;
 
 import java.util.List;
 
+import model.ProductBean;
 import model.ProductService;
 
 public class test {
 
 	public static void main(String[] args) {
-		ProductService dao = new ProductService();
+		ProductDAOHibernate dao = new ProductDAOHibernate();
 		
 		
+//		
+	ProductBean x = new ProductBean();
+//		x.setProductId("dsfsdfsdfs");
+//		x.setProductType("案件");
+//		x.setProductName("sdfsdf");
+//		x.setProductPrice(100);
+//		x.setProductNote("dsfsdfdsfgghhhhhhhhhhhh");
+//		x.setProductImgPath("");
 		
-		ProductVO x = new ProductVO();
-		x.setProductId("dsfsdfsdfs");
-		x.setProductType("案件");
-		x.setProductName("sdfsdf");
-		x.setProductPrice(100);
-		x.setProductCost(50);
-		x.setProductQty(300);
-		x.setProductNote("dsfsdfdsfgghhhhhhhhhhhh");
-		x.setProductImgPath("");
-		
-		dao.insert(x);
+	dao.insert("dsfsdfsdfs","案件","sdfsdf",100,"dsfsdfdsfgghhhhhhhhhhhh","ddddd");
 
 	
 
@@ -74,8 +73,8 @@ public class test {
 //				System.out.print(aEmp.getDeptVO().getLoc());
 				
 		
-		List<ProductVO> list = dao.getAll();
-		for (ProductVO aEmp : list) {
+		List<ProductBean> list = dao.getAll();
+		for (ProductBean aEmp : list) {
 			System.out.print(aEmp.getProductId() + ",");
 			System.out.print(aEmp.getProductType() + ",");
 			System.out.print(aEmp.getProductName() + ",");

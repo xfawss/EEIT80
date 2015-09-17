@@ -15,8 +15,8 @@ public class HibernateUtil {
 
     static {
         try {
-        	//¨Ï¥ÎAnnotation®É¡A­ì¨ÓªºConfiguration()Ãþ§O­n§ï¬°AnnotationConfigurationÃþ§O¡A©Ò¥H­n§ï¼g HibernateUtilÃþ§O
-        	//sessionFactory = new Configuration().configure().buildSessionFactory();
+        	//ï¿½Ï¥ï¿½Annotationï¿½É¡Aï¿½ï¿½Óªï¿½Configuration()ï¿½ï¿½ï¿½Oï¿½nï¿½ï¬°AnnotationConfigurationï¿½ï¿½ï¿½Oï¿½Aï¿½Ò¥Hï¿½nï¿½ï¿½g HibernateUtilï¿½ï¿½ï¿½O
+//        	sessionFactory = new Configuration().configure().buildSessionFactory();
             sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
         } catch (Throwable ex) {
             // Make sure you log the exception, as it might be swallowed

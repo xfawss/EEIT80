@@ -18,7 +18,7 @@ import javax.persistence.TemporalType;
 
 
 @Table(name = "Vetash")
-public class ProductVO implements java.io.Serializable {
+public class ProductBean implements java.io.Serializable {
 	private String productId;
 	private String productType;
 	private String productName;

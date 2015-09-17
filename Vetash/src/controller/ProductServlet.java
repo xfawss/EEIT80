@@ -20,7 +20,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 
 import model.ProductService;
-import model.ProductVO;
+import model.ProductBean;
 import hibernate.util.HibernateUtil;
 
 @WebServlet("/ProductSevlet")
