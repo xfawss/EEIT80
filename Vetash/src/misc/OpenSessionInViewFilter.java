@@ -18,10 +18,15 @@ public class OpenSessionInViewFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse resp,
 			FilterChain chain) throws IOException, ServletException {
+		
+		//如果沒設定req.setCharacterEncoding("UTF-8")，中文字從頁面傳回Controller會變成亂碼
+		//相關資訊網址  http://openhome.cc/Gossip/Encoding/Servlet.html
+		req.setCharacterEncoding("UTF-8");
+		resp.setCharacterEncoding("UTF-8");
+		
 		try {
 			sessionFactory.getCurrentSession().beginTransaction();
-			req.setCharacterEncoding("UTF-8");
-			resp.setCharacterEncoding("UTF-8");
+			
 			chain.doFilter(req, resp);
 			sessionFactory.getCurrentSession().getTransaction().commit();
 		} catch (Throwable e) {

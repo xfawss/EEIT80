@@ -9,10 +9,11 @@
 </head>
 <body>
 
+<%String path = request.getContextPath(); %>
 
-<a href="../suppliers?action=select">selectAll</a><br/>
-<a href="../suppliers?supplierTel=0910147520&action=select">selectByTel(0974002547)</a><br/>
-<a href="../suppliers?supplierName=K&action=select">selectByName(中)</a><br/>
+<a href="<%=path %>/suppliers?action=select">selectAll</a><br/>
+<a href="<%=path %>/suppliers?supplierTel=0910147520&action=select">selectByTel(0974002547)</a><br/>
+<a href="<%=path %>/suppliers?supplierName=K&action=select">selectByName(k)</a><br/>
 <hr>
 
 <p>Insert</p>
@@ -27,7 +28,7 @@
 	<input type="text" name="supplierContact" value="馬老師">
 	<span >${errMsg.supplierContact}</span><br>
 	supplierTel<br>
-	<input type="text" name="supplierTel" value="0910103842">
+	<input type="text" name="supplierTel" value="${param.tel}">
 	<span >${errMsg.supplierTel}</span><br>
 	supplierAddr<br>
 	<input type="text" name="supplierAddr" value="cma@gmail.com">
@@ -59,7 +60,7 @@
 	<input type="text" name="supplierContact" value="馬老師">
 	<span >${errMsg.supplierContact}</span><br>
 	supplierTel<br>
-	<input type="text" name="supplierTel" value="0974002547">
+	<input type="text" name="supplierTel" value="${param.tel}">
 	<span >${errMsg.supplierTel}</span><br>
 	supplierAddr<br>
 	<input type="text" name="supplierAddr" value="cma@gmail.com">

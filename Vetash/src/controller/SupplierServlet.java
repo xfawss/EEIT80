@@ -45,18 +45,28 @@ public class SupplierServlet extends HttpServlet {
 		JSONObject jObj = new JSONObject();
 		PrintWriter out = rsp.getWriter();
 
+		// StringBuilder sb = new StringBuilder();
+		// sb.append("<html><head><meta charset=\"UTF-8\"></head>");
+		// sb.append("<body>");
+
 		if (action != null) {
 			if (name != null) {
 				if (action.equals("select")) {
 					List<Map<String, Object>> result = service.selectByName(name);
-					jObj.put("suppliers", result);
+					jObj.put("results", result);
 					out.print(jObj);
+
+					// sb.append(jObj.toString());
+					// sb.append("</body></html>");
+					// out.write(sb.toString());
+
 					return;
 				}
+			}
 			if (tel == null) {
 				if (action.equals("select")) {
 					List<Map<String, Object>> beans = service.selectAll();
-					jObj.put("suppliers", beans);
+					jObj.put("results", beans);
 					out.print(jObj);
 					return;
 				}
@@ -64,20 +74,18 @@ public class SupplierServlet extends HttpServlet {
 			if (tel != null) {
 				if (action.equals("select")) {
 					Map<String, Object> result = service.selectByTel(tel);
-					jObj.put("supplier", result);
+					jObj.put("results", result);
 					out.print(jObj);
 					return;
 				}
 			}
-			
-			}
+
 		}
-		// select by name
-		// List<Map<String, Object>> results = service.selectByName("k");
-
-		// System.out.println(results);
-
 	}
+	// select by name
+	// List<Map<String, Object>> results = service.selectByName("k");
+
+	// System.out.println(results);
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
@@ -119,7 +127,14 @@ public class SupplierServlet extends HttpServlet {
 					errs.put("supplierContact", "新增或修改時聯絡人姓名為必填欄位，請輸入");
 				}
 				if (tel == null || tel.length() == 0) {
-					errs.put("supplierTel", "新增或修改時聯絡人姓名為必填欄位，請輸入");
+					errs.put("supplierTel", "新增或修改時電話為必填欄位，請輸入");
+				}
+				if (tel != null && tel.length() != 0) {
+					if (tel.matches("0\\d{1,2}-?(\\d{6,8})(#\\d{1,5}){0,1}")) {
+						errs.put("supplierTel", "輸入格式正確");
+					} else {
+						errs.put("supplierTel", "輸入格式錯誤");
+					}
 				}
 				if (addr == null || addr.length() == 0) {
 					errs.put("supplierAddr", "新增或修改時地址為必填欄位，請輸入");
