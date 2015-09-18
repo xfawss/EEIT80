@@ -142,11 +142,6 @@ public class SupplierServlet extends HttpServlet {
 					errs.put("supplierDate", "新增或修改時首次交易日為必填欄位，請輸入");
 				}
 			}
-			if (action.equals("Delete")) {
-				if (date == null || date.length() == 0) {
-					errs.put("supplierTel", "刪除時電話為必填欄位，請輸入");
-				}
-			}
 		}
 
 		// 轉換資料
