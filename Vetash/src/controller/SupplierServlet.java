@@ -130,12 +130,11 @@ public class SupplierServlet extends HttpServlet {
 					errs.put("supplierTel", "新增或修改時電話為必填欄位，請輸入");
 				}
 				if (tel != null && tel.length() != 0) {
-					if (tel.matches("0\\d{1,2}-?(\\d{6,8})(#\\d{1,5}){0,1}")) {
-						errs.put("supplierTel", "輸入格式正確");
-					} else {
+					if (!tel.matches("\\+?\\d{1,4}-?(\\d{4,15})(#\\d{1,5}){0,1}")) {
 						errs.put("supplierTel", "輸入格式錯誤");
 					}
 				}
+
 				if (addr == null || addr.length() == 0) {
 					errs.put("supplierAddr", "新增或修改時地址為必填欄位，請輸入");
 				}
@@ -152,7 +151,9 @@ public class SupplierServlet extends HttpServlet {
 
 		// 轉換資料
 		java.util.Date firstDate = null;
-		if (date != null && date.length() != 0) {
+		if (date != null && date.length() != 0)
+
+		{
 			firstDate = Parse.convertDate(date);
 			if (new java.util.Date(0).equals(firstDate)) {
 				errs.put("supplierDate", "日期格式必須如範例:2015-01-01 (西元年4碼-月2碼-日2碼)");
@@ -160,12 +161,16 @@ public class SupplierServlet extends HttpServlet {
 		}
 
 		int parseId = 0;
-		if (id != null && id.length() != 0) {
+		if (id != null && id.length() != 0)
+
+		{
 			parseId = Parse.convertInt(id);
 		}
 
 		// System.out.println(errs);
-		if (errs != null && !errs.isEmpty()) {
+		if (errs != null && !errs.isEmpty())
+
+		{
 			req.getRequestDispatcher("/AlexHo/supplierTest.jsp").forward(req, rsp);
 			return;
 		}
@@ -186,7 +191,9 @@ public class SupplierServlet extends HttpServlet {
 
 		// 根據Model執行結果導向View
 
-		if (action != null && action.equals("insert")) {
+		if (action != null && action.equals("insert"))
+
+		{
 			int result = service.insert(bean);
 			if (result == 0) {
 				errs.put("result", "新增失敗");
@@ -195,7 +202,9 @@ public class SupplierServlet extends HttpServlet {
 				errs.put("result", "新增" + result + "筆成功");
 			}
 			req.getRequestDispatcher("/AlexHo/supplierTest.jsp").forward(req, rsp);
-		} else if (action != null && action.equals("update")) {
+		} else if (action != null && action.equals("update"))
+
+		{
 			int result = service.update(bean);
 			if (result == 0) {
 				errs.put("result", "修改失敗");
@@ -205,7 +214,9 @@ public class SupplierServlet extends HttpServlet {
 			}
 			req.getRequestDispatcher("/AlexHo/supplierTest.jsp").forward(req, rsp);
 			// System.out.println(action + "完成");
-		} else if (action != null && action.equals("delete")) {
+		} else if (action != null && action.equals("delete"))
+
+		{
 			int result = service.delete(bean);
 			// System.out.println(result);
 			if (result == 0) {
@@ -215,7 +226,9 @@ public class SupplierServlet extends HttpServlet {
 				errs.put("result", "刪除" + result + "筆成功");
 			}
 			req.getRequestDispatcher("/AlexHo/supplierTest.jsp").forward(req, rsp);
-		} else {
+		} else
+
+		{
 			errs.put("result", "不知道您現在要" + action + "什麼");
 			req.getRequestDispatcher("/AlexHo/supplierTest.jsp").forward(req, rsp);
 		}
