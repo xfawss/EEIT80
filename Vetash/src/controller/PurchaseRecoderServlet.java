@@ -35,7 +35,7 @@ public class PurchaseRecoderServlet extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.setContentType("text/html; charset=UTF-8");
+		resp.setContentType("text/html");
 		String keyword = req.getParameter("keyword");
 		String task = req.getParameter("task");
 		

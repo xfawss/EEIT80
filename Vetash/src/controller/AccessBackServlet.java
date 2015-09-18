@@ -29,7 +29,7 @@ public class AccessBackServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.setContentType("text/html; charset=UTF-8");
+		resp.setContentType("text/html");
 		String bigWave = req.getParameter("account");
 		String passKey = req.getParameter("password");
 		String newPass1 = req.getParameter("newPass1");
