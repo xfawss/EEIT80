@@ -17,7 +17,7 @@
 <hr>
 
 <p>insert</p>
-<form action="/Vetash/model" method="post">
+<form action="/Vetash/products" method="post">
 	id<br>
 	<input type="text" name="productId" >
 	<span>${errMsg.productId}</span>
