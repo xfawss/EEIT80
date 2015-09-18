@@ -5,12 +5,12 @@ import java.util.List;
 import model.ProductBean;
 
 public interface ProductDAO {
-	public abstract ProductBean insert(String productId,String productType,String productName,int productPrice,String productImgPath,String productNote);
-    public abstract ProductBean update(String productName,int productPrice,String productImgPath,String productNote);
-    public abstract boolean delete(String productId);
-    public abstract ProductBean selectById(String productId);
-    public abstract List<ProductBean> getAll();
-	public abstract ProductBean selectByName(String productName);
-	public abstract ProductBean selectByType(String productType);
-	public abstract List<ProductBean> selectType();
+	public ProductBean insert(String productId,String productType,String productName,int productPrice,String productImgPath,String productNote);
+    public ProductBean update(String productName,int productPrice,String productImgPath,String productNote);
+    public ProductBean delete(String productId);
+    public ProductBean selectByID(String productId);
+    public abstract List<ProductBean> selectByName(String productName);
+	public abstract List<ProductBean> selectByType(String productType);
+    public List<ProductBean> getAll();
+    public List<ProductBean> selectType();
 }

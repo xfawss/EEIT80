@@ -1,141 +1,132 @@
 package model;
 
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
-import model.ProductService;
+import model.dao.ProductDAOHibernate;
 
-import org.hibernate.Query;
-import org.hibernate.Session;
 
-import hibernate.util.HibernateUtil;
 
-public class ProductService implements ProductDAO {
-	private static final String GET_ALL_STMT = "from ProductBean order by productId";
+
+
+
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component(value=" ProductService")
+public class ProductService {
 	
+	private ProductDAO productDAO = new ProductDAOHibernate();
 
-	@Override
-	public void insert(ProductBean productBean) {
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		try {
-			session.beginTransaction();
-			session.saveOrUpdate(productBean);
-			session.getTransaction().commit();
-		} catch (RuntimeException ex) {
-			session.getTransaction().rollback();
-			throw ex;
-		}
-	}
-
-	@Override
-	public void update(ProductBean productBean) {
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		try {
-			session.beginTransaction();
-			session.saveOrUpdate(productBean);
-			session.getTransaction().commit();
-		} catch (RuntimeException ex) {
-			session.getTransaction().rollback();
-			throw ex;
-		}
-	}
-
-	@Override
-	public void delete(String productId) {
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		try {
-			session.beginTransaction();
-			ProductBean productBean = new ProductBean();
-			productBean.setProductId(productId);
-			session.delete(productBean);
-			session.getTransaction().commit();
-		} catch (RuntimeException ex) {
-			session.getTransaction().rollback();
-			throw ex;
-		}
-	}
-
-	@Override
-	public ProductBean selectByName(String productName) {
-		ProductBean productBean = null;
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		try {
-			session.beginTransaction();
-			productBean = (ProductBean) session.get(ProductBean.class, productName);
-			session.getTransaction().commit();
-		} catch (RuntimeException ex) {
-			session.getTransaction().rollback();
-			throw ex;
-		}
-		return productBean;
-	}
-
-	@Override
-	public ProductBean selectByType(String productType) {
-		ProductBean productBean = null;
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		try {
-			session.beginTransaction();
-			productBean = (ProductBean) session.get(ProductBean.class, productType);
-			session.getTransaction().commit();
-		} catch (RuntimeException ex) {
-			session.getTransaction().rollback();
-			throw ex;
-		}
-		return productBean;
-	}
 	
-	@Override
-	public ProductBean selectById(String productId) {
-		ProductBean productBean = null;
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		try {
-			session.beginTransaction();
-			productBean = (ProductBean) session.get(ProductBean.class, productId);
-			session.getTransaction().commit();
-		} catch (RuntimeException ex) {
-			session.getTransaction().rollback();
-			throw ex;
-		}
-		return productBean;
+	public ProductBean insert(String productId,String productType,String productName,int productPrice,String productImgPath,String productNote) {		
+		return  productDAO.insert(productId, productType, productName, productPrice, productNote, productImgPath);
 	}
-	
-	@Override
-	public List<ProductBean> selectType() {
-		List<ProductBean> list = null;
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		try {
-			session.beginTransaction();
-			String HQL_QUERY = "select distinct productType from ProductVO";
-			Query query = session.createQuery(HQL_QUERY);
-			list = query.list();
-			session.getTransaction().commit();
-		} catch (RuntimeException ex) {
-			session.getTransaction().rollback();
-			throw ex;
-		}
-		return list;
+
+
+	public ProductBean update(String productName, int productPrice,
+			String productImgPath, String productNote) {
+		return productDAO.update(productName, productPrice, productImgPath, productNote) ;
 	}
 
 	
-	
-	@Override
-	public List<ProductBean> getAll() {
-		List<ProductBean> list = null;
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		try {
-			session.beginTransaction();
-			Query query = session.createQuery(GET_ALL_STMT);
-			list = query.list();
-			session.getTransaction().commit();
-		} catch (RuntimeException ex) {
-			session.getTransaction().rollback();
-			throw ex;
-		}
-		return list;
+	public ProductBean delete(String productId) {
+		return  productDAO.delete(productId);		
 	}
 
+	
+	public Map<String, Object> selectByID(String productId) {
+		Map<String, Object> results = new LinkedHashMap<String,Object>();
+		ProductBean bean = null;
+		if(productId != null && productId.length()!=0){
+			bean = productDAO.selectByID(productId);
+			results.put("ProductrId", bean.getProductId());
+			results.put("ProductName", bean.getProductName());
+			results.put("ProductType", bean.getProductType());
+			results.put("ProductPrice", bean.getProductPrice());
+			results.put("ProductCost", bean.getProductCost());
+			results.put("ProductQty", bean.getProductQty());
+			results.put("ProductImgPath", bean.getProductImgPath());
+			results.put("ProductNote", bean.getProductNote());
+			
+			}
+		return results;
+	}
+
+	
+	public List<Map<String, Object>> selectByName(String productName) {
+		List<Map<String, Object>> results = new LinkedList<Map<String,Object>>();
+		List<ProductBean> beans = productDAO.selectByType(productName);
+		for(int i=0; i<beans.size(); i++){
+			ProductBean bean = beans.get(i);
+			Map<String, Object> map1 = new LinkedHashMap<String, Object>();
+			map1.put("ProductrId", bean.getProductId());
+			map1.put("ProductName", bean.getProductName());
+			map1.put("ProductType", bean.getProductType());
+			map1.put("ProductPrice", bean.getProductPrice());
+			map1.put("ProductCost", bean.getProductCost());
+			map1.put("ProductQty", bean.getProductQty());
+			map1.put("ProductImgPath", bean.getProductImgPath());
+			map1.put("ProductNote", bean.getProductNote());
+			results.add(map1);
+		}
+		return results;
+	}
+
+
+	public List<Map<String, Object>> selectByType(String productType) {
+		List<Map<String, Object>> results = new LinkedList<Map<String,Object>>();
+		List<ProductBean> beans = productDAO.selectByType(productType);
+		for(int i=0; i<beans.size(); i++){
+			ProductBean bean = beans.get(i);
+			Map<String, Object> map1 = new LinkedHashMap<String, Object>();
+			map1.put("ProductrId", bean.getProductId());
+			map1.put("ProductName", bean.getProductName());
+			map1.put("ProductType", bean.getProductType());
+			map1.put("ProductPrice", bean.getProductPrice());
+			map1.put("ProductCost", bean.getProductCost());
+			map1.put("ProductQty", bean.getProductQty());
+			map1.put("ProductImgPath", bean.getProductImgPath());
+			map1.put("ProductNote", bean.getProductNote());
+			results.add(map1);
+		}
+		return results;
+	}
+
+	
+	public List<Map<String, Object>>  getAll() {
+		List<Map<String, Object>> results = new LinkedList<Map<String,Object>>();
+		List<ProductBean> beans = productDAO. getAll();
+		for(int i=0; i<beans.size(); i++){
+			ProductBean bean = beans.get(i);
+			Map<String, Object> map1 = new LinkedHashMap<String, Object>();
+			map1.put("ProductrId", bean.getProductId());
+			map1.put("ProductName", bean.getProductName());
+			map1.put("ProductType", bean.getProductType());
+			map1.put("ProductPrice", bean.getProductPrice());
+			map1.put("ProductCost", bean.getProductCost());
+			map1.put("ProductQty", bean.getProductQty());
+			map1.put("ProductImgPath", bean.getProductImgPath());
+			map1.put("ProductNote", bean.getProductNote());
+			results.add(map1);
+		}
+		return results;
+	}
+	
+	public List<Map<String, Object>> selectType() {
+		List<Map<String, Object>> results = new LinkedList<Map<String,Object>>();
+		List<ProductBean> beans = productDAO. selectType();
+		for(int i=0; i<beans.size(); i++){
+			ProductBean bean = beans.get(i);
+			Map<String, Object> map1 = new LinkedHashMap<String, Object>();
+			map1.put("ProductType", bean.getProductType());			
+			results.add(map1);
+		}
+		return results;
+	}
 	
 }
-
-
-
