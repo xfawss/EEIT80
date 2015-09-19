@@ -4,12 +4,12 @@ import java.util.List;
 
 public interface ImgCategoryDAO {
 	
-	public abstract ImgCategoryBean select(int imgCategoryId);
+	public abstract ImgCategoryBean selectById(int imgCategoryId);
 	
-	public abstract List<ImgCategoryBean> select();
+	public abstract List<ImgCategoryBean> selectAll();
 	
-	public abstract ImgCategoryBean insert(ImgCategoryBean bean);
+	public abstract int insert(ImgCategoryBean bean);
 	
-	public abstract ImgCategoryBean update(String imgCategoryName,int imgCategoryId);	
+	public abstract int update(String imgCategoryName,int imgCategoryId);	
 
 }

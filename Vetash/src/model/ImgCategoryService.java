@@ -1,44 +1,49 @@
 package model;
 
-import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
-
+import java.util.Map;
 import model.dao.ImgCategoryDAOjdbc;
 
 public class ImgCategoryService {
 	private ImgCategoryDAO imgCategoryDao = new ImgCategoryDAOjdbc();
-	
-	public List<ImgCategoryBean> select(ImgCategoryBean bean){
-		List<ImgCategoryBean> result = null;
-		if(bean!=null && bean.getImgCategoryId()!=0){
-			ImgCategoryBean temp = imgCategoryDao.select(bean.getImgCategoryId());
-			result = new ArrayList<ImgCategoryBean>();
-			result.add(temp);
-		}else{
-			result = imgCategoryDao.select();
+
+	public ImgCategoryBean selectById(int id) {
+		ImgCategoryBean result = null;
+		if (id != 0 ) {
+			result = imgCategoryDao.selectById(id);
 		}
 		return result;
 	}
-	
-	public ImgCategoryBean insert(ImgCategoryBean bean){
-		ImgCategoryBean result = null;
-		if(bean!=null){
+
+	public List<Map<String, Object>> selectAll() {
+		List<Map<String, Object>> result = new LinkedList<Map<String, Object>>();
+		List<ImgCategoryBean> beans = imgCategoryDao.selectAll();
+
+		for (int i = 0; i < beans.size(); i++) {
+			Map<String, Object> map1 = new LinkedHashMap<String, Object>();
+			ImgCategoryBean bean = beans.get(i);
+			map1.put("imgCategoryId", bean.getImgCategoryId());
+			map1.put("imgCategoryName", bean.getImgCategoryName());
+			result.add(map1);
+		}
+		return result;
+	}
+
+	public int insert(ImgCategoryBean bean) {
+		int result = 0;
+		if (bean != null) {
 			result = imgCategoryDao.insert(bean);
 		}
 		return result;
 	}
-	
-	public ImgCategoryBean update(ImgCategoryBean bean){
-		ImgCategoryBean result = null;
-		if(bean!=null){
+
+	public int update(ImgCategoryBean bean) {
+		int result = 0;
+		if (bean != null) {
 			result = imgCategoryDao.update(bean.getImgCategoryName(), bean.getImgCategoryId());
 		}
 		return result;
 	}
-	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

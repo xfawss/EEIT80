@@ -139,7 +139,13 @@ public class SupplierServlet extends HttpServlet {
 				}
 			}
 		}
-
+		if (errors != null && !errors.isEmpty()) {
+			results.put("errors", errors);
+			jObj.put("results", results);
+			out.print(jObj);
+			return;
+		}
+		
 		// 轉換資料
 		java.util.Date firstDate = null;
 		if (date != null && date.length() != 0)
@@ -159,12 +165,7 @@ public class SupplierServlet extends HttpServlet {
 		}
 
 		// System.out.println(jObj);
-		if (errors != null && !errors.isEmpty()) {
-			results.put("errors", errors);
-			jObj.put("results", results);
-			out.print(jObj);
-			return;
-		}
+		
 
 		// 呼叫Model
 		SupplierBean bean = new SupplierBean();
@@ -201,7 +202,7 @@ public class SupplierServlet extends HttpServlet {
 				results.put("state", "修改失敗");
 			} else {
 				req.setAttribute("update", result);
-				results.put("state", "修改1筆成功");
+				results.put("state", "修改" + result + "筆成功");
 			}
 
 			// System.out.println(action + "完成");
