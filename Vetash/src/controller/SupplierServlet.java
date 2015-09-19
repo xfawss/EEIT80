@@ -35,7 +35,6 @@ public class SupplierServlet extends HttpServlet {
 		// rsp.setContentType("text/html; charset=UTF-8");
 		// System.out.println("get");
 
-		
 		// 接收資料
 
 		String name = req.getParameter("supplierName");
@@ -46,7 +45,7 @@ public class SupplierServlet extends HttpServlet {
 		// System.out.println(action);
 
 		JSONObject jObj = new JSONObject();
-		PrintWriter out = rsp.getWriter();	
+		PrintWriter out = rsp.getWriter();
 
 		if (action != null) {
 			if (name != null) {
@@ -86,7 +85,7 @@ public class SupplierServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse rsp) throws ServletException, IOException {
 
-//		rsp.setContentType("text/html; charset=UTF-8");
+		// rsp.setContentType("text/html; charset=UTF-8");
 		// System.out.println("post");
 		// 接收資料
 		String id = req.getParameter("supplierId");
@@ -145,7 +144,7 @@ public class SupplierServlet extends HttpServlet {
 			out.print(jObj);
 			return;
 		}
-		
+
 		// 轉換資料
 		java.util.Date firstDate = null;
 		if (date != null && date.length() != 0)
@@ -165,7 +164,6 @@ public class SupplierServlet extends HttpServlet {
 		}
 
 		// System.out.println(jObj);
-		
 
 		// 呼叫Model
 		SupplierBean bean = new SupplierBean();
@@ -183,9 +181,7 @@ public class SupplierServlet extends HttpServlet {
 
 		// 根據Model執行結果導向View
 
-		if (action != null && action.equals("insert"))
-
-		{
+		if (action != null && action.equals("insert")) {
 			int result = service.insert(bean);
 			if (result == 0) {
 				results.put("state", "新增失敗");
@@ -193,10 +189,7 @@ public class SupplierServlet extends HttpServlet {
 				req.setAttribute("insert", result);
 				results.put("state", "新增" + result + "筆成功");
 			}
-
-		} else if (action != null && action.equals("update"))
-
-		{
+		} else if (action != null && action.equals("update")) {
 			int result = service.update(bean);
 			if (result == 0) {
 				results.put("state", "修改失敗");
@@ -206,9 +199,7 @@ public class SupplierServlet extends HttpServlet {
 			}
 
 			// System.out.println(action + "完成");
-		} else if (action != null && action.equals("delete"))
-
-		{
+		} else if (action != null && action.equals("delete")) {
 			int result = service.delete(bean);
 			// System.out.println(result);
 			if (result == 0) {
@@ -220,7 +211,6 @@ public class SupplierServlet extends HttpServlet {
 		} else {
 			results.put("state", "不知道您現在要" + action + "什麼");
 		}
-
 		jObj.put("results", results);
 		out.print(jObj);
 		return;

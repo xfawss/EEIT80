@@ -33,16 +33,15 @@ public class ImgCategoryServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse rsp) throws ServletException, IOException {
 
-		// rsp.setContentType("/text/html;charset=UTF-8");
+		 rsp.setContentType("text/html;charset=UTF-8");
 
 		// 接收資料
 		String id = req.getParameter("imgCategoryId");
-		String name = req.getParameter("imgCategoryName");
 		String action = req.getParameter("action");
 
 		// 轉換資料
 		int parseId = 0;
-		if (id != null || id.length() != 0) {
+		if (id != null ) {
 			parseId = Parse.convertInt(id);
 		}
 
@@ -58,6 +57,7 @@ public class ImgCategoryServlet extends HttpServlet {
 					return;
 				}
 			}
+			
 			if (id == null) {
 				if (action.equals("select")) {
 					List<Map<String, Object>> result = service.selectAll();
@@ -136,6 +136,7 @@ public class ImgCategoryServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse rsp) throws ServletException, IOException {
 
+		rsp.setContentType("text/html ;charset = UTF-8");
 		// 接收資料
 		String id = req.getParameter("imgCategoryId");
 		String name = req.getParameter("imgCategoryName");
@@ -146,14 +147,14 @@ public class ImgCategoryServlet extends HttpServlet {
 		PrintWriter out = rsp.getWriter();
 		Map<String, Object> results = new HashMap<String, Object>();
 		List<String> errors = new ArrayList<String>();
-
-		if (action.equals("inset") || action.equals("update")) {
-			if (name == null || name.length() == 0) {
-				errors.add("新增或修改時需輸入分類名稱");
+		if (action != null) {
+			if (action.equals("insert") || action.equals("update")) {
+				if (name == null || name.length() == 0) {
+					errors.add("新增或修改時需輸入分類名稱");
+				}
 			}
 		}
-
-		if (errors != null || !errors.isEmpty()) {
+		if (errors != null && !errors.isEmpty()) {
 			results.put("errors", errors);
 			jObj.put("results", results);
 			out.print(jObj);
@@ -162,7 +163,7 @@ public class ImgCategoryServlet extends HttpServlet {
 
 		// 轉換資料
 		int parseId = 0;
-		if (id != null || id.length() != 0) {
+		if (id != null ) {
 			parseId = Parse.convertInt(id);
 		}
 
