@@ -33,9 +33,9 @@ public class SupplierServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse rsp) throws ServletException, IOException {
 
 		// rsp.setContentType("text/html; charset=UTF-8");
-
 		// System.out.println("get");
 
+		
 		// 接收資料
 
 		String name = req.getParameter("supplierName");
@@ -46,12 +46,7 @@ public class SupplierServlet extends HttpServlet {
 		// System.out.println(action);
 
 		JSONObject jObj = new JSONObject();
-
-		PrintWriter out = rsp.getWriter();
-
-		// StringBuilder sb = new StringBuilder();
-		// sb.append("<html><head><meta charset=\"UTF-8\"></head>");
-		// sb.append("<body>");
+		PrintWriter out = rsp.getWriter();	
 
 		if (action != null) {
 			if (name != null) {
@@ -59,11 +54,6 @@ public class SupplierServlet extends HttpServlet {
 					List<Map<String, Object>> result = service.selectByName(name);
 					jObj.put("results", result);
 					out.print(jObj);
-
-					// sb.append(jObj.toString());
-					// sb.append("</body></html>");
-					// out.write(sb.toString());
-
 					return;
 				}
 			}
