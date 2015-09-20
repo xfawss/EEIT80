@@ -30,7 +30,7 @@ public class CustomerDAOJdbc implements CustomerDAO {
 	private static final String SELECT_BY_CUSTOMERTEL =
 			"select * from Customer where customerTel=?";
 	@Override
-	public CustomerBean select(String customerTel) {
+	public CustomerBean selectByTel(String customerTel) {
 		CustomerBean result = null;
 		ResultSet rset = null;
 		try(
@@ -39,7 +39,7 @@ public class CustomerDAOJdbc implements CustomerDAO {
 			
 			stmt.setString(1, customerTel);
 			rset = stmt.executeQuery();
-			if(rset.next()) {
+			while(rset.next()) {
 				result = new CustomerBean();
 				result.setCustomerName(rset.getString("customerName"));
 				result.setCustomerTel(rset.getString("customerTel"));
@@ -66,7 +66,7 @@ public class CustomerDAOJdbc implements CustomerDAO {
 	private static final String SELECT_ALL =
 			"select * from Customer";
 	@Override
-	public List<CustomerBean> select() {
+	public List<CustomerBean> selectAll() {
 		List<CustomerBean> result = null;
 		try(
 				Connection conn = dataSource.getConnection();
@@ -118,8 +118,8 @@ public class CustomerDAOJdbc implements CustomerDAO {
 	private static final String UPDATE =
 			"update Customer set customerName=?, customerLine=?, customerFb=?, customerMail=? ,customerAddr=? ,customerNote=? where customerTel=?";
 	@Override
-	public int update(String customerName, String customerTel, String customerLine, String customerFb,
-			String customerMail, String customerAddr, String customerNote) {
+	public int update(String customerName, String customerLine, String customerFb,
+			String customerMail, String customerAddr, String customerNote, String customerTel) {
 		int result = 0;
 		try(
 				Connection conn = dataSource.getConnection();

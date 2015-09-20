@@ -31,10 +31,9 @@
 				輸入addr:<INPUT TYPE="text" NAME="customerAddr"> <BR>
 				輸入note:<INPUT TYPE="text" NAME="customerNote" >  <BR>          
 				
-				<button type="button" name="action" value="Insert" ><a href="/Vetash/shark/Insert.jsp">insert</a></button>
-				
-			<button type="button" name="action" value="Update"><a href="/Vetash/shark/Update.jsp">Update</a></button>
-				<button type="button" name="action" value="Delete"><a href="/Vetash/shark/Delete.jsp">Delete</a></button>
+			<a href="/Vetash/shark/Insert.jsp">insert</a>				
+			<a href="/Vetash/shark/Update.jsp">Update</a>
+			<a href="/Vetash/shark/Delete.jsp">Delete</a>
 				
 				<input type="submit" value="提交"  />
 </Form>

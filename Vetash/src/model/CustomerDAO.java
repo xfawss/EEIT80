@@ -3,9 +3,9 @@ package model;
 import java.util.List;
 
 public interface CustomerDAO {
-	public abstract CustomerBean select(String customerTel);
+	public abstract CustomerBean selectByTel(String customerTel);
 
-	public abstract List<CustomerBean> select();
+	public abstract List<CustomerBean> selectAll();
 
 	public abstract int insert(CustomerBean bean);
 

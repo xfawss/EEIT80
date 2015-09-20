@@ -16,6 +16,7 @@
 	<p>${errMsgs.result}</p>
 	<input type="hidden" name="action" value="Delete">
 	<input type="submit" value="delete">
+	<a href="index.jsp">index</a>
 </form>
 
 <c:if test="${not empty delete}">

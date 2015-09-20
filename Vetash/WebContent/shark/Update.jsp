@@ -30,6 +30,7 @@
 	<br>
 	<input type="hidden" name="action" value="Update">
 	<input type="submit" value="update">
+	<a href="index.jsp">index</a>
 </form>
 
 <c:if test="${not empty Update}">

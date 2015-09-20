@@ -32,7 +32,7 @@
 	<input type="hidden" name="action" value=Insert >
 	<input type="submit" value="Insert">
 </form>
-
+<a href="index.jsp">index</a>
 <c:if test="${not empty Insert}">
 <h3>Insert Product Table Success: ${Insert} row deleted </h3>
 <table border="1">
@@ -46,5 +46,9 @@
 </table>
 
 </c:if>
+
+
+
+
 </body>
 </html>

@@ -34,7 +34,7 @@ public class CustomerService {
 
     public List<CustomerBean> selectLikeNote( CustomerBean bean) {
     	List<CustomerBean> result =null;    	
-    	//customerName有值
+    	//customerNote有值
 		result = customerDao.selectLikeNote(bean.getCustomerNote());
 		return result;
     }   
@@ -44,7 +44,7 @@ public class CustomerService {
         if ( bean != null && bean.getCustomerTel() != "" )
         {
             //customerTel有值
-            CustomerBean temp = customerDao.select(bean.getCustomerTel());
+            CustomerBean temp = customerDao.selectByTel(bean.getCustomerTel());
             if ( temp != null )
             {
                 result = new ArrayList<CustomerBean>();
@@ -54,7 +54,7 @@ public class CustomerService {
         else
         {
           //customerTel不輸入時查詢全部
-            result = customerDao.select();
+            result = customerDao.selectAll();
         }
         return result;
     }
