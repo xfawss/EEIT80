@@ -39,7 +39,7 @@ public class SupplierServlet extends HttpServlet {
 
 		String name = req.getParameter("supplierName");
 		String tel = req.getParameter("supplierTel");
-		String action = req.getParameter("action");
+		String  action= req.getParameter("action");
 		// System.out.println(name);
 		// System.out.println(tel);
 		// System.out.println(action);
@@ -49,7 +49,7 @@ public class SupplierServlet extends HttpServlet {
 
 		if (action != null) {
 			if (name != null) {
-				if (action.equals("select")) {
+				if ("select".equals(action)) {
 					List<Map<String, Object>> result = service.selectByName(name);
 					jObj.put("results", result);
 					out.print(jObj);
@@ -57,7 +57,7 @@ public class SupplierServlet extends HttpServlet {
 				}
 			}
 			if (tel == null) {
-				if (action.equals("select")) {
+				if ("select".equals(action)) {
 					List<Map<String, Object>> beans = service.selectAll();
 					jObj.put("results", beans);
 					out.print(jObj);
@@ -65,7 +65,7 @@ public class SupplierServlet extends HttpServlet {
 				}
 			}
 			if (tel != null) {
-				if (action.equals("select")) {
+				if ("select".equals(action)) {
 					Map<String, Object> result = service.selectByTel(tel);
 					jObj.put("results", result);
 					out.print(jObj);
@@ -99,8 +99,9 @@ public class SupplierServlet extends HttpServlet {
 		String note = req.getParameter("supplierNote");
 		String action = req.getParameter("action");
 
-		// System.out.println(name);
-		// System.out.println(tel);
+		System.out.println(id);
+		 System.out.println(name);
+		 System.out.println(tel);
 		// System.out.println(addr);
 		// System.out.println(acct);
 		// System.out.println(date);
@@ -114,7 +115,7 @@ public class SupplierServlet extends HttpServlet {
 		Map<String, Object> results = new HashMap<String, Object>();
 
 		if (action != null) {
-			if (action.equals("insert") || action.equals("update")) {
+			if ("insert".equals(action) || "update".equals(action)) {
 				if (name == null || name.length() == 0) {
 					errors.add("新增或修改時公司名稱為必填欄位，請輸入");
 				}
@@ -181,7 +182,7 @@ public class SupplierServlet extends HttpServlet {
 
 		// 根據Model執行結果導向View
 
-		if (action != null && action.equals("insert")) {
+		if (action != null && "insert".equals(action)) {
 			int result = service.insert(bean);
 			if (result == 0) {
 				results.put("state", "新增失敗");
@@ -189,7 +190,7 @@ public class SupplierServlet extends HttpServlet {
 				req.setAttribute("insert", result);
 				results.put("state", "新增" + result + "筆成功");
 			}
-		} else if (action != null && action.equals("update")) {
+		} else if (action != null && "update".equals(action)) {
 			int result = service.update(bean);
 			if (result == 0) {
 				results.put("state", "修改失敗");
@@ -199,7 +200,7 @@ public class SupplierServlet extends HttpServlet {
 			}
 
 			// System.out.println(action + "完成");
-		} else if (action != null && action.equals("delete")) {
+		} else if (action != null && "delete".equals(action)) {
 			int result = service.delete(bean);
 			// System.out.println(result);
 			if (result == 0) {

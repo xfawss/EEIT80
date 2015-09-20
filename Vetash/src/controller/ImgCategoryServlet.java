@@ -33,7 +33,7 @@ public class ImgCategoryServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse rsp) throws ServletException, IOException {
 
-		 rsp.setContentType("text/html;charset=UTF-8");
+		rsp.setContentType("text/html;charset=UTF-8");
 
 		// 接收資料
 		String id = req.getParameter("imgCategoryId");
@@ -41,7 +41,7 @@ public class ImgCategoryServlet extends HttpServlet {
 
 		// 轉換資料
 		int parseId = 0;
-		if (id != null ) {
+		if (id != null && id.length() != 0) {
 			parseId = Parse.convertInt(id);
 		}
 
@@ -49,17 +49,17 @@ public class ImgCategoryServlet extends HttpServlet {
 		PrintWriter out = rsp.getWriter();
 
 		if (action != null) {
-			if (id != null) {
-				if (action.equals("select")) {
+			if (id != null && id.length()!=0) {
+				if ("select".equals(action)) {
 					ImgCategoryBean result = service.selectById(parseId);
 					jObj.put("results", result);
 					out.print(jObj);
 					return;
 				}
 			}
-			
-			if (id == null) {
-				if (action.equals("select")) {
+
+			if (id == null || id.length() == 0) {
+				if ("select".equals(action)) {
 					List<Map<String, Object>> result = service.selectAll();
 					jObj.put("results", result);
 					out.print(jObj);
@@ -148,7 +148,7 @@ public class ImgCategoryServlet extends HttpServlet {
 		Map<String, Object> results = new HashMap<String, Object>();
 		List<String> errors = new ArrayList<String>();
 		if (action != null) {
-			if (action.equals("insert") || action.equals("update")) {
+			if ("insert".equals(action) || "update".equals(action)) {
 				if (name == null || name.length() == 0) {
 					errors.add("新增或修改時需輸入分類名稱");
 				}
@@ -163,7 +163,7 @@ public class ImgCategoryServlet extends HttpServlet {
 
 		// 轉換資料
 		int parseId = 0;
-		if (id != null ) {
+		if (id != null && id.length() != 0) {
 			parseId = Parse.convertInt(id);
 		}
 
@@ -173,7 +173,7 @@ public class ImgCategoryServlet extends HttpServlet {
 		bean.setImgCategoryName(name);
 
 		// 根據Model結果導向View
-		if (action != null && action.equals("insert")) {
+		if (action != null && "insert".equals(action)) {
 			int result = service.insert(bean);
 			if (result == 0) {
 				results.put("state", "新增失敗");
@@ -182,7 +182,7 @@ public class ImgCategoryServlet extends HttpServlet {
 				results.put("state", "新增" + result + "成功");
 			}
 		}
-		if (action != null && action.equals("update")) {
+		if (action != null && "update".equals(action)) {
 			int result = service.update(bean);
 			if (result == 0) {
 				results.put("state", "修改失敗");

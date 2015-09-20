@@ -142,7 +142,7 @@ public class ImageServlet extends HttpServlet {
 		List<String> errors = new ArrayList<String>();
 
 		if (action != null) {
-			if (action.equals("insert") || action.equals("update")) {
+			if ("insert".equals(action) || "update".equals(action)) {
 				System.out.println("error");
 				if (name == null || name.length() == 0) {
 					errors.add("請輸入圖片名稱");
@@ -157,12 +157,12 @@ public class ImageServlet extends HttpServlet {
 		}
 		// 轉換資料
 		int parseImageId = 0;
-		if (imageId != null) {
+		if (imageId != null && imageId.length() != 0) {
 			parseImageId = Parse.convertInt(imageId);
 		}
 
 		int parseCategoryId = 0;
-		if (imgCategoryId != null) {
+		if (imgCategoryId != null && imgCategoryId.length() != 0) {
 			parseCategoryId = Parse.convertInt(imgCategoryId);
 		}
 
@@ -175,7 +175,7 @@ public class ImageServlet extends HttpServlet {
 
 		// 根據Model執行結果導向View
 		int result = 0;
-		if (action != null && action.equals("insert")) {
+		if (action != null && "insert".equals(action)) {
 			result = service.insert(bean);
 			if (result == 0) {
 				results.put("state", "新增失敗");
@@ -184,7 +184,7 @@ public class ImageServlet extends HttpServlet {
 				results.put("state", "新增" + result + "筆成功");
 			}
 		}
-		if (action != null && action.equals("update")) {
+		if (action != null && "update".equals(action)) {
 			result = service.update(bean);
 			if (result == 0) {
 				results.put("state", "修改失敗");
@@ -193,7 +193,7 @@ public class ImageServlet extends HttpServlet {
 				results.put("state", "修改" + result + "筆成功");
 			}
 		}
-		if (action != null && action.equals("delete")) {
+		if (action != null && "delete".equals(action)) {
 			result = service.delete(bean);
 			if (result == 0) {
 				results.put("state", "刪除失敗");
