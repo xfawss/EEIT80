@@ -39,41 +39,52 @@ public class SupplierServlet extends HttpServlet {
 
 		String name = req.getParameter("supplierName");
 		String tel = req.getParameter("supplierTel");
-		String  action= req.getParameter("action");
+		String action = req.getParameter("action");
 		// System.out.println(name);
 		// System.out.println(tel);
 		// System.out.println(action);
 
-		JSONObject jObj = new JSONObject();
 		PrintWriter out = rsp.getWriter();
+		List<String> errors = new ArrayList<String>();
+		JSONObject jObj = new JSONObject();
 
-		if (action != null) {
-			if (name != null) {
-				if ("select".equals(action)) {
-					List<Map<String, Object>> result = service.selectByName(name);
-					jObj.put("results", result);
-					out.print(jObj);
-					return;
-				}
-			}
-			if (tel == null) {
-				if ("select".equals(action)) {
-					List<Map<String, Object>> beans = service.selectAll();
-					jObj.put("results", beans);
-					out.print(jObj);
-					return;
-				}
-			}
-			if (tel != null) {
-				if ("select".equals(action)) {
-					Map<String, Object> result = service.selectByTel(tel);
-					jObj.put("results", result);
-					out.print(jObj);
-					return;
-				}
+		if ("selectByName".equals(action)) {
+			if (name != null && name.length() != 0) {
+				// format correct
+				List<Map<String, Object>> result = service.selectByName(name);
+				jObj.put("results", result);
+				out.print(jObj);
+				return;
+			} else {
+				// format incorrect
+				errors.add("格式不正確");
 			}
 		}
+
+		if ("selectAll".equals(action)) {
+			List<Map<String, Object>> result = service.selectAll();
+			jObj.put("results", result);
+			out.print(jObj);
+			return;
+
+		}
+		if ("selectByTel".equals(action)) {
+
+			if (tel.matches("\\+?\\d{1,4}-?(\\d{4,15})(#\\d{1,5}){0,1}")) {
+
+				Map<String, Object> result = service.selectByTel(tel);
+				jObj.put("results", result);
+				out.print(jObj);
+				return;
+			} else {
+				errors.add("格式不正確");
+			}
+		}
+		for(String temp : errors){
+			System.out.println(temp);
+		}
 	}
+
 	// select by name
 	// List<Map<String, Object>> results = service.selectByName("k");
 
@@ -100,8 +111,8 @@ public class SupplierServlet extends HttpServlet {
 		String action = req.getParameter("action");
 
 		System.out.println(id);
-		 System.out.println(name);
-		 System.out.println(tel);
+		System.out.println(name);
+		System.out.println(tel);
 		// System.out.println(addr);
 		// System.out.println(acct);
 		// System.out.println(date);
