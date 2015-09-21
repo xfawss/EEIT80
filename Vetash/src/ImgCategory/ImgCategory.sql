@@ -20,4 +20,4 @@ select * from ImgCategory where ImgCategoryName like '%版%'
 
 select * from ImgCategory where ImgCategoryId=5
 
-insert into ImgCategory (ImgCategoryName) values ('公館大頭照')
+insert into ImgCategory (ImgCategoryName) values ('公館大頭照') 

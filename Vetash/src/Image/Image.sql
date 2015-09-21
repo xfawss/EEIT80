@@ -1,7 +1,7 @@
 ﻿CREATE DATABASE Vetash
 
 drop table "Image"
-
+ 
 --Image
 CREATE TABLE "Image"
 (ImageId int PRIMARY KEY IDENTITY,

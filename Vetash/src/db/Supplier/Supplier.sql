@@ -26,6 +26,6 @@ select * from Supplier where SupplierTel = '0974002547'
 
 select * from Supplier where SupplierName like '%中%'
 
-
+ 
 
 
