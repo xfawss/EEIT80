@@ -22,7 +22,7 @@ public class ImageDAOjdbc implements ImageDAO {
 	public ImageDAOjdbc() {
 		try {
 			Context ctx = new InitialContext();
-			this.dataSource = (DataSource) ctx.lookup("java:comp/env/jdbc/xxx");
+			this.dataSource = (DataSource) ctx.lookup("java:comp/env/jdbc/Vetash");
 		} catch (NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

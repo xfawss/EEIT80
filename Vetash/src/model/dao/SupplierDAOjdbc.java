@@ -22,7 +22,7 @@ public class SupplierDAOjdbc implements SupplierDAO {
 	public SupplierDAOjdbc(){
 		try {
 			Context ctx = new InitialContext();
-			this.dataSource = (DataSource) ctx.lookup("java:comp/env/jdbc/xxx");
+			this.dataSource = (DataSource) ctx.lookup("java:comp/env/jdbc/Vetash");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}

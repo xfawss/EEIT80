@@ -11,7 +11,7 @@
 	
 	<bean id="dataSource"
 		class="org.springframework.jndi.JndiObjectFactoryBean">
-		<property name="jndiName" value="java:comp/env/jdbc/xxx"></property>
+		<property name="jndiName" value="java:comp/env/jdbc/Vetash"></property>
 	</bean>
 	
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
