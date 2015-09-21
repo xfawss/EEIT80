@@ -127,7 +127,7 @@ public class SupplierServlet extends HttpServlet {
 				}
 				if (tel != null && tel.length() != 0) {
 					if (!tel.matches("\\+?\\d{1,4}-?(\\d{4,15})(#\\d{1,5}){0,1}")) {
-						errors.add("輸入資料錯誤，電話號碼不能有中文和英文");
+						errors.add("輸入資料錯誤，電話號碼不能有中文或英文，如:02-27450475#123");
 					}
 				}
 
