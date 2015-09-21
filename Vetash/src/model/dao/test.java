@@ -20,8 +20,9 @@ public class test {
 //		x.setProductNote("dsfsdfdsfgghhhhhhhhhhhh");
 //		x.setProductImgPath("");
 		
-	dao.insert("dsfsdfsdfs","案件","sdfsdf",100,"dsfsdfdsfgghhhhhhhhhhhh","ddddd");
-
+//	dao.delete("NULL");
+//	dao.insert("ID2", "TYPE2","NAME2",200,null,"NOTE2");
+	dao.update("ID", "NAME2",200,null,"NOTE2");
 	
 
 		
@@ -71,7 +72,34 @@ public class test {
 //				System.out.print(aEmp.getDeptVO().getDeptno() + ",");
 //				System.out.print(aEmp.getDeptVO().getDname() + ",");
 //				System.out.print(aEmp.getDeptVO().getLoc());
-				
+//	ProductBean a = dao.selectByID("ddd");
+//		System.out.print(a.getProductId() + ",");
+//		System.out.print(a.getProductType() + ",");
+//		System.out.print(a.getProductName() + ",");
+//		System.out.print(a.getProductPrice() + ",");
+//		System.out.print(a.getProductCost() + ",");
+//		System.out.print(a.getProductQty() + ",");
+//		System.out.print(a.getProductNote() + ",");
+//
+//		System.out.println();
+		
+		List<ProductBean> list0 = dao.selectType();
+		String xx = list0.toString();
+		System.out.print(xx);
+		
+		List<ProductBean> list2 = (List<ProductBean>) dao.selectByName("Name");
+		for (ProductBean a : list2) {
+			System.out.print(a.getProductId() + ",");
+			System.out.print(a.getProductType() + ",");
+			System.out.print(a.getProductName() + ",");
+			System.out.print(a.getProductPrice() + ",");
+			System.out.print(a.getProductCost() + ",");
+			System.out.print(a.getProductQty() + ",");
+			System.out.print(a.getProductNote() + ",");
+
+			System.out.println();
+		}
+	
 		
 		List<ProductBean> list = dao.getAll();
 		for (ProductBean aEmp : list) {

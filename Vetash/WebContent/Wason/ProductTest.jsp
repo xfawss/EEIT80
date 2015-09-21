@@ -9,37 +9,69 @@
 <body>
 	<%String path = request.getContextPath(); %>
 
-<a href="<%=path %>/product?action=1select">getAll</a><br/>
-<a href="<%=path %>/product?productName=1&action=select">selectByName</a><br/>
-<a href="<%=path %>/product?productType=1&action=select">selectType</a><br/>
-<a href="<%=path %>/product?productId=1&action=select">selectByID</a><br/>
-<a href="<%=path %>/product?productType=1&action=select">selectType</a><br/>
+<a href="<%=path %>/products?action=select">getAll</a><br/>
+<a href="<%=path %>/products?productName=NAME2&action=select">selectByName</a><br/>
+<a href="<%=path %>/products?productType=TYPE1&action=select">selectByType</a><br/>
+<a href="<%=path %>/products?productId=ID1&action=select">selectByID</a><br/>
+<a href="<%=path %>/products?productType=TYPE1&action=select">selectType</a><br/>
 <hr>
+
 
 <p>insert</p>
 <form action="/Vetash/products" method="post">
-	id<br>
+	
 	<input type="text" name="productId" >
-	<span>${errMsg.productId}</span>
-	type<br>
+	<span>${errMsg.productId}</span>id<br>
+	
 	<input type="text" name="productType" >
-	<span>${errMsg.productType}</span>
-	productName<br>
+	<span>${errMsg.productType}</span>type<br>
+	
 	<input type="text" name="productName" >
-	<span>${errMsg.productName}</span>
-	productPrice<br>
+	<span>${errMsg.productName}</span>productName<br>
+	
 	<input type="text" name="productPrice" >
-	<span>${errMsg.productPrice}</span>
-	productImgPath<br>
+	<span>${errMsg.productPrice}</span>productPrice<br>
+	
 	<input type="text" name="productImgPath" >
-	<span>${errMsg.productImgPath}</span>
-	productNote<br>
+	<span>${errMsg.productImgPath}</span>productImgPath<br>
+	
 	<input type="text" name="productNote" >
-	<span>${errMsg.productNote}</span>
+	<span>${errMsg.productNote}</span>productNote<br>
 	<br>
 	<input type="hidden" name="action" value="insert">
 	<input type="submit" name="action" value="insert"><br>
 </form>
 
+<p>update</p>
+<form action="/Vetash/products" method="post">
+	
+	<input type="text" name="productId" >
+	<span>${errMsg.productId}</span>id<br>	
+	
+	<input type="text" name="productName" >
+	<span>${errMsg.productName}</span>productName<br>
+	
+	<input type="text" name="productPrice" >
+	<span>${errMsg.productPrice}</span>productPrice<br>
+	
+	<input type="text" name="productImgPath" >
+	<span>${errMsg.productImgPath}</span>productImgPath<br>
+	
+	<input type="text" name="productNote" >
+	<span>${errMsg.productNote}</span>productNote<br>
+	<br>
+	<input type="hidden" name="action" value="update">
+	<input type="submit" name="action" value="update"><br>
+</form>
+
+<p>delete</p>
+<form action="/Vetash/products" method="post">
+	
+	<input type="text" name="productId" >
+	<span>${errMsg.productId}</span>id<br>	
+	<br>
+	<input type="hidden" name="action" value="delete">
+	<input type="submit" name="action" value="delete"><br>
+</form>
 </body>
 </html>

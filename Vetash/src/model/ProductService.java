@@ -14,23 +14,27 @@ import model.dao.ProductDAOHibernate;
 
 
 
+
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component(value=" ProductService")
 public class ProductService {
 	
-	private ProductDAO productDAO = new ProductDAOHibernate();
+	private ProductDAOHibernate productDAO = new ProductDAOHibernate();
 
 	
 	public ProductBean insert(String productId,String productType,String productName,int productPrice,String productImgPath,String productNote) {		
-		return  productDAO.insert(productId, productType, productName, productPrice, productNote, productImgPath);
+		return  productDAO.insert(productId, productType, productName, productPrice,productImgPath,productNote);
 	}
 
 
-	public ProductBean update(String productName, int productPrice,
+	public ProductBean update(String productId,String productName, int productPrice,
 			String productImgPath, String productNote) {
-		return productDAO.update(productName, productPrice, productImgPath, productNote) ;
+		
+		return productDAO.update(productId,productName, productPrice, productImgPath, productNote) ;
 	}
 
 	
@@ -39,11 +43,11 @@ public class ProductService {
 	}
 
 	
-	public Map<String, Object> selectByID(String productId) {
-		Map<String, Object> results = new LinkedHashMap<String,Object>();
+	public Map<String, Object> selectById(String productId) {
+		Map<String, Object> results = new LinkedHashMap<String, Object>();
 		ProductBean bean = null;
 		if(productId != null && productId.length()!=0){
-			bean = productDAO.selectByID(productId);
+			bean = productDAO.selectById(productId);
 			results.put("ProductrId", bean.getProductId());
 			results.put("ProductName", bean.getProductName());
 			results.put("ProductType", bean.getProductType());
@@ -52,15 +56,14 @@ public class ProductService {
 			results.put("ProductQty", bean.getProductQty());
 			results.put("ProductImgPath", bean.getProductImgPath());
 			results.put("ProductNote", bean.getProductNote());
-			
-			}
+		}
 		return results;
 	}
 
 	
 	public List<Map<String, Object>> selectByName(String productName) {
 		List<Map<String, Object>> results = new LinkedList<Map<String,Object>>();
-		List<ProductBean> beans = productDAO.selectByType(productName);
+		List<ProductBean> beans = productDAO.selectByName(productName);
 		for(int i=0; i<beans.size(); i++){
 			ProductBean bean = beans.get(i);
 			Map<String, Object> map1 = new LinkedHashMap<String, Object>();

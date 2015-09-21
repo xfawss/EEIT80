@@ -4,7 +4,6 @@ import java.util.List;
 
 import model.ProductBean;
 import model.ProductDAO;
-
 import model.dao.ProductDAOHibernate;
 
 import org.hibernate.Query;
@@ -29,6 +28,7 @@ public class ProductDAOHibernate implements ProductDAO {
 			session.getTransaction().rollback();
 			throw ex;
 		}
+		
 		return list;
 	}
 
@@ -46,23 +46,26 @@ public class ProductDAOHibernate implements ProductDAO {
 		} catch (RuntimeException ex) {
 			session.getTransaction().rollback();
 			throw ex;
-		}
+		}		
 		return result;
 	}
 
 	@Override
-	public List<ProductBean> selectByName(String productId) {
-		List<ProductBean> productBean = null;
+	public List<ProductBean> selectByName(String productname) {
+		List<ProductBean> result = null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
-			productBean = (List<ProductBean>) session.get(ProductBean.class, productId);
+			Query query = session.createQuery("from ProductBean where productname = :productname ");
+			query.setParameter("productname", productname);
+			result = query.list();
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
 			session.getTransaction().rollback();
 			throw ex;
 		}
-		return productBean;
+
+		return result;
 	}
 
 	@Override
@@ -78,6 +81,7 @@ public class ProductDAOHibernate implements ProductDAO {
 			session.getTransaction().rollback();
 			throw ex;
 		}
+		
 		return list;
 	}
 
@@ -107,54 +111,57 @@ public class ProductDAOHibernate implements ProductDAO {
 	}
 
 	@Override
-	public ProductBean update(String productName, int productPrice,
+	public ProductBean update(String productId,String productName, int productPrice,
 			String productImgPath, String productNote) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		ProductBean result = new ProductBean();
 		try {
-			session.beginTransaction();			
-			result.setProductName(productName);
-			result.setProductPrice(productPrice);
-			result.setProductImgPath(productImgPath);
-			result.setProductNote(productNote);
-			session.saveOrUpdate(result);
-			session.getTransaction().commit();
-		} catch (RuntimeException ex) {
-			session.getTransaction().rollback();
-			throw ex;
-		}
-		
-		return result;
-		
-	}
-
-	@Override
-	public ProductBean selectByID(String productId) {
-		ProductBean result = null;
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		try {
 			session.beginTransaction();
-			result = (ProductBean) session.get(ProductBean.class, productId);
+			Query query = session.createQuery("update ProductBean set productname=:productname ,productprice=:productprice,productimgpath=:productimgpath,productnote=:productnote where productid = :productid");
+			query.setParameter("productid", productId);
+			query.setParameter("productname", productName);
+			query.setParameter("productprice", productPrice);
+			query.setParameter("productimgpath", productImgPath);
+			query.setParameter("productnote", productNote);
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
 			session.getTransaction().rollback();
 			throw ex;
 		}
+		
 		return result;
 	}
 
 	@Override
-	public List<ProductBean> selectByType(String productType) {
+	public ProductBean selectById(String productId) {
+			ProductBean result = null;
+			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+			try {
+				session.beginTransaction();
+				result = (ProductBean) session.get(ProductBean.class, productId);
+				session.getTransaction().commit();
+			} catch (RuntimeException ex) {
+				session.getTransaction().rollback();
+				throw ex;
+			}
+			return result;
+		}
+	
+	@Override
+	public List<ProductBean> selectByType(String producttype) {
 		List<ProductBean> result = null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
-			result = (List<ProductBean>) session.get(ProductBean.class, productType);
+			Query query = session.createQuery("from ProductBean where producttype = :producttype");
+			query.setParameter("producttype", producttype);
+			result = query.list();
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
 			session.getTransaction().rollback();
 			throw ex;
 		}
+
 		return result;
 	}
 }

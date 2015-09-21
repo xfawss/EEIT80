@@ -2,18 +2,22 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import misc.Parse;
 import model.ProductBean;
 import model.ProductService;
+
 import org.json.simple.JSONObject;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
@@ -29,7 +33,8 @@ public class ProductServlet extends HttpServlet {
 		super.init();
 	}
 	protected void doGet(HttpServletRequest req, HttpServletResponse rsp) throws ServletException, IOException {
-
+		
+		rsp.setContentType("text/html;charset=UTF-8");
 		// System.out.println("get");
 
 		// 接收資料
@@ -62,31 +67,32 @@ public class ProductServlet extends HttpServlet {
 
 					return;
 				}
-			}
-			if (id == null) {
-				if (action.equals("select")) {
-					List<Map<String, Object>> beans = service.getAll();
-					jObj.put("results", beans);
-					out.print(jObj);
-					return;
-				}
-			}
-			if (id != null) {
+			}			
+			if (type != null) {
 				if (action.equals("select")) {
 					List<Map<String, Object>> result = service.selectByType(type);
 					jObj.put("results", result);
 					out.print(jObj);
 					return;
 				}
+			}
 			if (id != null) {
 				if (action.equals("select")) {
-					Map<String, Object> result = service.selectByID(id);
+					Map<String, Object> result = service.selectById(id);
 					jObj.put("results", result);
 					out.print(jObj);
 					return;
 				}
 			}
 		}
+			if (id == null) {
+				if (action.equals("select")) {
+					List<Map<String, Object>> result = service.getAll();
+					jObj.put("results", result);
+					out.print(jObj);
+					return;
+				}
+			}
 			if (id != null) {
 				if (action.equals("select")) {
 					List<Map<String, Object>> result = service.selectType();
@@ -96,7 +102,7 @@ public class ProductServlet extends HttpServlet {
 				}
 			}
 	}
-}
+
 	// select by name
 	// List<Map<String, Object>> results = service.selectByName("k");
 
@@ -129,45 +135,58 @@ public class ProductServlet extends HttpServlet {
 		// System.out.println(action);
 
 		// 驗證資料
-		Map<String, String> errs = new HashMap<String, String>();
-		req.setAttribute("errMsg", errs);
-		
+		JSONObject jObj = new JSONObject();
+		PrintWriter out = rsp.getWriter();
+		List<String> errors = new ArrayList<String>();
+		Map<String, Object> results = new HashMap<String, Object>();
 
-
-		if (action != null) {
-			if (action.equals("insert") || action.equals("update")) {
+		if(action != null){
+			//判斷是哪個動作,
+			if(action.equals("insert")){
 				if (id == null || id.length() == 0) {
-					errs.put("productId", "新增或修改時ID名稱為必填欄位，請輸入");					
+					errors.add( "新增或修改時ID名稱為必填欄位，請輸入");					
 				}
 				if (type == null || type.length() == 0) {
-					errs.put("productType", "新增或修改時種類為必填欄位，請輸入");					
+					errors.add( "新增或修改時種類為必填欄位，請輸入");					
 				}
 				if (name== null || name.length() == 0) {
-					errs.put("productName", "新增或修改時品名為必填欄位，請輸入");
+					errors.add("新增或修改時品名為必填欄位，請輸入");
 				}
 				if (price== null || price.length() == 0) {
-					errs.put("productPrice", "新增或修改時價格為必填欄位，請輸入");					
+					errors.add( "新增或修改時價格為必填欄位，請輸入");					
+				}				
+			}else if(action.equals("update")){
+				if (id == null || id.length() == 0) {
+					errors.add( "新增或修改時ID名稱為必填欄位，請輸入");					
+				}				
+				if (name== null || name.length() == 0) {
+					errors.add("新增或修改時品名為必填欄位，請輸入");
+				}
+				if (price== null || price.length() == 0) {
+					errors.add( "新增或修改時價格為必填欄位，請輸入");					
 				}				
 			}
+			
+		}else{
+			return;
 		}
+
+		
 
 		// 轉換資料
 		
 
 		int parsePrice = 0;
-		int parseCost = 0;
-		int parseQty = 0;
+		int parseCost = 0;		
 		if (id != null && id.length() != 0)
 
 		{
-			parsePrice = Parse.convertInt(price);
-			parseCost  = Parse.convertInt(cost);
-			parseQty  = Parse.convertInt(qty);
+			parsePrice = Parse.convertInt(price);						
 		}
 
-		// System.out.println(jObj);
-		if (errs != null && !errs.isEmpty()) {
-			req.getRequestDispatcher("/AlexHo/supplierTest.jsp").forward(req, rsp);
+		 System.out.println(jObj);
+		if (errors != null && !errors.isEmpty()) {
+			req.getRequestDispatcher("/Wason/ProductTest.jsp").forward(req, rsp);
 			return;
 		}
 
@@ -177,9 +196,7 @@ public class ProductServlet extends HttpServlet {
 		bean.setProductType(type);
 		bean.setProductId(id);
 		bean.setProductName(name);
-		bean.setProductPrice(parsePrice);
-		bean.setProductCost(parseCost);
-		bean.setProductQty(parseQty);
+		bean.setProductPrice(parsePrice);			
 		bean.setProductImgPath(imgPath);
 		
 //		note,type,id,name,parsePrice,imgPath
@@ -191,26 +208,26 @@ public class ProductServlet extends HttpServlet {
 		if (action != null && action.equals("insert"))
 
 		{
-			ProductBean result = service.insert(note,type,id,parsePrice,name,imgPath);
+			ProductBean result = service.insert(id,type,name,parsePrice,imgPath,note);
 			if (result == null) {
-				errs.put("result", "新增失敗");
+				results.put("state", "新增失敗");
 				
 			} else {
 				req.setAttribute("insert", result);
-				errs.put("result", "新增" + result + "筆成功");
+				results.put("state", "新增" + result + "筆成功");
 				
 			}
 
 		} else if (action != null && action.equals("update"))
 
 		{
-			ProductBean result = service.update(name,parsePrice,imgPath,note);
+			ProductBean result = service.update(id,name,parsePrice,imgPath,note);
 			if (result == null) {
-				errs.put("result", "修改失敗");
+				results.put("state", "修改失敗");
 				
 			} else {
 				req.setAttribute("update", result);
-				errs.put("result", "修改1筆成功");
+				results.put("state", "修改1筆成功");
 				
 			}
 
@@ -221,16 +238,19 @@ public class ProductServlet extends HttpServlet {
 			ProductBean result = service.delete(id);
 			// System.out.println(result);
 			if (result == null) {
-				errs.put("result", "刪除失敗");
+				results.put("state", "刪除失敗");
 				
 			} else {
 				req.setAttribute("delete", result);
-				errs.put("result", "刪除" + result + "筆成功");
+				results.put("state", "刪除" + result + "筆成功");
 				
 			}
 		} else {
-			errs.put("result", "不知道您現在要" + action + "什麼");
-			
-		}
+			results.put("state", "不知道您現在要" + action + "什麼");
+			}
+		jObj.put("state", results);
+		out.print(jObj);
+		return;
+		
 	}
 }
