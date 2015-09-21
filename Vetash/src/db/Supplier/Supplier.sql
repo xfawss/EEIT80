@@ -1,4 +1,4 @@
-CREATE DATABASE Vetash
+ï»¿CREATE DATABASE Vetash
 
 drop table Supplier
 
@@ -14,17 +14,17 @@ SupplierAcct varchar (25),
 SupplierDate date,
 SupplierNote nvarchar (300)
 );
-INSERT INTO Supplier VALUES('¥xÆWºÓºôSONETºô¸ô®T¼ÖªÑ¥÷¦³­­¤½¥q','46954856','¸â¤p°ó','0987542412','»O¥_¥«Ã¹´µºÖ¸ô¤G¬q9¸¹4¼Ó¤§1','017-456552369875','2015-03-22','´¶³q·n±ì°Ó');
-INSERT INTO Supplier VALUES('­»´äKKBOX­µ¼Ö®T¼ÖªÑ¥÷¦³­­¤½¥q','54785024','¦ó¤p­õ','0910147520','»O¥_¥«©¾§µªF¸ô¤­¬q9¸¹3¼Ó¤§2','015-856552369802','2010-05-19','Á³µ·°Ó');
-INSERT INTO Supplier VALUES('¥x¤¤·n±ì®T¼ÖªÑ¥÷¦³­­¤½¥q','12765428','¤ý¤j©ú','0955120174','»O¥_¥«¤j¦w¸ô¤G¬q341¸¹4¼Ó¤§3','017-456552385024','2014-08-31','´¶³q·n±ì°Ó');
-INSERT INTO Supplier VALUES('¤¤Ãc­±ªO°ÓªÑ¥÷¦³­­¤½¥q','62224568','¤è¤p¦P','0974002547','»O¥_¥«°ò¶©¸ô145¸¹12¼Ó¤§4','017-316552356302','2013-10-22','­±ªO°Ó');
-INSERT INTO Supplier VALUES('¤T­««ö§áªÑ¥÷¦³­­¤½¥q','72023504','¦¿¤j¾ð','0933685100','»O¥_¥«µØ©£¸ô¤@¬q99¸¹1¼Ó¤§5','017-146552372589','2012-05-01','«ö¶s°Ó');
+INSERT INTO Supplier VALUES('å°ç£ç¢©ç¶²SONETç¶²è·¯å¨›æ¨‚è‚¡ä»½æœ‰é™å…¬å¸','46954856','è©¹å°å ‚','0987542412','è‡ºåŒ—å¸‚ç¾…æ–¯ç¦è·¯äºŒæ®µ9è™Ÿ4æ¨“ä¹‹1','017-456552369875','2015-03-22','æ™®é€šæ–æ¡¿å•†');
+INSERT INTO Supplier VALUES('é¦™æ¸¯KKBOXéŸ³æ¨‚å¨›æ¨‚è‚¡ä»½æœ‰é™å…¬å¸','54785024','ä½•å°å“²','0910147520','è‡ºåŒ—å¸‚å¿ å­æ±è·¯äº”æ®µ9è™Ÿ3æ¨“ä¹‹2','015-856552369802','2010-05-19','èžºçµ²å•†');
+INSERT INTO Supplier VALUES('å°ä¸­æ–æ¡¿å¨›æ¨‚è‚¡ä»½æœ‰é™å…¬å¸','12765428','çŽ‹å¤§æ˜Ž','0955120174','è‡ºåŒ—å¸‚å¤§å®‰è·¯äºŒæ®µ341è™Ÿ4æ¨“ä¹‹3','017-456552385024','2014-08-31','æ™®é€šæ–æ¡¿å•†');
+INSERT INTO Supplier VALUES('ä¸­å£¢é¢æ¿å•†è‚¡ä»½æœ‰é™å…¬å¸','62224568','æ–¹å°åŒ','0974002547','è‡ºåŒ—å¸‚åŸºéš†è·¯145è™Ÿ12æ¨“ä¹‹4','017-316552356302','2013-10-22','é¢æ¿å•†');
+INSERT INTO Supplier VALUES('ä¸‰é‡æŒ‰æ‰­è‚¡ä»½æœ‰é™å…¬å¸','72023504','æ±Ÿå¤§æ¨¹','0933685100','è‡ºåŒ—å¸‚è¯å²¡è·¯ä¸€æ®µ99è™Ÿ1æ¨“ä¹‹5','017-146552372589','2012-05-01','æŒ‰éˆ•å•†');
 
 
---´ú¸Õ
+--æ¸¬è©¦
 select * from Supplier where SupplierTel = '0974002547'
 
-select * from Supplier where SupplierName like '%¤¤%'
+select * from Supplier where SupplierName like '%ä¸­%'
 
 
 

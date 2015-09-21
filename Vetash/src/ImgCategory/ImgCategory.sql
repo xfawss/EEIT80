@@ -1,4 +1,4 @@
-CREATE DATABASE Vetash
+ï»¿CREATE DATABASE Vetash
 
 drop table ImgCategory;
 
@@ -7,17 +7,17 @@ CREATE TABLE ImgCategory
 (ImgCategoryId int PRIMARY KEY IDENTITY,
 ImgCategoryName nvarchar(15)
 );
-INSERT INTO ImgCategory VALUES('­±ª©¹Ï');
-INSERT INTO ImgCategory VALUES('·n±ì¹Ï');
-INSERT INTO ImgCategory VALUES('¹L¥h§@«~¶°');
-INSERT INTO ImgCategory VALUES('­º­¶½ü¼½¹Ï');
-INSERT INTO ImgCategory VALUES('«ö¶s¹Ï');
+INSERT INTO ImgCategory VALUES('é¢ç‰ˆåœ–');
+INSERT INTO ImgCategory VALUES('æ–æ¡¿åœ–');
+INSERT INTO ImgCategory VALUES('éå»ä½œå“é›†');
+INSERT INTO ImgCategory VALUES('é¦–é è¼ªæ’­åœ–');
+INSERT INTO ImgCategory VALUES('æŒ‰éˆ•åœ–');
 
---´ú¸Õ
-insert into ImgCategory (ImgCategoryName) values ('¬ü¤k¹Ï')
+--æ¸¬è©¦
+insert into ImgCategory (ImgCategoryName) values ('ç¾å¥³åœ–')
 
-select * from ImgCategory where ImgCategoryName like '%ª©%'
+select * from ImgCategory where ImgCategoryName like '%ç‰ˆ%'
 
 select * from ImgCategory where ImgCategoryId=5
 
-insert into ImgCategory (ImgCategoryName) values ('¤½À]¤jÀY·Ó')
+insert into ImgCategory (ImgCategoryName) values ('å…¬é¤¨å¤§é ­ç…§')
