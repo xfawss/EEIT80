@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<form action="/Vetash/Order" method="post">
+姓名:<input type="text" name="CustomerName" ><br>
+電話:<input type="text" name="CustomerTel" ><br>
+E-mail:<input type="text" name="CustomerMail" ><br>
+Line:<input type="text" name="CustomerLine" ><br>
+FB:<input type="text" name="CustomerFb" ><br>
+收貨種類:<select name="ReceiveType">
+	<option value="Store">店家</option>
+	<option value="Home">宅配</option>
+</select>
+<br>
+
+住址:<input type="text" name="CustomerAddr" ><br>
+收件備註:<input type="text" name="ReceiveNotes" ><br>
+訂單備註:<textarea name="OrderNotes" cols="20" rows="5" ></textarea><br>
+<input type="reset" value="清除"><input type="submit" value="createOrUpdate">
+</form>
+
+
+
+
+
+</body>
+</html>

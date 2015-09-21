@@ -15,7 +15,7 @@ import misc.Parse;
 public class PurchaseRecoderService {
 	
 	@Autowired
-	PurchaseRecoderDAO dao;
+	private PurchaseRecoderDAO dao;
 	
 	private List<Map<String, Object>> jfomat(List<PurchaseRecordBean> beans){
 		List<Map<String, Object>> result = new LinkedList<Map<String, Object>>();
