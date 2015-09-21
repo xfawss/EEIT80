@@ -10,7 +10,7 @@
 <body>
 <h2>查詢</h2>
 
-<Form Action="./Customers" method="GET">
+<Form Action="/Vetash/Customers" method="GET">
 
 		<select name="cust">
 				<option value="customerTel">customerTel</option>
