@@ -1,6 +1,6 @@
 drop table Customer;
 create table Customer(
-
+ 
 CustomerName	nvarchar(20),
 CustomerTel		varchar (15),
 CustomerLine	varchar(20),
