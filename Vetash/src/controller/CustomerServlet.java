@@ -268,6 +268,19 @@ public class CustomerServlet extends HttpServlet {
         	}
         	
         }
+        
+        
+        
+		if (errors != null && !errors.isEmpty()) {
+			results.put("errors", errors);
+			try {
+				jObj.put("results", results);
+			} catch (JSONException e) {				
+				e.printStackTrace();
+			}
+			out.print(jObj);
+			return;
+		}
         //無轉換資料      
         //呼叫model
         //塞進Bean    
