@@ -60,11 +60,11 @@ public class ImageService {
 		}
 		return result;
 	}
-
+ 
 	public List<Map<String, Object>> selectByName(String imageName) {
 		List<Map<String, Object>> result = new LinkedList<Map<String, Object>>();
 		List<ImageBean> beans = imgDao.selectByName(imageName);
-
+ 
 		if (imageName != null && imageName.length() != 0) {
 			for (int i = 0; i < beans.size(); i++) {
 				Map<String, Object> map1 = new LinkedHashMap<String, Object>();

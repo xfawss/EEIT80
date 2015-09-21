@@ -26,7 +26,7 @@ import model.dao.ImageDAOjdbc;
 public class ImageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ImageService service;
-
+ 
 	@Override
 	public void init() throws ServletException {
 		service = new ImageService();

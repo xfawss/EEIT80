@@ -16,7 +16,7 @@
 <a href="<%=path %>/image?imageId=3&action=select">selectByImageId(3)</a><br/>
 <a href="<%=path %>/image?imgCategoryId=5&action=select">selectByImgCategoryId(5)</a><br/>
 
-
+ 
 <hr>
 
 <p>Insert</p>

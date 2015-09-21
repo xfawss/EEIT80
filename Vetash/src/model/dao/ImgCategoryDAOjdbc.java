@@ -27,7 +27,7 @@ public class ImgCategoryDAOjdbc implements ImgCategoryDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
+	} 
 
 	// public static void main(String[] args) {
 	// KindImageDAOjdbc jdbc=new KindImageDAOjdbc();

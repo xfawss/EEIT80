@@ -124,7 +124,7 @@ public class ImageDAOjdbc implements ImageDAO {
 		}
 		return id;
 	}
-
+  
 	private static final String SELECT_ALL = "select * from Image";
 
 	@Override

@@ -16,7 +16,7 @@ public class ImgCategoryService {
 			bean = imgCategoryDao.selectById(id);
 			result.put("imgCategoryId", bean.getImgCategoryId());
 			result.put("imgCategoryName", bean.getImgCategoryName());
-		 }
+		 } 
 		return result;
 	}
 

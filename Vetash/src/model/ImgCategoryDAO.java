@@ -12,4 +12,4 @@ public interface ImgCategoryDAO {
 	
 	public abstract int update(String imgCategoryName,int imgCategoryId);	
 
-}
+} 

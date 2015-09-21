@@ -14,7 +14,7 @@
 <a href="<%=path %>/imgCategory?action=select">selectAll</a><br/>
 <a href="<%=path %>/imgCategory?imgCategoryId=2&action=select">selectById(2)</a><br/>
 <hr>
-
+ 
 <p>Insert</p>
 <form action="<%=path %>/imgCategory"  method="POST">
 	imgCategoryName<br>

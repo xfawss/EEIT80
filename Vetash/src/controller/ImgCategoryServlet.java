@@ -24,7 +24,7 @@ public class ImgCategoryServlet extends HttpServlet {
 	public ImgCategoryServlet() {
 		super();
 	}
-
+ 
 	@Override
 	public void init() throws ServletException {
 		service = new ImgCategoryService();

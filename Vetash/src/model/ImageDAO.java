@@ -11,7 +11,7 @@ public interface ImageDAO {
 	public abstract List<ImageBean> selectByName(String imageName);
 
 	public abstract String selectLastId();
-
+ 
 	public abstract List<ImageBean> selectAll();
 
 	public abstract int insert(ImageBean bean);
