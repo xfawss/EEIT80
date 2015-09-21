@@ -10,14 +10,14 @@ CustomerAddr	nvarchar(50),
 CustomerNote	nvarchar(300),
  constraint Customer_CustomerTel_pk primary key (CustomerTel));
 
-insert into customer values ('¦ó©Ó­õ','0910103842' ,'youngalexha','youngalexha@yahoo.com','youngalexha@gmail.com','¥x¥_¥«¤j¦w¸ô¤@¬q365¸¹','¶R¹L3°¦·n±ì,¬O±`«È');
-insert into customer values ('¦ó©Ó­õa','0910103842a' ,'youngalexhaa','youngalexha@yahoo.coma','youngalexha@gmail.coma','¥x¥_¥«¤j¦w¸ô¤@¬q365¸¹a','¶R¹L3°¦·n±ì,¬O±`«Èa');
-insert into customer values ('³¯®a½÷','0910253568' ,'lovebabe','lovebabe@yahoo.com','lovebabe@gmail.com','¥x¥_¥«©¾§µªF¸ô¤G¬q¬q73¸¹','©|¥i');
-insert into customer values ('±i§Ó©ú','0910454210' ,'luckyfun','luckyfun@yahoo.com','luckyfun@gmail.com','¥x¥_¥«´_¿³«n¸ô¤G¬q104¸¹','©|¥i');
-insert into customer values ('¦¶¦r¶³','0919584523' ,'dodonio','dodonio@yahoo.com','dodonio@gmail.com','¥x¥_¥«´°¤Æ«n¸ô¤G¬q91¸¹','©|¥i');
-insert into customer values ('³¯ºñ¶³','0921444853' ,'jointoy','jointoy@yahoo.com','jointoy@gmail.com','¥x¥_¥«¤¯·R¸ô¥|¬q103¸¹','¤T¤Ñ«á¦A¸ò¥L¸ß°İ·n±ì¬O§_ÁÙ¦³°İÃD');
-insert into customer values ('§õ²MµØ','0921447586' ,'reddisk','reddisk@yahoo.com','reddisk@gmail.com','·s¥_¥«¤å¤Æ¸ô¤@¬q113¸¹','©|¥i');
-insert into customer values ('§õ«H¨}','0928544875' ,'tutleap','tutleap@yahoo.com','tutleap@gmail.com','¥x¥_¥«´_¿³«n¸ô¤@¬q30¸¹','©|¥i');
-insert into customer values ('¸³­³®x','0930147552' ,'shawn79979','shawn79979@yahoo.com','shawn79979@gmail.com','¥x¥_¥«©¾§µªF¸ô¤T¬q171¸¹','´¶³q');
-insert into customer values ('§Å®a°¶','0933451102' ,'javirs30','javirs30@yahoo.com','javirs30@gmail.com','¥x¥_¥«¥Ã©M°Ï¤¤¥¿¸ô¤@¬q19¸¹','¶R¹L1¤ä·n±ì,¤H¤£¿ù');
-insert into customer values ('³s«T¼w','0987542102' ,'happyendig','happyendig@yahoo.com','happyendig@gmail.com','·s¥_¥«¤¤¤s¸ô¤G¬q101¸¹','ÁÊ¶R¶q¤j');
+insert into customer values ('ä½•æ‰¿å“²','0910103842' ,'youngalexha','youngalexha@yahoo.com','youngalexha@gmail.com','å°åŒ—å¸‚å¤§å®‰è·¯ä¸€æ®µ365è™Ÿ','è²·é3éš»æ–æ¡¿,æ˜¯å¸¸å®¢');
+insert into customer values ('ä½•æ‰¿å“²a','0910103842a' ,'youngalexhaa','youngalexha@yahoo.coma','youngalexha@gmail.coma','å°åŒ—å¸‚å¤§å®‰è·¯ä¸€æ®µ365è™Ÿa','è²·é3éš»æ–æ¡¿,æ˜¯å¸¸å®¢a');
+insert into customer values ('é™³å®¶è¼','0910253568' ,'lovebabe','lovebabe@yahoo.com','lovebabe@gmail.com','å°åŒ—å¸‚å¿ å­æ±è·¯äºŒæ®µæ®µ73è™Ÿ','å°šå¯');
+insert into customer values ('å¼µå¿—æ˜','0910454210' ,'luckyfun','luckyfun@yahoo.com','luckyfun@gmail.com','å°åŒ—å¸‚å¾©èˆˆå—è·¯äºŒæ®µ104è™Ÿ','å°šå¯');
+insert into customer values ('æœ±å­—é›²','0919584523' ,'dodonio','dodonio@yahoo.com','dodonio@gmail.com','å°åŒ—å¸‚æ•¦åŒ–å—è·¯äºŒæ®µ91è™Ÿ','å°šå¯');
+insert into customer values ('é™³ç¶ é›²','0921444853' ,'jointoy','jointoy@yahoo.com','jointoy@gmail.com','å°åŒ—å¸‚ä»æ„›è·¯å››æ®µ103è™Ÿ','ä¸‰å¤©å¾Œå†è·Ÿä»–è©¢å•æ–æ¡¿æ˜¯å¦é‚„æœ‰å•é¡Œ');
+insert into customer values ('ææ¸…è¯','0921447586' ,'reddisk','reddisk@yahoo.com','reddisk@gmail.com','æ–°åŒ—å¸‚æ–‡åŒ–è·¯ä¸€æ®µ113è™Ÿ','å°šå¯');
+insert into customer values ('æä¿¡è‰¯','0928544875' ,'tutleap','tutleap@yahoo.com','tutleap@gmail.com','å°åŒ—å¸‚å¾©èˆˆå—è·¯ä¸€æ®µ30è™Ÿ','å°šå¯');
+insert into customer values ('è‘£éŸ‹åº­','0930147552' ,'shawn79979','shawn79979@yahoo.com','shawn79979@gmail.com','å°åŒ—å¸‚å¿ å­æ±è·¯ä¸‰æ®µ171è™Ÿ','æ™®é€š');
+insert into customer values ('å·«å®¶å‰','0933451102' ,'javirs30','javirs30@yahoo.com','javirs30@gmail.com','å°åŒ—å¸‚æ°¸å’Œå€ä¸­æ­£è·¯ä¸€æ®µ19è™Ÿ','è²·é1æ”¯æ–æ¡¿,äººä¸éŒ¯');
+insert into customer values ('é€£ä¿Šå¾·','0987542102' ,'happyendig','happyendig@yahoo.com','happyendig@gmail.com','æ–°åŒ—å¸‚ä¸­å±±è·¯äºŒæ®µ101è™Ÿ','è³¼è²·é‡å¤§');
