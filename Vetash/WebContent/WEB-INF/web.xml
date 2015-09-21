@@ -14,8 +14,8 @@
     <param-value>/WEB-INF/beans.config.xml</param-value>
   </context-param>
   <listener>
-    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-  </listener>
+	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+</listener>
   <filter>
     <filter-name>OpenSessionInViewFilter</filter-name>
     <filter-class>misc.OpenSessionInViewFilter</filter-class>

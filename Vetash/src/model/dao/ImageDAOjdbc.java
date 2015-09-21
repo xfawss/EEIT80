@@ -29,30 +29,31 @@ public class ImageDAOjdbc implements ImageDAO {
 		}
 	}
 
-	private static final String SELECT_BY_IMAGECATEGORYID = "select * from Image where ImageCategoryId = ?";
+	private static final String SELECT_BY_IMGCATEGORYID = "select * from Image where ImgCategoryId = ?";
 
 	@Override
-	public List<ImageBean> selectByImageCategoryId(int imageCategoryId) {
+	public List<ImageBean> selectByImgCategoryId(int imageCategoryId) {
 		List<ImageBean> result = null;
 		ResultSet rset = null;
 		try (Connection conn = dataSource.getConnection();
-				PreparedStatement stmt = conn.prepareStatement(SELECT_BY_IMAGECATEGORYID);) {
+				PreparedStatement stmt = conn.prepareStatement(SELECT_BY_IMGCATEGORYID);) {
 			stmt.setInt(1, imageCategoryId);
 			rset = stmt.executeQuery();
 			result = new ArrayList<>();
-			if (rset.next()) {
+			
+			while (rset.next()) {
 				ImageBean bean = new ImageBean();
 				bean.setImageId(rset.getInt("ImageId"));
 				bean.setImageName(rset.getString("ImageName"));
 				bean.setImageDate(rset.getDate("ImageDate"));
 				bean.setImagePath(rset.getString("ImagePath"));
-				bean.setImgCategoryId(rset.getInt("ImageCategoryId"));
+				bean.setImgCategoryId(rset.getInt("ImgCategoryId"));
 				result.add(bean);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return null;
+		return result;
 	}
 
 	private static final String SELECT_BY_IMAGEID = "select * from Image where ImageId=?";
@@ -109,7 +110,7 @@ public class ImageDAOjdbc implements ImageDAO {
 	private static final String SELECT_LAST = "select top 1 ImageId from Image order by ImageId desc";
 
 	@Override
-	public String selectLast() {
+	public String selectLastId() {
 		String id = null;
 		try (Connection conn = dataSource.getConnection();
 				PreparedStatement stmt = conn.prepareStatement(SELECT_LAST);

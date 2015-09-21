@@ -15,10 +15,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONObject;
+import org.springframework.core.env.SystemEnvironmentPropertySource;
 
 import misc.Parse;
 import model.ImageBean;
 import model.ImageService;
+import model.dao.ImageDAOjdbc;
 
 @WebServlet("/image")
 public class ImageServlet extends HttpServlet {
@@ -33,96 +35,160 @@ public class ImageServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse rsp) throws ServletException, IOException {
 
-		// String id = req.getParameter("imageId");
-		// String name = req.getParameter("imageName");
-		// String action = req.getParameter("action");
+		rsp.setContentType("text/html;charset=UTF-8");
 
-		// ImageDAOjdbc jdbc = new ImageDAOjdbc();
-		// //select by id
+		// 接收資料
+		String imageId = req.getParameter("imageId");
+		String name = req.getParameter("name");
+		String path = req.getParameter("path");
+		String imgCategoryId = req.getParameter("imgCategoryId");
+		String action = req.getParameter("action");
 
-		// ImageBean bean = jdbc.select(3);
-		// System.out.println(bean);
+		// 轉換資料
+		int parseImgCategoryId = 0;
+		if (imgCategoryId != null && imgCategoryId.length() != 0) {
+			parseImgCategoryId = Parse.convertInt(imgCategoryId);
+		}
+		int parseImageId = 0;
+		if (imageId != null && imageId.length() != 0) {
+			parseImageId = Parse.convertInt(imageId);
+		}
 
-		// slelct like name
+		JSONObject jObj = new JSONObject();
+		PrintWriter out = rsp.getWriter();
 
-		// List<ImageBean> result = jdbc.selectName("人");
-		// System.out.println(result);
-
-		// // select all
-		////
-		// List<ImageBean> result = jdbc.select();
-		// System.out.println(result);
-		//
-		//
-		//// insert
-
-		// ImageBean bean = new ImageBean();
-		// bean.setImageName("貓6");
-		// bean.setImagePath("img/cat1.jpg");
-		// bean.setImgCategoryId(2);
-		// jdbc.insert(bean);
-		// System.out.println(bean);
-		////
-		//
-		// // update
-		//
-		// ImageBean bean = new ImageBean();
-		// jdbc.update("貓66666", 6);
-		// System.out.println(bean);
-		////
-		//
-		// // delete
-		////
-		// boolean b = jdbc.delete(6);
-		// System.out.println(b);
-
-		// select last
-		//
-		// String id = jdbc.selectLast();
-		// System.out.println(id);
-
-		ImageService ser = new ImageService();
-		ImageBean bean = new ImageBean();
-		// select by id (Service)
-		// bean.setImageId(4);
-		// List<ImageBean> result =ser.select(bean);
-		// System.out.println(result);
-
-		// select all (Service)
-		// List<ImageBean> result =ser.select(bean);
-		// System.out.println(result);
-
-		// select like name (Service)
-
-		List<ImageBean> result = ser.selectName("鐵");
-		System.out.println(result);
-
-		 //insert (Service)
-//		 Timestamp ts = new Timestamp(System.currentTimeMillis());
-//		 bean.setImageName("超人");
-//		 bean.setImageDate(ts);
-//		 bean.setImagePath("http://tw.yahoo.com");
-//		 bean.setImgCategoryId(2);
-//		 int q = ser.insert(bean);
-//		 System.out.println(q);
-
-		// // update (Service)
-
-		// bean.setImageName("超人的哥哥叫超哥");
-		// bean.setImageId(7);
-		// bean = ser.update(bean);
-		// System.out.println(bean);
-
-		// // delete (Service)
-		// bean.setImageId(7);
-		// boolean result = ser.delete(bean);
-		// System.out.println(result);
-
-		// select last (Service)
-		// String result = ser.selectLast();
-		// System.out.println(result);
-
+		if (action != null) {
+			if (name != null && name.length() != 0) {
+				if ("select".equals(action)) {
+					List<Map<String, Object>> result = service.selectByName(name);
+					jObj.put("results", result);
+					out.print(jObj);
+					return;
+				}
+			}
+			if (parseImgCategoryId != 0) {
+				if ("select".equals(action)) {
+					List<Map<String, Object>> result = service.selectByImgCategoryId(parseImgCategoryId);
+					System.out.println(result);
+					jObj.put("results", result);
+					out.print(jObj);
+					return;
+				}
+			}
+			if (parseImageId != 0) {
+				if ("select".equals(action)) {
+					Map<String, Object> result = service.selectById(parseImageId);
+					jObj.put("results", result);
+					out.print(jObj);
+					return;
+				}
+			}
+			if (parseImgCategoryId == 0 && parseImageId == 0) {
+				if ("select".equals(action)) {
+					List<Map<String, Object>> result = service.selectAll();
+					jObj.put("results", result);
+					out.print(jObj);
+					return;
+				}
+			}
+		}
 	}
+
+	// ImageService ser = new ImageService();
+	// ImageBean bean = new ImageBean();
+	// ImageDAOjdbc jdbc = new ImageDAOjdbc();
+	// List<ImageBean> re = jdbc.selectByImgCategoryId(5);
+	// System.out.println(re);
+	// select by imgCategoryId
+	// List<Map<String, Object>> result = ser.selectByImgCategoryId(5);
+	// System.out.println(result);
+	// }
+
+	// ImageDAOjdbc jdbc = new ImageDAOjdbc();
+	// //select by id
+
+	// ImageBean bean = jdbc.select(3);
+	// System.out.println(bean);
+
+	// slelct like name
+
+	// List<ImageBean> result = jdbc.selectName("人");
+	// System.out.println(result);
+
+	// // select all
+	////
+	// List<ImageBean> result = jdbc.select();
+	// System.out.println(result);
+	//
+	//
+	//// insert
+
+	// ImageBean bean = new ImageBean();
+	// bean.setImageName("貓6");
+	// bean.setImagePath("img/cat1.jpg");
+	// bean.setImgCategoryId(2);
+	// jdbc.insert(bean);
+	// System.out.println(bean);
+	////
+	//
+	// // update
+	//
+	// ImageBean bean = new ImageBean();
+	// jdbc.update("貓66666", 6);
+	// System.out.println(bean);
+	////
+	//
+	// // delete
+	////
+	// boolean b = jdbc.delete(6);
+	// System.out.println(b);
+
+	// select lastId
+
+	// String id = jdbc.selectLastId();
+	// System.out.println(id);
+
+	// ImageService ser = new ImageService();
+	// ImageBean bean = new ImageBean();
+
+	// select by imageId (Service)
+	// bean.setImageId(4);
+	// List<ImageBean> result =ser.select(bean);
+	// System.out.println(result);
+
+	// select all (Service)
+	// List<ImageBean> result =ser.select(bean);
+	// System.out.println(result);
+
+	// select like name (Service)
+
+	// List<ImageBean> result = ser.selectName("鐵");
+	// System.out.println(result);
+
+	// insert (Service)
+	// Timestamp ts = new Timestamp(System.currentTimeMillis());
+	// bean.setImageName("超人");
+	// bean.setImageDate(ts);
+	// bean.setImagePath("http://tw.yahoo.com");
+	// bean.setImgCategoryId(2);
+	// int q = ser.insert(bean);
+	// System.out.println(q);
+
+	// // update (Service)
+
+	// bean.setImageName("超人的哥哥叫超哥");
+	// bean.setImageId(7);
+	// bean = ser.update(bean);
+	// System.out.println(bean);
+
+	// // delete (Service)
+	// bean.setImageId(7);
+	// boolean result = ser.delete(bean);
+	// System.out.println(result);
+
+	// select last (Service)
+	// String result = ser.selectLast();
+	// System.out.println(result);
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse rsp) throws ServletException, IOException {
 

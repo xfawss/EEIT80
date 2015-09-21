@@ -11,8 +11,12 @@
 
 <%String path = request.getContextPath(); %>
 
-<a href="<%=path %>/imgCategory?action=select">selectAll</a><br/>
-<a href="<%=path %>/imgCategory?imgCategoryId=2&action=select">selectById(2)</a><br/>
+<a href="<%=path %>/image?action=select">selectAll</a><br/>
+<a href="<%=path %>/image?name=人&action=select">selectByName(人)</a><br/>
+<a href="<%=path %>/image?imageId=3&action=select">selectByImageId(3)</a><br/>
+<a href="<%=path %>/image?imgCategoryId=5&action=select">selectByImgCategoryId(5)</a><br/>
+
+
 <hr>
 
 <p>Insert</p>

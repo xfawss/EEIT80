@@ -4,13 +4,13 @@ import java.util.List;
 
 public interface ImageDAO {
 
-	public abstract List<ImageBean> selectByImageCategoryId(int imageCategoryId);
+	public abstract List<ImageBean> selectByImgCategoryId(int imageCategoryId);
 	
 	public abstract ImageBean selectById(int imageId);
 
 	public abstract List<ImageBean> selectByName(String imageName);
 
-	public abstract String selectLast();
+	public abstract String selectLastId();
 
 	public abstract List<ImageBean> selectAll();
 

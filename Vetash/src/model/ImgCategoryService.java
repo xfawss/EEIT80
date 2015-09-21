@@ -9,11 +9,14 @@ import model.dao.ImgCategoryDAOjdbc;
 public class ImgCategoryService {
 	private ImgCategoryDAO imgCategoryDao = new ImgCategoryDAOjdbc();
 
-	public ImgCategoryBean selectById(int id) {
-		ImgCategoryBean result = null;
-		if (id != 0 ) {
-			result = imgCategoryDao.selectById(id);
-		}
+	public Map<String, Object> selectById(int id) {
+		 Map<String, Object> result = new LinkedHashMap<String, Object>();
+		 ImgCategoryBean bean = null;
+		 if (id != 0 ) {
+			bean = imgCategoryDao.selectById(id);
+			result.put("imgCategoryId", bean.getImgCategoryId());
+			result.put("imgCategoryName", bean.getImgCategoryName());
+		 }
 		return result;
 	}
 

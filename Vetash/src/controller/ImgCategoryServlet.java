@@ -51,7 +51,7 @@ public class ImgCategoryServlet extends HttpServlet {
 		if (action != null) {
 			if (id != null && id.length()!=0) {
 				if ("select".equals(action)) {
-					ImgCategoryBean result = service.selectById(parseId);
+					Map<String, Object> result = service.selectById(parseId);
 					jObj.put("results", result);
 					out.print(jObj);
 					return;
