@@ -11,7 +11,7 @@
 <h2>刪除</h2>
 
 
-<form action="./Customers" method="POST">
+<form action="/Vetash/Customers" method="POST">
 	<input type="text" name="customerTel" value="0911111111"><br><span>${errMsgs.customerTel}</span><br>
 	<p>${errMsgs.result}</p>
 	<input type="hidden" name="action" value="Delete">
