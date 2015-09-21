@@ -114,22 +114,26 @@ public class ProductDAOHibernate implements ProductDAO {
 	public ProductBean update(String productId,String productName, int productPrice,
 			String productImgPath, String productNote) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		ProductBean result = new ProductBean();
+		session.beginTransaction();	
+		ProductBean result = (ProductBean) session.get(ProductBean.class, productId);
 		try {
-			session.beginTransaction();
-			Query query = session.createQuery("update ProductBean set productname=:productname ,productprice=:productprice,productimgpath=:productimgpath,productnote=:productnote where productid = :productid");
-			query.setParameter("productid", productId);
-			query.setParameter("productname", productName);
-			query.setParameter("productprice", productPrice);
-			query.setParameter("productimgpath", productImgPath);
-			query.setParameter("productnote", productNote);
-			session.getTransaction().commit();
+			if(result == null){
+				return null;
+			}else{
+				result.setProductName(productName);
+				result.setProductPrice(productPrice);
+				result.setProductImgPath(productImgPath);
+				result.setProductNote(productNote);
+			}			
+				session.saveOrUpdate(result);
+				session.getTransaction().commit();
 		} catch (RuntimeException ex) {
 			session.getTransaction().rollback();
 			throw ex;
 		}
 		
 		return result;
+		
 	}
 
 	@Override
@@ -146,7 +150,6 @@ public class ProductDAOHibernate implements ProductDAO {
 			}
 			return result;
 		}
-	
 	@Override
 	public List<ProductBean> selectByType(String producttype) {
 		List<ProductBean> result = null;

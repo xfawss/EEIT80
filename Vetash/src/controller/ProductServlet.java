@@ -152,8 +152,9 @@ public class ProductServlet extends HttpServlet {
 				if (name== null || name.length() == 0) {
 					errors.add("新增或修改時品名為必填欄位，請輸入");
 				}
-				if (price== null || price.length() == 0) {
-					errors.add( "新增或修改時價格為必填欄位，請輸入");					
+				if (price== null || price.length() == 0) {	
+					
+					errors.add( "新增或修改時價格為必填欄位，請輸入");						
 				}				
 			}else if(action.equals("update")){
 				if (id == null || id.length() == 0) {
