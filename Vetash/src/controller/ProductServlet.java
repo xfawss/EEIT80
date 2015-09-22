@@ -115,7 +115,7 @@ public class ProductServlet extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse rsp) throws ServletException, IOException {
-
+		rsp.setContentType("text/html;charset=UTF-8");
 		// System.out.println("post");
 		// 接收資料
 		String id = req.getParameter("productId");
@@ -215,11 +215,9 @@ public class ProductServlet extends HttpServlet {
 			ProductBean result = service.insert(id, type, name, parsePrice, imgPath, note);
 			if (result == null) {
 				results.put("state", "新增失敗");
-
 			} else {
 				req.setAttribute("insert", result);
-				results.put("state", "新增" + result + "筆成功");
-
+				results.put("state", "新增1筆成功");
 			}
 
 		} else if (action != null && action.equals("update"))
@@ -232,22 +230,20 @@ public class ProductServlet extends HttpServlet {
 			} else {
 				req.setAttribute("update", result);
 				results.put("state", "修改1筆成功");
-
 			}
 
 			// System.out.println(action + "完成");
 		} else if (action != null && action.equals("delete"))
 
 		{
-			ProductBean result = service.delete(id);
+			boolean result = service.delete(id);
 			// System.out.println(result);
-			if (result == null) {
+			if (result) {
 				results.put("state", "刪除失敗");
 
 			} else {
 				req.setAttribute("delete", result);
-				results.put("state", "刪除" + result + "筆成功");
-
+				results.put("state", "刪除1筆成功");
 			}
 		} else {
 			results.put("state", "不知道您現在要" + action + "什麼");

@@ -42,7 +42,7 @@ public class ProductService {
 	}
 
 	
-	public ProductBean delete(String productId) {
+	public boolean delete(String productId) {
 		return  productDAO.delete(productId);		
 	}
 

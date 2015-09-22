@@ -19,7 +19,7 @@ public class ProductDAOHibernate implements ProductDAO {
 
 
 	@Override
-	public ProductBean delete(String productId) {
+	public boolean delete(String productId) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		ProductBean result = new ProductBean();
 		try {
@@ -29,9 +29,9 @@ public class ProductDAOHibernate implements ProductDAO {
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
 			session.getTransaction().rollback();
-			throw ex;
+			return false;
 		}		
-		return result;
+		return true;
 	}
 
 	@Override
