@@ -14,23 +14,7 @@ import hibernate.util.HibernateUtil;
 public class ProductDAOHibernate implements ProductDAO {
 	private static final String GET_ALL_STMT = "from ProductBean order by productId";
 	
-	@Override
-	public List<ProductBean> selectType() {
-		List<ProductBean> list = null;
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		try {
-			session.beginTransaction();
-			String HQL_QUERY = "select distinct productType from ProductBean";
-			Query query = session.createQuery(HQL_QUERY);
-			list = query.list();
-			session.getTransaction().commit();
-		} catch (RuntimeException ex) {
-			session.getTransaction().rollback();
-			throw ex;
-		}
-		
-		return list;
-	}
+
 
 
 

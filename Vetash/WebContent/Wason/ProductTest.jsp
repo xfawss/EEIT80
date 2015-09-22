@@ -10,10 +10,10 @@
 	<%String path = request.getContextPath(); %>
 
 <a href="<%=path %>/products?action=select">getAll</a><br/>
-<a href="<%=path %>/products?productName=NAME2&action=select">selectByName</a><br/>
-<a href="<%=path %>/products?productType=TYPE1&action=select">selectByType</a><br/>
+<a href="<%=path %>/products?productName=清水按鈕&action=select">selectByName</a><br/>
+<a href="<%=path %>/products?productType=按鍵&action=select">selectByType</a><br/>
 <a href="<%=path %>/products?productId=ID1&action=select">selectByID</a><br/>
-<a href="<%=path %>/products?productType=TYPE1&action=select">selectType</a><br/>
+<a href="<%=path %>/products?productId=ID1&action=select">selectCostById</a><br/>
 <hr>
 
 

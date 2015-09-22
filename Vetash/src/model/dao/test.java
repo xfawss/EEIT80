@@ -83,9 +83,6 @@ public class test {
 //
 //		System.out.println();
 		
-		List<ProductBean> list0 = dao.selectType();
-		String xx = list0.toString();
-		System.out.print(xx);
 		
 		List<ProductBean> list2 = (List<ProductBean>) dao.selectByName("Name");
 		for (ProductBean a : list2) {

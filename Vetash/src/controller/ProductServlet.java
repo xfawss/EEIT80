@@ -74,7 +74,8 @@ public class ProductServlet extends HttpServlet {
 					jObj.put("results", result);
 					out.print(jObj);
 					return;
-				}
+				}				
+				
 			}
 			if (id != null) {
 				if (action.equals("select")) {
@@ -82,6 +83,13 @@ public class ProductServlet extends HttpServlet {
 					jObj.put("results", result);
 					out.print(jObj);
 					return;
+				}
+				if (action.equals("select1")) {
+					Map<String, Integer> result = service.selectCostById(id);
+					jObj.put("results", result);
+					out.print(jObj);
+					return;
+					
 				}
 			}
 		}
@@ -93,14 +101,7 @@ public class ProductServlet extends HttpServlet {
 					return;
 				}
 			}
-			if (id != null) {
-				if (action.equals("select")) {
-					List<Map<String, Object>> result = service.selectType();
-					jObj.put("results", result);
-					out.print(jObj);
-					return;
-				}
-			}
+		
 	}
 
 	// select by name

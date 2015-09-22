@@ -11,6 +11,5 @@ public interface ProductDAO {
     public ProductBean selectById(String productId);
     public List<ProductBean> selectByName(String productName);
 	public List<ProductBean> selectByType(String productType);
-    public List<ProductBean> getAll();
-    public List<ProductBean> selectType();
+    public List<ProductBean> getAll();    
 }

@@ -1,11 +1,15 @@
 package model;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 import model.dao.ProductDAOHibernate;
+
+
+
 
 
 
@@ -120,16 +124,39 @@ public class ProductService {
 		return results;
 	}
 	
-	public List<Map<String, Object>> selectType() {
-		List<Map<String, Object>> results = new LinkedList<Map<String,Object>>();
-		List<ProductBean> beans = productDAO. selectType();
+//	public Map<String,String> selectType(String productType) {
+//		Map<String,String> results = new LinkedHashMap<String,String>();
+//		List<ProductBean> beans = productDAO.selectByType(productType);		
+//		
+//		for(int i=0; i<beans.size(); i++){
+//			Map<String, String> map1 = new LinkedHashMap<String, String>();
+//			ProductBean bean = beans.get(i);			
+//			map1.put("prodouctTypes", bean.getProductId());			
+//		}
+//		
+//		return results;
+//	}
+	
+	public Map<String,Map<String,String[]>> selectType(String productType) {
+		Map<String,Map<String,String[]>> results = new LinkedHashMap<String,Map<String,String[]>>();
+		List<ProductBean> beans = productDAO.selectByType(productType);
+		String[] str = {};
+		
 		for(int i=0; i<beans.size(); i++){
+			Map<String, String[]> map1 = new LinkedHashMap<String, String[]>();
 			ProductBean bean = beans.get(i);
-			Map<String, Object> map1 = new LinkedHashMap<String, Object>();
-			map1.put("ProductType", bean.getProductType());			
-			results.add(map1);
+			str[i]=new String (bean.getProductId());
+			map1.put("prodouctTypes", str);					
+			results.put("results",map1);
 		}
 		return results;
 	}
 	
+	public Map<String,Integer> selectCostById(String productId) {
+		Map<String,Integer> results = new HashMap<String,Integer>();
+		ProductBean bean = productDAO.selectById(productId);
+		results.put("ProductCost", bean.getProductCost());			
+			
+		return results;
+	}
 }

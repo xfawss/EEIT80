@@ -36,3 +36,9 @@ SET ANSI_PADDING OFF
 GO
 
 
+
+INSERT INTO Product VALUES('ID1','按鍵','三合靜音按鈕','100','50','200','','');
+INSERT INTO Product VALUES('ID2','按鍵','清水按鈕','150','80','100','','');
+INSERT INTO Product VALUES('ID3','搖桿','三合搖桿','300','200','50','','推薦');
+INSERT INTO Product VALUES('ID4','搖桿','清水搖桿','400','200','50','','不推薦');
+INSERT INTO Product VALUES('ID5','搖桿','三合光學搖桿','500','400','20','','');
