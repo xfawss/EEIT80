@@ -78,4 +78,8 @@ public class OrderService {
 		return this.jfomat(dao.selectByNote(bossNotes));
 	}
 	
+	public OrderBean selectByOrderNo(String orderNo) {
+		return (OrderBean)dao.selectByOrderNo(orderNo);
+	}
+	
 }

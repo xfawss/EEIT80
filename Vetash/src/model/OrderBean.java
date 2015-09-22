@@ -88,6 +88,15 @@ public class OrderBean {
 	
 	@Column(name="Board")
 	private String board;
+	
+	@Column(name="PaymentType")
+	private String PaymentType;
+	
+	@Column(name="PaymentTypeChargeFee")
+	private int PaymentTypeChargeFee;
+	
+	@Column(name="AllPayTradeNo")
+	private String AllPayTradeNo;
 
 	public String getOrderNo() {
 		return orderNo;
@@ -296,6 +305,29 @@ public class OrderBean {
 	public void setBoard(String board) {
 		this.board = board;
 	}
-	
+
+	public String getPaymentType() {
+		return PaymentType;
+	}
+
+	public void setPaymentType(String paymentType) {
+		PaymentType = paymentType;
+	}
+
+	public int getPaymentTypeChargeFee() {
+		return PaymentTypeChargeFee;
+	}
+
+	public void setPaymentTypeChargeFee(int paymentTypeChargeFee) {
+		PaymentTypeChargeFee = paymentTypeChargeFee;
+	}
+
+	public String getAllPayTradeNo() {
+		return AllPayTradeNo;
+	}
+
+	public void setAllPayTradeNo(String allPayTradeNo) {
+		AllPayTradeNo = allPayTradeNo;
+	}
 	
 }

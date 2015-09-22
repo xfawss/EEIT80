@@ -77,4 +77,11 @@ public class OrderDAOHibernate implements OrderDAO {
 		return (List<OrderBean>)query.list();
 	}
 
+	@Override
+	public OrderBean selectByOrderNo(String orderNo) {
+		Query query = this.getSession().createQuery("from OrderBean where OrderNo = ?");
+		query.setParameter(0, orderNo);
+		return (OrderBean)query.list();
+	}
+
 }

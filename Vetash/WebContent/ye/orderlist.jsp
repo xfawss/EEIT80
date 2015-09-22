@@ -9,20 +9,30 @@
 <body>
 
 	<form action="http://payment.allpay.com.tw/Cashier/AioCheckOut" method="post">
-			廠商編號<input type="text"  name="MerchantID" value=${requestScope.MerchantID} /><br/>
-			訂單編號:<input type="text"  name="MerchantTradeNo" value=${requestScope.MerchantTradeNo} /><br/>
-			訂單日期:<input type="text"  name="MerchantTradeDate" value=${param.MerchantTradeDate} /><br/>
-			交易類型:<input type="text"  name="PaymentType" value=${requestScope.PaymentType} /><br/>
-			金額 : <input type="text" name="TotalAmount" value=${requestScope.TotalAmount} /><br/>
-			描述 : <input type="text" name="TradeDesc" value=${requestScope.TradeDesc} /><br/>
-			商品 : <input type="text" name="ItemName" value=${requestScope.ItemName} /><br/>
-			<input type="text" name="ReturnURL" value=${requestScope.ReturnURL} /><br/>
-			<input type="text" name="ChoosePayment" value=${requestScope.ChoosePayment} /><br/>
-			<input type="text" name="IgnorePayment" value=${requestScope.IgnorePayment} /><br/>
-			<input type="text" name="ClientBackURL" value=${requestScope.ClientBackURL} /><br/>
-			<input type="text" name="CheckMacValue" value=${requestScope.CheckMacValue} /><br/>
-			<input type="submit" value="send" />
+			廠商編號<input type="text"  name="MerchantID" value="${MerchantID}" /><br/>
+			訂單編號:<input type="text"  name="MerchantTradeNo" value="${MerchantTradeNo}" /><br/>
+			訂單日期:<input type="text"  name="MerchantTradeDate" value="${MerchantTradeDate}" /><br/>
+			交易類型:<input type="text"  name="PaymentType" value="${PaymentType}" /><br/>
+			金額 : <input type="text" name="TotalAmount" value="${TotalAmount}" /><br/>
+			描述 : <input type="text" name="TradeDesc" value="${TradeDesc}" /><br/>
+			商品 : <input type="text" name="ItemName" value="${ItemName}" /><br/>
+			<input type="text" name="ReturnURL" value="${ReturnURL}" /><br/>
+			<input type="text" name="ChoosePayment" value="${ChoosePayment}" /><br/>
+			<input type="text" name="IgnorePayment" value="${IgnorePayment}" /><br/>
+			<input type="text" name="ClientBackURL" value="${ClientBackURL}" /><br/>
+			<input type="text" name="CheckMacValue" value="${CheckMacValue}" /><br/>
+			<input type="submit" value="send" id="submit"/>
 	</form>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script>!window.jQuery && document.write("<script src='Scripts/jquery-2.1.4.min.js'><\/script>")</script>
 
+	<script type="text/javascript">
+		(function($){
+			$("#submit").click(function(){
+				$.get("/Vetash/OrderChecked")
+			})
+	    }(jQuery))
+	</script>
+	
 </body>
 </html>

@@ -42,6 +42,39 @@ public class AllPayCheckMacValue {
 		return result;
 	}
 	
+	public static boolean checkMacValueReturn(String merchantTradeNo, String rtnCode,
+			String rtnMsg, String tradeNo, String tradeAmt, String paymentDate, String paymentType,
+			String paymentTypeChargeFee, String tradeDate, String simulatePaid, String checkMacValue){
+		StringBuilder mix = new StringBuilder();
+		mix.append("HashKey=" + hashKey + "&");
+		mix.append("MerchantID=" + merchantID + "&");
+		mix.append("MerchantTradeNo=" + merchantTradeNo + "&");
+		mix.append("PaymentDate=" + paymentDate + "&");
+		mix.append("PaymentType=" + paymentType + "&");
+		mix.append("PaymentTypeChargeFee=" + paymentTypeChargeFee + "&");
+		mix.append("RtnCode=" + rtnCode + "&");
+		mix.append("RtnMsg=" + rtnMsg + "&");
+		mix.append("SimulatePaid=" + simulatePaid + "&");
+		mix.append("TradeAmt=" + tradeAmt + "&");
+		mix.append("TradeDate=" + tradeDate + "&");
+		mix.append("TradeNo=" + tradeNo + "&");
+		mix.append("HashIV=" + hashIV);
+		String checkValue = "";
+		try {
+			checkValue = URLEncoder.encode(mix.toString(), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		checkValue = checkValue.toLowerCase();
+		checkValue = Parse.toHexString(Parse.encodeMD5(checkValue));
+		if(checkValue.equals(checkMacValue)) {
+			return true;
+		}
+		return false;
+	}
+	
+	
+	
 //	public static void main(String[] args) {
 //		
 //		String a = AllPayCheckMacValue.checkMacValue("testtest1112", "2015/02/25 01:14:00", "888");

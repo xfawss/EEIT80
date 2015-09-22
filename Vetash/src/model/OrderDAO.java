@@ -18,4 +18,6 @@ public interface OrderDAO {
 	
 	public abstract List<OrderBean> selectByNote(String bossNotes);
 	
+	public abstract OrderBean selectByOrderNo(String orderNo);
+	
 }

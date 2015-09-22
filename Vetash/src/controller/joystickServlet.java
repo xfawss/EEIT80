@@ -49,7 +49,12 @@ public class joystickServlet extends HttpServlet {
 		HttpSession session = req.getSession(true);
 		//取得售價
 		int price = 100;
+		
+		java.util.Date now = new java.util.Date();
+		String orderNo = Long.toString(now.getTime());
 		OrderBean bean = new OrderBean();
+		bean.setOrderNo(orderNo);
+		bean.setOrderDate(now);
 		bean.setHousing(housing);
 		bean.setRocker(rocker);
 		bean.setL1(l1);
