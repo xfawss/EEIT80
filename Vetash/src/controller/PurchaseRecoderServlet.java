@@ -22,7 +22,7 @@ import model.PurchaseRecoderService;
 import model.PurchaseRecordBean;
 
 
-@WebServlet("/PurchaseRecoder")
+@WebServlet("/purchase")
 public class PurchaseRecoderServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -89,7 +89,7 @@ public class PurchaseRecoderServlet extends HttpServlet {
 			}
 		}
 		
-		String type = req.getParameter("type");
+		String type = req.getParameter("purchaseType");
 		String notes = req.getParameter("notes");
 		String productId = req.getParameter("productId");
 		String tempNum = req.getParameter("number");
@@ -112,7 +112,7 @@ public class PurchaseRecoderServlet extends HttpServlet {
 			errs.put("warning2", "格式錯誤");
 		}
 		if(errs!=null && !errs.isEmpty()){
-			req.getRequestDispatcher("/ye/err.jsp").forward(req, resp);
+			//req.getRequestDispatcher("/ye/err.jsp").forward(req, resp);
 			return;
 		}
 		
@@ -128,15 +128,15 @@ public class PurchaseRecoderServlet extends HttpServlet {
 		if(type.equals("purchase")){
 			service.insert(bean);
 			errs.put("warning2", "SUCCESSFUL!!");
-			req.getRequestDispatcher("/ye/err.jsp").forward(req, resp);
+			//req.getRequestDispatcher("/ye/err.jsp").forward(req, resp);
 		} else if(type.equals("returnoff")){
 			service.insert(bean);
 			errs.put("warning2", "SUCCESSFUL!!");
-			req.getRequestDispatcher("/ye/err.jsp").forward(req, resp);
+			//req.getRequestDispatcher("/ye/err.jsp").forward(req, resp);
 		} else {
 			System.out.println("WTF!!!");
 			errs.put("warning2", "??!!");
-			req.getRequestDispatcher("/ye/err.jsp").forward(req, resp);
+			//req.getRequestDispatcher("/ye/err.jsp").forward(req, resp);
 		}
 	}
 

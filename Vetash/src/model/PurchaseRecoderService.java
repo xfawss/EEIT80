@@ -23,7 +23,7 @@ public class PurchaseRecoderService {
 			Map<String, Object> map = new LinkedHashMap<String, Object>();
 			map.put("recordNo", bean.getRecordNo());
 			map.put("date", Parse.dateToString(bean.getDate()));
-			map.put("type", bean.getType());
+			map.put("purchaseType", bean.getType());
 			if(bean.getNotes() == null) {
 				map.put("notes", "");
 			} else {
