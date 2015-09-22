@@ -6,13 +6,14 @@
 </head>
 <body>
 
-<a href="./Customers?customerTel=">selectAll</a><br/>
-<a href="./Customers?customerTel=0910103842">selectOne(0910103842)</a><br/>
-<a href="./Customers?customerName=何&customerLine=&customerFb=&customerMail=&customerNote=">selectByName(何)</a><br/>
+
+<a href="../Customers?customerTel=">selectAll</a><br/>
+<a href="../Customers?customerTel=0910103842">selectOne(0910103842)</a><br/>
+<a href="../Customers?customerName=何&customerLine=&customerFb=&customerMail=&customerNote=">selectByName(何)</a><br/>
 <hr>
 
 <p>Insert</p>
-<form action="./Customers" method="POST">
+<form action="../Customers" method="POST">
 	customerName<br>
 	<input type="text" name="customerName" value="CMA"><br>
 	customerTel<br>
@@ -34,7 +35,7 @@
 <hr>
 
 <p>update</p>
-<form action="./Customers" method="POST">
+<form action="../Customers" method="POST">
 	customerName<br>
 	<input type="text" name="customerName" value="CMA"><br>
 	customerTel<br>
@@ -56,7 +57,7 @@
 <hr>
 
 <p>delete</p>
-<form action="./Customers" method="POST">
+<form action="../Customers" method="POST">
 	<input type="text" name="customerTel" value="0911111111"><br>
 	<input type="hidden" name="action" value="delete">
 	<input type="submit" value="delete">
