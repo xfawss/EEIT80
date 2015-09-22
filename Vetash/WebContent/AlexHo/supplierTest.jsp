@@ -11,9 +11,9 @@
 
 <%String path = request.getContextPath(); %>
 
-<a href="<%=path %>/suppliers?action=select">selectAll</a><br/>
-<a href="<%=path %>/suppliers?supplierTel=0933685100&action=select">selectByTel(0974002547)</a><br/>
-<a href="<%=path %>/suppliers?supplierName=K&action=select">selectByName(k)</a><br/>
+<a href="<%=path %>/suppliers?action=selectAll">selectAll</a><br/>
+<a href="<%=path %>/suppliers?supplierTel=0933685100&action=selectByTel">selectByTel(0974002547)</a><br/>
+<a href="<%=path %>/suppliers?supplierName=K&action=selectByName">selectByName(k)</a><br/>
 <hr>
 
 <p>Insert</p>

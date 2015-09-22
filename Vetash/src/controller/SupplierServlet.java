@@ -32,7 +32,7 @@ public class SupplierServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse rsp) throws ServletException, IOException {
 
-		// rsp.setContentType("text/html; charset=UTF-8");
+		rsp.setContentType("text/html; charset=UTF-8");
 		// System.out.println("get");
 
 		// 接收資料
@@ -80,7 +80,7 @@ public class SupplierServlet extends HttpServlet {
 				errors.add("格式不正確");
 			}
 		}
-		for(String temp : errors){
+		for (String temp : errors) {
 			System.out.println(temp);
 		}
 	}
@@ -96,7 +96,7 @@ public class SupplierServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse rsp) throws ServletException, IOException {
 
-		// rsp.setContentType("text/html; charset=UTF-8");
+		 rsp.setContentType("text/html; charset=UTF-8");
 		// System.out.println("post");
 		// 接收資料
 		String id = req.getParameter("supplierId");
@@ -124,7 +124,7 @@ public class SupplierServlet extends HttpServlet {
 		PrintWriter out = rsp.getWriter();
 		List<String> errors = new ArrayList<String>();
 		Map<String, Object> results = new HashMap<String, Object>();
-
+		java.util.Date firstDate = null;
 		if (action != null) {
 			if ("insert".equals(action) || "update".equals(action)) {
 				if (name == null || name.length() == 0) {
@@ -148,6 +148,16 @@ public class SupplierServlet extends HttpServlet {
 				if (date == null || date.length() == 0) {
 					errors.add("新增或修改時首次交易日為必填欄位，請輸入");
 				}
+				
+				if (date != null && date.length() != 0)
+
+				{
+					firstDate = Parse.convertDate(date);
+					if (new java.util.Date(0).equals(firstDate)) {
+						errors.add("日期格式必須如範例:2015-01-01 (西元年4碼-月2碼-日2碼)");
+					}
+				}
+				
 			}
 		}
 		if (errors != null && !errors.isEmpty()) {
@@ -158,16 +168,6 @@ public class SupplierServlet extends HttpServlet {
 		}
 
 		// 轉換資料
-		java.util.Date firstDate = null;
-		if (date != null && date.length() != 0)
-
-		{
-			firstDate = Parse.convertDate(date);
-			if (new java.util.Date(0).equals(firstDate)) {
-				errors.add("日期格式必須如範例:2015-01-01 (西元年4碼-月2碼-日2碼)");
-			}
-		}
-
 		int parseId = 0;
 		if (id != null && id.length() != 0)
 

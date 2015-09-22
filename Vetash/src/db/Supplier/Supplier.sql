@@ -8,7 +8,7 @@ CREATE TABLE Supplier
 SupplierName nvarchar(30),
 SupplierTax varchar (15),
 SupplierContact nvarchar (15),
-SupplierTel varchar (15),
+SupplierTel varchar (25),
 SupplierAddr nvarchar (50),
 SupplierAcct varchar (25),
 SupplierDate date,
