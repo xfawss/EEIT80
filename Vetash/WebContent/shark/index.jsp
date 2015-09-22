@@ -9,8 +9,8 @@
 </head>
 <body>
 <h2>查詢</h2>
-
-<Form Action="/Vetash/Customers" method="GET">
+<%String path = request.getContextPath(); %>
+<Form Action="<%=path %>/customers" method="GET">
 
 		<select name="cust">
 				<option value="customerTel">customerTel</option>

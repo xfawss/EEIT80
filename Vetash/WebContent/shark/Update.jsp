@@ -9,7 +9,8 @@
 </head>
 <body>
 <h2>更新</h2>
-<form action="/Vetash/Customers" method="POST">
+<%String path = request.getContextPath(); %>
+<form action="<%=path %>/customers" method="POST">
 	customerName<br>
 	<input type="text" name="customerName" value="CMA"><br><span>${errMsgs.customerName}</span><br>
 	<p>${errMsgs.result}</p>

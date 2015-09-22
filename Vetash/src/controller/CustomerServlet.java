@@ -24,7 +24,7 @@ import model.CustomerService;
 
 
 
-@WebServlet(urlPatterns={"/Customers"})
+@WebServlet(urlPatterns={"/customers"})
 public class CustomerServlet extends HttpServlet {  
     private static final long serialVersionUID = 1L;
     private  CustomerService service;
@@ -113,7 +113,7 @@ public class CustomerServlet extends HttpServlet {
 					           customer = bean.writeJSONString( result.get( i ) );
 					           customers.put( customer );
 					       }
-					       jsonMsg.put( "customers", customers );
+					       jsonMsg.put( "results", customers );
 					       System.out.println( "writeJSONString方法:" + jsonMsg.toString() );
 					       out.print( jsonMsg.toString() );
 					  }
@@ -136,7 +136,7 @@ public class CustomerServlet extends HttpServlet {
   					           customer = bean.writeJSONString( result.get( i ) );
   					           customers.put( customer );
   					       }
-  					       jsonMsg.put( "customers", customers );
+  					       jsonMsg.put( "results", customers );
   					       System.out.println( "writeJSONString方法:" + jsonMsg.toString() );
   					       out.print( jsonMsg.toString() );
   					  }
@@ -158,7 +158,7 @@ public class CustomerServlet extends HttpServlet {
   					           customer = bean.writeJSONString( result.get( i ) );
   					           customers.put( customer );
   					       }
-  					       jsonMsg.put( "customers", customers );
+  					       jsonMsg.put( "results", customers );
   					       System.out.println( "writeJSONString方法:" + jsonMsg.toString() );
   					       out.print( jsonMsg.toString() );
   					  }
@@ -181,7 +181,7 @@ public class CustomerServlet extends HttpServlet {
   					           customer = bean.writeJSONString( result.get( i ) );
   					           customers.put( customer );
   					       }
-  					       jsonMsg.put( "customers", customers );
+  					       jsonMsg.put( "results", customers );
   					       System.out.println( "writeJSONString方法:" + jsonMsg.toString() );
   					       out.print( jsonMsg.toString() );
   					  }
@@ -203,7 +203,7 @@ public class CustomerServlet extends HttpServlet {
   					           customer = bean.writeJSONString( result.get( i ) );
   					           customers.put( customer );
   					       }
-  					       jsonMsg.put( "customers", customers );
+  					       jsonMsg.put( "results", customers );
   					       System.out.println( "writeJSONString方法:" + jsonMsg.toString() );
   					       out.print( jsonMsg.toString() );
   					  }
