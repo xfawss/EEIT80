@@ -170,8 +170,12 @@ public class ProductServlet extends HttpServlet {
 				}
 			}
 
-		} else {
-			return;
+			if (errors != null && !errors.isEmpty()) {
+				results.put("errors", errors);
+				jObj.put("results", results);
+				out.print(jObj);
+				return;
+			}
 		}
 
 		// 轉換資料
