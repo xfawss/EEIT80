@@ -157,7 +157,6 @@ public class SupplierServlet extends HttpServlet {
 						errors.add("日期格式必須如範例:2015-01-01 (西元年4碼-月2碼-日2碼)");
 					}
 				}
-				
 			}
 		}
 		if (errors != null && !errors.isEmpty()) {

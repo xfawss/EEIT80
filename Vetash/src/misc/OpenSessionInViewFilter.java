@@ -26,7 +26,6 @@ public class OpenSessionInViewFilter implements Filter {
 		
 		try {
 			sessionFactory.getCurrentSession().beginTransaction();
-			
 			chain.doFilter(req, resp);
 			sessionFactory.getCurrentSession().getTransaction().commit();
 		} catch (Throwable e) {
