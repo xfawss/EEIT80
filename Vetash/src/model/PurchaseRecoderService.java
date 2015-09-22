@@ -21,18 +21,18 @@ public class PurchaseRecoderService {
 		List<Map<String, Object>> result = new LinkedList<Map<String, Object>>();
 		for(PurchaseRecordBean bean : beans) {
 			Map<String, Object> map = new LinkedHashMap<String, Object>();
-			map.put("RecordNo", bean.getRecordNo());
-			map.put("Date", Parse.dateToString(bean.getDate()));
-			map.put("Type", bean.getType());
+			map.put("recordNo", bean.getRecordNo());
+			map.put("date", Parse.dateToString(bean.getDate()));
+			map.put("type", bean.getType());
 			if(bean.getNotes() == null) {
-				map.put("Notes", "");
+				map.put("notes", "");
 			} else {
-				map.put("Notes", bean.getNotes());
+				map.put("notes", bean.getNotes());
 			}
-			map.put("ProductId", bean.getProductId());
-			map.put("Number", bean.getNumber());
-			map.put("Prize", bean.getPrize());
-			map.put("SupplierId", bean.getSupplierId());
+			map.put("productId", bean.getProductId());
+			map.put("number", bean.getNumber());
+			map.put("prize", bean.getPrize());
+			map.put("supplierId", bean.getSupplierId());
 			result.add(map);
 		}
 		return result;
