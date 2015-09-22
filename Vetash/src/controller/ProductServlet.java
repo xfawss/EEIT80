@@ -168,9 +168,13 @@ public class ProductServlet extends HttpServlet {
 					errors.add( "新增或修改時價格為必填欄位，請輸入");					
 				}				
 			}
+			if (errors != null && !errors.isEmpty()) {
+				results.put("errors", errors);
+				jObj.put("results", results);
+				out.print(jObj);
+				return;
+			}
 			
-		}else{
-			return;
 		}
 
 		
