@@ -48,12 +48,11 @@ public class CustomerServlet extends HttpServlet {
 		JSONObject jsonMsg = new JSONObject();
 		request.setAttribute("errMsg", errMsgs); // 顯示錯誤訊息
 		// 設定輸入資料的編碼
-		request.setCharacterEncoding("UTF-8"); // 文字資料轉內碼
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("text/json");
+		
+		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		// 接收資料
-		String cust = request.getParameter("cust");
+		String cust = request.getParameter("action");
 		String tel = request.getParameter("customerTel");
 		String line = request.getParameter("customerLine");
 		String fb = request.getParameter("customerFb");
@@ -89,7 +88,7 @@ public class CustomerServlet extends HttpServlet {
 							customer = bean.writeJSONString(result.get(i));
 							customers.put(customer);
 						}
-						jsonMsg.put("customers", customers);
+						jsonMsg.put("results", customers);
 						System.out.println("writeJSONString方法:" + jsonMsg.toString());
 						out.print(jsonMsg.toString());
 						// 基本寫法使用writeJSONString end
@@ -220,10 +219,8 @@ public class CustomerServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		// 設定輸入資料的編碼
-		request.setCharacterEncoding("UTF-8"); // 文字資料轉內碼
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("text/json");
+
+		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		// 接收資料
 		// String cust = request.getParameter( "cust" );

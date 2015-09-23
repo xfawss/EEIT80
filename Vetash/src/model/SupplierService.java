@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import misc.Parse;
 import model.dao.SupplierDAOjdbc;
 
 public class SupplierService {
@@ -26,15 +27,15 @@ public class SupplierService {
 		for(int i=0; i<beans.size(); i++){
 			SupplierBean bean = beans.get(i);
 			Map<String, Object> map1 = new LinkedHashMap<String, Object>();
-			map1.put("SupplierId", bean.getSupplierId());
-			map1.put("SupplierName", bean.getSupplierName());
-			map1.put("SupplierTax", bean.getSupplierTax());
-			map1.put("SupplierContact", bean.getSupplierContact());
-			map1.put("SupplierTel", bean.getSupplierTel());
-			map1.put("SupplierAddr", bean.getSupplierAddr());
-			map1.put("SupplierAcct", bean.getSupplierAcct());
-			map1.put("SupplierDate", bean.getSupplierDate());
-			map1.put("SupplierNote", bean.getSupplierNote());
+			map1.put("supplierId", bean.getSupplierId());
+			map1.put("supplierName", bean.getSupplierName());
+			map1.put("supplierTax", bean.getSupplierTax());
+			map1.put("supplierContact", bean.getSupplierContact());
+			map1.put("supplierTel", bean.getSupplierTel());
+			map1.put("supplierAddr", bean.getSupplierAddr());
+			map1.put("supplierAcct", bean.getSupplierAcct());
+			map1.put("supplierDate", Parse.dateToString(bean.getSupplierDate()));
+			map1.put("supplierNote", bean.getSupplierNote());
 			results.add(map1);
 		}
 		return results;
@@ -45,15 +46,15 @@ public class SupplierService {
 		SupplierBean bean = null;
 		if(supplierTel != null && supplierTel.length()!=0){
 			bean = suppDao.selectByTel(supplierTel);
-			results.put("SupplierId", bean.getSupplierId());
-			results.put("SupplierName", bean.getSupplierName());
-			results.put("SupplierTax", bean.getSupplierTax());
-			results.put("SupplierContact", bean.getSupplierContact());
-			results.put("SupplierTel", bean.getSupplierTel());
-			results.put("SupplierAddr", bean.getSupplierAddr());
-			results.put("SupplierAcct", bean.getSupplierAcct());
-			results.put("SupplierDate", bean.getSupplierDate());
-			results.put("SupplierNote", bean.getSupplierNote());
+			results.put("supplierId", bean.getSupplierId());
+			results.put("supplierName", bean.getSupplierName());
+			results.put("supplierTax", bean.getSupplierTax());
+			results.put("supplierContact", bean.getSupplierContact());
+			results.put("supplierTel", bean.getSupplierTel());
+			results.put("supplierAddr", bean.getSupplierAddr());
+			results.put("supplierAcct", bean.getSupplierAcct());
+			results.put("supplierDate", Parse.dateToString(bean.getSupplierDate()));
+			results.put("supplierNote", bean.getSupplierNote());
 		}
 		return results;
 	}

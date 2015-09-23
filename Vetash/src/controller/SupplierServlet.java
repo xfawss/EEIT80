@@ -32,7 +32,7 @@ public class SupplierServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse rsp) throws ServletException, IOException {
 
-		rsp.setContentType("text/html; charset=UTF-8");
+		rsp.setContentType("text/html");
 		// System.out.println("get");
 
 		// 接收資料
@@ -96,7 +96,7 @@ public class SupplierServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse rsp) throws ServletException, IOException {
 
-		 rsp.setContentType("text/html; charset=UTF-8");
+		 rsp.setContentType("text/html");
 		// System.out.println("post");
 		// 接收資料
 		String id = req.getParameter("supplierId");

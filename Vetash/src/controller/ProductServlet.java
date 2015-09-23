@@ -130,6 +130,7 @@ public class ProductServlet extends HttpServlet {
 		String imgPath = req.getParameter("productImgPath");
 		String note = req.getParameter("productNote");
 		String action = req.getParameter("action");
+		String productColor = req.getParameter("productColor");
 
 		// System.out.println(name);
 		// System.out.println(tel);
@@ -205,6 +206,7 @@ public class ProductServlet extends HttpServlet {
 		bean.setProductName(name);
 		bean.setProductPrice(parsePrice);
 		bean.setProductImgPath(imgPath);
+		bean.setProductColor(productColor);
 
 		// note,type,id,name,parsePrice,imgPath
 
@@ -215,7 +217,7 @@ public class ProductServlet extends HttpServlet {
 		if (action != null && action.equals("insert"))
 
 		{
-			ProductBean result = service.insert(id, type, name, parsePrice, imgPath, note);
+			ProductBean result = service.insert(id, type, name, parsePrice, imgPath, note, productColor);
 			if (result == null) {
 				results.put("state", "新增失敗");
 			} else {
@@ -226,7 +228,7 @@ public class ProductServlet extends HttpServlet {
 		} else if (action != null && action.equals("update"))
 
 		{
-			ProductBean result = service.update(id, name, parsePrice, imgPath, note);
+			ProductBean result = service.update(id, name, parsePrice, imgPath, note, productColor);
 			if (result == null) {
 				results.put("state", "修改失敗");
 

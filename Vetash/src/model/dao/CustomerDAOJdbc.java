@@ -21,7 +21,7 @@ public class CustomerDAOJdbc implements CustomerDAO {
 	public CustomerDAOJdbc() {
 		try {
 			Context ctx = new InitialContext();
-			this.dataSource = (DataSource) ctx.lookup("java:comp/env/jdbc/Vetash");
+			this.dataSource = (DataSource) ctx.lookup("java:comp/env/jdbc/vetash");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
