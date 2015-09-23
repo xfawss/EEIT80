@@ -176,14 +176,14 @@ public class ProductServlet extends HttpServlet {
 		// 轉換資料
 
 		int parsePrice = 0;
-		int parseCost = 0;
+		double parseCost = 0;
 		int parseQty = 0;
 		if (price != null && price.length() != 0){
 			parsePrice = Parse.convertInt(price);
 		}
 		
 		if (cost != null && cost.length() != 0){
-			parseCost = Parse.convertInt(cost);
+			parseCost = Parse.convertDouble(cost);
 		}
 		if (qty != null && qty.length() != 0){
 			parseQty = Parse.convertInt(qty);

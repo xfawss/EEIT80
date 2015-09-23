@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 import model.OrderBean;
 
 @WebServlet("/joystick")
-public class joystickServlet extends HttpServlet {
+public class JoystickServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

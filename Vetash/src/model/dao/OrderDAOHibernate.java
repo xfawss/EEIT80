@@ -32,12 +32,9 @@ public class OrderDAOHibernate implements OrderDAO {
 
 	@Override
 	public OrderBean update(OrderBean bean) {
-		OrderBean result = (OrderBean)this.getSession().get(OrderBean.class, bean.getOrderNo());
-		if(result != null) {
-			this.getSession().update(bean);
-			return bean;
-		}
-		return null;
+		this.getSession().update(bean);
+		return bean;
+		
 	}
 
 	@Override

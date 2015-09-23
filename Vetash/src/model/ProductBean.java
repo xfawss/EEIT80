@@ -21,7 +21,7 @@ public class ProductBean implements java.io.Serializable {
 	private int productPrice;
 	
 	@Column(name="productCost")
-	private int productCost;
+	private double productCost;
 	
 	@Column(name="productQty")
 	private int productQty;
@@ -75,11 +75,11 @@ public class ProductBean implements java.io.Serializable {
 		this.productPrice = productPrice;
 	}
 
-	public int getProductCost() {
+	public double getProductCost() {
 		return productCost;
 	}
 	
-	public void setProductCost(int productCost) {
+	public void setProductCost(double productCost) {
 		this.productCost = productCost;
 	}
 

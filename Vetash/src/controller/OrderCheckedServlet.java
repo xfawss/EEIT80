@@ -18,7 +18,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 import model.OrderBean;
 import model.OrderService;
 
-@WebServlet("/OrderChecked")
+@WebServlet("/orderChecked")
 public class OrderCheckedServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private OrderService service;

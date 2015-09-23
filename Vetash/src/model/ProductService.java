@@ -147,8 +147,7 @@ public class ProductService {
 	public Map<String,Integer> selectCostById(String productId) {
 		Map<String,Integer> results = new HashMap<String,Integer>();
 		ProductBean bean = productDAO.selectById(productId);
-		results.put("ProductCost", bean.getProductCost());			
-			
+		results.put("ProductPrice", bean.getProductPrice());			
 		return results;
 	}
 }

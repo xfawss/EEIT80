@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,13 +17,23 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import misc.AllPayCheckMacValue;
 import misc.Parse;
+import model.CustomerBean;
+import model.CustomerService;
 import model.OrderBean;
-import model.OrderService;
 
 
-@WebServlet("/Order")
+@WebServlet("/order")
 public class OrderServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	private CustomerService service;
+	
+	@Override
+	public void init() throws ServletException {
+		ServletContext application = this.getServletContext();
+		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(application);
+		service = (CustomerService)context.getBean("CustomerService");
+	}
 	
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
@@ -47,17 +56,17 @@ public class OrderServlet extends HttpServlet {
 				customerTel==null || customerTel.length()==0 || customerAddr==null || customerAddr.length()==0) {
 			errs.add("有必填選項空白");
 		}
-		/*新增入顧客Table
-		customerName
-		customerTel
-		customerLine
-		customerFb
-		customerMail
-		receiveType
-		customerAddr
-		*/
+		CustomerBean cust = new CustomerBean();
+		cust.setCustomerTel(customerTel);
+		cust.setCustomerName(customerName);
+		cust.setCustomerLine(customerLine);
+		cust.setCustomerFb(customerFb);
+		cust.setCustomerMail(customerMail);
+		cust.setCustomerAddr(customerAddr);
 		
-		
+		if(service.insert(cust)!=1) {
+			service.update(cust);
+		}
 		
 		HttpSession session = req.getSession(false);
 		if(session==null){

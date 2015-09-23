@@ -97,6 +97,9 @@ public class OrderBean {
 	
 	@Column(name="AllPayTradeNo")
 	private String AllPayTradeNo;
+	
+	@Column(name="DeliveryDate")
+	private java.util.Date deliveryDate;
 
 	public String getOrderNo() {
 		return orderNo;
@@ -328,6 +331,14 @@ public class OrderBean {
 
 	public void setAllPayTradeNo(String allPayTradeNo) {
 		AllPayTradeNo = allPayTradeNo;
+	}
+
+	public java.util.Date getDeliveryDate() {
+		return deliveryDate;
+	}
+
+	public void setDeliveryDate(java.util.Date deliveryDate) {
+		this.deliveryDate = deliveryDate;
 	}
 	
 }

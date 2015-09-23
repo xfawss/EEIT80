@@ -3,8 +3,11 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import model.dao.CustomerDAOJdbc;
 
+@Component(value="CustomerService")
 public class CustomerService {
     private CustomerDAO customerDao = new CustomerDAOJdbc();
     public List<CustomerBean> selectLikeName( CustomerBean bean) {

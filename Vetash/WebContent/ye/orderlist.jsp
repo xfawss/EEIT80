@@ -29,7 +29,7 @@
 	<script type="text/javascript">
 		(function($){
 			$("#submit").click(function(){
-				$.get("/Vetash/OrderChecked")
+				$.get("/Vetash/orderChecked")
 			})
 	    }(jQuery))
 	</script>

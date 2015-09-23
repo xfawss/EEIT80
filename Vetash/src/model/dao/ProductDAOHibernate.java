@@ -94,9 +94,9 @@ public class ProductDAOHibernate implements ProductDAO {
 		ProductBean bean = (ProductBean)this.getSession().get(ProductBean.class, productId);
 		if(bean != null) {
 			int Qty = bean.getProductQty();
-			int temp = bean.getProductCost();
+			double temp = bean.getProductCost();
 			bean.setProductQty(Qty+num);
-			int productCost = (Qty*temp+prize)/(num+Qty);
+			double productCost = (Qty*temp+prize)/(num+Qty);
 			bean.setProductCost(productCost);
 			return true;
 		}
