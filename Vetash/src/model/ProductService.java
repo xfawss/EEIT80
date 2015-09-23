@@ -42,15 +42,15 @@ public class ProductService {
 		ProductBean bean = null;
 		if(productId != null && productId.length()!=0){
 			bean = productDAO.selectById(productId);
-			results.put("ProductrId", bean.getProductId());
-			results.put("ProductName", bean.getProductName());
-			results.put("ProductType", bean.getProductType());
-			results.put("ProductPrice", bean.getProductPrice());
-			results.put("ProductCost", bean.getProductCost());
-			results.put("ProductQty", bean.getProductQty());
-			results.put("ProductImgPath", bean.getProductImgPath());
-			results.put("ProductNote", bean.getProductNote());
-			results.put("ProductColor", bean.getProductColor());
+			results.put("productId", bean.getProductId());
+			results.put("productName", bean.getProductName());
+			results.put("productType", bean.getProductType());
+			results.put("productPrice", bean.getProductPrice());
+			results.put("productCost", bean.getProductCost());
+			results.put("productQty", bean.getProductQty());
+			results.put("productImgPath", bean.getProductImgPath());
+			results.put("productNote", bean.getProductNote());
+			results.put("productColor", bean.getProductColor());
 		}
 		return results;
 	}
@@ -62,15 +62,15 @@ public class ProductService {
 		for(int i=0; i<beans.size(); i++){
 			ProductBean bean = beans.get(i);
 			Map<String, Object> map1 = new LinkedHashMap<String, Object>();
-			map1.put("ProductrId", bean.getProductId());
-			map1.put("ProductName", bean.getProductName());
-			map1.put("ProductType", bean.getProductType());
-			map1.put("ProductPrice", bean.getProductPrice());
-			map1.put("ProductCost", bean.getProductCost());
-			map1.put("ProductQty", bean.getProductQty());
-			map1.put("ProductImgPath", bean.getProductImgPath());
-			map1.put("ProductNote", bean.getProductNote());
-			map1.put("ProductColor", bean.getProductColor());
+			map1.put("productId", bean.getProductId());
+			map1.put("productName", bean.getProductName());
+			map1.put("productType", bean.getProductType());
+			map1.put("productPrice", bean.getProductPrice());
+			map1.put("productCost", bean.getProductCost());
+			map1.put("productQty", bean.getProductQty());
+			map1.put("productImgPath", bean.getProductImgPath());
+			map1.put("productNote", bean.getProductNote());
+			map1.put("productColor", bean.getProductColor());
 			results.add(map1);
 		}
 		return results;
@@ -83,15 +83,15 @@ public class ProductService {
 		for(int i=0; i<beans.size(); i++){
 			ProductBean bean = beans.get(i);
 			Map<String, Object> map1 = new LinkedHashMap<String, Object>();
-			map1.put("ProductrId", bean.getProductId());
-			map1.put("ProductName", bean.getProductName());
-			map1.put("ProductType", bean.getProductType());
-			map1.put("ProductPrice", bean.getProductPrice());
-			map1.put("ProductCost", bean.getProductCost());
-			map1.put("ProductQty", bean.getProductQty());
-			map1.put("ProductImgPath", bean.getProductImgPath());
-			map1.put("ProductNote", bean.getProductNote());
-			map1.put("ProductColor", bean.getProductColor());
+			map1.put("productId", bean.getProductId());
+			map1.put("productName", bean.getProductName());
+			map1.put("productType", bean.getProductType());
+			map1.put("productPrice", bean.getProductPrice());
+			map1.put("productCost", bean.getProductCost());
+			map1.put("productQty", bean.getProductQty());
+			map1.put("productImgPath", bean.getProductImgPath());
+			map1.put("productNote", bean.getProductNote());
+			map1.put("productColor", bean.getProductColor());
 			results.add(map1);
 		}
 		return results;
@@ -104,15 +104,15 @@ public class ProductService {
 		for(int i=0; i<beans.size(); i++){
 			ProductBean bean = beans.get(i);
 			Map<String, Object> map1 = new LinkedHashMap<String, Object>();
-			map1.put("ProductrId", bean.getProductId());
-			map1.put("ProductName", bean.getProductName());
-			map1.put("ProductType", bean.getProductType());
-			map1.put("ProductPrice", bean.getProductPrice());
-			map1.put("ProductCost", bean.getProductCost());
-			map1.put("ProductQty", bean.getProductQty());
-			map1.put("ProductImgPath", bean.getProductImgPath());
-			map1.put("ProductNote", bean.getProductNote());
-			map1.put("ProductColor", bean.getProductColor());
+			map1.put("productId", bean.getProductId());
+			map1.put("productName", bean.getProductName());
+			map1.put("productType", bean.getProductType());
+			map1.put("productPrice", bean.getProductPrice());
+			map1.put("productCost", bean.getProductCost());
+			map1.put("productQty", bean.getProductQty());
+			map1.put("productImgPath", bean.getProductImgPath());
+			map1.put("productNote", bean.getProductNote());
+			map1.put("productColor", bean.getProductColor());
 			results.add(map1);
 		}
 		return results;
