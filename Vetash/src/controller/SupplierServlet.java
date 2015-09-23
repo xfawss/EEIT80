@@ -97,8 +97,6 @@ public class SupplierServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse rsp) throws ServletException, IOException {
 
 		 rsp.setContentType("text/html");
-		// System.out.println("post");
-		// 接收資料
 		String id = req.getParameter("supplierId");
 		String name = req.getParameter("supplierName");
 		String tax = req.getParameter("supplierTax");
@@ -110,16 +108,6 @@ public class SupplierServlet extends HttpServlet {
 		String note = req.getParameter("supplierNote");
 		String action = req.getParameter("action");
 
-		System.out.println(id);
-		System.out.println(name);
-		System.out.println(tel);
-		// System.out.println(addr);
-		// System.out.println(acct);
-		// System.out.println(date);
-		// System.out.println(note);
-		// System.out.println(action);
-
-		// 驗證資料
 		JSONObject jObj = new JSONObject();
 		PrintWriter out = rsp.getWriter();
 		List<String> errors = new ArrayList<String>();

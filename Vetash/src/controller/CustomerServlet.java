@@ -223,7 +223,6 @@ public class CustomerServlet extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		// 接收資料
-		// String cust = request.getParameter( "cust" );
 		String tel = request.getParameter("customerTel");
 		String line = request.getParameter("customerLine");
 		String fb = request.getParameter("customerFb");
@@ -241,7 +240,7 @@ public class CustomerServlet extends HttpServlet {
 
 		// 驗證資料
 		if (action != null) {
-			if (action.equals("Insert") || action.equals("Update")) {
+			if (action.equals("insert") || action.equals("update")) {
 				if (name == null || name.length() == 0) {
 					errors.add("新增或修改顧客姓名為必填欄位");
 				}
@@ -282,7 +281,7 @@ public class CustomerServlet extends HttpServlet {
 		bean.setCustomerNote(note);
 
 		// 根據model執行結果導向View
-		if (action != null && action.equals("Insert")) {
+		if (action != null && action.equals("insert")) {
 
 			int result = service.insert(bean);
 			if (result == 0) {
@@ -294,7 +293,7 @@ public class CustomerServlet extends HttpServlet {
 				results.put("state", "新增" + result + "筆成功");
 			}
 
-		} else if (action != null && action.equals("Update")) {
+		} else if (action != null && action.equals("update")) {
 			int result = service.update(bean);
 			if (result == 0) {
 				results.put("state", "修改失敗");
@@ -303,7 +302,7 @@ public class CustomerServlet extends HttpServlet {
 				request.setAttribute("update", result);
 				results.put("state", "修改1筆成功");
 			}
-		} else if (action != null && action.equals("Delete")) {
+		} else if (action != null && action.equals("delete")) {
 			int result = service.delete(bean);
 			// System.out.println(result);
 			if (result == 0) {
@@ -318,7 +317,6 @@ public class CustomerServlet extends HttpServlet {
 		try {
 			jObj.put("results", results);
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		out.println(jObj);
