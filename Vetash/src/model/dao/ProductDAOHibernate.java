@@ -61,7 +61,14 @@ public class ProductDAOHibernate implements ProductDAO {
 	public ProductBean update(ProductBean bean) {
 		ProductBean result = (ProductBean) this.getSession().get(ProductBean.class, bean.getProductId());
 		if (result != null) {
-			this.getSession().update(bean);
+			result.setProductType(bean.getProductType());
+			result.setProductName(bean.getProductName());
+			result.setProductPrice(bean.getProductPrice());
+			result.setProductCost(bean.getProductCost());
+			result.setProductQty(bean.getProductQty());
+			result.setProductImgPath(bean.getProductImgPath());
+			result.setProductNote(bean.getProductNote());
+			result.setProductColor(bean.getProductColor());
 			return bean;
 		}
 		return null;
