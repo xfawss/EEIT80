@@ -6,41 +6,31 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import model.dao.ProductDAOHibernate;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Component(value=" ProductService")
+
+@Component(value = "ProductService")
 public class ProductService {
 	
-	private ProductDAOHibernate productDAO = new ProductDAOHibernate();
+	@Autowired
+	private ProductDAO productDAO;
 
 	
-	public ProductBean insert(String productId,String productType,String productName,int productPrice,String productImgPath,String productNote) {		
-		return  productDAO.insert(productId, productType, productName, productPrice,productImgPath,productNote);
+	public ProductBean insert(String productId,String productType,String productName,int productPrice,String productImgPath,String productNote, String productColor) {		
+		return  productDAO.insert(productId, productType, productName, productPrice,productImgPath,productNote, productColor);
 	}
 
 
 	public ProductBean update(String productId,String productName, int productPrice,
-			String productImgPath, String productNote) {
+			String productImgPath, String productNote, String productColor) {
 		
-		return productDAO.update(productId,productName, productPrice, productImgPath, productNote) ;
+		return productDAO.update(productId,productName, productPrice, productImgPath, productNote, productColor) ;
 	}
-
+	
+	public boolean updateQty(String productId, int num, int prize) {
+		return productDAO.updateQty(productId, num, prize);
+	}
 	
 	public boolean delete(String productId) {
 		return  productDAO.delete(productId);		
@@ -60,6 +50,7 @@ public class ProductService {
 			results.put("ProductQty", bean.getProductQty());
 			results.put("ProductImgPath", bean.getProductImgPath());
 			results.put("ProductNote", bean.getProductNote());
+			results.put("ProductColor", bean.getProductColor());
 		}
 		return results;
 	}
@@ -79,6 +70,7 @@ public class ProductService {
 			map1.put("ProductQty", bean.getProductQty());
 			map1.put("ProductImgPath", bean.getProductImgPath());
 			map1.put("ProductNote", bean.getProductNote());
+			map1.put("ProductColor", bean.getProductColor());
 			results.add(map1);
 		}
 		return results;
@@ -99,6 +91,7 @@ public class ProductService {
 			map1.put("ProductQty", bean.getProductQty());
 			map1.put("ProductImgPath", bean.getProductImgPath());
 			map1.put("ProductNote", bean.getProductNote());
+			map1.put("ProductColor", bean.getProductColor());
 			results.add(map1);
 		}
 		return results;
@@ -107,7 +100,7 @@ public class ProductService {
 	
 	public List<Map<String, Object>>  getAll() {
 		List<Map<String, Object>> results = new LinkedList<Map<String,Object>>();
-		List<ProductBean> beans = productDAO. getAll();
+		List<ProductBean> beans = productDAO.getAll();
 		for(int i=0; i<beans.size(); i++){
 			ProductBean bean = beans.get(i);
 			Map<String, Object> map1 = new LinkedHashMap<String, Object>();
@@ -119,6 +112,7 @@ public class ProductService {
 			map1.put("ProductQty", bean.getProductQty());
 			map1.put("ProductImgPath", bean.getProductImgPath());
 			map1.put("ProductNote", bean.getProductNote());
+			map1.put("ProductColor", bean.getProductColor());
 			results.add(map1);
 		}
 		return results;

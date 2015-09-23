@@ -1,22 +1,41 @@
 package model;
 
-import java.util.Date;
 
 import javax.persistence.*;
 
-
-
-
-@Table(name = "Vetash")
+@Entity
+@Table(name = "Product")
 public class ProductBean implements java.io.Serializable {
+	
+	@Id
+	@Column(name="productId")
+	@SequenceGenerator(name="product", allocationSize=1)
+	@GeneratedValue(strategy = GenerationType.IDENTITY, generator="product")
 	private String productId;
+	
+	@Column(name="productType")
 	private String productType;
+	
+	@Column(name="productName")
 	private String productName;
+	
+	@Column(name="productPrice")
 	private int productPrice;
+	
+	@Column(name="productCost")
 	private int productCost;
+	
+	@Column(name="productQty")
 	private int productQty;
+	
+	@Column(name="productImgPath")
 	private String productImgPath;
+	
+	@Column(name="productNote")
 	private String productNote;
+	
+	@Column(name="ProductColor")
+	private String productColor;
 	
 	public String getProductNote() {
 		return productNote;
@@ -26,7 +45,6 @@ public class ProductBean implements java.io.Serializable {
 		this.productNote = productNote;
 	}
 
-	//@JoinColumn(name = "ProductId") 
 	public String getProductId() {
 		return productId;
 	}
@@ -42,10 +60,7 @@ public class ProductBean implements java.io.Serializable {
 	public void setProductId(String productId) {
 		this.productId = productId;
 	}
-	//@JoinColumn(name = "ProductType") 
-	
-	
-	//@JoinColumn(name = "ProductName") 
+
 	public String getProductName() {
 		return productName;
 	}
@@ -53,7 +68,7 @@ public class ProductBean implements java.io.Serializable {
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
-	//@JoinColumn(name = "ProductPrice") 
+
 	public int getProductPrice() {
 		return productPrice;
 	}
@@ -61,7 +76,7 @@ public class ProductBean implements java.io.Serializable {
 	public void setProductPrice(int productPrice) {
 		this.productPrice = productPrice;
 	}
-	//@JoinColumn(name = "ProductCost") 
+
 	public int getProductCost() {
 		return productCost;
 	}
@@ -69,20 +84,28 @@ public class ProductBean implements java.io.Serializable {
 	public void setProductCost(int productCost) {
 		this.productCost = productCost;
 	}
-	//@JoinColumn(name = "ProductQty") 
+
 	public int getProductQty() {
 		return productQty;
 	}
 	public void setProductQty(int productQty) {
 		this.productQty = productQty;
 	}
-	//@JoinColumn(name = "ProductImgPath") 
+	
 	public String getProductImgPath() {
 		return productImgPath;
 	}
 	public void setProductImgPath(String productImgPath) {
 		this.productImgPath = productImgPath;
 	}
-	
+
+	public String getProductColor() {
+		return productColor;
 	}
+
+	public void setProductColor(String productColor) {
+		this.productColor = productColor;
+	}
+	
+}
 

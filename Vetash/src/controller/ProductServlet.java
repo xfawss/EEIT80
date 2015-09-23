@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import misc.Parse;
 import model.ProductBean;
 import model.ProductService;
+import model.PurchaseRecoderService;
 
 import org.json.simple.JSONObject;
 import org.springframework.context.ApplicationContext;
@@ -25,12 +26,14 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 @WebServlet("/products")
 public class ProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
 	private ProductService service;
 
 	@Override
 	public void init() throws ServletException {
-		service = new ProductService();
-		super.init();
+		ServletContext application = this.getServletContext();
+		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(application);
+		service = (ProductService)context.getBean("ProductService");
 	}
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse rsp) throws ServletException, IOException {

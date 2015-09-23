@@ -18,9 +18,14 @@ public class test1 {
 //		} catch (UnsupportedEncodingException e) {
 //			e.printStackTrace();
 //		}
-		String a = Long.toString(new java.util.Date().getTime());
+//		String a = Long.toString(new java.util.Date().getTime());
+//		
+//		System.out.println(a);
 		
-		System.out.println(a);
+		int a = 1;
+		System.out.println(-a);
+		
+		
 		
 	}
 }

@@ -47,7 +47,7 @@ public class CouponServlet extends HttpServlet {
 		if(task==null){
 			errs.put("warning1", "你怎進來的");
 		}else if(task.equals("select") || task.equals("createOrUpdate") || task.equals("delete") || task.equals("find")) {
-			System.out.println(task);
+			
 		}else {
 			errs.put("warning1", "你怎進來的");
 		}

@@ -154,7 +154,7 @@ public class SupplierServlet extends HttpServlet {
 				{
 					firstDate = Parse.convertDate(date);
 					if (new java.util.Date(0).equals(firstDate)) {
-						errors.add("日期格式必須如範例:2015-01-01 (西元年4碼-月2碼-日2碼)");
+						errors.add("日期格式必須如範例:2015/01/01 (西元年4碼/月2碼/日2碼)");
 					}
 				}
 			}
