@@ -9,8 +9,6 @@ public class ProductBean implements java.io.Serializable {
 	
 	@Id
 	@Column(name="productId")
-	@SequenceGenerator(name="product", allocationSize=1)
-	@GeneratedValue(strategy = GenerationType.IDENTITY, generator="product")
 	private String productId;
 	
 	@Column(name="productType")

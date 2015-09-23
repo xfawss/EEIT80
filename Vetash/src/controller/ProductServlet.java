@@ -38,7 +38,7 @@ public class ProductServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse rsp) throws ServletException, IOException {
 
-		rsp.setContentType("text/html;charset=UTF-8");
+		rsp.setContentType("text/html");
 		// System.out.println("get");
 
 		// 接收資料
@@ -118,7 +118,7 @@ public class ProductServlet extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse rsp) throws ServletException, IOException {
-		rsp.setContentType("text/html;charset=UTF-8");
+		rsp.setContentType("text/html");
 		// System.out.println("post");
 		// 接收資料
 		String id = req.getParameter("productId");
@@ -132,15 +132,6 @@ public class ProductServlet extends HttpServlet {
 		String action = req.getParameter("action");
 		String productColor = req.getParameter("productColor");
 
-		// System.out.println(name);
-		// System.out.println(tel);
-		// System.out.println(addr);
-		// System.out.println(acct);
-		// System.out.println(date);
-		// System.out.println(note);
-		// System.out.println(action);
-
-		// 驗證資料
 		JSONObject jObj = new JSONObject();
 		PrintWriter out = rsp.getWriter();
 		List<String> errors = new ArrayList<String>();
@@ -186,13 +177,19 @@ public class ProductServlet extends HttpServlet {
 
 		int parsePrice = 0;
 		int parseCost = 0;
-		if (id != null && id.length() != 0)
-
-		{
+		int parseQty = 0;
+		if (price != null && price.length() != 0){
 			parsePrice = Parse.convertInt(price);
 		}
+		
+		if (cost != null && cost.length() != 0){
+			parseCost = Parse.convertInt(cost);
+		}
+		if (qty != null && qty.length() != 0){
+			parseQty = Parse.convertInt(qty);
+		}
 
-		System.out.println(jObj);
+		
 		if (errors != null && !errors.isEmpty()) {
 			req.getRequestDispatcher("/Wason/ProductTest.jsp").forward(req, rsp);
 			return;
@@ -207,17 +204,13 @@ public class ProductServlet extends HttpServlet {
 		bean.setProductPrice(parsePrice);
 		bean.setProductImgPath(imgPath);
 		bean.setProductColor(productColor);
-
-		// note,type,id,name,parsePrice,imgPath
-
-		// System.out.println(bean);
-
-		// 根據Model執行結果導向View
+		bean.setProductCost(parseCost);
+		bean.setProductQty(parseQty);
 
 		if (action != null && action.equals("insert"))
 
 		{
-			ProductBean result = service.insert(id, type, name, parsePrice, imgPath, note, productColor);
+			ProductBean result = service.insert(bean);
 			if (result == null) {
 				results.put("state", "新增失敗");
 			} else {
@@ -228,7 +221,7 @@ public class ProductServlet extends HttpServlet {
 		} else if (action != null && action.equals("update"))
 
 		{
-			ProductBean result = service.update(id, name, parsePrice, imgPath, note, productColor);
+			ProductBean result = service.update(bean);
 			if (result == null) {
 				results.put("state", "修改失敗");
 

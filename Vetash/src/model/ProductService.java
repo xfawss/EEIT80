@@ -17,15 +17,13 @@ public class ProductService {
 	private ProductDAO productDAO;
 
 	
-	public ProductBean insert(String productId,String productType,String productName,int productPrice,String productImgPath,String productNote, String productColor) {		
-		return  productDAO.insert(productId, productType, productName, productPrice,productImgPath,productNote, productColor);
+	public ProductBean insert(ProductBean bean) {		
+		return  productDAO.insert(bean);
 	}
 
 
-	public ProductBean update(String productId,String productName, int productPrice,
-			String productImgPath, String productNote, String productColor) {
-		
-		return productDAO.update(productId,productName, productPrice, productImgPath, productNote, productColor) ;
+	public ProductBean update(ProductBean bean) {
+		return productDAO.update(bean) ;
 	}
 	
 	public boolean updateQty(String productId, int num, int prize) {

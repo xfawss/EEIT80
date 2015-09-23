@@ -48,18 +48,9 @@ public class ProductDAOHibernate implements ProductDAO {
 	}
 
 	@Override
-	public ProductBean insert(String productId, String productType,
-			String productName, int productPrice, String productImgPath,
-			String productNote, String productColor) {
-		ProductBean bean = (ProductBean)this.getSession().get(ProductBean.class, productId);
-		if(bean == null) {
-			bean.setProductId(productId);
-			bean.setProductType(productType);
-			bean.setProductName(productName);
-			bean.setProductPrice(productPrice);
-			bean.setProductImgPath(productImgPath);
-			bean.setProductNote(productNote);
-			bean.setProductColor(productColor);
+	public ProductBean insert(ProductBean bean) {
+		ProductBean result = (ProductBean)this.getSession().get(ProductBean.class, bean.getProductId());
+		if(result == null) {
 			this.getSession().save(bean);
 			return bean;
 		}
@@ -67,20 +58,13 @@ public class ProductDAOHibernate implements ProductDAO {
 	}
 
 	@Override
-	public ProductBean update(String productId,String productName, int productPrice,
-			String productImgPath, String productNote, String productColor) {
-		ProductBean result = (ProductBean) this.getSession().get(ProductBean.class, productId);
-		if (result == null) {
-			return null;
-		} else {
-			result.setProductName(productName);
-			result.setProductPrice(productPrice);
-			result.setProductImgPath(productImgPath);
-			result.setProductNote(productNote);
-			result.setProductColor(productColor);
-			this.getSession().update(result);
+	public ProductBean update(ProductBean bean) {
+		ProductBean result = (ProductBean) this.getSession().get(ProductBean.class, bean.getProductId());
+		if (result != null) {
+			this.getSession().update(bean);
+			return bean;
 		}
-		return result;
+		return null;
 	}
 
 	@Override

@@ -5,8 +5,8 @@ import java.util.List;
 import model.ProductBean;
 
 public interface ProductDAO {
-	public abstract ProductBean insert(String productId,String productType,String productName,int productPrice,String productImgPath,String productNote, String productColor);
-    public abstract ProductBean update(String productId,String productName,int productPrice,String productImgPath,String productNote, String productColor);
+	public abstract ProductBean insert(ProductBean bean);
+    public abstract ProductBean update(ProductBean bean);
     public abstract boolean delete(String productId);
     public abstract ProductBean selectById(String productId);
     public abstract List<ProductBean> selectByName(String productName);
