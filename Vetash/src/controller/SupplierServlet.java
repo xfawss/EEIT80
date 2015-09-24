@@ -36,7 +36,7 @@ public class SupplierServlet extends HttpServlet {
 		// System.out.println("get");
 
 		// 接收資料
-
+		String id = req.getParameter("productId");
 		String name = req.getParameter("supplierName");
 		String tel = req.getParameter("supplierTel");
 		String action = req.getParameter("action");
@@ -63,6 +63,13 @@ public class SupplierServlet extends HttpServlet {
 
 		if ("selectAll".equals(action)) {
 			List<Map<String, Object>> result = service.selectAll();
+			jObj.put("results", result);
+			out.print(jObj);
+			return;
+
+		}
+		if ("selectSuppliersByProductId".equals(action)) {
+			List<Map<String, Object>> result  = service.selectSuppliersByProductId(id);
 			jObj.put("results", result);
 			out.print(jObj);
 			return;

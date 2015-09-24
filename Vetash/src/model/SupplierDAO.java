@@ -20,4 +20,5 @@ public interface SupplierDAO {
 
 	public abstract int delete(int supplierId);
 	
+	public abstract List<SupplierBean> selectSuppliersById(String productId);
 }

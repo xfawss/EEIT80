@@ -236,4 +236,29 @@ public class SupplierDAOjdbc implements SupplierDAO {
 		}	
 		return result;
 	}
+	
+	private static final String SELECTPRODUCT_BY_SUPPLIERID="select * from SupplierProduct where ProductId=?";
+	@Override
+	public List<SupplierBean> selectSuppliersById(String productId) {
+		List<SupplierBean> result = null;
+		ResultSet rset = null;
+
+		try (
+				Connection conn = dataSource.getConnection();
+				PreparedStatement stmt = conn.prepareStatement(SELECTPRODUCT_BY_SUPPLIERID);){
+			
+			stmt.setString(1, productId);			
+			rset = stmt.executeQuery();
+			result = new ArrayList<SupplierBean>();
+			while(rset.next()){				
+				SupplierBean bean = new SupplierBean();
+				bean.setSupplierId(rset.getInt("SupplierId"));
+				result.add(bean);
+			}	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+		return result;
+		
+	}
 }

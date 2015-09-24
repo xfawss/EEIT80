@@ -105,4 +105,25 @@ public class SupplierService {
 		}
 		return result;
 	}
+	
+	public  List<Map<String, Object>> selectSuppliersByProductId(String productId){
+		List<Map<String, Object>> results = new LinkedList<Map<String,Object>>();
+		List<SupplierBean> beans = suppDao.selectSuppliersById(productId);		
+		for(int i=0; i<beans.size(); i++){
+			SupplierBean bean = beans.get(i);
+			SupplierBean bean1 = suppDao.selectById(bean.getSupplierId());
+			Map<String, Object> map1 = new LinkedHashMap<String, Object>();
+			map1.put("supplierId", bean1.getSupplierId());
+			map1.put("supplierName", bean1.getSupplierName());
+			map1.put("supplierTax", bean1.getSupplierTax());
+			map1.put("supplierContact", bean1.getSupplierContact());
+			map1.put("supplierTel", bean1.getSupplierTel());
+			map1.put("supplierAddr", bean1.getSupplierAddr());
+			map1.put("supplierAcct", bean1.getSupplierAcct());
+			map1.put("supplierDate", bean1.getSupplierDate());
+			map1.put("supplierNote", bean1.getSupplierNote());
+			results.add(map1);
+		}
+		return results;
+	}
 }
