@@ -80,6 +80,7 @@ public class OrderServlet extends HttpServlet {
 		bean.setReceiveType(receiveType);
 		bean.setCustomerAddr(customerAddr);
 		bean.setReceiveType(receiveType);
+		bean.setOrderNotes(orderNotes);
 		session.setAttribute("joystick", bean);
 		
 		String orderNo = bean.getOrderNo();

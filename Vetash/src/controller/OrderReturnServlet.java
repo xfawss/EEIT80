@@ -30,7 +30,7 @@ public class OrderReturnServlet extends HttpServlet {
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		this.doPost(request, response);
 	}
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -52,6 +52,9 @@ public class OrderReturnServlet extends HttpServlet {
 		String simulatePaid = req.getParameter("SimulatePaid");
 		String checkMacValue = req.getParameter("CheckMacValue");
 		
+		System.out.println(merchantID);
+		
+		System.out.println(merchantID);
 		if(AllPayCheckMacValue.merchantID.equals(merchantID)) {
 			if(Parse.convertInt(rtnCode) == 1) {
 				if(AllPayCheckMacValue.checkMacValueReturn(merchantTradeNo, rtnCode, rtnMsg,

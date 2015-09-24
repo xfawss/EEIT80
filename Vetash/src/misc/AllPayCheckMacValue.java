@@ -5,16 +5,16 @@ import java.net.URLEncoder;
 
 public class AllPayCheckMacValue {
 
-	public static String merchantID = "1132880";
+	public static String merchantID = "2000132";//1132880
 	public static String paymentType = "aio";
 	public static String tradeDesc = "客製化搖桿";//客製化搖桿
 	public static String itemName = "客製化搖桿";//客製化搖桿
-	public static String returnURL = "http://localhost:8080/";
+	public static String returnURL = "http://vetash.cloudapp.net:8080/Vetash/OrderReturn";
 	public static String choosePayment = "ALL";
 	public static String ignorePayment = "Alipay#Tenpay";
-	public static String clientBackURL = "http://localhost:8080/";
-	public static String hashKey = "0wMgoGtlxbsgmrk8";//5294y06JbISpM5x9
-	public static String hashIV = "lsHiApLhbobvzew3";//v77hoKGq4kWxNNIS
+	public static String clientBackURL = "http://vetash.cloudapp.net:8080/Vetash";
+	public static String hashKey = "5294y06JbISpM5x9"; //0wMgoGtlxbsgmrk8
+	public static String hashIV = "v77hoKGq4kWxNNIS";//lsHiApLhbobvzew3
 	
 	public static String checkMacValue(String merchantTradeNo, String merchantTradeDate, String totalAmount){
 		String result = "";

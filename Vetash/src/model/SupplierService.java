@@ -65,15 +65,15 @@ public class SupplierService {
 		for(int i=0; i<beans.size(); i++){
 			SupplierBean bean = beans.get(i);
 			Map<String, Object> map1 = new LinkedHashMap<String, Object>();
-			map1.put("SupplierId", bean.getSupplierId());
-			map1.put("SupplierName", bean.getSupplierName());
-			map1.put("SupplierTax", bean.getSupplierTax());
-			map1.put("SupplierContact", bean.getSupplierContact());
-			map1.put("SupplierTel", bean.getSupplierTel());
-			map1.put("SupplierAddr", bean.getSupplierAddr());
-			map1.put("SupplierAcct", bean.getSupplierAcct());
-			map1.put("SupplierDate", bean.getSupplierDate());
-			map1.put("SupplierNote", bean.getSupplierNote());
+			map1.put("supplierId", bean.getSupplierId());
+			map1.put("supplierName", bean.getSupplierName());
+			map1.put("supplierTax", bean.getSupplierTax());
+			map1.put("supplierContact", bean.getSupplierContact());
+			map1.put("supplierTel", bean.getSupplierTel());
+			map1.put("supplierAddr", bean.getSupplierAddr());
+			map1.put("supplierAcct", bean.getSupplierAcct());
+			map1.put("supplierDate", bean.getSupplierDate());
+			map1.put("supplierNote", bean.getSupplierNote());
 			results.add(map1);
 		}
 		return results;

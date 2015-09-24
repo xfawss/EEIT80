@@ -8,7 +8,7 @@
 </head>
 <body>
 
-	<form action="http://payment.allpay.com.tw/Cashier/AioCheckOut" method="post">
+	<form action="http://payment-stage.allpay.com.tw/Cashier/AioCheckOut" method="post">
 			廠商編號<input type="text"  name="MerchantID" value="${MerchantID}" /><br/>
 			訂單編號:<input type="text"  name="MerchantTradeNo" value="${MerchantTradeNo}" /><br/>
 			訂單日期:<input type="text"  name="MerchantTradeDate" value="${MerchantTradeDate}" /><br/>
