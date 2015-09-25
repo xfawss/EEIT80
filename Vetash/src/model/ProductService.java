@@ -144,10 +144,21 @@ public class ProductService {
 		return results;
 	}
 	
-	public Map<String,Integer> selectCostById(String productId) {
-		Map<String,Integer> results = new HashMap<String,Integer>();
+	public int selectCostById(String productId) {
 		ProductBean bean = productDAO.selectById(productId);
-		results.put("ProductPrice", bean.getProductPrice());			
-		return results;
+		if(bean != null) {
+			return bean.getProductPrice();
+		}
+		return 0;
+	}
+	
+	public boolean updateQty(String productId) {
+		ProductBean bean = productDAO.selectById(productId);
+		if(bean != null) {
+			bean.setProductQty(bean.getProductQty()-1);
+			productDAO.update(bean);
+			return true;
+		}
+		return false;
 	}
 }

@@ -54,6 +54,37 @@ public class OrderService {
 		return result;
 	}
 	
+	private List<Map<String, Object>> jfomat2(List<OrderBean> beans){
+		List<Map<String, Object>> result = new LinkedList<Map<String, Object>>();
+		for(OrderBean bean : beans) {
+			Map<String, Object> map = new LinkedHashMap<String, Object>();
+			map.put("orderNo", bean.getOrderNo());
+			map.put("customerTel", bean.getCustomerTel());
+			map.put("orderDate", Parse.dateToString2(bean.getOrderDate()));
+			map.put("price", bean.getPrice());
+			map.put("orderState", bean.getOrderState());
+			map.put("housing", bean.getHousing());
+			map.put("rocker", bean.getRocker());
+			map.put("l1", bean.getL1());
+			map.put("l2", bean.getL2());
+			map.put("r1", bean.getR1());
+			map.put("r2", bean.getR2());
+			map.put("o", bean.getO());
+			map.put("x", bean.getX());
+			map.put("square", bean.getSquare());
+			map.put("triangle", bean.getTriangle());
+			map.put("start", bean.getStart());
+			map.put("selecter", bean.getSelecter());
+			map.put("touch", bean.getTouch());
+			map.put("coverImg", bean.getCoverImg());
+			map.put("board", bean.getBoard());
+			map.put("deliveryDate;", Parse.dateToString(bean.getDeliveryDate()));
+			map.put("paymentType", bean.getPaymentType());
+			result.add(map);
+		}
+		return result;
+	}
+	
 	public OrderBean insert(OrderBean bean) {
 		return (OrderBean) dao.insert(bean);
 	}
@@ -84,6 +115,10 @@ public class OrderService {
 	
 	public OrderBean selectByOrderNo(String orderNo) {
 		return (OrderBean)dao.selectByOrderNo(orderNo);
+	}
+	
+	public List<Map<String, Object>> selectByTelF(String customerTel) {
+		return this.jfomat2(dao.selectByTel(customerTel));
 	}
 	
 }

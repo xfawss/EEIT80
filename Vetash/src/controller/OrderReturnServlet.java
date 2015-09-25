@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.persistence.Id;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -52,9 +53,9 @@ public class OrderReturnServlet extends HttpServlet {
 		String simulatePaid = req.getParameter("SimulatePaid");
 		String checkMacValue = req.getParameter("CheckMacValue");
 		
-		System.out.println(merchantID);
+		System.out.println("id="+merchantID);
 		
-		System.out.println(merchantID);
+		System.out.println("code="+checkMacValue);
 		if(AllPayCheckMacValue.merchantID.equals(merchantID)) {
 			if(Parse.convertInt(rtnCode) == 1) {
 				if(AllPayCheckMacValue.checkMacValueReturn(merchantTradeNo, rtnCode, rtnMsg,

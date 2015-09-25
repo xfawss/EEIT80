@@ -1,10 +1,10 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,15 +12,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import model.OrderBean;
+import model.ProductService;
 
 @WebServlet("/joystick")
 public class JoystickServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private ProductService service;
 
+	@Override
+	public void init() throws ServletException {
+		ServletContext application = this.getServletContext();
+		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(application);
+		service = (ProductService)context.getBean("ProductService");
+	}
+	
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");
-		PrintWriter out = resp.getWriter();
 		String housing = req.getParameter("Housing");
 		String rocker = req.getParameter("Rocker");
 		String l1 = req.getParameter("L1");
@@ -36,19 +47,34 @@ public class JoystickServlet extends HttpServlet {
 		String touch = req.getParameter("Touch");
 		String coverImg = req.getParameter("CoverImg");
 		String board = req.getParameter("Board");
-		String orderNotes = req.getParameter("OrderNotes");
 		String coupon = req.getParameter("Coupon");
 
 		List<String> errs = new ArrayList<String>();
 		if(housing==null || rocker==null || l1==null || l2==null || r1==null ||
 				r2==null || o==null || x==null || square==null || triangle==null || start==null ||
-				selecter==null || touch==null || coverImg==null || board==null || orderNotes==null || coupon==null) {
+				selecter==null || touch==null || coverImg==null || board==null || coupon==null) {
 			errs.add("莫名的錯誤");
 		}
-		
+
 		HttpSession session = req.getSession(true);
-		//取得售價
-		int price = 100;
+		
+		int price = 0;
+		price += (int)service.selectCostById(housing);
+		price += (int)service.selectCostById(rocker);
+		price += (int)service.selectCostById(l1);
+		price += (int)service.selectCostById(l2);
+		price += (int)service.selectCostById(r1);
+		price += (int)service.selectCostById(r2);
+		price += (int)service.selectCostById(o);
+		price += (int)service.selectCostById(x);
+		price += (int)service.selectCostById(square);
+		price += (int)service.selectCostById(triangle);
+		price += (int)service.selectCostById(start);
+		price += (int)service.selectCostById(selecter);
+		price += (int)service.selectCostById(touch);
+		price += (int)service.selectCostById(coverImg);
+		price += (int)service.selectCostById(board);
+		price += (int)service.selectCostById("000");//工錢
 		
 		java.util.Date now = new java.util.Date();
 		String orderNo = Long.toString(now.getTime());
@@ -70,12 +96,11 @@ public class JoystickServlet extends HttpServlet {
 		bean.setTouch(touch);
 		bean.setCoverImg(coverImg);
 		bean.setBoard(board);
-		bean.setOrderNotes(orderNotes);
 		bean.setCoupon(coupon);
 		bean.setPrice(price);
 		session.setAttribute("joystick", bean);
 		
-		req.getRequestDispatcher("/ye/order.html").forward(req, resp);
+		req.getRequestDispatcher("/ye/order.jsp").forward(req, resp);
 	}
 
 	@Override

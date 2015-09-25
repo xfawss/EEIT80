@@ -88,13 +88,6 @@ public class ProductServlet extends HttpServlet {
 					out.print(jObj);
 					return;
 				}
-				if (action.equals("select1")) {
-					Map<String, Integer> result = service.selectCostById(id);
-					jObj.put("results", result);
-					out.print(jObj);
-					return;
-
-				}
 			}
 		}
 		if (id == null) {

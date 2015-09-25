@@ -32,9 +32,28 @@ public class OrderDAOHibernate implements OrderDAO {
 
 	@Override
 	public OrderBean update(OrderBean bean) {
-		this.getSession().update(bean);
-		return bean;
-		
+		OrderBean result = (OrderBean)this.getSession().get(OrderBean.class, bean.getOrderNo());
+		if(result != null) {
+			result.setHousing(bean.getHousing());
+			result.setRocker(bean.getRocker());
+			result.setL1(bean.getL1());
+			result.setL2(bean.getL2());
+			result.setR1(bean.getR1());
+			result.setR2(bean.getR2());
+			result.setO(bean.getO());
+			result.setX(bean.getX());
+			result.setSquare(bean.getSquare());
+			result.setTriangle(bean.getTriangle());
+			result.setStart(bean.getStart());
+			result.setSelecter(bean.getSelecter());
+			result.setTouch(bean.getTouch());
+			result.setCoverImg(bean.getCoverImg());
+			result.setBoard(bean.getBoard());
+			result.setBossNotes(bean.getBossNotes());
+			result.setOrderState(bean.getOrderState());
+			return bean;
+		}
+		return null;
 	}
 
 	@Override

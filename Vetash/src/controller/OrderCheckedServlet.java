@@ -17,6 +17,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import model.OrderBean;
 import model.OrderService;
+import model.ProductService;
 
 @WebServlet("/orderChecked")
 public class OrderCheckedServlet extends HttpServlet {

@@ -20,6 +20,7 @@ import misc.Parse;
 import model.CustomerBean;
 import model.CustomerService;
 import model.OrderBean;
+import model.ProductService;
 
 
 @WebServlet("/order")
@@ -27,12 +28,13 @@ public class OrderServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private CustomerService service;
-	
+	private ProductService service2;
 	@Override
 	public void init() throws ServletException {
 		ServletContext application = this.getServletContext();
 		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(application);
 		service = (CustomerService)context.getBean("CustomerService");
+		service2 = (ProductService)context.getBean("ProductService");
 	}
 	
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -73,7 +75,13 @@ public class OrderServlet extends HttpServlet {
 			errs.add("流程錯誤");
 			req.getRequestDispatcher("/ye/joystick.html").forward(req, resp);
 		}
+		
 		OrderBean bean = (OrderBean)session.getAttribute("joystick");
+		
+		int price = bean.getPrice();
+		if(!receiveType.equals("自取")) {
+			price += service2.selectCostById("001");
+		}
 		bean.setOrderState("已下訂");
 		bean.setCustomerTel(customerTel);
 		bean.setReceiveNotes(receiveNotes);
@@ -81,23 +89,25 @@ public class OrderServlet extends HttpServlet {
 		bean.setCustomerAddr(customerAddr);
 		bean.setReceiveType(receiveType);
 		bean.setOrderNotes(orderNotes);
+		bean.setPrice(price);
 		session.setAttribute("joystick", bean);
+		session.setAttribute("customer", cust);
 		
 		String orderNo = bean.getOrderNo();
 		String orderDate = Parse.dateToString2(bean.getOrderDate());
-		String price = Integer.toString(bean.getPrice());
+		String pricess = Integer.toString(price);
 		req.setAttribute("MerchantID", AllPayCheckMacValue.merchantID);
 		req.setAttribute("MerchantTradeNo", orderNo);
 		req.setAttribute("MerchantTradeDate", orderDate);
 		req.setAttribute("PaymentType", AllPayCheckMacValue.paymentType);
-		req.setAttribute("TotalAmount", price);
+		req.setAttribute("TotalAmount", pricess);
 		req.setAttribute("TradeDesc", AllPayCheckMacValue.tradeDesc);
 		req.setAttribute("ItemName", AllPayCheckMacValue.itemName);
 		req.setAttribute("ReturnURL", AllPayCheckMacValue.returnURL);
 		req.setAttribute("ChoosePayment", AllPayCheckMacValue.choosePayment);
 		req.setAttribute("IgnorePayment", AllPayCheckMacValue.ignorePayment);
 		req.setAttribute("ClientBackURL", AllPayCheckMacValue.clientBackURL);
-		req.setAttribute("CheckMacValue", AllPayCheckMacValue.checkMacValue(orderNo, orderDate, price));
+		req.setAttribute("CheckMacValue", AllPayCheckMacValue.checkMacValue(orderNo, orderDate, pricess));
 		req.getRequestDispatcher("/ye/orderlist.jsp").forward(req, resp);
 	}
 

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.persistence.criteria.Order;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,6 +19,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import misc.Parse;
+import model.OrderBean;
 import model.OrderService;
 
 @WebServlet("/OrderCommand")
@@ -50,22 +52,15 @@ public class OrderCommandServlet extends HttpServlet {
 		String touch = req.getParameter("Touch");
 		String coverImg = req.getParameter("CoverImg");
 		String board = req.getParameter("Board");
-		String orderNotes = req.getParameter("OrderNotes");
-		String coupon = req.getParameter("Coupon");
 		String bossNotes = req.getParameter("BossNotes");
 		String customerTel = req.getParameter("CustomerTel");
 		String orderDate = req.getParameter("OrderDate");
 		String price = req.getParameter("Price");
 		String orderState = req.getParameter("OrderState");
 		String orderNo = req.getParameter("OrderNo");
-		String receiveType = req.getParameter("ReceiveType");
-		String customerAddr = req.getParameter("CustomerAddr");
-		String receiveNotes = req.getParameter("ReceiveNotes");
-		String customerMail = req.getParameter("CustomerMail");
-		String customerName = req.getParameter("CustomerName");
-		String customerLine = req.getParameter("CustomerLine");
-		String customerFb = req.getParameter("CustomerFb");
+		String deliveryDate = req.getParameter("DeliveryDate");
 		
+		OrderBean bean = new OrderBean();
 		List<String> errs = new ArrayList<String>();
 		JSONObject jObj = new JSONObject();
 		if(task==null || task.length()==0) {
@@ -118,50 +113,43 @@ public class OrderCommandServlet extends HttpServlet {
 				}
 			}
 		} else if(task.equals("update")) {
-			
+			if(price!=null && price.length()!=0) {
+				int temp = Parse.convertInt(price);
+				if(temp > 1) {
+					bean.setPrice(temp);
+				} else {
+					errs.add("價錢型態錯誤");
+				}
+			}
+			if(deliveryDate!=null && deliveryDate.length()!=0) {
+				java.util.Date temp = Parse.convertDate(deliveryDate);
+				if(!temp.equals(new java.util.Date(0))) {
+					bean.setDeliveryDate(temp);
+				} else {
+					errs.add("日期型態錯誤");
+				}
+			}
+			bean.setOrderNo(orderNo);
+			bean.setHousing(housing);
+			bean.setRocker(rocker);
+			bean.setL1(l1);
+			bean.setL2(l2);
+			bean.setR1(r1);
+			bean.setR2(r2);
+			bean.setO(o);
+			bean.setX(x);
+			bean.setSquare(square);
+			bean.setTriangle(triangle);
+			bean.setStart(start);
+			bean.setSelecter(selecter);
+			bean.setTouch(touch);
+			bean.setCoverImg(coverImg);
+			bean.setBoard(board);
+			bean.setBossNotes(bossNotes);
+			bean.setOrderState(orderState);
+			service.update(bean);
+			req.getRequestDispatcher("/ye/err.jsp").forward(req, resp);
 		}
-//		if(customerName==null || customerName.length()==0 || receiveType==null || receiveType.length()==0 ||
-//				customerTel==null || customerTel.length()==0 || customerAddr==null || customerAddr.length()==0) {
-//			errs.add("有必填選項空白");
-//		}
-//		/*新增入顧客Table
-//		customerName
-//		customerTel
-//		customerLine
-//		customerFb
-//		customerMail
-//		receiveType
-//		customerAddr
-//		*/
-//		
-//		
-//		//BossNotes OrderState 後台
-//		java.util.Date now = new java.util.Date();
-//		HttpSession session = req.getSession(false);
-//		if(session==null){
-//			errs.add("流程錯誤");
-//			req.getRequestDispatcher("/ye/joystick.html").forward(req, resp);
-//		}
-//		OrderBean bean = (OrderBean)session.getAttribute("joystick");
-//		bean.setOrderNo(now.getTime());
-//		bean.setOrderDate(now);
-//		bean.setOrderState("已下訂");
-//		bean.setCustomerTel(customerTel);
-//		bean.setReceiveNotes(receiveNotes);
-//		bean.setReceiveType(receiveType);
-//		bean.setCustomerAddr(customerAddr);
-//		bean.setReceiveType(receiveType);
-//		
-//		bean = service.insert(bean);
-//		if(bean != null) {
-//			req.setAttribute("", );
-//		} else {
-//			errs.add("流程錯誤");
-//			req.getRequestDispatcher("/ye/joystick.html").forward(req, resp);
-//		}
-	
-	
-	
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

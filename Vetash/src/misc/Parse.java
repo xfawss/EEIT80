@@ -18,7 +18,14 @@ public class Parse {
 	}
 	
 	public static String dateToString(java.util.Date date){
-		return sFormat.format(date);
+		String result = "";
+		try {
+			result = sFormat.format(date);
+		} catch (Exception e) {
+			e.printStackTrace();
+			result = "";
+		}
+		return result;
 	}
 	
 	private static SimpleDateFormat sFormat2 = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -34,7 +41,14 @@ public class Parse {
 	}
 	
 	public static String dateToString2(java.util.Date date){
-		return sFormat2.format(date);
+		String result = "";
+		try {
+			result = sFormat2.format(date);
+		} catch (Exception e) {
+			e.printStackTrace();
+			result = "";
+		}
+		return result;
 	}
 	
 	public static int convertInt(String data) {
