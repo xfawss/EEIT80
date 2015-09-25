@@ -8,6 +8,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import misc.AllPayCheckMacValue;
 import misc.Parse;
 
 @Component(value="OrderService")
@@ -58,10 +59,13 @@ public class OrderService {
 		List<Map<String, Object>> result = new LinkedList<Map<String, Object>>();
 		for(OrderBean bean : beans) {
 			Map<String, Object> map = new LinkedHashMap<String, Object>();
-			map.put("orderNo", bean.getOrderNo());
+			String orderNo = bean.getOrderNo();
+			String orderDate = Parse.dateToString2(bean.getOrderDate());
+			String price = Integer.toString(bean.getPrice());;
+			map.put("orderNo", orderNo);
 			map.put("customerTel", bean.getCustomerTel());
-			map.put("orderDate", Parse.dateToString2(bean.getOrderDate()));
-			map.put("price", bean.getPrice());
+			map.put("orderDate", orderDate);
+			map.put("price", price);
 			map.put("orderState", bean.getOrderState());
 			map.put("housing", bean.getHousing());
 			map.put("rocker", bean.getRocker());
@@ -79,7 +83,15 @@ public class OrderService {
 			map.put("coverImg", bean.getCoverImg());
 			map.put("board", bean.getBoard());
 			map.put("deliveryDate;", Parse.dateToString(bean.getDeliveryDate()));
-			map.put("paymentType", bean.getPaymentType());
+			map.put("MerchantID", AllPayCheckMacValue.merchantID);
+			map.put("PaymentType", AllPayCheckMacValue.paymentType);
+			map.put("TradeDesc", AllPayCheckMacValue.tradeDesc);
+			map.put("ItemName", AllPayCheckMacValue.itemName);
+			map.put("ReturnURL", AllPayCheckMacValue.returnURL);
+			map.put("ChoosePayment", AllPayCheckMacValue.choosePayment);
+			map.put("IgnorePayment", AllPayCheckMacValue.ignorePayment);
+			map.put("ClientBackURL", AllPayCheckMacValue.clientBackURL);
+			map.put("CheckMacValue", AllPayCheckMacValue.checkMacValue(orderNo, orderDate, price));
 			result.add(map);
 		}
 		return result;

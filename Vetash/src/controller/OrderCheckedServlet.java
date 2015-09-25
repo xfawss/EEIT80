@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import model.CouponService;
 import model.OrderBean;
 import model.OrderService;
 import model.ProductService;
@@ -23,11 +24,14 @@ import model.ProductService;
 public class OrderCheckedServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private OrderService service;
+	private CouponService service2;
+	
 	@Override
 	public void init() throws ServletException {
 		ServletContext application = this.getServletContext();
 		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(application);
 		service = (OrderService)context.getBean("OrderService");
+		service2 = (CouponService)context.getBean("CouponService");
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -44,6 +48,11 @@ public class OrderCheckedServlet extends HttpServlet {
 			req.getRequestDispatcher("/ye/joystick.html").forward(req, resp);
 		}
 		OrderBean bean = (OrderBean)session.getAttribute("joystick");
+		int coupon = service2.select(bean.getCoupon());
+		if(coupon != 0) {
+			service2.updateUse(bean.getCoupon());
+		}
+		bean.setCoupon(Integer.toString(coupon));
 		bean = service.insert(bean);
 	}
 

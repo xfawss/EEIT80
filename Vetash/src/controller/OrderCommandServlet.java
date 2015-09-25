@@ -37,28 +37,28 @@ public class OrderCommandServlet extends HttpServlet {
 		resp.setContentType("text/html");
 		PrintWriter out = resp.getWriter();
 		String task = req.getParameter("task");
-		String housing = req.getParameter("Housing");
-		String rocker = req.getParameter("Rocker");
-		String l1 = req.getParameter("L1");
-		String l2 = req.getParameter("L2");
-		String r1 = req.getParameter("R1");
-		String r2 = req.getParameter("R2");
-		String o = req.getParameter("O");
-		String x = req.getParameter("X");
-		String square = req.getParameter("Square");
-		String triangle = req.getParameter("Triangle");
-		String start = req.getParameter("Start");
-		String selecter = req.getParameter("Selecter");
-		String touch = req.getParameter("Touch");
-		String coverImg = req.getParameter("CoverImg");
-		String board = req.getParameter("Board");
-		String bossNotes = req.getParameter("BossNotes");
-		String customerTel = req.getParameter("CustomerTel");
-		String orderDate = req.getParameter("OrderDate");
-		String price = req.getParameter("Price");
-		String orderState = req.getParameter("OrderState");
-		String orderNo = req.getParameter("OrderNo");
-		String deliveryDate = req.getParameter("DeliveryDate");
+		String housing = req.getParameter("housing");
+		String rocker = req.getParameter("rocker");
+		String l1 = req.getParameter("l1");
+		String l2 = req.getParameter("l2");
+		String r1 = req.getParameter("r1");
+		String r2 = req.getParameter("r2");
+		String o = req.getParameter("o");
+		String x = req.getParameter("x");
+		String square = req.getParameter("square");
+		String triangle = req.getParameter("triangle");
+		String start = req.getParameter("start");
+		String selecter = req.getParameter("selecter");
+		String touch = req.getParameter("touch");
+		String coverImg = req.getParameter("coverImg");
+		String board = req.getParameter("board");
+		String bossNotes = req.getParameter("bossNotes");
+		String customerTel = req.getParameter("customerTel");
+		String orderDate = req.getParameter("orderDate");
+		String price = req.getParameter("price");
+		String orderState = req.getParameter("orderState");
+		String orderNo = req.getParameter("orderNo");
+		String deliveryDate = req.getParameter("deliveryDate");
 		
 		OrderBean bean = new OrderBean();
 		List<String> errs = new ArrayList<String>();
@@ -108,6 +108,7 @@ public class OrderCommandServlet extends HttpServlet {
 			} else {
 				if(service.delete(orderNo)) {
 					req.getRequestDispatcher("/ye/err.jsp").forward(req, resp);
+					return;
 				} else {
 					errs.add("刪除失敗");
 				}
@@ -149,6 +150,16 @@ public class OrderCommandServlet extends HttpServlet {
 			bean.setOrderState(orderState);
 			service.update(bean);
 			req.getRequestDispatcher("/ye/err.jsp").forward(req, resp);
+			return;
+		} else if(task.equals("telb")) {
+			if(customerTel==null || customerTel.length()==0) {
+				errs.add("沒有關鍵字");
+			} else {
+				List<Map<String, Object>> beans = service.selectByTelF(customerTel);
+				jObj.put("results", beans);
+				out.print(jObj);
+				return;
+			}
 		}
 	}
 

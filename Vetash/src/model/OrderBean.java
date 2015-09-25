@@ -161,8 +161,8 @@ public class OrderBean {
 		return coupon;
 	}
 
-	public void setCoupon(String coupon) {
-		this.coupon = coupon;
+	public void setCoupon(String i) {
+		this.coupon = i;
 	}
 
 	public int getPrice() {

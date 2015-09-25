@@ -8,27 +8,27 @@
 </head>
 <body>
 	<form action="" method="post">
-			框體:<input type="text"  name="Housing" value="${joystick.housing}" /><br/>
-			搖桿:<input type="text"  name="Rocker" value="${joystick.rocker}" /><br/>
-			L1:<input type="text"  name="L1" value="${joystick.l1}" /><br/>
-			L2:<input type="text" name="L2" value="${joystick.l2}" /><br/>
-			R1:<input type="text" name="R1" value="${joystick.r1}" /><br/>
-			R2:<input type="text" name="R2" value="${joystick.r2}" /><br/>
-			◎:<input type="text" name="O" value="${joystick.o}" /><br/>
-			X:<input type="text" name="X" value="${joystick.x}" /><br/>
-			◇:<input type="text" name="Square" value="${joystick.square}" /><br/>
-			△:<input type="text" name="Triangle" value="${joystick.triangle}" /><br/>
-			start:<input type="text" name="Start" value="${joystick.start}" /><br/>
-			select:<input type="text" name="Selecter" value="${joystick.selecter}" /><br/>
-			touch鍵:<input type="text" name="Touch" value="${joystick.touch}" /><br/>
-			面板圖片:<input type="text" name="CoverImg" value="${joystick.coverImg}" /><br/>
-			機板:<input type="text" name="Board" value="${joystick.board}" /><br/>
-			折扣碼:<input type="text" name="Coupon" value="${joystick.coupon}" /><br/>
-			電話:<input type="text" name="CustomerTel" value="${joystick.customerTel}" ><br>
-			收貨種類:<input type="text" name="ReceiveType" value="${joystick.receiveType}" ><br>
-			住址:<input type="text" name="CustomerAddr" value="${joystick.customerAddr}" ><br>
-			收件備註:<textarea name="ReceiveNotes" cols="20" rows="5" >${joystick.receiveNotes}</textarea><br>
-			訂單備註:<textarea name="OrderNotes" cols="20" rows="5" >${joystick.orderNotes}</textarea><br>
+			框體:<input type="text"  name="housing" value="${joystick.housing}" /><br/>
+			搖桿:<input type="text"  name="rocker" value="${joystick.rocker}" /><br/>
+			L1:<input type="text"  name="l1" value="${joystick.l1}" /><br/>
+			L2:<input type="text" name="l2" value="${joystick.l2}" /><br/>
+			R1:<input type="text" name="r1" value="${joystick.r1}" /><br/>
+			R2:<input type="text" name="r2" value="${joystick.r2}" /><br/>
+			◎:<input type="text" name="o" value="${joystick.o}" /><br/>
+			X:<input type="text" name="x" value="${joystick.x}" /><br/>
+			◇:<input type="text" name="square" value="${joystick.square}" /><br/>
+			△:<input type="text" name="triangle" value="${joystick.triangle}" /><br/>
+			start:<input type="text" name="start" value="${joystick.start}" /><br/>
+			select:<input type="text" name="selecter" value="${joystick.selecter}" /><br/>
+			touch鍵:<input type="text" name="touch" value="${joystick.touch}" /><br/>
+			面板圖片:<input type="text" name="coverImg" value="${joystick.coverImg}" /><br/>
+			機板:<input type="text" name="board" value="${joystick.board}" /><br/>
+			折扣碼:<input type="text" name="coupon" value="${joystick.coupon}" /><br/>
+			電話:<input type="text" name="customerTel" value="${joystick.customerTel}" ><br>
+			收貨種類:<input type="text" name="receiveType" value="${joystick.receiveType}" ><br>
+			住址:<input type="text" name="customerAddr" value="${joystick.customerAddr}" ><br>
+			收件備註:<textarea name="receiveNotes" cols="20" rows="5" >${joystick.receiveNotes}</textarea><br>
+			訂單備註:<textarea name="orderNotes" cols="20" rows="5" >${joystick.orderNotes}</textarea><br>
 		</form>		
 <hr>
 

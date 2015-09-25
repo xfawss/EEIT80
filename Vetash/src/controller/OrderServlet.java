@@ -43,15 +43,15 @@ public class OrderServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");
-		String customerTel = req.getParameter("CustomerTel");
-		String receiveType = req.getParameter("ReceiveType");
-		String customerAddr = req.getParameter("CustomerAddr");
-		String receiveNotes = req.getParameter("ReceiveNotes");
-		String orderNotes = req.getParameter("OrderNotes");
-		String customerMail = req.getParameter("CustomerMail");
-		String customerName = req.getParameter("CustomerName");
-		String customerLine = req.getParameter("CustomerLine");
-		String customerFb = req.getParameter("CustomerFb");
+		String customerTel = req.getParameter("customerTel");
+		String receiveType = req.getParameter("receiveType");
+		String customerAddr = req.getParameter("customerAddr");
+		String receiveNotes = req.getParameter("receiveNotes");
+		String orderNotes = req.getParameter("orderNotes");
+		String customerMail = req.getParameter("customerMail");
+		String customerName = req.getParameter("customerName");
+		String customerLine = req.getParameter("customerLine");
+		String customerFb = req.getParameter("customerFb");
 		
 		List<String> errs = new ArrayList<String>();
 		if(customerName==null || customerName.length()==0 || receiveType==null || receiveType.length()==0 ||
