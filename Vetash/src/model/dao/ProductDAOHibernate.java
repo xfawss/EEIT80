@@ -102,6 +102,15 @@ public class ProductDAOHibernate implements ProductDAO {
 		}
 		return false;
 	}
+	
+	@Override
+	public List<ProductBean> selectLikeId(String productId) {
+		List<ProductBean> result = null;
+		Query query = this.getSession().createQuery("from ProductBean where productid like :productid ");
+		query.setParameter("productid", "%"+productId+"%");
+		result = (List<ProductBean>)query.list();
+		return result;
+	}
 }
 
 	

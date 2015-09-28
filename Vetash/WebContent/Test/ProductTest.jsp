@@ -14,6 +14,7 @@
 <a href="<%=path %>/products?productType=按鍵&action=select">selectByType</a><br/>
 <a href="<%=path %>/products?productId=ID1&action=select">selectByID</a><br/>
 <a href="<%=path %>/products?productId=ID1&action=select1">selectCostById</a><br/>
+<a href="<%=path %>/products?productId=I&action=selectLikeId">selectLikeId</a><br/>
 <hr>
 
 

@@ -70,7 +70,7 @@ public class ProductServlet extends HttpServlet {
 					// out.write(sb.toString());
 
 					return;
-				}
+				}				
 			}
 			if (type != null) {
 				if (action.equals("select")) {
@@ -83,11 +83,16 @@ public class ProductServlet extends HttpServlet {
 			}
 			if (id != null) {
 				if (action.equals("select")) {
-					Map<String, Object> result = service.selectById(id);
+					List<Map<String, Object>> result = service.selectById(id);
 					jObj.put("results", result);
 					out.print(jObj);
 					return;
 				}
+				if (action.equals("selectLikeId")) {
+					List<Map<String, Object>> result = service.selectLikeId(id);
+					jObj.put("results", result);
+					out.print(jObj);
+				}	
 			}
 		}
 		if (id == null) {

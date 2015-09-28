@@ -43,7 +43,7 @@ public class CustomerService {
     }   
     public List<CustomerBean> select( CustomerBean bean )
     {
-        List<CustomerBean> result = null;
+        List<CustomerBean> result = new ArrayList<CustomerBean>();
         if ( bean != null && bean.getCustomerTel() != "" )
         {
             //customerTel有值

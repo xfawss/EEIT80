@@ -43,9 +43,11 @@ public class SupplierService {
 	
 	public  List<Map<String, Object>> selectByTel(String supplierTel){
 		List<Map<String, Object>> results = new LinkedList<Map<String, Object>>();
-		 
+		
+		
 		if(supplierTel != null && supplierTel.length()!=0){
 			SupplierBean bean = suppDao.selectByTel(supplierTel);
+			if(bean != null){
 			Map<String, Object> map1 = new LinkedHashMap<String, Object>();
 			map1.put("supplierId", bean.getSupplierId());
 			map1.put("supplierName", bean.getSupplierName());
@@ -58,6 +60,7 @@ public class SupplierService {
 			map1.put("supplierNote", bean.getSupplierNote());
 			results.add(map1);
 		}
+			}
 		return results;
 	}
 
