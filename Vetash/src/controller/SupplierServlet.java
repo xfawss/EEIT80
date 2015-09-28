@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONObject;
+import org.springframework.core.env.SystemEnvironmentPropertySource;
+
 import misc.Parse;
 import model.SupplierBean;
 import model.SupplierService;
@@ -31,8 +33,11 @@ public class SupplierServlet extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse rsp) throws ServletException, IOException {
-
 		rsp.setContentType("text/html");
+		
+		List<Map<String, Object>> resultss = service.selectByTel("0910147523");
+		System.out.println(resultss);
+		
 		// System.out.println("get");
 
 		// 接收資料
@@ -79,7 +84,7 @@ public class SupplierServlet extends HttpServlet {
 
 			if (tel.matches("\\+?\\d{1,4}-?(\\d{4,15})(#\\d{1,5}){0,1}")) {
 
-				Map<String, Object> result = service.selectByTel(tel);
+				List<Map<String, Object>> result = service.selectByTel(tel);
 				jObj.put("results", result);
 				out.print(jObj);
 				return;
@@ -91,6 +96,8 @@ public class SupplierServlet extends HttpServlet {
 			System.out.println(temp);
 		}
 	}
+
+	
 
 	// select by name
 	// List<Map<String, Object>> results = service.selectByName("k");
