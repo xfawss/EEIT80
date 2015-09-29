@@ -83,7 +83,7 @@ public class SupplierServlet extends HttpServlet {
 		}
 		if ("selectByTel".equals(action)) {
 
-			if (tel.matches("\\+?\\d{1,4}-?(\\d{4,15})(#\\d{1,5}){0,1}")) {
+			if (tel.matches("^[0-9]*$")) {
 
 				List<Map<String, Object>> result = service.selectByTel(tel);
 				jObj.put("results", result);
