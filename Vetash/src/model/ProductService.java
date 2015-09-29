@@ -170,14 +170,14 @@ public class ProductService {
 		for(int i=0; i<beans.size(); i++){
 			ProductBean bean = beans.get(i);
 			Map<String, Object> map1 = new LinkedHashMap<String, Object>();
-			map1.put("ProductId", bean.getProductId());
-			map1.put("ProductName", bean.getProductName());
-			map1.put("ProductType", bean.getProductType());
-			map1.put("ProductPrice", bean.getProductPrice());
-			map1.put("ProductCost", bean.getProductCost());
-			map1.put("ProductQty", bean.getProductQty());
-			map1.put("ProductImgPath", bean.getProductImgPath());
-			map1.put("ProductNote", bean.getProductNote());
+			map1.put("productId", bean.getProductId());
+			map1.put("productName", bean.getProductName());
+			map1.put("productType", bean.getProductType());
+			map1.put("productPrice", bean.getProductPrice());
+			map1.put("productCost", bean.getProductCost());
+			map1.put("productQty", bean.getProductQty());
+			map1.put("productImgPath", bean.getProductImgPath());
+			map1.put("productNote", bean.getProductNote());
 			results.add(map1);
 		}
 		return results;
