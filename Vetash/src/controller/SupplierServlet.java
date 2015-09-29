@@ -89,7 +89,7 @@ public class SupplierServlet extends HttpServlet {
 				jObj.put("results", result);
 				out.print(jObj);
 				return;
-			} else {
+			} else { 
 				errors.add("格式不正確");
 			}
 		}
