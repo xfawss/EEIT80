@@ -1478,7 +1478,7 @@
 		debug:false,
 		closable:false,
 		onApprove : function() {
-			var coupon = $('#porductForm').form('get value', 'coupon');
+			/*var coupon = $('#porductForm').form('get value', 'coupon');
 			console.log(coupon);
 			$.ajax({
 				url:'./coupon',
@@ -1491,26 +1491,25 @@
 				success:function(results){
 					var discount = results.discount;
 					if(discount===0){
-						/*無效*/
 						$('#porductForm').form('set value', 'couponDiscount', 'fail');
 						console.log($('#porductForm').form('get value', 'couponDiscount'));
 						$('#porductForm').form('validate form');
 						return false;
 					} else{
-						/*有效*/
 						$('#porductForm').form('set value', 'couponDiscount', 'success');
 						$('#porductForm').form('validate form');
 						return false;
 					}
 				}
-			});
+			});*/
+			$('#porductForm').form('validate form');
 			return false;
 		}
 	});
 
 	$('#porductForm').form({
 		inline:true,
-		fields:{
+		/*fields:{
 			couponDiscount: {
 				identifier: 'couponDiscount',
 				rules: [
@@ -1520,7 +1519,7 @@
 				}
 				]
 			}
-		},
+		},*/
 		onSuccess:function(){
 			console.log("validation successed");
 			var valuesToSubmit = $('#porductForm').form('get values');
