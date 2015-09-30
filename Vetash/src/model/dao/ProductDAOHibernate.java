@@ -104,6 +104,16 @@ public class ProductDAOHibernate implements ProductDAO {
 	}
 	
 	@Override
+	public boolean updateQty2(String productId) {
+		ProductBean bean = (ProductBean)this.getSession().get(ProductBean.class, productId);
+		if(bean != null) {
+			bean.setProductQty(bean.getProductQty()-1);
+			return true;
+		}
+		return false;
+	}
+
+	@Override
 	public List<ProductBean> selectLikeId(String productId) {
 		List<ProductBean> result = null;
 		Query query = this.getSession().createQuery("from ProductBean where productid like :productid ");

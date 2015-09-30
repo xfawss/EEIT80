@@ -21,16 +21,23 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 import misc.Parse;
 import model.OrderBean;
 import model.OrderService;
+import model.ProductService;
+import model.PurchaseRecoderService;
+import model.PurchaseRecordBean;
 
 @WebServlet("/OrderCommand")
 public class OrderCommandServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private OrderService service;
+	private PurchaseRecoderService service2;
+	private ProductService service3;
 	@Override
 	public void init() throws ServletException {
 		ServletContext application = this.getServletContext();
 		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(application);
 		service = (OrderService)context.getBean("OrderService");
+		service2 = (PurchaseRecoderService)context.getBean("PurchaseRecoderService");
+		service3 = (ProductService)context.getBean("ProductService");
 	}
 	
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -148,6 +155,35 @@ public class OrderCommandServlet extends HttpServlet {
 			bean.setBoard(board);
 			bean.setBossNotes(bossNotes);
 			bean.setOrderState(orderState);
+			List<String> temp = new ArrayList<String>();
+			temp.add(housing);
+			temp.add(rocker);
+			temp.add(l1);
+			temp.add(l2);
+			temp.add(r1);
+			temp.add(r2);
+			temp.add(o);
+			temp.add(x);
+			temp.add(square);
+			temp.add(start);
+			temp.add(selecter);
+			temp.add(touch);
+			temp.add(board);
+			temp.add(triangle);
+			
+			if(orderDate.equals("已出貨")) {
+				for(String a: temp) {
+					PurchaseRecordBean bean2 = new PurchaseRecordBean();
+					bean2.setDate(new java.util.Date());
+					bean2.setType("出貨");
+					bean2.setProductId(a);
+					bean2.setPrize(0);
+					bean2.setSupplierId(0);
+					bean2.setNumber(1);
+					service3.updateQty2(a);
+					service2.insert(bean2);
+				}
+			}
 			service.update(bean);
 			req.getRequestDispatcher("/ye/err.jsp").forward(req, resp);
 			return;

@@ -30,6 +30,10 @@ public class ProductService {
 		return productDAO.updateQty(productId, num, prize);
 	}
 	
+	public boolean updateQty2(String productId) {
+		return productDAO.updateQty2(productId);
+	}
+	
 	public boolean delete(String productId) {
 		return  productDAO.delete(productId);		
 	}
