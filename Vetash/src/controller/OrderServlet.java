@@ -108,7 +108,7 @@ public class OrderServlet extends HttpServlet {
 		req.setAttribute("IgnorePayment", AllPayCheckMacValue.ignorePayment);
 		req.setAttribute("ClientBackURL", AllPayCheckMacValue.clientBackURL);
 		req.setAttribute("CheckMacValue", AllPayCheckMacValue.checkMacValue(orderNo, orderDate, pricess));
-		req.getRequestDispatcher("/ye/orderlist.jsp").forward(req, resp);
+		req.getRequestDispatcher("/front_custom_orderlist.jsp").forward(req, resp);
 	}
 
 }
