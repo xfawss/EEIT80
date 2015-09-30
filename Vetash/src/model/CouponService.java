@@ -82,17 +82,8 @@ public class CouponService {
 		return result;
 	}
 	
-	public boolean updateUse(String coupon) {
-		CouponBean bean = couponDAO.select(coupon);
-		if(bean!=null) {
-			System.out.println(bean.getTimes());
-			if(bean.getTimes()==null || bean.getTimes()==0)
-			return false;
-		} else {
-			couponDAO.createOrUpdate(coupon, bean.getDiscount(), bean.getDeadline(), bean.getTimes()-1, bean.getNotes());
-			return true;
-		}
-		return false;
+	public int updateUse(String coupon) {
+		return couponDAO.updateUse(coupon);
 	}
 
 }

@@ -60,6 +60,16 @@ public class CouponDAOHibernate implements CouponDAO {
 		}
 		return result;
 	}
+
+	@Override
+	public int updateUse(String coupon) {
+		CouponBean bean = (CouponBean) this.getSession().get(CouponBean.class, coupon);
+		if(bean != null) {
+			bean.setTimes(bean.getTimes()-1);
+			return bean.getDiscount();
+		}
+		return 0;
+	}
 	
 	
 

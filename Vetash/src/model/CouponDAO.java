@@ -12,4 +12,6 @@ public interface CouponDAO {
 	
 	public abstract boolean delete(String coupon);
 	
+	public abstract int updateUse(String coupon);
+	
 }

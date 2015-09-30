@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!-- <Context> -->
+<!-- 	<Resource name="jdbc/vetash" auth="Container" type="javax.sql.DataSource" -->
+<!-- 		maxTotal="100" maxIdle="30" maxWaitMillis="10000" username="sa" -->
+<!-- 		password="sa123456" driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver" -->
+<!-- 		url="jdbc:sqlserver://localhost:1433;database=Vetash" /> -->
+<!-- </Context> -->
+
 <Context>
-	<Resource name="jdbc/vetash" auth="Container" type="javax.sql.DataSource"
-		maxTotal="100" maxIdle="30" maxWaitMillis="10000" username="sa"
-		password="sa123456" driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
-		url="jdbc:sqlserver://localhost:1433;database=Vetash" />
+<Resource url="jdbc:sqlserver://pqh6qqncd1.database.windows.net:1433;database=Vetash" 
+    driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver" password="Sa123456" username="Vetash@pqh6qqncd1" 
+    maxWaitMillis="10000" maxIdle="30" maxTotal="100" type="javax.sql.DataSource" auth="Container" name="jdbc/vetash"/>
 </Context>
