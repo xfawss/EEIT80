@@ -106,7 +106,7 @@ public class JoystickServlet extends HttpServlet {
 		bean.setPrice(price);
 		session.setAttribute("joystick", bean);
 		
-		req.getRequestDispatcher("/ye/order.jsp").forward(req, resp);
+		req.getRequestDispatcher("/front_custom_order.html").forward(req, resp);
 	}
 
 	@Override
