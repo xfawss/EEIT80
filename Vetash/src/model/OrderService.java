@@ -55,45 +55,43 @@ public class OrderService {
 		return result;
 	}
 	
-	private List<Map<String, Object>> jfomat2(List<OrderBean> beans){
+	private List<Map<String, Object>> jfomat2(OrderBean bean){
 		List<Map<String, Object>> result = new LinkedList<Map<String, Object>>();
-		for(OrderBean bean : beans) {
-			Map<String, Object> map = new LinkedHashMap<String, Object>();
-			String orderNo = bean.getOrderNo();
-			String orderDate = Parse.dateToString2(bean.getOrderDate());
-			String price = Integer.toString(bean.getPrice());;
-			map.put("orderNo", orderNo);
-			map.put("customerTel", bean.getCustomerTel());
-			map.put("orderDate", orderDate);
-			map.put("price", price);
-			map.put("orderState", bean.getOrderState());
-			map.put("housing", bean.getHousing());
-			map.put("rocker", bean.getRocker());
-			map.put("l1", bean.getL1());
-			map.put("l2", bean.getL2());
-			map.put("r1", bean.getR1());
-			map.put("r2", bean.getR2());
-			map.put("o", bean.getO());
-			map.put("x", bean.getX());
-			map.put("square", bean.getSquare());
-			map.put("triangle", bean.getTriangle());
-			map.put("start", bean.getStart());
-			map.put("selecter", bean.getSelecter());
-			map.put("touch", bean.getTouch());
-			map.put("coverImg", bean.getCoverImg());
-			map.put("board", bean.getBoard());
-			map.put("deliveryDate;", Parse.dateToString(bean.getDeliveryDate()));
-			map.put("MerchantID", AllPayCheckMacValue.merchantID);
-			map.put("PaymentType", AllPayCheckMacValue.paymentType);
-			map.put("TradeDesc", AllPayCheckMacValue.tradeDesc);
-			map.put("ItemName", AllPayCheckMacValue.itemName);
-			map.put("ReturnURL", AllPayCheckMacValue.returnURL);
-			map.put("ChoosePayment", AllPayCheckMacValue.choosePayment);
-			map.put("IgnorePayment", AllPayCheckMacValue.ignorePayment);
-			map.put("ClientBackURL", AllPayCheckMacValue.clientBackURL);
-			map.put("CheckMacValue", AllPayCheckMacValue.checkMacValue(orderNo, orderDate, price));
-			result.add(map);
-		}
+		Map<String, Object> map = new LinkedHashMap<String, Object>();
+		String orderNo = bean.getOrderNo();
+		String orderDate = Parse.dateToString2(bean.getOrderDate());
+		String price = Integer.toString(bean.getPrice());;
+		map.put("orderNo", orderNo);
+		map.put("customerTel", bean.getCustomerTel());
+		map.put("orderDate", orderDate);
+		map.put("price", price);
+		map.put("orderState", bean.getOrderState());
+		map.put("housing", bean.getHousing());
+		map.put("rocker", bean.getRocker());
+		map.put("l1", bean.getL1());
+		map.put("l2", bean.getL2());
+		map.put("r1", bean.getR1());
+		map.put("r2", bean.getR2());
+		map.put("o", bean.getO());
+		map.put("x", bean.getX());
+		map.put("square", bean.getSquare());
+		map.put("triangle", bean.getTriangle());
+		map.put("start", bean.getStart());
+		map.put("selecter", bean.getSelecter());
+		map.put("touch", bean.getTouch());
+		map.put("coverImg", bean.getCoverImg());
+		map.put("board", bean.getBoard());
+		map.put("deliveryDate;", Parse.dateToString(bean.getDeliveryDate()));
+		map.put("MerchantID", AllPayCheckMacValue.merchantID);
+		map.put("PaymentType", AllPayCheckMacValue.paymentType);
+		map.put("TradeDesc", AllPayCheckMacValue.tradeDesc);
+		map.put("ItemName", AllPayCheckMacValue.itemName);
+		map.put("ReturnURL", AllPayCheckMacValue.returnURL);
+		map.put("ChoosePayment", AllPayCheckMacValue.choosePayment);
+		map.put("IgnorePayment", AllPayCheckMacValue.ignorePayment);
+		map.put("ClientBackURL", AllPayCheckMacValue.clientBackURL);
+		map.put("CheckMacValue", AllPayCheckMacValue.checkMacValue(orderNo, orderDate, price));
+		result.add(map);
 		return result;
 	}
 	
@@ -129,8 +127,8 @@ public class OrderService {
 		return (OrderBean)dao.selectByOrderNo(orderNo);
 	}
 	
-	public List<Map<String, Object>> selectByTelF(String customerTel) {
-		return this.jfomat2(dao.selectByTel(customerTel));
+	public List<Map<String, Object>> selectByOrderNo2(String orderNo) {
+		return this.jfomat2(dao.selectByOrderNo(orderNo));
 	}
 	
 }

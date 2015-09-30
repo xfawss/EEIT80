@@ -78,25 +78,25 @@
 									<div class="two fields">
 										<div class="required field">
 											<label>姓名</label>
-											<input type="text" name="customerName" value="${customerName}">
+											<input type="text" name="customerName" value="Gamer">
 										</div>
 										<div class="required field">
 											<label>電話</label>
-											<input type="text" name="customerTel" value="${joystick.customerTel}">
+											<input type="text" name="customerTel" value="099999999">
 										</div>
 									</div>
 									<div class="field">
 										<label>E-mail</label>
-										<input type="text" name="customerMail" value="${customerMail}">
+										<input type="text" name="customerMail" value="abc@abc.com">
 									</div>
 									<div class="two fields">
 										<div class="field">
 											<label>Line</label>
-											<input type="text" name="customerLine" value="${customerLine}">
+											<input type="text" name="customerLine" value="">
 										</div>
 										<div class="field">
 											<label>FB</label>
-											<input type="text" name="customerFb" value="${customerFb}">
+											<input type="text" name="customerFb" value="">
 										</div>
 									</div>
 									<h4 class="ui dividing header">收件資訊</h4>
@@ -104,24 +104,24 @@
 										<div class="required field">
 											<label>收件方式</label>
 											<select name="receiveType">
-												<option value="Store">便利商店取貨</option>
-												<option value="Home">宅配</option>
-												<option value="Home">自取</option>
+												<option value="便利商店取貨">便利商店取貨</option>
+												<option value="宅配">宅配</option>
+												<option value="自取">自取</option>
 											</select>
 										</div>
 										<div class="required field">
 											<label>收件地址</label>
-											<input type="text" name="customerAddr" value="${joystick.customerAddr}" placeholder="若為便利商店取貨請填寫門市名稱，若為自取請填寫自取。">
+											<input type="text" name="customerAddr" value="" placeholder="若為便利商店取貨請填寫門市名稱，若為自取請填寫自取。">
 										</div>
 									</div>
 									<div class="two fields">
 										<div class="field">
 											<label>收件資訊</label>
-											<textarea name="receiveNotes" cols="20" rows="5" placeholder="可填寫收件人、收件時間等資訊。">${joystick.receiveNotes}</textarea>
+											<textarea name="receiveNotes" cols="20" rows="5" placeholder="可填寫收件人、收件時間等資訊。"></textarea>
 										</div>
 										<div class="field">
 											<label>訂單備註</label>
-											<textarea name="orderNotes" cols="20" rows="5" placeholder="若有其他事情必須與通知公館，可填寫於此欄位">${joystick.orderNotes}</textarea>
+											<textarea name="orderNotes" cols="20" rows="5" placeholder="若有其他事情必須與通知公館，可填寫於此欄位"></textarea>
 										</div>
 									</div>
 								</form>
@@ -169,7 +169,8 @@
 
 
 	$('.submitBtn').click(function(){
-		$('#orderForm').form('validate form');
+		 $('#orderForm').form('submit');
+		/*$('#orderForm').form('validate form');*/
 	})
 
 	/*action="/Vetash/order" method="post"*/
@@ -217,9 +218,6 @@
 				}
 				]
 			}
-		},
-		onSuccess:function(){
-			 $('#orderForm').form('submit');
 		}
 	});
 

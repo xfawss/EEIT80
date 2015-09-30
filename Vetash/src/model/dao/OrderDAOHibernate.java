@@ -75,7 +75,7 @@ public class OrderDAOHibernate implements OrderDAO {
 	@Override
 	public List<OrderBean> selectByDate(Date orderDate) {
 		Query query = this.getSession().createQuery("from OrderBean where OrderDate like ?");
-		query.setParameter(0, orderDate);
+		query.setParameter(0, "%"+orderDate+"%");
 		return (List<OrderBean>)query.list();
 	}
 

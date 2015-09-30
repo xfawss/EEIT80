@@ -51,6 +51,9 @@ public class JoystickServlet extends HttpServlet {
 		String coverImg = req.getParameter("coverImg");
 		String board = req.getParameter("board");
 		String coupon = req.getParameter("coupon");
+		String orderNotes = req.getParameter("orderNotes");
+		String orderType = req.getParameter("orderType");//1正常 0特殊
+		
 
 		List<String> errs = new ArrayList<String>();
 		if(housing==null || rocker==null || l1==null || l2==null || r1==null ||
@@ -60,26 +63,26 @@ public class JoystickServlet extends HttpServlet {
 		}
 
 		HttpSession session = req.getSession(true);
-		
 		int price = 0;
-		price += (int)service.selectCostById(housing);
-		price += (int)service.selectCostById(rocker);
-		price += (int)service.selectCostById(l1);
-		price += (int)service.selectCostById(l2);
-		price += (int)service.selectCostById(r1);
-		price += (int)service.selectCostById(r2);
-		price += (int)service.selectCostById(o);
-		price += (int)service.selectCostById(x);
-		price += (int)service.selectCostById(square);
-		price += (int)service.selectCostById(triangle);
-		price += (int)service.selectCostById(start);
-		price += (int)service.selectCostById(selecter);
-		price += (int)service.selectCostById(touch);
-		price += (int)service.selectCostById(coverImg);
-		price += (int)service.selectCostById(board);
-		price += (int)service.selectCostById("000");//工錢
-		if(coupon!=null && coupon.length()!=0) {
-			price -= service2.select(coupon);
+		if(orderType!=null && orderType.equals("1")) {
+			price += (int)service.selectCostById(housing);
+			price += (int)service.selectCostById(rocker);
+			price += (int)service.selectCostById(l1);
+			price += (int)service.selectCostById(l2);
+			price += (int)service.selectCostById(r1);
+			price += (int)service.selectCostById(r2);
+			price += (int)service.selectCostById(o);
+			price += (int)service.selectCostById(x);
+			price += (int)service.selectCostById(square);
+			price += (int)service.selectCostById(triangle);
+			price += (int)service.selectCostById(start);
+			price += (int)service.selectCostById(selecter);
+			price += (int)service.selectCostById(touch);
+			price += (int)service.selectCostById(board);
+			price += (int)service.selectCostById("000");//工錢
+			if(coupon!=null && coupon.length()!=0) {
+				price -= service2.select(coupon);
+			}
 		}
 		
 		java.util.Date now = new java.util.Date();
@@ -104,9 +107,14 @@ public class JoystickServlet extends HttpServlet {
 		bean.setBoard(board);
 		bean.setCoupon(coupon);
 		bean.setPrice(price);
+		bean.setOrderNotes(orderNotes);
 		session.setAttribute("joystick", bean);
-		
-		req.getRequestDispatcher("/front_custom_order.html").forward(req, resp);
+		session.setAttribute("receiveCost", 0);
+		if(orderType!=null && orderType.equals("1")) {
+			req.getRequestDispatcher("/front_custom_order1.html").forward(req, resp);
+		} else {
+			req.getRequestDispatcher("/front_custom_order0.html").forward(req, resp);
+		}
 	}
 
 	@Override

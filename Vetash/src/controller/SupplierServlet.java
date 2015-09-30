@@ -36,8 +36,8 @@ public class SupplierServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse rsp) throws ServletException, IOException {
 		rsp.setContentType("text/html");
 		
-		List<Map<String, Object>> resultss = service.selectByTel("0910147523");
-		System.out.println(resultss);
+//		List<Map<String, Object>> resultss = service.selectByTel("0910147523");
+//		System.out.println(resultss);
 		
 		// System.out.println("get");
 

@@ -45,7 +45,7 @@ public class OrderCheckedServlet extends HttpServlet {
 		HttpSession session = req.getSession(false);
 		if(session==null){
 			errs.add("流程錯誤");
-			req.getRequestDispatcher("/ye/joystick.html").forward(req, resp);
+			req.getRequestDispatcher("/front_custom.html").forward(req, resp);
 		}
 		OrderBean bean = (OrderBean)session.getAttribute("joystick");
 		int coupon = service2.updateUse(bean.getCoupon());

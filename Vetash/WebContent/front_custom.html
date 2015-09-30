@@ -19,7 +19,7 @@
 	</style>
 	<style>
 		*{
-			border: 1px solid green;
+/* 			border: 1px solid green; */
 		}
 		.pure{
 			margin: 0px !important;
@@ -114,25 +114,25 @@
 				<div class="header">
 					確認搖桿配置
 				</div>
-				<form class="ui form" id="porductForm">
+				<form class="ui form" id="porductForm" action="/Vetash/joystick" method="post">
 					<div class="ui grid purePaded">
 						<div class="row">
 							<div class="six wide column">
 								<div class="field">
 									<label>框體</label>
-									<input type="text"  name="housing" />
+									<input type="text"  name="housing" value="St_B_02_B"/>
 								</div>
 								<div class="field">
 									<label>搖桿</label>
-									<input type="text"  name="rocker" />
+									<input type="text"  name="rocker" value="St_B_02_B"/>
 								</div>
 								<div class="field">
 									<label>面板圖</label>
-									<input type="text"  name="coverImg" />
+									<input type="text"  name="coverImg" value="St_B_02_B"/>
 								</div>
 								<div class="field">
 									<label>系統</label>
-									<input type="text"  name="board" />
+									<input type="text"  name="board" value="St_B_02_B"/>
 								</div>
 							</div>
 							<div class="five wide column">
@@ -142,7 +142,7 @@
 										<div class="ui label">
 											L1
 										</div>
-										<input type="text"  name="l1" />
+										<input type="text"  name="l1" value="St_B_02_B"/>
 									</div>
 								</div>
 								<div class="field">
@@ -150,7 +150,7 @@
 										<div class="ui label">
 											L2
 										</div>
-										<input type="text"  name="l2" />
+										<input type="text"  name="l2" value="St_B_02_B"/>
 									</div>
 								</div>
 								<div class="field">
@@ -158,7 +158,7 @@
 										<div class="ui label">
 											R1
 										</div>
-										<input type="text"  name="r1" />
+										<input type="text"  name="r1" value="St_B_02_B"/>
 									</div>
 								</div>
 								<div class="field">
@@ -166,7 +166,7 @@
 										<div class="ui label">
 											R2
 										</div>
-										<input type="text"  name="r2" />
+										<input type="text"  name="r2" value="St_B_02_B"/>
 									</div>
 								</div>
 								<div class="field">
@@ -174,7 +174,7 @@
 										<div class="ui label">
 											◎
 										</div>
-										<input type="text"  name="o" />
+										<input type="text"  name="o" value="St_B_02_B"/>
 									</div>
 								</div>
 								<div class="field">
@@ -182,7 +182,7 @@
 										<div class="ui label">
 											X
 										</div>
-										<input type="text"  name="x" />
+										<input type="text"  name="x" value="St_B_02_B"/>
 									</div>
 								</div>
 								<div class="field">
@@ -190,7 +190,7 @@
 										<div class="ui label">
 											◇
 										</div>
-										<input type="text"  name="square" />
+										<input type="text"  name="square" value="St_B_02_B"/>
 									</div>
 								</div>
 								<div class="field">
@@ -198,7 +198,7 @@
 										<div class="ui label">
 											△
 										</div>
-										<input type="text"  name="triangle" />
+										<input type="text"  name="triangle" value="St_B_02_B"/>
 									</div>
 								</div>
 							</div>
@@ -209,7 +209,7 @@
 										<div class="ui label">
 											Start
 										</div>
-										<input type="text"  name="start" />
+										<input type="text"  name="start" value="St_B_02_B"/>
 									</div>
 								</div>
 								<div class="field">
@@ -217,7 +217,7 @@
 										<div class="ui label">
 											Select
 										</div>
-										<input type="text"  name="selecter" />
+										<input type="text"  name="selecter" value="St_B_02_B"/>
 									</div>
 								</div>
 								<div class="field">
@@ -225,12 +225,12 @@
 										<div class="ui label">
 											Touch
 										</div>
-										<input type="text"  name="touch" />
+										<input type="text"  name="touch" value="St_B_02_B"/>
 									</div>
 								</div>
 								<h5 class="ui dividing header">面板</h5>
 								<img src="images/fakeImg_L.png" class="ui image">
-								<input type="text" name="coverImg" />
+								<input type="text" name="coverImg" value="St_B_02_B"/>
 							</div>
 						</div>
 						<div class="row">
@@ -238,9 +238,8 @@
 							<div class="fight aligned five wide column">
 								<div class="field">
 									<label>折扣碼</label>
-									<div class="ui icon input">
-										<i class="checkmark icon"></i>
-										<input placeholder="" type="text" name="coupon">
+									<div class="ui input">
+										<input placeholder="" type="text" name="coupon" value="GamerBee">
 										<input type="hidden" name="couponDiscount"><!-- for coupon check -->
 									</div>
 								</div>
@@ -1502,7 +1501,8 @@
 					}
 				}
 			});*/
-			$('#porductForm').form('validate form');
+			/*$('#porductForm').form('validate form');*/
+			$('#porductForm').form('submit');
 			return false;
 		}
 	});
@@ -1520,10 +1520,9 @@
 				]
 			}
 		},*/
-		onSuccess:function(){
+		/*onSuccess:function(){
 			console.log("validation successed");
 			var valuesToSubmit = $('#porductForm').form('get values');
-			/*action="/Vetash/joystick" method="post"*/
 			$.post(
 				"/Vetash/joystick",
 				{
@@ -1531,7 +1530,7 @@
 					rocker: valuesToSubmit.rocker,
 					l1: valuesToSubmit.l1,
 					l2: valuesToSubmit.l2,
-					r1: valuesToSubmit.r1,
+					r1: valuesToSub？mit.r1,
 					r2: valuesToSubmit.r2,
 					o: valuesToSubmit.o,
 					x: valuesToSubmit.x,
@@ -1545,7 +1544,7 @@
 					coupon: valuesToSubmit.coupon
 				}
 			);
-		}
+		}*/
 	});
 
 	/*theTabs_Model*/

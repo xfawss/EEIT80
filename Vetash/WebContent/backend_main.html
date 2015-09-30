@@ -2683,7 +2683,7 @@
 					title:'productId',
 					description:'productName'
 				},
-				minCharacters : 0
+				minCharacters : 1
 			});
 			/*search 暫時使用，要改server端 用id模糊搜尋 可料號跟名稱都顯示*/
 
@@ -2941,6 +2941,10 @@
 						.addClass("addCursor")
 						.click(function(){Order_update(row);})
 						.appendTo($('#Order .table > tbody tr:nth-child('+index+')'));
+					$('<td>',{html:one.customerTel})
+						.addClass("addCursor")
+						.click(function(){Order_update(row);})
+						.appendTo($('#Order .table > tbody tr:nth-child('+index+')'));
 					$('<td>',{html:one.price})
 						.addClass("addCursor")
 						.click(function(){Order_update(row);})
@@ -3022,7 +3026,7 @@
 							Order_addCustomerIntoOrder(datas);
 						}
 					});
-				} else if("orderDate"===by){
+				} else if("date"===by){
 					$.ajax({
 						url:'./OrderCommand',
 						type:'get',
@@ -3171,7 +3175,7 @@
 						type:'post',
 						data:{
 							"task":valuesToSubmit.task,
-							/*"orderNo":valuesToSubmit.orderNo,
+							"orderNo":valuesToSubmit.orderNo,
 							"orderDate":valuesToSubmit.orderDate,
 							"price":valuesToSubmit.price,
 							"orderState":valuesToSubmit.orderState,
@@ -3203,7 +3207,7 @@
 							"selecter":valuesToSubmit.selecter,
 							"touch":valuesToSubmit.touch,
 							"coverImg":valuesToSubmit.coverImg,
-							"board":valuesToSubmit.board*/
+							"board":valuesToSubmit.board
 						},
 						success:function(results){
 							console.log("Order_modal .form ajax successed");

@@ -73,14 +73,17 @@ public class OrderServlet extends HttpServlet {
 		HttpSession session = req.getSession(false);
 		if(session==null){
 			errs.add("流程錯誤");
-			req.getRequestDispatcher("/ye/joystick.html").forward(req, resp);
+			req.getRequestDispatcher("/front_custom.html").forward(req, resp);
 		}
-		
 		OrderBean bean = (OrderBean)session.getAttribute("joystick");
-		
 		int price = bean.getPrice();
+		price -= (int)session.getAttribute("receiveCost");
 		if(!receiveType.equals("自取")) {
-			price += service2.selectCostById("001");
+			int receiveCost = service2.selectCostById("001");
+			price += receiveCost;
+			session.setAttribute("receiveCost", receiveCost);
+		}else {
+			session.setAttribute("receiveCost", 0);
 		}
 		bean.setOrderState("已下訂");
 		bean.setCustomerTel(customerTel);
@@ -92,7 +95,6 @@ public class OrderServlet extends HttpServlet {
 		bean.setPrice(price);
 		session.setAttribute("joystick", bean);
 		session.setAttribute("customer", cust);
-		
 		String orderNo = bean.getOrderNo();
 		String orderDate = Parse.dateToString2(bean.getOrderDate());
 		String pricess = Integer.toString(price);

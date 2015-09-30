@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+	<title>Vetash Custom Joystick</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+	<script src="semantic/dist/semantic.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+	<!-- additional -->
+	<script src="js/covervid.js"></script>
+	<script src="js/progressbar.js"></script>
+	<style type=text/css>
+		body{
+			font-family: "微軟正黑體", "Microsoft JhengHei" !important;
+		}
+		h1{
+			font-family: "微軟正黑體", "Microsoft JhengHei" !important;
+		}
+	</style>
+	<style>
+		/* overall */
+			*{
+				/* border: 1px solid green; */
+			}
+
+		/* the intro page */
+			/* video */
+				.covervid-wrapper {
+					position: absolute;
+					top: 0px;
+					left: 0px;
+					width: 100%;
+					height: 100%;
+					overflow: hidden;
+				}
+				.covervid-video{
+					min-height: 100%;
+					min-width: 100%;
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					transform: translate(-50%,-50%);
+					z-index: -10;
+				}
+			/* overlay */
+				.covervid-overlay{
+					height: 100%;
+					width: 100%;
+					background-color: #000;
+					position: absolute;
+					top: 0px;
+					left: 0px;
+				}
+				.overLay{
+					opacity: 0.6;
+				}
+			/* intro page elements */
+				#intro{
+					height: 100%;
+					width: 100%;
+					position: absolute;
+					top: 0px;
+					left: 0px;
+					margin: 0px !important;
+				}
+				#intro .row{
+					padding:0px !important;
+				}
+				#intro .column{
+					padding:0px !important;
+				}
+				.startBlink1{
+					opacity: 0.4;
+				}
+				.startBlink2{
+					opacity: 1;
+				}
+				.progressbar_label{
+					font-size: 30px;
+				}
+
+		/* the main block */
+			.main{
+				position: absolute;
+				width: 100%;
+				top: 100%;
+				left: 0px;
+				margin: 0px !important;
+				background-color: rgb(103,160,223);
+			}
+			/* the menu */
+				#theMenu{
+					height: 70px;
+					width: 100%;
+					background-color: rgb(253,253,247);
+					opacity: 0.8;
+				}
+				#theMenu .grid{
+					margin-top: 0px !important;
+					margin-bottom: 0px !important;
+				}
+				#theMenu_PlaceHolder{
+					display:none;
+					height: 70px;
+					width: 100%;
+					background-color: rgb(253,253,247);
+					opacity: 0;
+				}
+				#theMenu_PlaceHolder .grid{
+					margin-top: 0px !important;
+					margin-bottom: 0px !important;
+				}
+				.theMenu_Fixed{
+					position: fixed;
+					top:0px;
+					left: 0px;
+					z-index: 1;
+				}
+			/* the sections */
+				.section{
+					width:100%;
+				}
+				.section > .grid{
+					margin-top: 50px !important;
+					margin-bottom: 200px !important;
+				}
+				.sectionTitle{
+					margin-top: 0px;
+				}
+				.sectionSubTitle{
+					margin-bottom: 0px;
+				}
+				.sectionHeaderHr{
+					border: 1px solid black;
+				}
+				.card{
+					box-shadow:none !important;
+					background: rgba(255, 255, 255, 0.4) !important;
+					cursor:pointer;
+				}
+	</style>
+</head>
+<body>
+	<div class="covervid-wrapper"><!-- intro page video wrapper -->
+		<video class="covervid-video" loop muted id="coverVideo">
+			<source src="media/testVid3.mp4" type="video/mp4">
+		</video>
+	</div><!-- intro page video wrapper -->
+	<div class="covervid-overlay" id="coverOverlay"><!--intro page overlay-->
+	</div><!--intro page overlay-->
+	<div class="ui center aligned grid" style="height:100%" id="intro"><!-- the intro page -->
+		<div class="row" style="height:30%"></div>
+		<div class="six column bottom aligned row" style="height:25%">
+			<div class="column" style="display: none" id="title1">
+				<img src="images/t1.png" height="150" width="163">
+			</div>
+			<div class="column" style="display: none" id="title2">
+				<img src="images/t2.png" height="151" width="150">
+			</div>
+			<div class="column" style="display: none" id="title3">
+				<img src="images/t3.png" height="152" width="150">
+			</div>
+			<div class="column" style="display: none" id="title4">
+				<img src="images/t4.png" height="148" width="150">
+			</div>
+		</div>
+		<div class="eight column row" style="height:10%">
+			<div class="column" style="display: none" id="stitle1">
+				<img src="images/stitle1.png" height="27" width="135">
+			</div>
+			<div class="column" style="display: none" id="stitle2">
+				<img src="images/stitle2.png" height="27" width="134">
+			</div>
+			<div class="column" style="display: none" id="stitle3">
+				<img src="images/stitle3.png" height="32" width="175">
+			</div>
+		</div>
+		<div class="row" style="height:5%"></div>
+		<div class="top aligned row" style="height:30%">
+			<div class="column" style="width:120px">
+				<div id="progressBar">
+				</div>
+				<img id="startBtn" class="startBlink1" src="images/btn.png" height="80" width="80"
+					style="position:absolute ;left:50%;margin-left:-40px;top:70%;margin-top:20px;display: none">
+				<img id= "startTitle" class="startBlink1" src="images/start.png" height="19" width="60"
+					style="position:absolute ;left:50%;margin-left:-30px;top:70%;margin-top:110px;display: none">
+			</div>
+		</div>
+	</div><!-- the intro page -->
+
+	<div class="main">
+
+		<div id="theMenu"><!-- theMenu -->
+			<div class="ui two column stackable grid">
+				<div class="column">
+					<img class="ui image" src="images/logo_l.png">
+				</div>
+				<div class="right floated column">
+					<div class="ui right floated secondary pointing menu">
+						<a class="active item" id="theMenu_Intro">
+							Intro
+						</a>
+						<a class="item" id="theMenu_Profile">
+							Profile
+						</a>
+						<a class="item" id="theMenu_Products">
+							Products
+						</a>
+						<a class="item" id="theMenu_Services">
+							Services
+						</a>
+						<a class="item" id="theMenu_Player">
+							Player
+						</a>
+						<a class="item" id="theMenu_Album">
+							Album
+						</a>
+						<a class="item" id="theMenu_Contact">
+							Contact
+						</a>
+					</div>
+				</div>
+			</div>
+		</div><!-- theMenu -->
+		<div id="theMenu_PlaceHolder"><!-- theMenu_PlaceHolder -->
+			<div class="ui grid">
+				<div class="column"></div>
+			</div>
+		</div><!-- theMenu_PlaceHolder -->
+
+		<div class="section"><!-- main_Profile -->
+			<div class="ui stackable grid container" id="main_Profile">
+				<div class="row">
+					<div class="left floated left aligned ten wide column">
+						<h5 class="sectionSubTitle">Profile</h5>
+						<h1 class="sectionTitle">
+							公館快打大搖俱樂部
+						</h1 >
+						<hr class="sectionHeaderHr">
+					</div>
+				</div>
+				<div class="row">
+					<div class="right floated left aligned ten wide column">
+						<p></p>
+						<p>
+							打快打近20年，
+							從台北打到高雄，台灣打到日本，街機打到家用，隔壁台打到online。
+							對快打有無限熱血，因為沒有順手搖桿而投入製作搖桿的世界裡。
+						</p>
+						<p></p>
+						<p></p>
+					</div>
+				</div>
+				<div class="two column row">
+					<div class="column"></div>
+					<div class="middle aligned column">
+						<img class="ui large centered rounded image" src="images/fakeImg_L.png">
+					</div>
+				</div>
+			</div>
+		</div><!-- main_Profile -->
+		<div class="section"><!-- main_Products -->
+			<div class="ui stackable grid container" id="main_Products">
+				<div class="row"><!-- head -->
+					<div class="left floated left aligned ten wide column">
+						<h5 class="sectionSubTitle">Products</h5>
+						<h1 class="sectionTitle">
+							作品集
+						</h1>
+						<hr class="sectionHeaderHr">
+					</div>
+				</div>
+				<div class="row"><!-- sub -->
+					<div class="right floated left aligned ten wide column">
+						<p></p>
+						<p>
+							五號機的核心設計－搖桿、鍵位與斜面的相對位置在經過十幾次的微調後，約於2010年確認後就使用至今，不僅配置與街機相同，手感也非常舒適，是最適合格鬥遊戲玩家使用的大搖。<br>
+							目前的新五號機，有壓克力面板、收線盒等設計，搭配側邊的切換開關，可以訂做為支援多系統的大搖。
+						</p>
+						<p></p>
+						<p></p>
+					</div>
+				</div>
+				<div class="two column row"><!-- two products -->
+					<div class="column">
+						<div class="ui centered card" id="main_Products_product1">
+							<img class="ui rounded image" src="images/fakeImg_L.png">
+							<div class="content">
+								<div class="header">狩人魂</div>
+								<div class="meta">
+									<span class="date">PS3/360/PC</span>
+								</div>
+								<div class="description">
+									魔物獵人玩家訂做大搖。
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="column">
+						<div class="ui centered card" id="main_Products_product2">
+							<img class="ui rounded image" src="images/fakeImg_L.png">
+							<div class="content">
+								<div class="header">音速小子</div>
+								<div class="meta">
+									<span class="date">PS3/PS4</span>
+								</div>
+								<div class="description">
+									老玩家的音速小子。
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="ui modal" id="main_Products_product1_modal"><!-- modal1 -->
+					<div class="ui segment">
+						<p>
+							Cada cliente es diferente y cada necesidad nos lleva a un camino creativo distinto. En Ende estamos en la búsqueda permanente de lenguajes, propuestas y técnicas que hacen que cada resultado tenga un valor agregado y que cada pieza de comunicación sea única.
+							Cada cliente es diferente y cada necesidad nos lleva a un camino creativo distinto. En Ende estamos en la búsqueda permanente de lenguajes, propuestas y técnicas que hacen que cada resultado tenga un valor agregado y que cada pieza de comunicación sea única.
+							Cada cliente es diferente y cada necesidad nos lleva a un camino creativo distinto. En Ende estamos en la búsqueda permanente de lenguajes, propuestas y técnicas que hacen que cada resultado tenga un valor agregado y que cada pieza de comunicación sea única.
+							Cada cliente es diferente y cada necesidad nos lleva a un camino creativo distinto. En Ende estamos en la búsqueda permanente de lenguajes, propuestas y técnicas que hacen que cada resultado tenga un valor agregado y que cada pieza de comunicación sea única.
+							Cada cliente es diferente y cada necesidad nos lleva a un camino creativo distinto. En Ende estamos en la búsqueda permanente de lenguajes, propuestas y técnicas que hacen que cada resultado tenga un valor agregado y que cada pieza de comunicación sea única.
+							Cada cliente es diferente y cada necesidad nos lleva a un camino creativo distinto. En Ende estamos en la búsqueda permanente de lenguajes, propuestas y técnicas que hacen que cada resultado tenga un valor agregado y que cada pieza de comunicación sea única.
+							Cada cliente es diferente y cada necesidad nos lleva a un camino creativo distinto. En Ende estamos en la búsqueda permanente de lenguajes, propuestas y técnicas que hacen que cada resultado tenga un valor agregado y que cada pieza de comunicación sea única.
+						</p>
+					</div>
+				</div>
+				<div class="ui modal" id="main_Products_product2_modal"><!-- modal2 -->
+					<div class="ui segment">
+						<p>
+							Cada cliente es diferente y cada necesidad nos lleva a un camino creativo distinto. En Ende estamos en la búsqueda permanente de lenguajes, propuestas y técnicas que hacen que cada resultado tenga un valor agregado y que cada pieza de comunicación sea única.
+							Cada cliente es diferente y cada necesidad nos lleva a un camino creativo distinto. En Ende estamos en la búsqueda permanente de lenguajes, propuestas y técnicas que hacen que cada resultado tenga un valor agregado y que cada pieza de comunicación sea única.
+							Cada cliente es diferente y cada necesidad nos lleva a un camino creativo distinto. En Ende estamos en la búsqueda permanente de lenguajes, propuestas y técnicas que hacen que cada resultado tenga un valor agregado y que cada pieza de comunicación sea única.
+							Cada cliente es diferente y cada necesidad nos lleva a un camino creativo distinto. En Ende estamos en la búsqueda permanente de lenguajes, propuestas y técnicas que hacen que cada resultado tenga un valor agregado y que cada pieza de comunicación sea única.
+							Cada cliente es diferente y cada necesidad nos lleva a un camino creativo distinto. En Ende estamos en la búsqueda permanente de lenguajes, propuestas y técnicas que hacen que cada resultado tenga un valor agregado y que cada pieza de comunicación sea única.
+							Cada cliente es diferente y cada necesidad nos lleva a un camino creativo distinto. En Ende estamos en la búsqueda permanente de lenguajes, propuestas y técnicas que hacen que cada resultado tenga un valor agregado y que cada pieza de comunicación sea única.
+							Cada cliente es diferente y cada necesidad nos lleva a un camino creativo distinto. En Ende estamos en la búsqueda permanente de lenguajes, propuestas y técnicas que hacen que cada resultado tenga un valor agregado y que cada pieza de comunicación sea única.
+						</p>
+					</div>
+				</div>
+			</div>
+		</div><!-- main_Products -->
+		<div class="section"><!-- main_Services -->
+			<div class="ui stackable grid container" id="main_Services">
+				<div class="middle aligned row"><!-- head -->
+					<div class="left floated left aligned ten wide column">
+						<h5 class="sectionSubTitle">Services</h5>
+						<h1 class="sectionTitle">
+							提供的服務
+						</h1>
+						<hr class="sectionHeaderHr">
+					</div>
+				</div>
+				<div class="row"><!-- sub -->
+					<div class="right floated left aligned ten wide column">
+						<p></p>
+						<p>
+							公館提供大搖訂製、維修、升級與改裝的服務。
+						</p>
+						<p></p>
+						<p></p>
+					</div>
+				</div>
+				<div class="four column row"><!-- services -->
+					<div class="column">
+						<div class="ui centered card" id="main_Services_service1">
+							<img class="ui rounded image" src="images/fakeImg_M.png">
+							<div class="content">
+								<div class="header">訂製</div>
+								<div class="description">
+									我希望讓玩家能有一把稱手的大搖，也希望做得美觀或是凸顯玩家個人風格。
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="column">
+						<div class="ui centered card" id="main_Services_service2">
+							<img class="ui rounded image" src="images/fakeImg_M.png">
+							<div class="content">
+								<div class="header">維修</div>
+								<div class="description">
+									大搖用久了，零件也是會老化的。<br>
+									故障的問題就交給我處理吧。
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="column">
+						<div class="ui centered card" id="main_Services_service3">
+							<img class="ui rounded image" src="images/fakeImg_M.png">
+							<div class="content">
+								<div class="header">升級</div>
+								<div class="description">
+									玩家更換主機，搖桿不想花錢再買一組怎麼辦？<br>
+									找公館換裝系統吧～
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="column">
+						<div class="ui centered card" id="main_Services_service4">
+							<img class="ui rounded image" src="images/fakeImg_M.png">
+							<div class="content">
+								<div class="header">改裝</div>
+								<div class="description">
+									按鍵怕吵嗎？搖桿不靈敏嗎？希望用老派的水滴搖桿或是美國按鍵呢？<br>
+									可以找公館改裝喔～
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="ui modal" id="main_Services_service1_modal">
+					<div class="segment">
+						<p>1</p>
+					</div>
+				</div>
+				<div class="ui modal" id="main_Services_service2_modal">
+					<div class="segment">
+						<p>2</p>
+					</div>
+				</div>
+				<div class="ui modal" id="main_Services_service3_modal">
+					<div class="segment">
+						<p>3</p>
+					</div>
+				</div>
+				<div class="ui modal" id="main_Services_service4_modal">
+					<div class="segment">
+						<p>4</p>
+					</div>
+				</div>
+			</div>
+		</div><!-- main_Services -->
+		<div class="section"><!-- main_Player -->
+			<div class="ui stackable grid container" id="main_Player">
+				<div class="row">
+					<div class="left floated left aligned ten wide column">
+						<h5 class="sectionSubTitle">Player</h5>
+						<h1 class="sectionTitle">
+							使用公館搖桿的知名選手
+							<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;－GamerBee 向玉麟
+						</h1>
+						<hr class="sectionHeaderHr">
+					</div>
+				</div>
+				<div class="row">
+					<div class="right floated left aligned ten wide column">
+						<p></p>
+						<p>
+							2009年小向於EVO崛起後，就一直使用五號機至今，南征北討拿下無數頭銜。
+						</p>
+						<p></p>
+						<p></p>
+					</div>
+				</div>
+				<div class="two column row">
+					<div class="column"></div>
+					<div class="column">
+						<img class="ui large centered rounded image" src="images/fakeImg_L.png">
+					</div>
+				</div>
+				<div class="row">
+					<div class="ui center aligned grid" style="width:100%;margin:0px;"> <!-- inline grid -->
+						<div class="two wide column">
+							<div class="ui centered card" id="main_Player_twitch">
+								<img class="ui image" src="images/twitch.png">
+								<div class="content">
+										twitch
+								</div>
+							</div>
+						</div>
+						<div class="column"></div><!-- for separating -->
+						<div class="two wide column">
+							<div class="ui centered card" id="main_Player_twitter">
+								<img class="ui image" src="images/twitter.png">
+								<div class="content">
+										twitter
+								</div>
+							</div>
+						</div>
+						<div class="column"></div><!-- for separating -->
+						<div class="two wide column">
+							<div class="ui centered card" id="main_Player_facebook">
+								<img class="ui image" src="images/facebook.png">
+								<div class="content">
+										facebook
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!-- main_Player -->
+		<div class="section"><!-- main_Album -->
+			<div class="ui stackable grid container" id="main_Album">
+				<div class="row">
+					<div class="left floated left aligned ten wide column">
+						<h5 class="sectionSubTitle">Album</h5>
+						<h1 class="sectionTitle">
+							相簿集錦
+						</h1>
+						<hr class="sectionHeaderHr">
+					</div>
+				</div>
+				<div class="row">
+					<div class="right floated left aligned ten wide column">
+						<p></p>
+						<p>
+							Cada cliente es diferente y cada necesidad nos lleva a un camino creativo distinto. En Ende estamos en la búsqueda permanente de lenguajes, propuestas y técnicas que hacen que cada resultado tenga un valor agregado y que cada pieza de comunicación sea única.
+						</p>
+						<p></p>
+						<p></p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="center aligned column">
+						<div class="ui small images">
+							<img src="images/fakeImg_M.png">
+							<img src="images/fakeImg_M.png">
+							<img src="images/fakeImg_M.png">
+							<img src="images/fakeImg_M.png">
+							<img src="images/fakeImg_M.png">
+							<img src="images/fakeImg_M.png">
+							<img src="images/fakeImg_M.png">
+							<img src="images/fakeImg_M.png">
+							<img src="images/fakeImg_M.png">
+							<img src="images/fakeImg_M.png">
+							<img src="images/fakeImg_M.png">
+							<img src="images/fakeImg_M.png">
+							<img src="images/fakeImg_M.png">
+							<img src="images/fakeImg_M.png">
+							<img src="images/fakeImg_M.png">
+							<img src="images/fakeImg_M.png">
+							<img src="images/fakeImg_M.png">
+							<img src="images/fakeImg_M.png">
+							<img src="images/fakeImg_M.png">
+							<img src="images/fakeImg_M.png">
+							<img src="images/fakeImg_M.png">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!-- main_Album -->
+		<div class="section"><!-- main_Contact -->
+			<div class="ui stackable grid container" id="main_Contact">
+				<div class="two column row">
+					<div class="ui middle aligned left floated column">
+						<h1 class="ui header">
+							<i class="call icon"></i> </br>
+							<div class="content">
+								聯絡公館
+							</div>
+						</h1>
+						<h3>
+							<br>
+							<span>0986-622-373</span>
+							<br><br>
+							<span>vetash32@gmail.com</span>
+							<br><br>
+							<span><i class="facebook square icon"></i>公館快打大搖俱樂部</span>
+							<br><br>
+							<span><img class="ui img" src="images/line_s.png"></img>&nbsp;vetash32</span>
+						</h3>
+						<br>
+						<p>
+							<br>
+							Copyright © 2015, all rights reserved.
+							<br><br>
+						</p>
+					</div>
+					<div class="ui column">
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="ui grid container" style="margin-bottom:0px;">
+				<div class="bottom aligned center aligned column">
+					<!-- Copyright © 2015, all rights reserved. -->
+				</div>
+			</div>
+			</div>
+		</div><!-- main_Contact -->
+
+	</div>
+
+	<script>
+		/*theMenu behavior*/
+			var color_chunli_blue = "rgb(103,160,223)";
+			var color_blanka_green = "rgb(190,241,184)";
+			var color_ryu_white = "rgb(253,253,247)";
+			var color_vega_red = "rgb(208,135,125)";
+			var color_adon_orange = "rgb(252,193,117)";
+			var color_juri_pink = "rgb(233,142,210)";
+			var color_rufus_yellow = "rgb(254,246,130)";
+			var color_lightblue = "rgb(152,229,253)";
+			var color_purple = "rgb(178,114,194)";
+			var color_red = "rgb(243,119,139)";
+
+			function removeAllActive(){
+				$('#theMenu_Profile').removeClass("active");
+				$('#theMenu_Products').removeClass("active");
+				$('#theMenu_Services').removeClass("active");
+				$('#theMenu_Player').removeClass("active");
+				$('#theMenu_Album').removeClass("active");
+				$('#theMenu_Intro').removeClass("active");
+				$('#theMenu_Contact').removeClass("active");
+			}
+
+			$('.covervid-overlay').visibility({
+				once:false,
+				continuous:false,
+				onBottomPassed:function(){
+					$('#theMenu').addClass("theMenu_Fixed");
+					removeAllActive();
+					$('#theMenu_Profile').addClass("active");
+					$('#theMenu_PlaceHolder').show();
+					$(".main").stop().animate({
+						backgroundColor:color_chunli_blue
+					});
+				},
+				onBottomPassedReverse:function(){
+					$('#theMenu').removeClass("theMenu_Fixed");
+					removeAllActive();
+					$('#theMenu_Intro').addClass("active");
+					$('#theMenu_PlaceHolder').hide();
+					$(".main").animate({
+						backgroundColor:color_chunli_blue
+					});
+				}
+			});
+
+			$('#main_Profile').visibility({
+				once:false,
+				continuous:false,
+				onBottomPassed:function(){
+					removeAllActive();
+					$('#theMenu_Products').addClass("active");
+					$(".main").stop().animate({
+						backgroundColor:color_blanka_green
+					});
+				},
+				onBottomPassedReverse:function(){
+					removeAllActive();
+					$('#theMenu_Profile').addClass("active");
+					$(".main").stop().animate({
+						backgroundColor:color_chunli_blue
+					});
+				}
+			});
+			$('#main_Products').visibility({
+				once:false,
+				continuous:false,
+				onBottomPassed:function(){
+					removeAllActive();
+					$('#theMenu_Services').addClass("active");
+					$(".main").stop().animate({
+						backgroundColor:color_juri_pink
+					});
+				},
+				onBottomPassedReverse:function(){
+					removeAllActive();
+					$('#theMenu_Products').addClass("active");
+					$(".main").stop().animate({
+						backgroundColor:color_blanka_green
+					});
+				}
+			});
+			$('#main_Services').visibility({
+				once:false,
+				continuous:false,
+				onBottomPassed:function(){
+					removeAllActive();
+					$('#theMenu_Player').addClass("active");
+					$(".main").stop().animate({
+						backgroundColor:color_adon_orange
+					});
+				},
+				onBottomPassedReverse:function(){
+					removeAllActive();
+					$('#theMenu_Services').addClass("active");
+					$(".main").stop().animate({
+						backgroundColor:color_juri_pink
+					});
+				}
+			});
+			$('#main_Player').visibility({
+				once:false,
+				continuous:false,
+				onBottomPassed:function(){
+					removeAllActive();
+					$('#theMenu_Album').addClass("active");
+					$(".main").stop().animate({
+						backgroundColor:color_red
+					});
+				},
+				onBottomPassedReverse:function(){
+					removeAllActive();
+					$('#theMenu_Player').addClass("active");
+					$(".main").stop().animate({
+						backgroundColor:color_adon_orange
+					});
+				}
+			});
+			$('#main_Album').visibility({
+				once:false,
+				continuous:false,
+				onBottomPassed:function(){
+					removeAllActive();
+					$('#theMenu_Contact').addClass("active");
+					$(".main").stop().animate({
+						backgroundColor:color_rufus_yellow
+					});
+				},
+				onBottomPassedReverse:function(){
+					removeAllActive();
+					$('#theMenu_Album').addClass("active");
+					$(".main").stop().animate({
+						backgroundColor:color_red
+					});
+				}
+			});
+
+		/*theMenu animated scroll link*/
+
+			$('#theMenu_Intro').click(function(){
+				$('html, body').stop().animate({ 'scrollTop': $('#coverOverlay').offset().top-70 }, 800,'easeOutQuart');
+			})
+			$('#theMenu_Profile').click(function(){
+				$('html, body').stop().animate({ 'scrollTop': $('#main_Profile').offset().top-70 }, 800,'easeOutQuart');
+			})
+			$('#theMenu_Products').click(function(){
+				$('html, body').stop().animate({ 'scrollTop': $('#main_Products').offset().top-70 }, 800,'easeOutQuart');
+			})
+			$('#theMenu_Services').click(function(){
+				$('html, body').stop().animate({ 'scrollTop': $('#main_Services').offset().top-70 }, 800,'easeOutQuart');
+			})
+			$('#theMenu_Player').click(function(){
+				$('html, body').stop().animate({ 'scrollTop': $('#main_Player').offset().top-70 }, 800,'easeOutQuart');
+			})
+			$('#theMenu_Album').click(function(){
+				$('html, body').stop().animate({ 'scrollTop': $('#main_Album').offset().top-70 }, 800,'easeOutQuart');
+			})
+			$('#theMenu_Contact').click(function(){
+				$('html, body').stop().animate({ 'scrollTop': $('#main_Contact').offset().top-70 }, 800,'easeOutQuart');
+			})
+
+		/*intro block behavior*/
+			/*progressbar start*/
+			var startColor="#FFFFFF";
+			var endColor="#00CFFF";
+			var progressBar = new ProgressBar.Circle('#progressBar', {
+				color: startColor,
+				trailColor: 'rgba(0,0,0,0)',
+				strokeWidth: 5,
+				text: {
+					value: '0',
+					className: 'progressbar_label',
+					alignToBottom: true,
+				},
+				step: function(state, bar) {
+					bar.setText((bar.value() * 100).toFixed(0));
+				}
+			});
+			progressBar.animate(1.0, {
+				duration: 5000,
+				from: {color: startColor},
+				to: {color: endColor},
+				easing: 'easeInOut'
+			},progressBarOut);
+			/*progressbar end*/
+			function progressBarOut(){
+				console.log("progressBarOut");
+				/*Blink Here*/
+				$('#progressBar').hide('fade',300);
+				$('#progressBar').show('fade',300);
+				$('#progressBar').hide('fade',300);
+				$('#progressBar').show('fade',300);
+				$('#progressBar').hide('fade',{duration:1000,easing:"easeInExpo",complete:titleIn});
+			}
+			function titleIn(){
+				console.log("titleIn");
+				$('#coverOverlay').addClass("overLay",4000,"easeInOutQuart");
+				$('#title1').show('fade',{duration:4000,easing:"easeInOutQuart"});
+				$('#title2').show('fade',{duration:4000,easing:"easeInOutQuart"});
+				$('#title3').show('fade',{duration:4000,easing:"easeInOutQuart"});
+				$('#title4').show('fade',{duration:4000,easing:"easeInOutQuart"});
+				$('#stitle1').show('fade',{duration:4000,easing:"easeInOutQuart"});
+				$('#stitle2').show('fade',{duration:4000,easing:"easeInOutQuart"});
+				$('#stitle3').show('fade',{duration:4000,easing:"easeInOutQuart"});
+				startBtnIn();
+			}
+			function startBtnIn(){
+				console.log("startBtnIn");
+				$('#startBtn').show('fade',{duration:2000,easing:"easeInOutQuart"});
+				$('#startTitle').show('fade',{duration:2000,easing:"easeInOutQuart",complete:videoStart});
+				startBlink();
+			}
+			function videoStart(){
+				var coverVideo = document.getElementById("coverVideo");
+				coverVideo.play();
+			}
+			var startBlinkEvent=null;
+			function startBlink(){
+				startBlinkEvent = setInterval(startBlinkFn, 1000);
+				function startBlinkFn(){
+					$('#startBtn').toggleClass("startBlink1 startBlink2",{duration:1000})
+					$('#startTitle').toggleClass("startBlink1 startBlink2",{duration:1000})
+				}
+				/*bind the startBtn click event here*/
+				$('#startBtn').click(function(){
+					$('html, body').stop().animate({ 'scrollTop': $('#main_Profile').offset().top-70 }, 800,'easeOutQuart');
+				});
+				$('#startBtn').css("cursor","pointer");
+			}
+
+		/*Products modal behavior*/
+			/*modal1*/
+				$('#main_Products_product1_modal').modal({
+					allowMultiple: true,
+					debug:false,
+					closable:true
+				});
+
+				$('#main_Products_product1').click(function(){
+					$('#main_Products_product1_modal').modal('show');
+				});
+			/*modal2*/
+				$('#main_Products_product2_modal').modal({
+					allowMultiple: true,
+					debug:false,
+					closable:true
+				});
+
+				$('#main_Products_product2').click(function(){
+					$('#main_Products_product2_modal').modal('show');
+				});
+
+		/*Services modal behaviour*/
+			/*service1*/
+				$('#main_Services_service1_modal').modal({
+					allowMultiple: true,
+					debug:false,
+					closable:true
+				});
+
+				$('#main_Services_service1').click(function(){
+					$('#main_Services_service1_modal').modal('show');
+				});
+			/*service2*/
+				$('#main_Services_service2_modal').modal({
+					allowMultiple: true,
+					debug:false,
+					closable:true
+				});
+
+				$('#main_Services_service2').click(function(){
+					$('#main_Services_service2_modal').modal('show');
+				});
+			/*service3*/
+				$('#main_Services_service3_modal').modal({
+					allowMultiple: true,
+					debug:false,
+					closable:true
+				});
+
+				$('#main_Services_service3').click(function(){
+					$('#main_Services_service3_modal').modal('show');
+				});
+			/*service4*/
+				$('#main_Services_service4_modal').modal({
+					allowMultiple: true,
+					debug:false,
+					closable:true
+				});
+
+				$('#main_Services_service4').click(function(){
+					$('#main_Services_service4_modal').modal('show');
+				});
+
+		/*Player*/
+			$('#main_Player_twitch').click(function(){
+				location.assign("http://www.twitch.tv/gamerbee");
+			});
+			$('#main_Player_twitter').click(function(){
+				location.assign("https://twitter.com/GamerBeeTW");
+			});
+			$('#main_Player_facebook').click(function(){
+				location.assign("https://www.facebook.com/gamerbeetw");
+			});
+
+			$('#main_Player_twitch').popup({
+				position : 'bottom center',
+				content  : 'twitch.tv/gamerbee',
+				duration:100
+			});
+			$('#main_Player_twitter').popup({
+				position : 'bottom center',
+				content  : 'twitter.com/GamerBeeTW',
+				duration:100
+			});
+			$('#main_Player_facebook').popup({
+				position : 'bottom center',
+				content  : 'facebook.com/gamerbeetw',
+				duration:100
+			});
+	</script>
+</body>
+</html>

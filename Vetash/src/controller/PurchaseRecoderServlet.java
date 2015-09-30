@@ -132,10 +132,10 @@ public class PurchaseRecoderServlet extends HttpServlet {
 		bean.setSupplierId(supplierId);
 		bean.setNumber(number);
 		
-		if(type.equals("purchase")){
+		if(type.equals("進貨")){
 			service2.updateQty(productId, number, prize);
 			service.insert(bean);
-		} else if(type.equals("returnoff")){
+		} else if(type.equals("退貨")){
 			service2.updateQty(productId, -number, -prize);
 			service.insert(bean);
 		}

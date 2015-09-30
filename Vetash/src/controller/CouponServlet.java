@@ -71,7 +71,7 @@ public class CouponServlet extends HttpServlet {
 			
 			if(task.equals("delete")){
 				service.delete(coupon);
-				req.getRequestDispatcher("/ye/Coupons.html").forward(req, resp);
+				req.getRequestDispatcher("/backend_main.html").forward(req, resp);
 				return;
 			}
 		}
@@ -111,13 +111,13 @@ public class CouponServlet extends HttpServlet {
 		}
 		if(errs!=null && !errs.isEmpty()){
 			req.getRequestDispatcher(
-					"/ye/err.jsp").forward(req, resp);
+					"/backend_main.html").forward(req, resp);
 			return;
 		}
 		
 		if(task.equals("createOrUpdate")){
 			service.createOrUpdate(coupon, discount, deadline, times, notes);
-			req.getRequestDispatcher("/ye/Coupons.html").forward(req, resp);
+			req.getRequestDispatcher("/backend_main.html").forward(req, resp);
 			return;
 		}
 	}

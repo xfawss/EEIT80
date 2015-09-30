@@ -42,8 +42,7 @@ public class AccessBackServlet extends HttpServlet {
 			errs.put("warning1", "你怎進來的");
 		} else if(task.equals("login")) {
 			if(service.login(bigWave, passKey)){
-				errs.put("warning2", "SUCCESSFUL!!");
-				req.getRequestDispatcher("/ye/err.jsp").forward(req, resp);
+				req.getRequestDispatcher("/backend_main.html").forward(req, resp);
 				return;
 			} else {
 				errs.put("warning4", "Fail");
@@ -54,7 +53,7 @@ public class AccessBackServlet extends HttpServlet {
 			if(newPass1.equals(newPass2)) {
 				if(service.changePassKey(bigWave, passKey, newPass1)) {
 					errs.put("warning2", "SUCCESSFUL!!");
-					req.getRequestDispatcher("/ye/err.jsp").forward(req, resp);
+					req.getRequestDispatcher("/backend_main.html").forward(req, resp);
 					return;
 				} else {
 					errs.put("warning4", "Fail");

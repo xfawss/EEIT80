@@ -13,11 +13,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import misc.AllPayCheckMacValue;
 import misc.Parse;
 import model.OrderBean;
 import model.OrderService;
@@ -114,7 +116,7 @@ public class OrderCommandServlet extends HttpServlet {
 				errs.add("沒有關鍵字");
 			} else {
 				if(service.delete(orderNo)) {
-					req.getRequestDispatcher("/ye/err.jsp").forward(req, resp);
+					req.getRequestDispatcher("/backend_main.html").forward(req, resp);
 					return;
 				} else {
 					errs.add("刪除失敗");
@@ -171,30 +173,49 @@ public class OrderCommandServlet extends HttpServlet {
 			temp.add(board);
 			temp.add(triangle);
 			
-			if(orderDate.equals("已出貨")) {
+			if(orderState.equals("已出貨")) {
 				for(String a: temp) {
-					PurchaseRecordBean bean2 = new PurchaseRecordBean();
-					bean2.setDate(new java.util.Date());
-					bean2.setType("出貨");
-					bean2.setProductId(a);
-					bean2.setPrize(0);
-					bean2.setSupplierId(0);
-					bean2.setNumber(1);
-					service3.updateQty2(a);
-					service2.insert(bean2);
+					if(a!=null && a.length()!=0) {
+						PurchaseRecordBean bean2 = new PurchaseRecordBean();
+						bean2.setDate(new java.util.Date());
+						bean2.setType("出貨");
+						bean2.setProductId(a);
+						bean2.setPrize(0);
+						bean2.setSupplierId(0);
+						bean2.setNumber(1);
+						service3.updateQty2(a);
+						service2.insert(bean2);
+					}
 				}
 			}
 			service.update(bean);
-			req.getRequestDispatcher("/ye/err.jsp").forward(req, resp);
+			req.getRequestDispatcher("/backend_main.html").forward(req, resp);
 			return;
-		} else if(task.equals("telb")) {
-			if(customerTel==null || customerTel.length()==0) {
+		} else if(task.equals("checkOrder")) {
+			if(orderNo==null || orderNo.length()==0) {
 				errs.add("沒有關鍵字");
 			} else {
-				List<Map<String, Object>> beans = service.selectByTelF(customerTel);
-				jObj.put("results", beans);
-				out.print(jObj);
-				return;
+				bean = service.selectByOrderNo(orderNo);
+				HttpSession session = req.getSession(false);
+				session.setAttribute("joystick", bean);
+				if(bean.getOrderState().equals("已確認")) {
+					String orderDate2 = Parse.dateToString2(bean.getOrderDate());
+					String pricess = Integer.toString(bean.getPrice());
+					req.setAttribute("MerchantID", AllPayCheckMacValue.merchantID);
+					req.setAttribute("MerchantTradeNo", orderNo);
+					req.setAttribute("MerchantTradeDate", orderDate2);
+					req.setAttribute("PaymentType", AllPayCheckMacValue.paymentType);
+					req.setAttribute("TotalAmount", pricess);
+					req.setAttribute("TradeDesc", AllPayCheckMacValue.tradeDesc);
+					req.setAttribute("ItemName", AllPayCheckMacValue.itemName);
+					req.setAttribute("ReturnURL", AllPayCheckMacValue.returnURL);
+					req.setAttribute("ChoosePayment", AllPayCheckMacValue.choosePayment);
+					req.setAttribute("IgnorePayment", AllPayCheckMacValue.ignorePayment);
+					req.setAttribute("ClientBackURL", AllPayCheckMacValue.clientBackURL);
+					req.setAttribute("CheckMacValue", AllPayCheckMacValue.checkMacValue(orderNo, orderDate2, pricess));
+					req.setAttribute("AllPay", true);
+				}
+				req.getRequestDispatcher("/front_custom_orderlist.jsp").forward(req, resp);
 			}
 		}
 	}
