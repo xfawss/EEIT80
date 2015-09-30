@@ -40,8 +40,8 @@ public class SupplierDAOjdbc implements SupplierDAO {
 			
 			stmt.setInt(1, supplierId);
 			rset = stmt.executeQuery();
+			result = new SupplierBean();
 			while(rset.next()){
-				result = new SupplierBean();
 				result.setSupplierId(rset.getInt("SupplierId"));
 				result.setSupplierName(rset.getString("SupplierName"));
 				result.setSupplierTax(rset.getString("SupplierTax"));
@@ -61,7 +61,7 @@ public class SupplierDAOjdbc implements SupplierDAO {
 	private static final String SELECT_BY_SUPPLIERTEL="select * from Supplier where SupplierTel=?";
 	@Override
 	public SupplierBean selectByTel(String supplierTel) {
-		SupplierBean result = null;
+		SupplierBean result =null;
 		ResultSet rset = null;
 
 		try (

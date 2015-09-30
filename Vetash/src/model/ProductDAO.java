@@ -13,4 +13,5 @@ public interface ProductDAO {
 	public abstract List<ProductBean> selectByType(String productType);
     public abstract List<ProductBean> getAll();
     public abstract boolean updateQty(String productId, int productQty, int productCost);
+    public abstract List<ProductBean> selectLikeId(String productId);
 }

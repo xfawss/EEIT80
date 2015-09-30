@@ -35,20 +35,22 @@ public class ProductService {
 	}
 
 	
-	public Map<String, Object> selectById(String productId) {
-		Map<String, Object> results = new LinkedHashMap<String, Object>();
+	public List<Map<String, Object>> selectById(String productId) {
+		List<Map<String, Object>> results = new LinkedList<Map<String, Object>>();
 		ProductBean bean = null;
+		Map<String, Object> map1 = new LinkedHashMap<String, Object>();
 		if(productId != null && productId.length()!=0){
 			bean = productDAO.selectById(productId);
-			results.put("productId", bean.getProductId());
-			results.put("productName", bean.getProductName());
-			results.put("productType", bean.getProductType());
-			results.put("productPrice", bean.getProductPrice());
-			results.put("productCost", bean.getProductCost());
-			results.put("productQty", bean.getProductQty());
-			results.put("productImgPath", bean.getProductImgPath());
-			results.put("productNote", bean.getProductNote());
-			results.put("productColor", bean.getProductColor());
+			map1.put("productId", bean.getProductId());
+			map1.put("productName", bean.getProductName());
+			map1.put("productType", bean.getProductType());
+			map1.put("productPrice", bean.getProductPrice());
+			map1.put("productCost", bean.getProductCost());
+			map1.put("productQty", bean.getProductQty());
+			map1.put("productImgPath", bean.getProductImgPath());
+			map1.put("productNote", bean.getProductNote());
+			map1.put("productColor", bean.getProductColor());
+			results.add(map1);
 		}
 		return results;
 	}
@@ -160,5 +162,24 @@ public class ProductService {
 			return true;
 		}
 		return false;
+	}
+	
+	public List<Map<String, Object>> selectLikeId(String productId) {
+		List<Map<String, Object>> results = new LinkedList<Map<String,Object>>();
+		List<ProductBean> beans = productDAO.selectLikeId(productId);
+		for(int i=0; i<beans.size(); i++){
+			ProductBean bean = beans.get(i);
+			Map<String, Object> map1 = new LinkedHashMap<String, Object>();
+			map1.put("productId", bean.getProductId());
+			map1.put("productName", bean.getProductName());
+			map1.put("productType", bean.getProductType());
+			map1.put("productPrice", bean.getProductPrice());
+			map1.put("productCost", bean.getProductCost());
+			map1.put("productQty", bean.getProductQty());
+			map1.put("productImgPath", bean.getProductImgPath());
+			map1.put("productNote", bean.getProductNote());
+			results.add(map1);
+		}
+		return results;
 	}
 }

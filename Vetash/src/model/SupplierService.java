@@ -41,21 +41,26 @@ public class SupplierService {
 		return results;
 	}
 	
-	public  Map<String, Object> selectByTel(String supplierTel){
-		Map<String, Object> results = new LinkedHashMap<String, Object>();
-		SupplierBean bean = null;
+	public  List<Map<String, Object>> selectByTel(String supplierTel){
+		List<Map<String, Object>> results = new LinkedList<Map<String, Object>>();
+		
+		
 		if(supplierTel != null && supplierTel.length()!=0){
-			bean = suppDao.selectByTel(supplierTel);
-			results.put("supplierId", bean.getSupplierId());
-			results.put("supplierName", bean.getSupplierName());
-			results.put("supplierTax", bean.getSupplierTax());
-			results.put("supplierContact", bean.getSupplierContact());
-			results.put("supplierTel", bean.getSupplierTel());
-			results.put("supplierAddr", bean.getSupplierAddr());
-			results.put("supplierAcct", bean.getSupplierAcct());
-			results.put("supplierDate", Parse.dateToString(bean.getSupplierDate()));
-			results.put("supplierNote", bean.getSupplierNote());
+			SupplierBean bean = suppDao.selectByTel(supplierTel);
+			if(bean != null){
+			Map<String, Object> map1 = new LinkedHashMap<String, Object>();
+			map1.put("supplierId", bean.getSupplierId());
+			map1.put("supplierName", bean.getSupplierName());
+			map1.put("supplierTax", bean.getSupplierTax());
+			map1.put("supplierContact", bean.getSupplierContact());
+			map1.put("supplierTel", bean.getSupplierTel());
+			map1.put("supplierAddr", bean.getSupplierAddr());
+			map1.put("supplierAcct", bean.getSupplierAcct());
+			map1.put("supplierDate", Parse.dateToString(bean.getSupplierDate()));
+			map1.put("supplierNote", bean.getSupplierNote());
+			results.add(map1);
 		}
+			}
 		return results;
 	}
 
@@ -72,7 +77,7 @@ public class SupplierService {
 			map1.put("supplierTel", bean.getSupplierTel());
 			map1.put("supplierAddr", bean.getSupplierAddr());
 			map1.put("supplierAcct", bean.getSupplierAcct());
-			map1.put("supplierDate", bean.getSupplierDate());
+			map1.put("supplierDate", Parse.dateToString(bean.getSupplierDate()));
 			map1.put("supplierNote", bean.getSupplierNote());
 			results.add(map1);
 		}
@@ -120,7 +125,7 @@ public class SupplierService {
 			map1.put("supplierTel", bean1.getSupplierTel());
 			map1.put("supplierAddr", bean1.getSupplierAddr());
 			map1.put("supplierAcct", bean1.getSupplierAcct());
-			map1.put("supplierDate", bean1.getSupplierDate());
+			map1.put("supplierDate", Parse.dateToString(bean1.getSupplierDate()));
 			map1.put("supplierNote", bean1.getSupplierNote());
 			results.add(map1);
 		}
