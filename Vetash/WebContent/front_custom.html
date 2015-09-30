@@ -1,0 +1,1580 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+	<title>temp_custom</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+	<script src="semantic/dist/semantic.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+	<!-- additional -->
+	<style type=text/css>
+		body{
+			font-family: "微軟正黑體", "Microsoft JhengHei" !important;
+		}
+		h1{
+			font-family: "微軟正黑體", "Microsoft JhengHei" !important;
+		}
+	</style>
+	<style>
+		*{
+			border: 1px solid green;
+		}
+		.pure{
+			margin: 0px !important;
+			padding: 0px !important;
+		}
+		.purePaded{
+			margin: 0px !important;
+		}
+		.cursorPointer{
+			cursor:pointer;
+		}
+		#custom{
+			position: absolute;
+			height: 60vh;
+			width: 120vh;
+			top: 70vh;
+			left: 50vw;
+			transform : translate(-60vh,-30vh);
+			background-color: #333333;
+			margin:0px;
+			padding:0px;
+		}
+		.mainGrid{
+			height: 100%;
+			width: 100%;
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			margin: 0px !important;
+			padding: 0px !important;
+			background-color: rgb(253,253,247);
+		}
+		.theMenu{
+			height: 10%;
+			margin: 0px !important;
+			padding: 0px !important;
+		}
+		.theMenu .divider{
+			margin-top:3px;
+			margin-bottom: 5px;
+		}
+		.theTabs{
+			height: 30%;
+			margin: 0px !important;
+			padding: 0px !important;
+		}
+		.theTabs .grid{
+			height: 30vh;
+			width: 100vw;
+			margin: 0px !important;
+			padding: 0px !important;
+		}
+		.theTabs .grid .column{
+		}
+		.theView{
+			height: 60%;
+			margin: 0px !important;
+			padding: 0px !important;
+		}
+	</style>
+</head>
+<body>
+	<div class="ui center aligned grid mainGrid">
+		<div class="middle aligned row theMenu">
+			<div class="three wide column"></div>
+			<div class="nine wide middle aligned column">
+				<a class="ui orange large label lab1" data-tab="tab1">框體</a>
+				<i class="plus icon"></i>
+				<a class="ui grey disabled mini label lab2" data-tab="tab2">搖桿</a>
+				<i class="plus icon"></i>
+				<a class="ui grey disabled mini label lab3" data-tab="tab3">主按鍵</a>
+				<i class="plus icon"></i>
+				<a class="ui grey disabled mini label lab4" data-tab="tab4">副按鍵</a>
+				<i class="plus icon"></i>
+				<a class="ui grey disabled mini label lab5" data-tab="tab5">面板</a>
+				<i class="plus icon"></i>
+				<a class="ui grey disabled mini label lab6" data-tab="tab6">系統</a>
+				<div class="ui divider"></div>
+			</div>
+			<div class="four wide middle aligned column">
+				<div class="ui left labeled button" tabindex="0">
+					<a class="ui basic red label">
+					<i class="dollar icon"></i>
+						3600
+					</a>
+					<div class="ui red button" id="btnConfirm">
+						確認訂單
+					</div>
+				</div>
+			</div>
+			<div class="ui modal" id="productModal">
+				<div class="header">
+					確認搖桿配置
+				</div>
+				<form class="ui form" id="porductForm">
+					<div class="ui grid purePaded">
+						<div class="row">
+							<div class="six wide column">
+								<div class="field">
+									<label>框體</label>
+									<input type="text"  name="housing" />
+								</div>
+								<div class="field">
+									<label>搖桿</label>
+									<input type="text"  name="rocker" />
+								</div>
+								<div class="field">
+									<label>面板圖</label>
+									<input type="text"  name="coverImg" />
+								</div>
+								<div class="field">
+									<label>系統</label>
+									<input type="text"  name="board" />
+								</div>
+							</div>
+							<div class="five wide column">
+								<h5 class="ui dividing header">主按鍵</h5>
+								<div class="field">
+									<div class="ui labeled input">
+										<div class="ui label">
+											L1
+										</div>
+										<input type="text"  name="l1" />
+									</div>
+								</div>
+								<div class="field">
+									<div class="ui labeled input">
+										<div class="ui label">
+											L2
+										</div>
+										<input type="text"  name="l2" />
+									</div>
+								</div>
+								<div class="field">
+									<div class="ui labeled input">
+										<div class="ui label">
+											R1
+										</div>
+										<input type="text"  name="r1" />
+									</div>
+								</div>
+								<div class="field">
+									<div class="ui labeled input">
+										<div class="ui label">
+											R2
+										</div>
+										<input type="text"  name="r2" />
+									</div>
+								</div>
+								<div class="field">
+									<div class="ui labeled input">
+										<div class="ui label">
+											◎
+										</div>
+										<input type="text"  name="o" />
+									</div>
+								</div>
+								<div class="field">
+									<div class="ui labeled input">
+										<div class="ui label">
+											X
+										</div>
+										<input type="text"  name="x" />
+									</div>
+								</div>
+								<div class="field">
+									<div class="ui labeled input">
+										<div class="ui label">
+											◇
+										</div>
+										<input type="text"  name="square" />
+									</div>
+								</div>
+								<div class="field">
+									<div class="ui labeled input">
+										<div class="ui label">
+											△
+										</div>
+										<input type="text"  name="triangle" />
+									</div>
+								</div>
+							</div>
+							<div class="five wide column">
+								<h5 class="ui dividing header">副按鍵</h5>
+								<div class="field">
+									<div class="ui labeled input">
+										<div class="ui label">
+											Start
+										</div>
+										<input type="text"  name="start" />
+									</div>
+								</div>
+								<div class="field">
+									<div class="ui labeled input">
+										<div class="ui label">
+											Select
+										</div>
+										<input type="text"  name="selecter" />
+									</div>
+								</div>
+								<div class="field">
+									<div class="ui labeled input">
+										<div class="ui label">
+											Touch
+										</div>
+										<input type="text"  name="touch" />
+									</div>
+								</div>
+								<h5 class="ui dividing header">面板</h5>
+								<img src="images/fakeImg_L.png" class="ui image">
+								<input type="text" name="coverImg" />
+							</div>
+						</div>
+						<div class="row">
+							<div class="six wide column"></div>
+							<div class="fight aligned five wide column">
+								<div class="field">
+									<label>折扣碼</label>
+									<div class="ui icon input">
+										<i class="checkmark icon"></i>
+										<input placeholder="" type="text" name="coupon">
+										<input type="hidden" name="couponDiscount"><!-- for coupon check -->
+									</div>
+								</div>
+							</div>
+							<div class="right aligned five wide middle aligned column">
+								<div class="actions">
+									<div class="ui deny button">Cancel</div>
+									<div class="ui approve button">OK</div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="row theTabs">
+			<div class="ui tab active" data-tab="tab1" id="theTabs_Model">
+				<div class="ui center aligned grid">
+					<div class="two wide middle aligned right aligned column">
+					</div>
+					<div class="nine wide left aligned column">
+						<div class="ui items">
+							<div class="item">
+								<a class="ui small image">
+									<img src="images/fakeImg_L.png">
+								</a>
+								<div class="content">
+									<a class="header">新五號機</a>
+									<div class="description">
+										<p>
+										搖桿、鍵位與斜面的相對位置在經過十幾次的微調後，約於2010年確認後就使用至今，不僅配置與街機相同，手感也非常舒適，是最適合格鬥遊戲玩家使用的大搖。<br>
+										目前的新五號機，有壓克力面板、收線盒等設計，搭配側邊的切換開關，可以訂做為支援多系統的大搖。
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="three wide column">
+						<h4 class="ui dividing header">框體顏色</h4>
+						<div class="ui selection dropdown">
+							<input name="" type="hidden">
+							<i class="dropdown icon"></i>
+							<div class="default text">請選擇顏色</div>
+							<div class="menu">
+								<div class="item">
+									<div class="ui red empty circular label"></div>
+									紅
+								</div>
+								<div class="item">
+									<div class="ui blue empty circular label"></div>
+									藍
+								</div>
+								<div class="item">
+									<div class="ui black empty circular label"></div>
+									黑
+								</div>
+								<div class="item">
+									<div class="ui purple empty circular label"></div>
+									紫
+								</div>
+								<div class="item">
+									<div class="ui orange empty circular label"></div>
+									橙
+								</div>
+								<div class="item">
+									<div class="ui empty circular label"></div>
+									白
+								</div>
+								<div class="item">
+									<div class="ui yellow empty circular label"></div>
+									黃
+								</div>
+								<div class="item">
+									<div class="ui pink empty circular label"></div>
+									粉
+								</div>
+								<div class="item">
+									<div class="ui green empty circular label"></div>
+									綠
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="two wide middle aligned left aligned column">
+						<i class="circular big grey chevron right icon cursorPointer" data-tab="tab2"></i>
+					</div>
+				</div>
+			</div>
+			<div class="ui tab" data-tab="tab2" id="theTabs_Stick">
+				<div class="ui center aligned grid">
+					<div class="two wide middle aligned right aligned column">
+						<i class="circular big grey chevron left icon cursorPointer" data-tab="tab1"></i>
+					</div>
+					<div class="three wide column">
+						<h5 class="ui dividing header">搖桿</h5>
+						<div class="ui selection dropdown">
+							<input name="housing" type="hidden">
+							<i class="dropdown icon"></i>
+							<div class="default text">請選擇種類</div>
+							<div class="menu">
+								<div class="item" data-value="sanwa">
+									<div class="ui empty circular label"></div>
+									三和搖桿
+								</div>
+								<div class="item" data-value="fanta">
+									<div class="ui empty circular label"></div>
+									韓國搖 Fanta
+								</div>
+								<div class="item" data-value="crown">
+									<div class="ui empty circular label"></div>
+									韓國搖 Crown
+								</div>
+							</div>
+						</div>
+						<div class="ui divider"></div>
+						<div class="ui selection dropdown">
+							<input name="" type="hidden">
+							<i class="dropdown icon"></i>
+							<div class="default text">請選擇顏色</div>
+							<div class="menu">
+								<div class="item">
+									<div class="ui red empty circular label"></div>
+									紅
+								</div>
+								<div class="item">
+									<div class="ui blue empty circular label"></div>
+									藍
+								</div>
+								<div class="item">
+									<div class="ui black empty circular label"></div>
+									黑
+								</div>
+								<div class="item">
+									<div class="ui purple empty circular label"></div>
+									紫
+								</div>
+								<div class="item">
+									<div class="ui orange empty circular label"></div>
+									橙
+								</div>
+								<div class="item">
+									<div class="ui empty circular label"></div>
+									白
+								</div>
+								<div class="item">
+									<div class="ui yellow empty circular label"></div>
+									黃
+								</div>
+								<div class="item">
+									<div class="ui pink empty circular label"></div>
+									粉
+								</div>
+								<div class="item">
+									<div class="ui green empty circular label"></div>
+									綠
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="nine wide left aligned column">
+						<div class="ui items">
+							<div class="item sanwa" style="display:none;margin-top:0px">
+								<a class="ui small image">
+									<img src="images/fakeImg_L.png">
+								</a>
+								<div class="content">
+									<div class="header">三和搖桿</div>
+									<div class="description">
+										<p>
+											廣受歡迎的日製搖桿，街機主流，手感輕巧易上手，最推薦使用。
+										</p>
+									</div>
+								</div>
+							</div>
+							<div class="item fanta" style="display:none;margin-top:0px">
+								<a class="ui small image">
+									<img src="images/fakeImg_L.png">
+								</a>
+								<div class="content">
+									<div class="header">韓國搖 Fanta</div>
+									<div class="description">
+										<p>
+											韓國人設計的搖桿，水滴頭、彈性高與無擋板是其特色，適合鐵拳或VF玩家使用。需搭配客製面板，無法自行換裝。
+										</p>
+									</div>
+								</div>
+							</div>
+							<div class="item crown" style="display:none;margin-top:0px">
+								<a class="ui small image">
+									<img src="images/fakeImg_L.png">
+								</a>
+								<div class="content">
+									<div class="header">韓國搖 Crown</div>
+									<div class="description">
+										<p>
+											與Fanta類似的韓國搖，一樣是水滴頭、高彈性無擋板，但採用平鐵設計，可安裝在一般大搖上。
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="two wide middle aligned left aligned column">
+						<i class="circular big grey chevron right icon cursorPointer" data-tab="tab3"></i>
+					</div>
+				</div>
+			</div>
+			<div class="ui tab" data-tab="tab3" id="theTabs_Btn1">
+				<div class="ui center aligned grid">
+					<div class="two wide middle aligned right aligned column">
+						<i class="circular big grey chevron left icon cursorPointer" data-tab="tab2"></i>
+					</div>
+					<div class="eight wide left aligned column">
+						<div class="ui grid pure" style="width:100%;height:100%">
+						<h5 class="ui dividing header">主按鍵</h5>
+							<div class="four column row">
+								<div class="column">
+									<label>L1</label>
+									<div class="ui dropdown mini button">
+										<input name="" type="hidden">
+										<div class="default text">請選擇按鍵</div>
+										<i class="dropdown icon"></i>
+										<div class="menu">
+											<div class="item">
+												<i class="dropdown icon"></i>
+												<span class="text">三和按鍵</span>
+												<div class="menu">
+													<div class="item" data-value="sanwaBtn">
+														<div class="ui red empty circular label"></div>
+														三和按鍵(紅)
+													</div>
+													<div class="item">
+														<div class="ui blue empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(藍)
+													</div>
+													<div class="item">
+														<div class="ui black empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(黑)
+													</div>
+													<div class="item">
+														<div class="ui purple empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(紫)
+													</div>
+													<div class="item">
+														<div class="ui orange empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(橙)
+													</div>
+													<div class="item">
+														<div class="ui empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(白)
+													</div>
+													<div class="item">
+														<div class="ui yellow empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(黃)
+													</div>
+													<div class="item">
+														<div class="ui pink empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(粉)
+													</div>
+													<div class="item">
+														<div class="ui green empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(綠)
+													</div>
+												</div>
+											</div>
+											<div class="item">
+												<i class="dropdown icon"></i>
+												<span class="text">靜音按鍵</span>
+												<div class="menu">
+													<div class="item">
+														<div class="ui red empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(紅)
+													</div>
+													<div class="item">
+														<div class="ui blue empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(藍)
+													</div>
+													<div class="item">
+														<div class="ui black empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(黑)
+													</div>
+													<div class="item">
+														<div class="ui purple empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(紫)
+													</div>
+													<div class="item">
+														<div class="ui orange empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(橙)
+													</div>
+													<div class="item">
+														<div class="ui empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(白)
+													</div>
+													<div class="item">
+														<div class="ui yellow empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(黃)
+													</div>
+													<div class="item">
+														<div class="ui pink empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(粉)
+													</div>
+													<div class="item">
+														<div class="ui green empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(綠)
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="column">
+									<div class="ui dropdown mini button">
+										<input name="" type="hidden">
+										<div class="default text">請選擇按鍵</div>
+										<i class="dropdown icon"></i>
+										<div class="menu">
+											<div class="item">
+												<i class="dropdown icon"></i>
+												<span class="text">三和按鍵</span>
+												<div class="menu">
+													<div class="item" data-value="sanwaBtn">
+														<div class="ui red empty circular label"></div>
+														三和按鍵(紅)
+													</div>
+													<div class="item">
+														<div class="ui blue empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(藍)
+													</div>
+													<div class="item">
+														<div class="ui black empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(黑)
+													</div>
+													<div class="item">
+														<div class="ui purple empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(紫)
+													</div>
+													<div class="item">
+														<div class="ui orange empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(橙)
+													</div>
+													<div class="item">
+														<div class="ui empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(白)
+													</div>
+													<div class="item">
+														<div class="ui yellow empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(黃)
+													</div>
+													<div class="item">
+														<div class="ui pink empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(粉)
+													</div>
+													<div class="item">
+														<div class="ui green empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(綠)
+													</div>
+												</div>
+											</div>
+											<div class="item">
+												<i class="dropdown icon"></i>
+												<span class="text">靜音按鍵</span>
+												<div class="menu">
+													<div class="item">
+														<div class="ui red empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(紅)
+													</div>
+													<div class="item">
+														<div class="ui blue empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(藍)
+													</div>
+													<div class="item">
+														<div class="ui black empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(黑)
+													</div>
+													<div class="item">
+														<div class="ui purple empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(紫)
+													</div>
+													<div class="item">
+														<div class="ui orange empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(橙)
+													</div>
+													<div class="item">
+														<div class="ui empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(白)
+													</div>
+													<div class="item">
+														<div class="ui yellow empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(黃)
+													</div>
+													<div class="item">
+														<div class="ui pink empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(粉)
+													</div>
+													<div class="item">
+														<div class="ui green empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(綠)
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="column">
+									<div class="ui dropdown mini button">
+										<input name="" type="hidden">
+										<div class="default text">請選擇按鍵</div>
+										<i class="dropdown icon"></i>
+										<div class="menu">
+											<div class="item">
+												<i class="dropdown icon"></i>
+												<span class="text">三和按鍵</span>
+												<div class="menu">
+													<div class="item" data-value="sanwaBtn">
+														<div class="ui red empty circular label"></div>
+														三和按鍵(紅)
+													</div>
+													<div class="item">
+														<div class="ui blue empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(藍)
+													</div>
+													<div class="item">
+														<div class="ui black empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(黑)
+													</div>
+													<div class="item">
+														<div class="ui purple empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(紫)
+													</div>
+													<div class="item">
+														<div class="ui orange empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(橙)
+													</div>
+													<div class="item">
+														<div class="ui empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(白)
+													</div>
+													<div class="item">
+														<div class="ui yellow empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(黃)
+													</div>
+													<div class="item">
+														<div class="ui pink empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(粉)
+													</div>
+													<div class="item">
+														<div class="ui green empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(綠)
+													</div>
+												</div>
+											</div>
+											<div class="item">
+												<i class="dropdown icon"></i>
+												<span class="text">靜音按鍵</span>
+												<div class="menu">
+													<div class="item">
+														<div class="ui red empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(紅)
+													</div>
+													<div class="item">
+														<div class="ui blue empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(藍)
+													</div>
+													<div class="item">
+														<div class="ui black empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(黑)
+													</div>
+													<div class="item">
+														<div class="ui purple empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(紫)
+													</div>
+													<div class="item">
+														<div class="ui orange empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(橙)
+													</div>
+													<div class="item">
+														<div class="ui empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(白)
+													</div>
+													<div class="item">
+														<div class="ui yellow empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(黃)
+													</div>
+													<div class="item">
+														<div class="ui pink empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(粉)
+													</div>
+													<div class="item">
+														<div class="ui green empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(綠)
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="column">
+									<div class="ui dropdown mini button">
+										<input name="" type="hidden">
+										<div class="default text">請選擇按鍵</div>
+										<i class="dropdown icon"></i>
+										<div class="menu">
+											<div class="item">
+												<i class="dropdown icon"></i>
+												<span class="text">三和按鍵</span>
+												<div class="menu">
+													<div class="item" data-value="sanwaBtn">
+														<div class="ui red empty circular label"></div>
+														三和按鍵(紅)
+													</div>
+													<div class="item">
+														<div class="ui blue empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(藍)
+													</div>
+													<div class="item">
+														<div class="ui black empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(黑)
+													</div>
+													<div class="item">
+														<div class="ui purple empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(紫)
+													</div>
+													<div class="item">
+														<div class="ui orange empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(橙)
+													</div>
+													<div class="item">
+														<div class="ui empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(白)
+													</div>
+													<div class="item">
+														<div class="ui yellow empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(黃)
+													</div>
+													<div class="item">
+														<div class="ui pink empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(粉)
+													</div>
+													<div class="item">
+														<div class="ui green empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(綠)
+													</div>
+												</div>
+											</div>
+											<div class="item">
+												<i class="dropdown icon"></i>
+												<span class="text">靜音按鍵</span>
+												<div class="menu">
+													<div class="item">
+														<div class="ui red empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(紅)
+													</div>
+													<div class="item">
+														<div class="ui blue empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(藍)
+													</div>
+													<div class="item">
+														<div class="ui black empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(黑)
+													</div>
+													<div class="item">
+														<div class="ui purple empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(紫)
+													</div>
+													<div class="item">
+														<div class="ui orange empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(橙)
+													</div>
+													<div class="item">
+														<div class="ui empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(白)
+													</div>
+													<div class="item">
+														<div class="ui yellow empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(黃)
+													</div>
+													<div class="item">
+														<div class="ui pink empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(粉)
+													</div>
+													<div class="item">
+														<div class="ui green empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(綠)
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="four column row">
+								<div class="column">
+									<div class="ui dropdown mini button">
+										<input name="" type="hidden">
+										<div class="default text">請選擇按鍵</div>
+										<i class="dropdown icon"></i>
+										<div class="menu">
+											<div class="item">
+												<i class="dropdown icon"></i>
+												<span class="text">三和按鍵</span>
+												<div class="menu">
+													<div class="item" data-value="sanwaBtn">
+														<div class="ui red empty circular label"></div>
+														三和按鍵(紅)
+													</div>
+													<div class="item">
+														<div class="ui blue empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(藍)
+													</div>
+													<div class="item">
+														<div class="ui black empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(黑)
+													</div>
+													<div class="item">
+														<div class="ui purple empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(紫)
+													</div>
+													<div class="item">
+														<div class="ui orange empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(橙)
+													</div>
+													<div class="item">
+														<div class="ui empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(白)
+													</div>
+													<div class="item">
+														<div class="ui yellow empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(黃)
+													</div>
+													<div class="item">
+														<div class="ui pink empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(粉)
+													</div>
+													<div class="item">
+														<div class="ui green empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(綠)
+													</div>
+												</div>
+											</div>
+											<div class="item">
+												<i class="dropdown icon"></i>
+												<span class="text">靜音按鍵</span>
+												<div class="menu">
+													<div class="item">
+														<div class="ui red empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(紅)
+													</div>
+													<div class="item">
+														<div class="ui blue empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(藍)
+													</div>
+													<div class="item">
+														<div class="ui black empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(黑)
+													</div>
+													<div class="item">
+														<div class="ui purple empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(紫)
+													</div>
+													<div class="item">
+														<div class="ui orange empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(橙)
+													</div>
+													<div class="item">
+														<div class="ui empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(白)
+													</div>
+													<div class="item">
+														<div class="ui yellow empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(黃)
+													</div>
+													<div class="item">
+														<div class="ui pink empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(粉)
+													</div>
+													<div class="item">
+														<div class="ui green empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(綠)
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="column">
+									<div class="ui dropdown mini button">
+										<input name="" type="hidden">
+										<div class="default text">請選擇按鍵</div>
+										<i class="dropdown icon"></i>
+										<div class="menu">
+											<div class="item">
+												<i class="dropdown icon"></i>
+												<span class="text">三和按鍵</span>
+												<div class="menu">
+													<div class="item" data-value="sanwaBtn">
+														<div class="ui red empty circular label"></div>
+														三和按鍵(紅)
+													</div>
+													<div class="item">
+														<div class="ui blue empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(藍)
+													</div>
+													<div class="item">
+														<div class="ui black empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(黑)
+													</div>
+													<div class="item">
+														<div class="ui purple empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(紫)
+													</div>
+													<div class="item">
+														<div class="ui orange empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(橙)
+													</div>
+													<div class="item">
+														<div class="ui empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(白)
+													</div>
+													<div class="item">
+														<div class="ui yellow empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(黃)
+													</div>
+													<div class="item">
+														<div class="ui pink empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(粉)
+													</div>
+													<div class="item">
+														<div class="ui green empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(綠)
+													</div>
+												</div>
+											</div>
+											<div class="item">
+												<i class="dropdown icon"></i>
+												<span class="text">靜音按鍵</span>
+												<div class="menu">
+													<div class="item">
+														<div class="ui red empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(紅)
+													</div>
+													<div class="item">
+														<div class="ui blue empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(藍)
+													</div>
+													<div class="item">
+														<div class="ui black empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(黑)
+													</div>
+													<div class="item">
+														<div class="ui purple empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(紫)
+													</div>
+													<div class="item">
+														<div class="ui orange empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(橙)
+													</div>
+													<div class="item">
+														<div class="ui empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(白)
+													</div>
+													<div class="item">
+														<div class="ui yellow empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(黃)
+													</div>
+													<div class="item">
+														<div class="ui pink empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(粉)
+													</div>
+													<div class="item">
+														<div class="ui green empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(綠)
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="column">
+									<div class="ui dropdown mini button">
+										<input name="" type="hidden">
+										<div class="default text">請選擇按鍵</div>
+										<i class="dropdown icon"></i>
+										<div class="menu">
+											<div class="item">
+												<i class="dropdown icon"></i>
+												<span class="text">三和按鍵</span>
+												<div class="menu">
+													<div class="item" data-value="sanwaBtn">
+														<div class="ui red empty circular label"></div>
+														三和按鍵(紅)
+													</div>
+													<div class="item">
+														<div class="ui blue empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(藍)
+													</div>
+													<div class="item">
+														<div class="ui black empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(黑)
+													</div>
+													<div class="item">
+														<div class="ui purple empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(紫)
+													</div>
+													<div class="item">
+														<div class="ui orange empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(橙)
+													</div>
+													<div class="item">
+														<div class="ui empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(白)
+													</div>
+													<div class="item">
+														<div class="ui yellow empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(黃)
+													</div>
+													<div class="item">
+														<div class="ui pink empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(粉)
+													</div>
+													<div class="item">
+														<div class="ui green empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(綠)
+													</div>
+												</div>
+											</div>
+											<div class="item">
+												<i class="dropdown icon"></i>
+												<span class="text">靜音按鍵</span>
+												<div class="menu">
+													<div class="item">
+														<div class="ui red empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(紅)
+													</div>
+													<div class="item">
+														<div class="ui blue empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(藍)
+													</div>
+													<div class="item">
+														<div class="ui black empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(黑)
+													</div>
+													<div class="item">
+														<div class="ui purple empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(紫)
+													</div>
+													<div class="item">
+														<div class="ui orange empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(橙)
+													</div>
+													<div class="item">
+														<div class="ui empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(白)
+													</div>
+													<div class="item">
+														<div class="ui yellow empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(黃)
+													</div>
+													<div class="item">
+														<div class="ui pink empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(粉)
+													</div>
+													<div class="item">
+														<div class="ui green empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(綠)
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="column">
+									<div class="ui dropdown mini button">
+										<input name="" type="hidden">
+										<div class="default text">請選擇按鍵</div>
+										<i class="dropdown icon"></i>
+										<div class="menu">
+											<div class="item">
+												<i class="dropdown icon"></i>
+												<span class="text">三和按鍵</span>
+												<div class="menu">
+													<div class="item" data-value="sanwaBtn">
+														<div class="ui red empty circular label"></div>
+														三和按鍵(紅)
+													</div>
+													<div class="item">
+														<div class="ui blue empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(藍)
+													</div>
+													<div class="item">
+														<div class="ui black empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(黑)
+													</div>
+													<div class="item">
+														<div class="ui purple empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(紫)
+													</div>
+													<div class="item">
+														<div class="ui orange empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(橙)
+													</div>
+													<div class="item">
+														<div class="ui empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(白)
+													</div>
+													<div class="item">
+														<div class="ui yellow empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(黃)
+													</div>
+													<div class="item">
+														<div class="ui pink empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(粉)
+													</div>
+													<div class="item">
+														<div class="ui green empty circular label" data-value="sanwaBtn"></div>
+														三和按鍵(綠)
+													</div>
+												</div>
+											</div>
+											<div class="item">
+												<i class="dropdown icon"></i>
+												<span class="text">靜音按鍵</span>
+												<div class="menu">
+													<div class="item">
+														<div class="ui red empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(紅)
+													</div>
+													<div class="item">
+														<div class="ui blue empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(藍)
+													</div>
+													<div class="item">
+														<div class="ui black empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(黑)
+													</div>
+													<div class="item">
+														<div class="ui purple empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(紫)
+													</div>
+													<div class="item">
+														<div class="ui orange empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(橙)
+													</div>
+													<div class="item">
+														<div class="ui empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(白)
+													</div>
+													<div class="item">
+														<div class="ui yellow empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(黃)
+													</div>
+													<div class="item">
+														<div class="ui pink empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(粉)
+													</div>
+													<div class="item">
+														<div class="ui green empty circular label" data-value="silentBtn"></div>
+														靜音按鍵(綠)
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="four wide left aligned column">
+						<div class="ui items">
+							<div class="item sanwaBtn">
+								<img class="ui image" src="images/fakeImg_L.png" height="70" width="70" style="display:inline">
+								<div class="content" style="display:inline">
+									<div class="header">三和按鍵</div>
+									<div class="description">
+										廣受歡迎的日製按鍵，街機標準品，觸感輕巧，靈敏度高，格鬥遊戲玩家最愛。
+									</div>
+								</div>
+							</div>
+							<div class="item silentBun">
+								<img class="ui image" src="images/fakeImg_L.png" height="70" width="70" style="display:inline">
+								<div class="content" style="display:inline">
+									<div class="header">靜音按鍵</div>
+									<div class="description">
+										來自台灣GamerFingers設計製造的靜音按鍵，採用機械Cherry紅軸搭配緩沖墊，有效降低按鍵的嘈雜聲音。
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="two wide middle aligned left aligned column">
+						<i class="circular big grey chevron right icon cursorPointer" data-tab="tab4"></i>
+					</div>
+				</div>
+			</div>
+			<div class="ui tab" data-tab="tab4" id="theTabs_Btn2">
+				<div class="ui center aligned grid">
+					<div class="two wide middle aligned right aligned column">
+						<i class="circular big grey chevron left icon cursorPointer" data-tab="tab3"></i>
+					</div>
+					<div class="three wide column">
+						
+					</div>
+					<div class="six wide column pure">
+						
+					</div>
+					<div class="three wide column">
+						
+					</div>
+					<div class="two wide middle aligned left aligned column">
+						<i class="circular big grey chevron right icon cursorPointer" data-tab="tab5"></i>
+					</div>
+				</div>
+			</div>
+			<div class="ui tab" data-tab="tab5" id="theTabs_Surface">
+				<div class="ui center aligned grid">
+					<div class="two wide middle aligned right aligned column">
+						<i class="circular big grey chevron left icon cursorPointer" data-tab="tab4"></i>
+					</div>
+					<div class="three wide column">
+						
+					</div>
+					<div class="six wide column pure">
+						
+					</div>
+					<div class="three wide column">
+						
+					</div>
+					<div class="two wide middle aligned left aligned column">
+						<i class="circular big grey chevron right icon cursorPointer" data-tab="tab6"></i>
+					</div>
+				</div>
+			</div>
+			<div class="ui tab" data-tab="tab6" id="theTabs_System">
+				<div class="ui center aligned grid">
+					<div class="two wide middle aligned right aligned column">
+						<i class="circular big grey chevron left icon cursorPointer" data-tab="tab5"></i>
+					</div>
+					<div class="three wide column">
+						
+					</div>
+					<div class="six wide column pure">
+						
+					</div>
+					<div class="three wide column">
+						
+					</div>
+					<div class="two wide middle aligned left aligned column">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row theView"></div>
+	</div>
+	<div id="custom">
+	</div>
+</body>
+<script>
+	/*theMenu behaviour*/
+		function disableAllLabels(){
+			$('.theMenu .lab1').removeClass('large');
+			$('.theMenu .lab2').removeClass('large');
+			$('.theMenu .lab3').removeClass('large');
+			$('.theMenu .lab4').removeClass('large');
+			$('.theMenu .lab5').removeClass('large');
+			$('.theMenu .lab6').removeClass('large');
+
+			$('.theMenu .lab1').addClass('mini');
+			$('.theMenu .lab2').addClass('mini');
+			$('.theMenu .lab3').addClass('mini');
+			$('.theMenu .lab4').addClass('mini');
+			$('.theMenu .lab5').addClass('mini');
+			$('.theMenu .lab6').addClass('mini');
+
+			$('.theMenu .lab1').addClass('disabled');
+			$('.theMenu .lab2').addClass('disabled');
+			$('.theMenu .lab3').addClass('disabled');
+			$('.theMenu .lab4').addClass('disabled');
+			$('.theMenu .lab5').addClass('disabled');
+			$('.theMenu .lab6').addClass('disabled');
+		}
+
+		$('.theMenu .lab1').tab({
+			onLoad:function(){
+				disableAllLabels();
+				$('.theMenu .lab1').removeClass('grey');
+				$('.theMenu .lab1').removeClass('disabled');
+				$('.theMenu .lab1').addClass('orange');
+				$('.theMenu .lab1').addClass('large');
+			}
+		});
+		$('.theMenu .lab2').tab({
+			onLoad:function(){
+				disableAllLabels();
+				$('.theMenu .lab2').removeClass('grey');
+				$('.theMenu .lab2').removeClass('disabled');
+				$('.theMenu .lab2').addClass('orange');
+				$('.theMenu .lab2').addClass('large');
+			}
+		});
+		$('.theMenu .lab3').tab({
+			onLoad:function(){
+				disableAllLabels();
+				$('.theMenu .lab3').removeClass('grey');
+				$('.theMenu .lab3').removeClass('disabled');
+				$('.theMenu .lab3').addClass('orange');
+				$('.theMenu .lab3').addClass('large');
+			}
+		});
+		$('.theMenu .lab4').tab({
+			onLoad:function(){
+				disableAllLabels();
+				$('.theMenu .lab4').removeClass('grey');
+				$('.theMenu .lab4').removeClass('disabled');
+				$('.theMenu .lab4').addClass('orange');
+				$('.theMenu .lab4').addClass('large');
+			}
+		});
+		$('.theMenu .lab5').tab({
+			onLoad:function(){
+				disableAllLabels();
+				$('.theMenu .lab5').removeClass('grey');
+				$('.theMenu .lab5').removeClass('disabled');
+				$('.theMenu .lab5').addClass('orange');
+				$('.theMenu .lab5').addClass('large');
+			}
+		});
+		$('.theMenu .lab6').tab({
+			onLoad:function(){
+				disableAllLabels();
+				$('.theMenu .lab6').removeClass('grey');
+				$('.theMenu .lab6').removeClass('disabled');
+				$('.theMenu .lab6').addClass('orange');
+				$('.theMenu .lab6').addClass('large');
+			}
+		});
+
+		$('#theTabs_Model .right.icon').tab({
+			onLoad:function(){
+				disableAllLabels();
+				$('.theMenu .lab2').removeClass('grey');
+				$('.theMenu .lab2').removeClass('disabled');
+				$('.theMenu .lab2').addClass('orange');
+				$('.theMenu .lab2').addClass('large');
+			}
+		});
+		$('#theTabs_Stick .left.icon').tab({
+			onLoad:function(){
+				disableAllLabels();
+				$('.theMenu .lab1').removeClass('grey');
+				$('.theMenu .lab1').removeClass('disabled');
+				$('.theMenu .lab1').addClass('orange');
+				$('.theMenu .lab1').addClass('large');
+			}
+		});
+		$('#theTabs_Stick .right.icon').tab({
+			onLoad:function(){
+				disableAllLabels();
+				$('.theMenu .lab3').removeClass('grey');
+				$('.theMenu .lab3').removeClass('disabled');
+				$('.theMenu .lab3').addClass('orange');
+				$('.theMenu .lab3').addClass('large');
+			}
+		});
+		$('#theTabs_Btn1 .left.icon').tab({
+			onLoad:function(){
+				disableAllLabels();
+				$('.theMenu .lab2').removeClass('grey');
+				$('.theMenu .lab2').removeClass('disabled');
+				$('.theMenu .lab2').addClass('orange');
+				$('.theMenu .lab2').addClass('large');
+			}
+		});
+		$('#theTabs_Btn1 .right.icon').tab({
+			onLoad:function(){
+				disableAllLabels();
+				$('.theMenu .lab4').removeClass('grey');
+				$('.theMenu .lab4').removeClass('disabled');
+				$('.theMenu .lab4').addClass('orange');
+				$('.theMenu .lab4').addClass('large');
+			}
+		});
+		$('#theTabs_Btn2 .left.icon').tab({
+			onLoad:function(){
+				disableAllLabels();
+				$('.theMenu .lab3').removeClass('grey');
+				$('.theMenu .lab3').removeClass('disabled');
+				$('.theMenu .lab3').addClass('orange');
+				$('.theMenu .lab3').addClass('large');
+			}
+		});
+		$('#theTabs_Btn2 .right.icon').tab({
+			onLoad:function(){
+				disableAllLabels();
+				$('.theMenu .lab5').removeClass('grey');
+				$('.theMenu .lab5').removeClass('disabled');
+				$('.theMenu .lab5').addClass('orange');
+				$('.theMenu .lab5').addClass('large');
+			}
+		});
+		$('#theTabs_Surface .left.icon').tab({
+			onLoad:function(){
+				disableAllLabels();
+				$('.theMenu .lab4').removeClass('grey');
+				$('.theMenu .lab4').removeClass('disabled');
+				$('.theMenu .lab4').addClass('orange');
+				$('.theMenu .lab4').addClass('large');
+			}
+		});
+		$('#theTabs_Surface .right.icon').tab({
+			onLoad:function(){
+				disableAllLabels();
+				$('.theMenu .lab6').removeClass('grey');
+				$('.theMenu .lab6').removeClass('disabled');
+				$('.theMenu .lab6').addClass('orange');
+				$('.theMenu .lab6').addClass('large');
+			}
+		});
+		$('#theTabs_System .left.icon').tab({
+			onLoad:function(){
+				disableAllLabels();
+				$('.theMenu .lab5').removeClass('grey');
+				$('.theMenu .lab5').removeClass('disabled');
+				$('.theMenu .lab5').addClass('orange');
+				$('.theMenu .lab5').addClass('large');
+			}
+		});
+
+	$('#btnConfirm').click(function(){
+		/*引入所有的表格欄位*/
+		$('#productModal').modal('show');
+	});
+
+	$('#productModal').modal({
+		allowMultiple: true,
+		debug:false,
+		closable:false,
+		onApprove : function() {
+			var coupon = $('#porductForm').form('get value', 'coupon');
+			console.log(coupon);
+			$.ajax({
+				url:'./coupon',
+				type:'get',
+				data:{
+					"task":"find",
+					"coupon":coupon
+				},
+				dataType:"json",
+				success:function(results){
+					var discount = results.discount;
+					if(discount===0){
+						/*無效*/
+						$('#porductForm').form('set value', 'couponDiscount', 'fail');
+						console.log($('#porductForm').form('get value', 'couponDiscount'));
+						$('#porductForm').form('validate form');
+						return false;
+					} else{
+						/*有效*/
+						$('#porductForm').form('set value', 'couponDiscount', 'success');
+						$('#porductForm').form('validate form');
+						return false;
+					}
+				}
+			});
+			return false;
+		}
+	});
+
+	$('#porductForm').form({
+		inline:true,
+		fields:{
+			couponDiscount: {
+				identifier: 'couponDiscount',
+				rules: [
+				{
+					type   : 'isExactly[success]',
+					prompt : '無效的折扣碼'
+				}
+				]
+			}
+		},
+		onSuccess:function(){
+			console.log("validation successed");
+			var valuesToSubmit = $('#porductForm').form('get values');
+			/*action="/Vetash/joystick" method="post"*/
+			$.post(
+				"/Vetash/joystick",
+				{
+					housing: valuesToSubmit.housing,
+					rocker: valuesToSubmit.rocker,
+					l1: valuesToSubmit.l1,
+					l2: valuesToSubmit.l2,
+					r1: valuesToSubmit.r1,
+					r2: valuesToSubmit.r2,
+					o: valuesToSubmit.o,
+					x: valuesToSubmit.x,
+					square: valuesToSubmit.square,
+					triangle: valuesToSubmit.triangle,
+					start: valuesToSubmit.start,
+					selecter: valuesToSubmit.selecter,
+					touch: valuesToSubmit.touch,
+					coverImg: valuesToSubmit.coverImg,
+					board: valuesToSubmit.board,
+					coupon: valuesToSubmit.coupon
+				}
+			);
+		}
+	});
+
+	/*theTabs_Model*/
+		$('#theTabs_Model .dropdown').dropdown();
+		$('#theTabs_Stick .dropdown').dropdown({
+			onChange:function(){
+				var housing = $('#theTabs_Stick input[name="housing"]').val();
+				if("sanwa"===housing){
+					$('#theTabs_Stick .sanwa').show();
+					$('#theTabs_Stick .fanta').hide();
+					$('#theTabs_Stick .crown').hide();
+				} else if("fanta"===housing){
+					$('#theTabs_Stick .sanwa').hide();
+					$('#theTabs_Stick .fanta').show();
+					$('#theTabs_Stick .crown').hide();
+				} else if("crown"===housing){
+					$('#theTabs_Stick .sanwa').hide();
+					$('#theTabs_Stick .fanta').hide();
+					$('#theTabs_Stick .crown').show();
+				}
+			}
+		});
+		$('#theTabs_Btn1 .dropdown').dropdown({
+			onChange:function(){
+				var btn1 = $('#theTabs_Stick input[name="housing"]').val();
+			}
+		});
+
+
+</script>
+</html>

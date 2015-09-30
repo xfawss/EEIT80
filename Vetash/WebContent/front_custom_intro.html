@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+	<title>orderintro</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+	<script src="semantic/dist/semantic.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+	<!-- additional -->
+	<style>
+		*{
+			/* border: 1px solid green; */
+		}
+		body{
+			background-color: rgb(253,253,247);
+		}
+		.pure{
+			margin: 0px !important;
+			padding: 0px !important;
+		}
+		.purePaded{
+			margin: 0px !important;
+		}
+		.cursorPointer{
+			cursor:pointer;
+		}
+		.theMenu{
+			height: 6%;
+			width: 100%;
+			margin: 0px !important;
+			padding: 0px !important;
+			position: absolute;
+		}
+		.theMenuPlaceholder{
+			height: 8vh;
+		}
+		.thePage{
+			height: 92vh;
+		}
+	</style>
+	<style type=text/css>
+		body{
+			font-family: "微軟正黑體", "Microsoft JhengHei" !important;
+		}
+		h1{
+			font-family: "微軟正黑體", "Microsoft JhengHei" !important;
+		}
+	</style>
+</head>
+<body>
+	<div class="middle aligned row theMenu">
+		<div class="three wide column"></div>
+		<div class="nine wide middle aligned column">
+		</div>
+		<div class="four wide middle aligned column">
+		</div>
+	</div>
+	<div class="ui grid container">
+		<div class="row theMenuPlaceholder"></div>
+		<div class="row thePage"><!-- thePage -->
+			<div class="ui stackable grid container">
+				<div class="row">
+					<div class="left floated left aligned ten wide column">
+						<h5 class="sectionSubTitle">Custom your own Joystick</h5>
+						<h1 class="sectionTitle">
+							訂製你的搖桿
+						</h1>
+						<hr>
+					</div>
+				</div>
+				<div class="row">
+					<div class="middle aligned right aligned eight wide column pure">
+						<div class="ui orange large label cursorPointer lab1" data-tab="tab1">自訂搖桿</div>
+						<i class="long arrow right icon"></i>
+						<div class="ui grey large label cursorPointer lab2" data-tab="tab2">確認自訂項目</div>
+						<i class="long arrow right icon"></i>
+					</div>
+					<div class="middle aligned left aligned eight wide column pure">
+						<div class="ui grey large label cursorPointer lab3" data-tab="tab3">填寫購買者資訊</div>
+						<i class="long arrow right icon"></i>
+						<div class="ui grey large label cursorPointer lab4" data-tab="tab4">下訂完成</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="middle aligned center aligned column">
+						<div class="ui grey large label cursorPointer lab5" data-tab="tab5">查詢訂單</div>
+						<i class="long arrow right icon"></i>
+						<div class="ui grey large label cursorPointer lab6" data-tab="tab6">結帳</div>
+						<i class="long arrow right icon"></i>
+						<div class="ui grey large label cursorPointer lab7" data-tab="tab7">收到搖桿</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="center aligned column">
+						<div class="ui tab active" data-tab="tab1">
+							<p></p>
+							<p>
+								自訂專屬於你的搖桿，提供各式零件及顏色可供選擇，也可透過特別訂製的方式，與公館討論後訂做特殊搖桿。
+							</p>
+							<p></p>
+						</div>
+						<div class="ui tab" data-tab="tab2">
+							<p></p>
+							<p>
+								確認你在自訂頁面所選擇的零件及顏色。
+							</p>
+							<p></p>
+						</div>
+						<div class="ui tab" data-tab="tab3">
+							<p></p>
+							<p>
+								填寫你的個人資訊，包含聯絡方式及收件地址等，以利公館與你聯絡及寄送成品。
+							</p>
+							<p></p>
+						</div>
+						<div class="ui tab" data-tab="tab4">
+							<p></p>
+							<p>
+								下訂完成後，可透過查詢訂單功能查詢你的訂單狀態。
+							</p>
+							<p></p>
+						</div>
+						<div class="ui tab" data-tab="tab5">
+							<p></p>
+							<p>
+								利用訂單編號查詢你的訂單狀態，確認公館是否收到款項，或是商品是否已寄出。
+							</p>
+							<p></p>
+						</div>
+						<div class="ui tab" data-tab="tab6">
+							<p></p>
+							<p>
+								透過第三方支付平台(歐付寶)結帳，提供包含ATM轉帳、信用卡付費等多種付款方式。
+								若你的搖桿屬於特別訂做的類型，需等公館確認你的訂單，與你聯絡後才可結帳。
+							</p>
+							<p></p>
+						</div>
+						<div class="ui tab" data-tab="tab7">
+							<p></p>
+							<p>
+								收到你的專屬搖桿，馬上試試吧！
+							</p>
+							<p></p>
+						</div>
+					</div>
+				</div>
+
+				<div class="two column row">
+					<div class="column">
+						<button class="ui circular red icon button" id="backBtn">
+							<i class="reply icon"></i>
+						</button>
+					</div>
+					<div class="right aligned column">
+						<button class="ui green large button">
+							立即訂製
+						</button>
+						<button class="ui violet large button" id="checkOrderBtn">
+							查詢訂單
+						</button>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="ui grid container" style="margin-bottom:0px;">
+						<div class="bottom aligned center aligned column">
+							Vetash Copyright © 2015, all rights reserved.
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<div class="ui basic modal" id="checkOrderModal">
+		<div class="ui center aligned grid container">
+			<div class="sixteen wide column">
+				<h1 class="ui inverted header">
+					請輸入訂單編號
+				</h1>
+			</div>
+			<div class="sixteen wide column">
+				<div class="ui image">
+					<i class="massive edit icon"></i>
+				</div>
+			</div>
+			<div class="sixteen wide column">
+				<div class="ui inverted input">
+					<input type="text" name="recordNo" placeholder="">
+				</div>
+			</div>
+			<div class="six wide column">
+				<div class="actions">
+					<div class="two ui inverted buttons">
+						<div class="ui green basic inverted approve button">
+							<i class="checkmark icon"></i>
+							查詢
+						</div>
+						<div class="ui red basic inverted deny button">
+							<i class="remove icon"></i>
+							取消
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+<script>
+
+	/*tabs*/
+		function disableAllLabel(){
+			$('.thePage .label').removeClass('orange');
+			$('.thePage .label').addClass('grey');
+		}
+
+		$('.thePage .lab1').tab({
+			onLoad:function(){
+				disableAllLabel()
+				$('.thePage .lab1').removeClass('grey');
+				$('.thePage .lab1').addClass('orange');
+			}
+		});
+		$('.thePage .lab2').tab({
+			onLoad:function(){
+				disableAllLabel()
+				$('.thePage .lab2').removeClass('grey');
+				$('.thePage .lab2').addClass('orange');
+			}
+		});
+		$('.thePage .lab3').tab({
+			onLoad:function(){
+				disableAllLabel()
+				$('.thePage .lab3').removeClass('grey');
+				$('.thePage .lab3').addClass('orange');
+			}
+		});
+		$('.thePage .lab4').tab({
+			onLoad:function(){
+				disableAllLabel()
+				$('.thePage .lab4').removeClass('grey');
+				$('.thePage .lab4').addClass('orange');
+			}
+		});
+		$('.thePage .lab5').tab({
+			onLoad:function(){
+				disableAllLabel()
+				$('.thePage .lab5').removeClass('grey');
+				$('.thePage .lab5').addClass('orange');
+			}
+		});
+		$('.thePage .lab6').tab({
+			onLoad:function(){
+				disableAllLabel()
+				$('.thePage .lab6').removeClass('grey');
+				$('.thePage .lab6').addClass('orange');
+			}
+		});
+		$('.thePage .lab7').tab({
+			onLoad:function(){
+				disableAllLabel()
+				$('.thePage .lab7').removeClass('grey');
+				$('.thePage .lab7').addClass('orange');
+			}
+		});
+
+	$('#backBtn').popup({
+		title:'回公館快打'
+	});
+
+	/*checkOrderModal*/
+	$('#checkOrderBtn').click(function(){
+		$('#checkOrderModal').modal('show');
+	});
+
+</script>
+</html>
