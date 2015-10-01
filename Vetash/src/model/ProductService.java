@@ -1,6 +1,5 @@
 package model;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -21,6 +20,9 @@ public class ProductService {
 		return  productDAO.insert(bean);
 	}
 
+	public int sumOfPrice(OrderBean bean) {		
+		return productDAO.sumOfPrice(bean);
+	}
 
 	public ProductBean update(ProductBean bean) {
 		return productDAO.update(bean) ;

@@ -5,7 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 public class Parse {
-	private static SimpleDateFormat sFormat = new SimpleDateFormat("yyyy/MM/dd");
+	private static SimpleDateFormat sFormat = new SimpleDateFormat("yyyy-MM-dd");
 	public static java.util.Date convertDate(String data) {
 		java.util.Date result = null;
 		try {
@@ -28,7 +28,7 @@ public class Parse {
 		return result;
 	}
 	
-	private static SimpleDateFormat sFormat2 = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	private static SimpleDateFormat sFormat2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	public static java.util.Date convertDate2(String data) {
 		java.util.Date result = null;
 		try {
@@ -44,6 +44,18 @@ public class Parse {
 		String result = "";
 		try {
 			result = sFormat2.format(date);
+		} catch (Exception e) {
+			e.printStackTrace();
+			result = "";
+		}
+		return result;
+	}
+	
+	private static SimpleDateFormat sFormat3 = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	public static String dateToString3(java.util.Date date){
+		String result = "";
+		try {
+			result = sFormat3.format(date);
 		} catch (Exception e) {
 			e.printStackTrace();
 			result = "";

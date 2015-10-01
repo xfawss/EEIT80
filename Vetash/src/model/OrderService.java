@@ -119,7 +119,7 @@ public class OrderService {
 		return this.jfomat(dao.selectAll());
 	}
 
-	public List<Map<String, Object>> selectByDate(java.util.Date orderDate) {
+	public List<Map<String, Object>> selectByDate(String orderDate) {
 		return this.jfomat(dao.selectByDate(orderDate));
 	}
 

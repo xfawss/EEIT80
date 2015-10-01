@@ -19,7 +19,7 @@
 	</style>
 	<style>
 		*{
-/* 			border: 1px solid green; */
+			border: 1px solid green;
 		}
 		.pure{
 			margin: 0px !important;
@@ -110,7 +110,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="ui modal" id="productModal">
+			<div class="ui modal" id="productModal"><!-- productModal -->
 				<div class="header">
 					確認搖桿配置
 				</div>
@@ -120,19 +120,19 @@
 							<div class="six wide column">
 								<div class="field">
 									<label>框體</label>
-									<input type="text"  name="housing" value="St_B_02_B"/>
+									<input type="text"  name="housing" />
 								</div>
 								<div class="field">
 									<label>搖桿</label>
-									<input type="text"  name="rocker" value="St_B_02_B"/>
+									<input type="text"  name="rocker" />
 								</div>
 								<div class="field">
 									<label>面板圖</label>
-									<input type="text"  name="coverImg" value="St_B_02_B"/>
+									<input type="text"  name="coverImg" />
 								</div>
 								<div class="field">
 									<label>系統</label>
-									<input type="text"  name="board" value="St_B_02_B"/>
+									<input type="text"  name="board" />
 								</div>
 							</div>
 							<div class="five wide column">
@@ -142,7 +142,7 @@
 										<div class="ui label">
 											L1
 										</div>
-										<input type="text"  name="l1" value="St_B_02_B"/>
+										<input type="text"  name="l1" />
 									</div>
 								</div>
 								<div class="field">
@@ -150,7 +150,7 @@
 										<div class="ui label">
 											L2
 										</div>
-										<input type="text"  name="l2" value="St_B_02_B"/>
+										<input type="text"  name="l2" />
 									</div>
 								</div>
 								<div class="field">
@@ -158,7 +158,7 @@
 										<div class="ui label">
 											R1
 										</div>
-										<input type="text"  name="r1" value="St_B_02_B"/>
+										<input type="text"  name="r1" />
 									</div>
 								</div>
 								<div class="field">
@@ -166,7 +166,7 @@
 										<div class="ui label">
 											R2
 										</div>
-										<input type="text"  name="r2" value="St_B_02_B"/>
+										<input type="text"  name="r2" />
 									</div>
 								</div>
 								<div class="field">
@@ -174,7 +174,7 @@
 										<div class="ui label">
 											◎
 										</div>
-										<input type="text"  name="o" value="St_B_02_B"/>
+										<input type="text"  name="o" />
 									</div>
 								</div>
 								<div class="field">
@@ -182,7 +182,7 @@
 										<div class="ui label">
 											X
 										</div>
-										<input type="text"  name="x" value="St_B_02_B"/>
+										<input type="text"  name="x" />
 									</div>
 								</div>
 								<div class="field">
@@ -190,7 +190,7 @@
 										<div class="ui label">
 											◇
 										</div>
-										<input type="text"  name="square" value="St_B_02_B"/>
+										<input type="text"  name="square" />
 									</div>
 								</div>
 								<div class="field">
@@ -198,7 +198,7 @@
 										<div class="ui label">
 											△
 										</div>
-										<input type="text"  name="triangle" value="St_B_02_B"/>
+										<input type="text"  name="triangle" />
 									</div>
 								</div>
 							</div>
@@ -209,7 +209,7 @@
 										<div class="ui label">
 											Start
 										</div>
-										<input type="text"  name="start" value="St_B_02_B"/>
+										<input type="text"  name="start" />
 									</div>
 								</div>
 								<div class="field">
@@ -217,7 +217,7 @@
 										<div class="ui label">
 											Select
 										</div>
-										<input type="text"  name="selecter" value="St_B_02_B"/>
+										<input type="text"  name="selecter" />
 									</div>
 								</div>
 								<div class="field">
@@ -225,12 +225,12 @@
 										<div class="ui label">
 											Touch
 										</div>
-										<input type="text"  name="touch" value="St_B_02_B"/>
+										<input type="text"  name="touch" />
 									</div>
 								</div>
 								<h5 class="ui dividing header">面板</h5>
 								<img src="images/fakeImg_L.png" class="ui image">
-								<input type="text" name="coverImg" value="St_B_02_B"/>
+								<input type="text" name="coverImg" />
 							</div>
 						</div>
 						<div class="row">
@@ -238,12 +238,16 @@
 							<div class="fight aligned five wide column">
 								<div class="field">
 									<label>折扣碼</label>
-									<div class="ui input">
-										<input placeholder="" type="text" name="coupon" value="GamerBee">
-										<input type="hidden" name="couponDiscount"><!-- for coupon check -->
+									<div class="ui icon input">
+										<i class="checkmark icon"></i>
+										<input placeholder="" type="text" name="coupon">
+										<!-- <input type="hidden" name="couponDiscount">for coupon check -->
 									</div>
 								</div>
 							</div>
+
+							<input type="hidden" name="orderType" value="0">
+
 							<div class="right aligned five wide middle aligned column">
 								<div class="actions">
 									<div class="ui deny button">Cancel</div>
@@ -253,9 +257,9 @@
 						</div>
 					</form>
 				</div>
-			</div>
+			</div><!-- productModal -->
 		</div>
-		<div class="row theTabs">
+		<div class="row theTabs"><!-- theTabs -->
 			<div class="ui tab active" data-tab="tab1" id="theTabs_Model">
 				<div class="ui center aligned grid">
 					<div class="two wide middle aligned right aligned column">
@@ -1290,7 +1294,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div><!-- theTabs -->
 		<div class="row theView"></div>
 	</div>
 	<div id="custom">
@@ -1549,6 +1553,8 @@
 
 	/*theTabs_Model*/
 		$('#theTabs_Model .dropdown').dropdown();
+
+	/*theTabs_Stick*/
 		$('#theTabs_Stick .dropdown').dropdown({
 			onChange:function(){
 				var housing = $('#theTabs_Stick input[name="housing"]').val();
@@ -1567,11 +1573,15 @@
 				}
 			}
 		});
+
+	/*theTabs_Btn1*/
 		$('#theTabs_Btn1 .dropdown').dropdown({
 			onChange:function(){
 				var btn1 = $('#theTabs_Stick input[name="housing"]').val();
 			}
 		});
+
+
 
 
 </script>

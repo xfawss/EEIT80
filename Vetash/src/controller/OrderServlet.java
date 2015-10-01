@@ -85,7 +85,7 @@ public class OrderServlet extends HttpServlet {
 		}else {
 			session.setAttribute("receiveCost", 0);
 		}
-		bean.setOrderState("已下訂");
+		bean.setOrderState("已下訂(普通)");
 		bean.setCustomerTel(customerTel);
 		bean.setReceiveNotes(receiveNotes);
 		bean.setReceiveType(receiveType);
@@ -96,7 +96,7 @@ public class OrderServlet extends HttpServlet {
 		session.setAttribute("joystick", bean);
 		session.setAttribute("customer", cust);
 		String orderNo = bean.getOrderNo();
-		String orderDate = Parse.dateToString2(bean.getOrderDate());
+		String orderDate = Parse.dateToString3(bean.getOrderDate());
 		String pricess = Integer.toString(price);
 		req.setAttribute("MerchantID", AllPayCheckMacValue.merchantID);
 		req.setAttribute("MerchantTradeNo", orderNo);

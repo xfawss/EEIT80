@@ -41,7 +41,7 @@ public class PurchaseRecoderService {
 		return this.jfomat(dao.select());
 	}
 	
-	public List<Map<String, Object>> selectByDate(Date date){
+	public List<Map<String, Object>> selectByDate(String date){
 		return this.jfomat(dao.selectByDate(date));
 	}
 	

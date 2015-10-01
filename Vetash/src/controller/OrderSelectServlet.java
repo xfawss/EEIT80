@@ -68,7 +68,7 @@ public class OrderSelectServlet extends HttpServlet {
 			req.getRequestDispatcher("/front_custom.html").forward(req, resp);
 		}
 		OrderBean bean = (OrderBean)session.getAttribute("joystick");
-		bean.setOrderState("已下訂(待確認)");
+		bean.setOrderState("已下訂(特殊)");
 		bean.setCustomerTel(customerTel);
 		bean.setReceiveNotes(receiveNotes);
 		bean.setReceiveType(receiveType);

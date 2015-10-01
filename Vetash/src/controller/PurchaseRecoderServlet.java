@@ -57,15 +57,10 @@ public class PurchaseRecoderServlet extends HttpServlet {
 			return;
 		} else if("date".equals(task)) {
 			if(keyword!=null && keyword.length()!=0){
-				java.util.Date date = Parse.convertDate(keyword);
-				if (date.equals(new java.util.Date(0))) {
-					errs.add("格式錯誤");
-				} else {
-					beans = service.selectByDate(date);
-					jObj.put("results", beans);
-					out.print(jObj);
-					return;
-				}
+				beans = service.selectByDate(keyword.replace("/", "-"));
+				jObj.put("results", beans);
+				out.print(jObj);
+				return;
 			}
 		} else if("type".equals(task)) {
 			if(keyword!=null && keyword.length()!=0){

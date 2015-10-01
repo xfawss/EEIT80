@@ -2,6 +2,7 @@ package model.dao;
 
 import java.util.List;
 
+import model.OrderBean;
 import model.ProductBean;
 import model.ProductDAO;
 
@@ -20,6 +21,27 @@ public class ProductDAOHibernate implements ProductDAO {
 		return this.sessionFactory.getCurrentSession();
 	}
 	
+	@Override
+	public int sumOfPrice(OrderBean bean) {
+		Query query = this.getSession().createQuery("select sum(ProductPrice) from Product where productId in (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+		query.setParameter(0, bean.getHousing());
+		query.setParameter(1, bean.getRocker());
+		query.setParameter(2, bean.getL1());
+		query.setParameter(3, bean.getL2());
+		query.setParameter(4, bean.getR1());
+		query.setParameter(5, bean.getR2());
+		query.setParameter(6, bean.getO());
+		query.setParameter(7, bean.getX());
+		query.setParameter(8, bean.getSelecter());
+		query.setParameter(9, bean.getTriangle());
+		query.setParameter(10, bean.getSquare());
+		query.setParameter(11, bean.getStart());
+		query.setParameter(12, bean.getTouch());
+		query.setParameter(13, bean.getBoard());
+		query.setParameter(14, "000");
+		return (int) query.list().get(0);
+	}
+
 	@Override
 	public boolean delete(String productId) {
 		ProductBean result = (ProductBean)this.getSession().get(ProductBean.class, productId);

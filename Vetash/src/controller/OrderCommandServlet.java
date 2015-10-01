@@ -92,15 +92,10 @@ public class OrderCommandServlet extends HttpServlet {
 			if(orderDate==null || orderDate.length()==0) {
 				errs.add("沒有關鍵字");
 			} else {
-				java.util.Date date = Parse.convertDate(orderDate);
-				if (date.equals(new java.util.Date(0))) {
-					errs.add("格式錯誤");
-				} else {
-					List<Map<String, Object>> beans = service.selectByDate(date);
-					jObj.put("results", beans);
-					out.print(jObj);
-					return;
-				}
+				List<Map<String, Object>> beans = service.selectByDate(orderDate.replace("/", "-"));
+				jObj.put("results", beans);
+				out.print(jObj);
+				return;
 			}
 		} else if(task.equals("note")) {
 			if(bossNotes==null || bossNotes.length()==0) {
@@ -198,7 +193,7 @@ public class OrderCommandServlet extends HttpServlet {
 				HttpSession session = req.getSession(false);
 				session.setAttribute("joystick", bean);
 				if(bean.getOrderState().equals("已確認")) {
-					String orderDate2 = Parse.dateToString2(bean.getOrderDate());
+					String orderDate2 = Parse.dateToString3(bean.getOrderDate());
 					String pricess = Integer.toString(bean.getPrice());
 					req.setAttribute("MerchantID", AllPayCheckMacValue.merchantID);
 					req.setAttribute("MerchantTradeNo", orderNo);

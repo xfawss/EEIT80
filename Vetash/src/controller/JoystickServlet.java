@@ -63,28 +63,6 @@ public class JoystickServlet extends HttpServlet {
 		}
 
 		HttpSession session = req.getSession(true);
-		int price = 0;
-		if(orderType!=null && orderType.equals("1")) {
-			price += (int)service.selectCostById(housing);
-			price += (int)service.selectCostById(rocker);
-			price += (int)service.selectCostById(l1);
-			price += (int)service.selectCostById(l2);
-			price += (int)service.selectCostById(r1);
-			price += (int)service.selectCostById(r2);
-			price += (int)service.selectCostById(o);
-			price += (int)service.selectCostById(x);
-			price += (int)service.selectCostById(square);
-			price += (int)service.selectCostById(triangle);
-			price += (int)service.selectCostById(start);
-			price += (int)service.selectCostById(selecter);
-			price += (int)service.selectCostById(touch);
-			price += (int)service.selectCostById(board);
-			price += (int)service.selectCostById("000");//工錢
-			if(coupon!=null && coupon.length()!=0) {
-				price -= service2.select(coupon);
-			}
-		}
-		
 		java.util.Date now = new java.util.Date();
 		String orderNo = Long.toString(now.getTime());
 		OrderBean bean = new OrderBean();
@@ -105,9 +83,34 @@ public class JoystickServlet extends HttpServlet {
 		bean.setTouch(touch);
 		bean.setCoverImg(coverImg);
 		bean.setBoard(board);
+		
+		int price = 0;
+		if(orderType!=null && orderType.equals("1")) {
+			price += (int)service.selectCostById(housing);
+			price += (int)service.selectCostById(rocker);
+			price += (int)service.selectCostById(l1);
+			price += (int)service.selectCostById(l2);
+			price += (int)service.selectCostById(r1);
+			price += (int)service.selectCostById(r2);
+			price += (int)service.selectCostById(o);
+			price += (int)service.selectCostById(x);
+			price += (int)service.selectCostById(square);
+			price += (int)service.selectCostById(triangle);
+			price += (int)service.selectCostById(start);
+			price += (int)service.selectCostById(selecter);
+			price += (int)service.selectCostById(touch);
+			price += (int)service.selectCostById(board);
+			price += (int)service.selectCostById("000");//工錢
+//			price += service.sumOfPrice(bean);
+			if(coupon!=null && coupon.length()!=0) {
+				price -= service2.select(coupon);
+			}
+		}
+		System.out.println(price);
 		bean.setCoupon(coupon);
 		bean.setPrice(price);
 		bean.setOrderNotes(orderNotes);
+		
 		session.setAttribute("joystick", bean);
 		session.setAttribute("receiveCost", 0);
 		if(orderType!=null && orderType.equals("1")) {

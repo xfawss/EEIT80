@@ -9,6 +9,9 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.sun.xml.internal.ws.api.ha.StickyFeature;
+
+import misc.Parse;
 import model.PurchaseRecoderDAO;
 import model.PurchaseRecordBean;
 
@@ -34,9 +37,9 @@ public class PurchaseRecoderDAOHibernate implements PurchaseRecoderDAO {
 	}
 
 	@Override
-	public List<PurchaseRecordBean> selectByDate(Date date) {
-		Query query = this.getSession().createQuery("from PurchaseRecordBean where Date=?");
-		query.setParameter(0, date);
+	public List<PurchaseRecordBean> selectByDate(String date) {
+		Query query = this.getSession().createQuery("from PurchaseRecordBean where Date like ?");
+		query.setParameter(0, "%"+date+"%");
 		return (List<PurchaseRecordBean>)query.list();
 	}
 
@@ -49,8 +52,8 @@ public class PurchaseRecoderDAOHibernate implements PurchaseRecoderDAO {
 
 	@Override
 	public List<PurchaseRecordBean> selectByProductId(String productId) {
-		Query query = this.getSession().createQuery("from PurchaseRecordBean where ProductId=?");
-		query.setParameter(0, productId);
+		Query query = this.getSession().createQuery("from PurchaseRecordBean where ProductId like ?");
+		query.setParameter(0, "%"+productId+"%");
 		return (List<PurchaseRecordBean>)query.list();
 	}
 

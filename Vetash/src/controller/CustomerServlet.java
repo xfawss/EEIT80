@@ -89,7 +89,7 @@ public class CustomerServlet extends HttpServlet {
 							customers.put(customer);
 						}
 						jsonMsg.put("results", customers);
-						System.out.println("writeJSONString方法:" + jsonMsg.toString());
+						//System.out.println("writeJSONString方法:" + jsonMsg.toString());
 						out.print(jsonMsg.toString());
 						// 基本寫法使用writeJSONString end
 					}
@@ -111,7 +111,7 @@ public class CustomerServlet extends HttpServlet {
 							customers.put(customer);
 						}
 						jsonMsg.put("results", customers);
-						System.out.println("writeJSONString方法:" + jsonMsg.toString());
+						//System.out.println("writeJSONString方法:" + jsonMsg.toString());
 						out.print(jsonMsg.toString());
 					}
 				} catch (JSONException e) {
@@ -134,7 +134,7 @@ public class CustomerServlet extends HttpServlet {
 							customers.put(customer);
 						}
 						jsonMsg.put("results", customers);
-						System.out.println("writeJSONString方法:" + jsonMsg.toString());
+						//System.out.println("writeJSONString方法:" + jsonMsg.toString());
 						out.print(jsonMsg.toString());
 					}
 				} catch (JSONException e) {
@@ -156,7 +156,7 @@ public class CustomerServlet extends HttpServlet {
 							customers.put(customer);
 						}
 						jsonMsg.put("results", customers);
-						System.out.println("writeJSONString方法:" + jsonMsg.toString());
+						//System.out.println("writeJSONString方法:" + jsonMsg.toString());
 						out.print(jsonMsg.toString());
 					}
 				} catch (JSONException e) {
@@ -179,7 +179,7 @@ public class CustomerServlet extends HttpServlet {
 							customers.put(customer);
 						}
 						jsonMsg.put("results", customers);
-						System.out.println("writeJSONString方法:" + jsonMsg.toString());
+						//System.out.println("writeJSONString方法:" + jsonMsg.toString());
 						out.print(jsonMsg.toString());
 					}
 				} catch (JSONException e) {
@@ -201,7 +201,7 @@ public class CustomerServlet extends HttpServlet {
 							customers.put(customer);
 						}
 						jsonMsg.put("results", customers);
-						System.out.println("writeJSONString方法:" + jsonMsg.toString());
+						//System.out.println("writeJSONString方法:" + jsonMsg.toString());
 						out.print(jsonMsg.toString());
 					}
 				} catch (JSONException e) {

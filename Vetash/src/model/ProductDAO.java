@@ -15,4 +15,5 @@ public interface ProductDAO {
     public abstract boolean updateQty(String productId, int productQty, int productCost);
     public abstract List<ProductBean> selectLikeId(String productId);
     public abstract boolean updateQty2(String productId, int productQty);
+    public abstract int sumOfPrice(OrderBean bean);
 }

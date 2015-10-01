@@ -12,7 +12,7 @@ public interface OrderDAO {
 	
 	public abstract List<OrderBean> selectAll();
 	
-	public abstract List<OrderBean> selectByDate(java.util.Date orderDate);
+	public abstract List<OrderBean> selectByDate(String orderDate);
 	
 	public abstract List<OrderBean> selectByTel(String customerTel);
 	

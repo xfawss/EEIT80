@@ -7,11 +7,6 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 	<script src="semantic/dist/semantic.min.js"></script>
-	<script type="text/javascript">
-		window.onload=function(){
-			$.get('./Connect')
-		}
-	</script>
 	<!-- <link rel="stylesheet" type="text/css" href="style/jquery-ui.min.css">
 	<link rel="stylesheet" type="text/css" href="style/jquery-ui.structure.min.css">
 	<link rel="stylesheet" type="text/css" href="style/jquery-ui.theme.min.css"> -->
@@ -74,7 +69,7 @@
 			<a class="item" data-tab="tab-name3" id="tab-name3">供應商</a>
 			<a class="item" data-tab="tab-name4" id="tab-name4">訂單</a>
 			<a class="item" data-tab="tab-name5" id="tab-name5">折扣碼</a>
-			<a class="item" data-tab="tab-name6" id="tab-name6">進貨紀錄</a>
+			<a class="item" data-tab="tab-name6" id="tab-name6">庫存紀錄</a>
 			<a class="item" data-tab="tab-name7" id="tab-name7">圖片管理</a>
 			<a class="item" data-tab="tab-name8" id="tab-name8">設定</a>
 		</div>
@@ -521,9 +516,18 @@
 									</div>
 									<div class="eight wide column">
 										<div class="field">
-											<label>訂單狀態</label>
-											<input type="text" name="orderState" placeholder="">
+											<div class="ui selection dropdown">
+												<input name="orderState" type="hidden">
+												<i class="dropdown icon"></i>
+												<div class="default text">訂單狀態</div>
+												<div class="menu">
+													<div class="item confirmed" data-value="已確認">已確認</div>
+													<div class="item payed" data-value="已結帳">已結帳</div>
+													<div class="item send" data-value="已出貨">已出貨</div>
+												</div>
+											</div>
 										</div>
+
 										<div class="field">
 											<label>折扣碼</label>
 											<input type="text" name="coupon" placeholder="">
@@ -715,7 +719,7 @@
 								</div>
 							</div>
 
-							<input type="hide" name="task"><!-- only update -->
+							<input type="hidden" name="task"><!-- only update -->
 
 							<div class="ui grid">
 								<div class="right floated right aligned column">
@@ -881,7 +885,6 @@
 										<option selected="selected" value="type">紀錄種類</option>
 										<option value="date">日期</option>
 										<option value="productid">料號</option>
-										<option value="supplierid">供應商編號</option>
 									</select>
 									<div class="ui button">Search</div>
 								</div>
@@ -899,7 +902,6 @@
 							<th>料號</th>
 							<th>數量</th>
 							<th>進價</th>
-							<th>供應商編號</th>
 							<th>備註</th>
 						</tr>
 					</thead>
@@ -919,21 +921,18 @@
 						</h2>
 
 						<form class="ui form">
-							<div class="three fields">
-								<div class="disabled field">
+							<div class="fields">
+								<div class="disabled two wide field">
 									<label>編號</label>
 									<input type="text" name="recordNo" disabled="" placeholder="">
 								</div>
-								<div class="field">
+								<div class="disabled two wide field">
 									<label>日期</label>
-									<input type="text" name="date" placeholder="">
-								</div>
-								<div class="disabled field">
-									<label>種類</label>
-									<input type="text" name="purchaseType" disabled="" placeholder="">
+									<input type="text" name="date" disabled="" placeholder="">
 								</div>
 							</div>
-							<div class="four fields">
+
+							<div class="three fields">
 								<div class="field">
 									<label>料號</label>
 									<div class="ui search" id="Purchase_productId">
@@ -944,17 +943,29 @@
 								</div>
 								<div class="field">
 									<label>數量</label>
-									<input type="text" name="number" placeholder="">
+									<input type="text" name="number" placeholder="請輸入正數">
 								</div>
-								<div class="field">
-									<label>進價</label>
-									<input type="text" name="prize" placeholder="">
-								</div>
-								<div class="field">
-									<label>供應商編號</label>
-									<input type="text" name="supplierId" placeholder="">
+								<div class="field purchaseTypeField">
+									<label>種類</label>
+									<div class="ui compact selection dropdown">
+										<input type="hidden" name="purchaseType">
+										<i class="dropdown icon"></i>
+										<div class="default text">請選擇種類</div>
+										<div class="menu">
+											<div class="item" data-value="進貨">進貨</div>
+											<div class="item" data-value="退貨">退貨</div>
+											<div class="item" data-value="修改(增加)">修改(增加)</div>
+											<div class="item" data-value="修改(減少)">修改(減少)</div>
+										</div>
+									</div>
 								</div>
 							</div>
+
+							<div class="field">
+								<label class="transition visible">進價( 進貨 / 退貨時填寫 )</label>
+								<input style="display: inline !important;" class="transition visible" name="prize" type="text">
+							</div>
+
 							<div class="field">
 								<label>備註</label>
 								<textarea name="notes" cols="20" rows="5"></textarea>
@@ -962,9 +973,7 @@
 							<div class="ui grid">
 								<div class="right aligned column">
 									<div class="field actions">
-										<div class="ui tiny red deny button">Return</div>
 										<div class="ui tiny blue approve button">Submit</div>
-										<div class="ui tiny reset button">Reset</div>
 										<div class="ui tiny reset button btnFormCancel">Cancel</div>
 									</div>
 								</div>
@@ -2455,7 +2464,6 @@
 						productId:one.productId,
 						number:one.number,
 						prize:one.prize,
-						supplierId:one.supplierId,
 						notes:one.notes
 					};
 
@@ -2487,10 +2495,6 @@
 						.addClass("addCursor")
 						.click(function(){Purchase_detail(row);})
 						.appendTo($('#Purchase .table > tbody tr:nth-child('+index+')'));
-					$('<td>',{html:one.supplierId})
-						.addClass("addCursor")
-						.click(function(){Purchase_detail(row);})
-						.appendTo($('#Purchase .table > tbody tr:nth-child('+index+')'));
 					$('<td>',{html:one.notes})
 						.addClass("addCursor")
 						.click(function(){Purchase_detail(row);})
@@ -2501,58 +2505,41 @@
 		/*insert*/
 			$('#Purchase .btnInsert').click(function(){
 				console.log("btnInsert clicked");
+				Purchase_insert();
+			});
+
+			function Purchase_insert(){
+				console.log("Purchase_insert() called");
 				var row = {Title:"Add a new PurchaseRecord.",
 					recordNo:"",
 					date:"",
-					purchaseType:"purchase",
+					purchaseType:"",
 					productId:"",
 					number:"",
 					prize:"",
-					supplierId:"",
 					notes:""
 				};
 				$('#Purchase_modal .approve').removeClass("disabled");
-				$('#Purchase_modal .deny').addClass("disabled");
-				Purchase_insert(row);
-			});
-
-			function Purchase_insert(row){
-				console.log("Purchase_insert() called");
-
-				$('#Purchase_modal .form input[name="date"]').prop('disabled',false);
+				$('#Purchase_modal .purchaseTypeField').removeClass("disabled");
+				$('#Purchase_modal .purchaseTypeField .dropdown').removeClass("disabled");
+				$('#Purchase_modal .form input[name="prize"]').prop('disabled',false);
 				$('#Purchase_modal .form input[name="productId"]').prop('disabled',false);
 				$('#Purchase_modal .form input[name="number"]').prop('disabled',false);
 				$('#Purchase_modal .form input[name="prize"]').prop('disabled',false);
-				$('#Purchase_modal .form input[name="supplierId"]').prop('disabled',false);
 				$('#Purchase_modal .form textarea[name="notes"]').prop('disabled',false);
-
 				Purchase_showModal(row);
 			}
 
 			function Purchase_detail(row){
 				console.log("Purchase_detail() called");
-				if("purchase"===row.purchaseType){
-					/*purchased PurchaseRecord */
-					console.log("purchase PurchaseRecord");
-					$('#Purchase_modal .deny').removeClass("disabled");
-					$('#Purchase_modal .approve').addClass("disabled");
-
-				} else if("returnoff"===row.purchaseType){
-					/*returnoff PurchaseRecord */
-					console.log("returnoff PurchaseRecord");
-					$('#Purchase_modal .deny').addClass("disabled");
-					$('#Purchase_modal .approve').addClass("disabled");
-
-					$('#Purchase_modal .form input[name="date"]').prop('disabled',true);
-					$('#Purchase_modal .form input[name="productId"]').prop('disabled',true);
-					$('#Purchase_modal .form input[name="number"]').prop('disabled',true);
-					$('#Purchase_modal .form input[name="prize"]').prop('disabled',true);
-					$('#Purchase_modal .form input[name="supplierId"]').prop('disabled',true);
-					$('#Purchase_modal .form textarea[name="notes"]').prop('disabled',true);
-
-				} else{
-					window.alert("!?");
-				}
+				$('#Purchase_modal .approve').addClass("disabled");
+				$('#Purchase_modal .purchaseTypeField').addClass("disabled");
+				$('#Purchase_modal .purchaseTypeField .dropdown').addClass("disabled");
+				$('#Purchase_modal .form input[name="prize"]').prop('disabled',true);
+				$('#Purchase_modal .form input[name="productId"]').prop('disabled',true);
+				$('#Purchase_modal .form input[name="number"]').prop('disabled',true);
+				$('#Purchase_modal .form input[name="prize"]').prop('disabled',true);
+				$('#Purchase_modal .form textarea[name="notes"]').prop('disabled',true);
 				Purchase_showModal(row);
 			}
 
@@ -2612,21 +2599,6 @@
 							Purchase_show(datas);
 						}
 					});
-				} else if("supplierid"===by){
-					$.ajax({
-						url:'./purchase',
-						type:'get',
-						data:{
-							"task":"supplierid",
-							"keyword":keyword
-						},
-						dataType:"json",
-						success:function(datas){
-							console.log("search by supplierid successed");
-							console.log(datas);
-							Purchase_show(datas);
-						}
-					});
 				}
 			});
 
@@ -2637,13 +2609,6 @@
 				debug:false,
 				closable:false,
 				onApprove : function() {
-					$('#Purchase_modal .form').form('validate form');
-					return false;
-				},
-				onDeny : function() {
-					$('#Purchase_modal .form').form('set values', {
-						purchaseType:"returnoff"
-					});
 					$('#Purchase_modal .form').form('validate form');
 					return false;
 				}
@@ -2657,7 +2622,6 @@
 					productId:"",
 					number:"",
 					prize:"",
-					supplierId:"",
 					notes:""
 				});
 				$('#Purchase_modal').modal("hide");
@@ -2673,7 +2637,6 @@
 				$('#Purchase_modal .form input[name="productId"]').val(row.productId);
 				$('#Purchase_modal .form input[name="number"]').val(row.number);
 				$('#Purchase_modal .form input[name="prize"]').val(row.prize);
-				$('#Purchase_modal .form input[name="supplierId"]').val(row.supplierId);
 				$('#Purchase_modal .form textarea[name="notes"]').val(row.notes);
 
 				$('#Purchase_modal').modal("show");
@@ -2688,7 +2651,7 @@
 					title:'productId',
 					description:'productName'
 				},
-				minCharacters : 1
+				minCharacters : 0
 			});
 			/*search 暫時使用，要改server端 用id模糊搜尋 可料號跟名稱都顯示*/
 
@@ -2711,6 +2674,15 @@
 			}); */
 			/*search selection dropdown+API 查全部 有scroll bar 要改server端回傳 name及value 只會顯示料號*/
 
+			$('#Purchase_modal .dropdown').dropdown({
+				onChange:function(value){
+					if("進貨"===value||"退貨"===value){
+						$('#Purchase_modal .form input[name="prize"]').prop('disabled',false);
+					} else{
+						$('#Purchase_modal .form input[name="prize"]').prop('disabled',true);
+					}
+				}
+			});
 
 		/*form validation setting*/
 			$('#Purchase_modal .form').form({
@@ -2722,6 +2694,15 @@
 						{
 							type   : 'empty',
 							prompt : '料號不可空白'
+						}
+						]
+					},
+					purchaseType: {
+						identifier: 'purchaseType',
+						rules: [
+						{
+							type   : 'empty',
+							prompt : '請選擇種類'
 						}
 						]
 					},
@@ -2740,30 +2721,14 @@
 					},
 					prize: {
 						identifier: 'prize',
+						optional:true,
 						rules: [
-						{
-							type   : 'empty',
-							prompt : '進價不可空白'
-						},
 						{
 							type   : 'number',
 							prompt : '進價必須為數字'
 						}
 						]
-					},
-					supplierId: {
-						identifier: 'supplierId',
-						rules: [
-						{
-							type   : 'empty',
-							prompt : '供應商編號不可空白'
-						},
-						{
-							type   : 'number',
-							prompt : '供應商編號必須為數字'
-						}
-						]
-					},
+					}
 				},
 				onSuccess:function(){
 					console.log("validation successed");
@@ -2781,7 +2746,6 @@
 							"productId":valuesToSubmit.productId,
 							"number":valuesToSubmit.number,
 							"prize":valuesToSubmit.prize,
-							"supplierId":valuesToSubmit.supplierId
 						},
 						success:function(results){
 							console.log("Purchase_modal .form ajax successed");
@@ -2968,6 +2932,26 @@
 		/*update*/
 			function Order_update(row){
 				console.log("Order_update() called");
+				if("已下訂(普通)"===row.orderState){
+					$('#Order_modal .form .dropdown .confirmed').hide();
+					$('#Order_modal .form .dropdown .payed').show();
+					$('#Order_modal .form .dropdown .send').hide();
+				} else if("已下訂(特殊)"===row.orderState){
+					$('#Order_modal .form .dropdown .confirmed').show();
+					$('#Order_modal .form .dropdown .payed').hide();
+					$('#Order_modal .form .dropdown .send').hide();
+				} else if("已確認"===row.orderState){
+					$('#Order_modal .form .dropdown .confirmed').hide();
+					$('#Order_modal .form .dropdown .payed').show();
+					$('#Order_modal .form .dropdown .send').hide();
+				} else if("已結帳"===row.orderState){
+					$('#Order_modal .form .dropdown .confirmed').hide();
+					$('#Order_modal .form .dropdown .payed').hide();
+					$('#Order_modal .form .dropdown .send').show();
+				} else if("已出貨"===row.orderState){
+					/*結掉這筆訂單*/
+				}
+
 				Order_showModal(row);
 			}
 
@@ -3160,6 +3144,7 @@
 			}
 
 		/*form element initializing*/
+			$('#Order_modal .form .dropdown').dropdown();
 
 		/*form validation setting*/
 			$('#Order_modal .form').form({

@@ -8,7 +8,7 @@ public interface PurchaseRecoderDAO {
 	
 	public abstract List<PurchaseRecordBean> select();
 	
-	public abstract List<PurchaseRecordBean> selectByDate(java.util.Date date);
+	public abstract List<PurchaseRecordBean> selectByDate(String date);
 	
 	public abstract List<PurchaseRecordBean> selectByType(String type);
 	
