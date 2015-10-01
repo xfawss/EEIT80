@@ -36,9 +36,6 @@ public class PurchaseRecordBean {
 	@Column(name="Prize")
 	private int prize;
 	
-	@Column(name="SupplierId")
-	private int supplierId;
-
 	public int getRecordNo() {
 		return recordNo;
 	}
@@ -93,14 +90,6 @@ public class PurchaseRecordBean {
 
 	public void setPrize(int prize) {
 		this.prize = prize;
-	}
-
-	public int getSupplierId() {
-		return supplierId;
-	}
-
-	public void setSupplierId(int supplierId) {
-		this.supplierId = supplierId;
 	}
 	
 }

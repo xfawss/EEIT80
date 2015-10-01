@@ -14,6 +14,4 @@ public interface PurchaseRecoderDAO {
 	
 	public abstract List<PurchaseRecordBean> selectByProductId(String productId);
 	
-	public abstract List<PurchaseRecordBean> selectBySupplierId(int supplierId);
-	
 }

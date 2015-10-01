@@ -181,7 +181,6 @@ public class OrderCommandServlet extends HttpServlet {
 						bean2.setType("出貨");
 						bean2.setProductId(a);
 						bean2.setPrize(0);
-						bean2.setSupplierId(0);
 						bean2.setNumber(1);
 						service3.updateQty2(a);
 						service2.insert(bean2);

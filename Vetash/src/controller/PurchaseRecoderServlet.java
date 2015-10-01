@@ -81,18 +81,6 @@ public class PurchaseRecoderServlet extends HttpServlet {
 				out.print(jObj);
 				return;
 			}
-		} else if("supplierid".equals(task)) {
-			if(keyword!=null && keyword.length()!=0){
-				int sid = Parse.convertInt(keyword);
-				if(sid < 1) {
-					errs.add("格式錯誤");
-				} else {
-					beans = service.selectBySupplierId(sid);
-					jObj.put("results", beans);
-					out.print(jObj);
-					return;
-				}
-			}
 		}
 		
 		String type = req.getParameter("purchaseType");
@@ -100,22 +88,16 @@ public class PurchaseRecoderServlet extends HttpServlet {
 		String productId = req.getParameter("productId");
 		String tempNum = req.getParameter("number");
 		String tempPri = req.getParameter("prize");
-		String tempSup = req.getParameter("supplierId");
 		
 		java.util.Date date2 = new java.util.Date();
 		int number = 0;
 		int prize = 0;
-		int supplierId = 0;
 		if(type==null || type.length()==0 || productId==null || productId.length()==0 || tempNum==null ||
-					tempNum.length()==0 || tempPri==null || tempPri.length()==0 || tempSup==null || tempSup.length()==0) {
+					tempNum.length()==0 || tempPri==null || tempPri.length()==0) {
 			errs.add("有必填欄位空白");
 		} else {
 			number = Parse.convertInt(tempNum);
 			prize = Parse.convertInt(tempPri);
-			supplierId = Parse.convertInt(tempSup);
-		}
-		if(number<1 || prize<1 || supplierId<1){
-			errs.add("格式錯誤");
 		}
 		if(errs!=null && !errs.isEmpty()){
 			errmap.put("errors", errs);
@@ -129,10 +111,9 @@ public class PurchaseRecoderServlet extends HttpServlet {
 		bean.setNotes(notes);
 		bean.setProductId(productId);
 		bean.setPrize(prize);
-		bean.setSupplierId(supplierId);
 		bean.setNumber(number);
 		
-		if(type.equals("進貨")){
+		if(type.equals("進貨")){//修改(增加)(減少)
 			service2.updateQty(productId, number, prize);
 			service.insert(bean);
 		} else if(type.equals("退貨")){

@@ -54,11 +54,4 @@ public class PurchaseRecoderDAOHibernate implements PurchaseRecoderDAO {
 		return (List<PurchaseRecordBean>)query.list();
 	}
 
-	@Override
-	public List<PurchaseRecordBean> selectBySupplierId(int supplierId) {
-		Query query = this.getSession().createQuery("from PurchaseRecordBean where SupplierId=?");
-		query.setParameter(0, supplierId);
-		return (List<PurchaseRecordBean>)query.list();
-	}
-
 }

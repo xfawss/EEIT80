@@ -11,5 +11,7 @@ ${err.warning1}
 ${err.warning2}
 ${err.warning3}
 ${err.warning4}
+${err.message}
+<hi>XXXX</hi>
 </body>
 </html>

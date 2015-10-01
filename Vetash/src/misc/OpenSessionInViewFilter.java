@@ -21,7 +21,7 @@ public class OpenSessionInViewFilter implements Filter {
 
 		req.setCharacterEncoding("UTF-8");
 		resp.setCharacterEncoding("UTF-8");
-
+		String message = "";
 		try {
 			sessionFactory.getCurrentSession().beginTransaction();
 			chain.doFilter(req, resp);
@@ -35,8 +35,13 @@ public class OpenSessionInViewFilter implements Filter {
 			} catch (Throwable ex) {
 				ex.printStackTrace();
 			}
-			throw new ServletException(e);
+			
+			//message = e.getMessage();
 		}
+//		if(message!=null && message.length()!=0) {
+//			req.setAttribute("err", message);
+//			req.getRequestDispatcher("/ye/err.jsp").forward(req, resp);
+//		}
 	}
 	private SessionFactory sessionFactory; 
 

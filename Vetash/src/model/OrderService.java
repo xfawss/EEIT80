@@ -46,7 +46,11 @@ public class OrderService {
 			map.put("touch", bean.getTouch());
 			map.put("coverImg", bean.getCoverImg());
 			map.put("board", bean.getBoard());
-			map.put("deliveryDate;", Parse.dateToString(bean.getDeliveryDate()));
+			if(bean.getDeliveryDate()!=null){
+				map.put("deliveryDate;", Parse.dateToString(bean.getDeliveryDate()));
+			} else {
+				map.put("deliveryDate;", "");
+			}
 			map.put("paymentType", bean.getPaymentType());
 			map.put("paymentTypeChargeFee", bean.getPaymentTypeChargeFee());
 			map.put("allPayTradeNo", bean.getAllPayTradeNo());
@@ -81,7 +85,11 @@ public class OrderService {
 		map.put("touch", bean.getTouch());
 		map.put("coverImg", bean.getCoverImg());
 		map.put("board", bean.getBoard());
-		map.put("deliveryDate;", Parse.dateToString(bean.getDeliveryDate()));
+		if(bean.getDeliveryDate()!=null){
+			map.put("deliveryDate;", Parse.dateToString(bean.getDeliveryDate()));
+		} else {
+			map.put("deliveryDate;", "");
+		}
 		map.put("MerchantID", AllPayCheckMacValue.merchantID);
 		map.put("PaymentType", AllPayCheckMacValue.paymentType);
 		map.put("TradeDesc", AllPayCheckMacValue.tradeDesc);

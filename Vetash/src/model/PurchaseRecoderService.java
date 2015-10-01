@@ -32,7 +32,6 @@ public class PurchaseRecoderService {
 			map.put("productId", bean.getProductId());
 			map.put("number", bean.getNumber());
 			map.put("prize", bean.getPrize());
-			map.put("supplierId", bean.getSupplierId());
 			result.add(map);
 		}
 		return result;
@@ -52,10 +51,6 @@ public class PurchaseRecoderService {
 	
 	public List<Map<String, Object>> selectByProductId(String productId){
 		return this.jfomat(dao.selectByProductId(productId));
-	}
-	
-	public List<Map<String, Object>> selectBySupplierId(int supplierId){
-		return this.jfomat(dao.selectBySupplierId(supplierId));
 	}
 	
 	public PurchaseRecordBean insert(PurchaseRecordBean bean){
