@@ -104,10 +104,10 @@ public class ProductDAOHibernate implements ProductDAO {
 	}
 	
 	@Override
-	public boolean updateQty2(String productId) {
+	public boolean updateQty2(String productId, int productQty) {
 		ProductBean bean = (ProductBean)this.getSession().get(ProductBean.class, productId);
 		if(bean != null) {
-			bean.setProductQty(bean.getProductQty()-1);
+			bean.setProductQty(bean.getProductQty() + productQty);
 			return true;
 		}
 		return false;

@@ -180,9 +180,9 @@ public class OrderCommandServlet extends HttpServlet {
 						bean2.setDate(new java.util.Date());
 						bean2.setType("出貨");
 						bean2.setProductId(a);
-						bean2.setPrize(0);
-						bean2.setNumber(1);
-						service3.updateQty2(a);
+						bean2.setPrize("");
+						bean2.setNumber("1");
+						service3.updateQty2(a, -1);
 						service2.insert(bean2);
 					}
 				}

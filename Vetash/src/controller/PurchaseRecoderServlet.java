@@ -86,18 +86,12 @@ public class PurchaseRecoderServlet extends HttpServlet {
 		String type = req.getParameter("purchaseType");
 		String notes = req.getParameter("notes");
 		String productId = req.getParameter("productId");
-		String tempNum = req.getParameter("number");
-		String tempPri = req.getParameter("prize");
+		String number = req.getParameter("number");
+		String prize = req.getParameter("prize");
 		
 		java.util.Date date2 = new java.util.Date();
-		int number = 0;
-		int prize = 0;
-		if(type==null || type.length()==0 || productId==null || productId.length()==0 || tempNum==null ||
-					tempNum.length()==0 || tempPri==null || tempPri.length()==0) {
+		if(type==null || type.length()==0 || productId==null || productId.length()==0 || number==null || prize==null) {
 			errs.add("有必填欄位空白");
-		} else {
-			number = Parse.convertInt(tempNum);
-			prize = Parse.convertInt(tempPri);
 		}
 		if(errs!=null && !errs.isEmpty()){
 			errmap.put("errors", errs);
@@ -113,12 +107,28 @@ public class PurchaseRecoderServlet extends HttpServlet {
 		bean.setPrize(prize);
 		bean.setNumber(number);
 		
+		int num = Parse.convertInt(number);
+		int pri = Parse.convertInt(prize);
 		if(type.equals("進貨")){//修改(增加)(減少)
-			service2.updateQty(productId, number, prize);
-			service.insert(bean);
+			if(num>0 && pri>0) {
+				service2.updateQty(productId, num, pri);
+				service.insert(bean);
+			}
 		} else if(type.equals("退貨")){
-			service2.updateQty(productId, -number, -prize);
-			service.insert(bean);
+			if(num>0 && pri>0) {
+				service2.updateQty(productId, -num, -pri);
+				service.insert(bean);
+			}
+		} else if(type.equals("修改(增加)")){
+			if(num > 0) {
+				service2.updateQty2(productId, num);
+				service.insert(bean);
+			}
+		} else if(type.equals("修改(減少)")){
+			if(num > 0) {
+				service2.updateQty2(productId, -num);
+				service.insert(bean);
+			}
 		}
 	}
 

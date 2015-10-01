@@ -31,10 +31,10 @@ public class PurchaseRecordBean {
 	private String productId;
 	
 	@Column(name="Number")
-	private int number;
+	private String number;
 	
 	@Column(name="Prize")
-	private int prize;
+	private String prize;
 	
 	public int getRecordNo() {
 		return recordNo;
@@ -76,19 +76,19 @@ public class PurchaseRecordBean {
 		this.productId = productId;
 	}
 
-	public int getNumber() {
+	public String getNumber() {
 		return number;
 	}
 
-	public void setNumber(int number) {
+	public void setNumber(String number) {
 		this.number = number;
 	}
 
-	public int getPrize() {
+	public String getPrize() {
 		return prize;
 	}
 
-	public void setPrize(int prize) {
+	public void setPrize(String prize) {
 		this.prize = prize;
 	}
 	
