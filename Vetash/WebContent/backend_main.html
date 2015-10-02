@@ -3671,6 +3671,13 @@
 
 			function Image_showModal(card){
 				console.log("Image_showModal() called");
+				$('#Image_modal .form').form('set values', {
+					imageId:"",
+					imageName:"",
+					imageDate:"",
+					imagePath:"",
+					imgCategoryName:""
+				});
 
 				if("update"===card.task){
 				} else if("insert"===card.task){
@@ -3856,7 +3863,6 @@
 			$('#Setting .form .negative.message').hide();
 			$('#Setting .form').form('validate form');
 		})
-
 	/*setting*/
 
 	/*logout*/

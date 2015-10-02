@@ -48,7 +48,7 @@ public class AccessBackServlet extends HttpServlet {
 		} else if(task.equals("login")) {
 			if(service.login(bigWave, passKey)){
 				session.setAttribute("Login", true);
-				req.getRequestDispatcher("/backend_main.html").forward(req, resp);
+				resp.sendRedirect("/Vetash/backend_main.html");
 				return;
 			} else {
 				errs.put("warning4", "Fail");
