@@ -39,8 +39,8 @@ public class ImageServlet extends HttpServlet {
 
 		// 接收資料
 		String imageId = req.getParameter("imageId");
-		String name = req.getParameter("imagename");
-		String path = req.getParameter("imagepath");
+		String name = req.getParameter("imageName");
+		String path = req.getParameter("imagePath");
 		String imgCategoryName = req.getParameter("imgCategoryName");
 		String action = req.getParameter("action");
 
@@ -50,7 +50,7 @@ public class ImageServlet extends HttpServlet {
 		if (imageId != null && imageId.length() != 0) {
 			parseImageId = Parse.convertInt(imageId);
 		}
-
+		
 		JSONObject jObj = new JSONObject();
 		PrintWriter out = rsp.getWriter();
 
