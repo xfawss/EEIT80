@@ -20,8 +20,8 @@ public class ProductService {
 		return  productDAO.insert(bean);
 	}
 
-	public int sumOfPrice(OrderBean bean) {		
-		return productDAO.sumOfPrice(bean);
+	public int price(String productId) {		
+		return productDAO.price(productId);
 	}
 
 	public ProductBean update(ProductBean bean) {

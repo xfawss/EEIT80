@@ -79,7 +79,7 @@ public class OrderServlet extends HttpServlet {
 		int price = bean.getPrice();
 		price -= (int)session.getAttribute("receiveCost");
 		if(!receiveType.equals("自取")) {
-			int receiveCost = service2.selectCostById("001");
+			int receiveCost = service2.price("001");
 			price += receiveCost;
 			session.setAttribute("receiveCost", receiveCost);
 		}else {

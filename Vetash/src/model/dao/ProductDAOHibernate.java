@@ -22,24 +22,16 @@ public class ProductDAOHibernate implements ProductDAO {
 	}
 	
 	@Override
-	public int sumOfPrice(OrderBean bean) {
-		Query query = this.getSession().createQuery("select sum(ProductPrice) from Product where productId in (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-		query.setParameter(0, bean.getHousing());
-		query.setParameter(1, bean.getRocker());
-		query.setParameter(2, bean.getL1());
-		query.setParameter(3, bean.getL2());
-		query.setParameter(4, bean.getR1());
-		query.setParameter(5, bean.getR2());
-		query.setParameter(6, bean.getO());
-		query.setParameter(7, bean.getX());
-		query.setParameter(8, bean.getSelecter());
-		query.setParameter(9, bean.getTriangle());
-		query.setParameter(10, bean.getSquare());
-		query.setParameter(11, bean.getStart());
-		query.setParameter(12, bean.getTouch());
-		query.setParameter(13, bean.getBoard());
-		query.setParameter(14, "000");
-		return (int) query.list().get(0);
+	public int price(String productId) {
+		Query query = this.getSession().createSQLQuery("select ProductPrice from Product where productId = ?");
+		query.setParameter(0, productId);
+		List temp = query.list();
+		if(temp.size()!=0){
+			return (int)temp.get(0);
+		} else {
+			return 0;
+		}
+		
 	}
 
 	@Override
