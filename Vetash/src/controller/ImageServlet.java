@@ -39,8 +39,8 @@ public class ImageServlet extends HttpServlet {
 
 		// 接收資料
 		String imageId = req.getParameter("imageId");
-		String name = req.getParameter("name");
-		String path = req.getParameter("path");
+		String name = req.getParameter("imagename");
+		String path = req.getParameter("imagepath");
 		String imgCategoryName = req.getParameter("imgCategoryName");
 		String action = req.getParameter("action");
 
