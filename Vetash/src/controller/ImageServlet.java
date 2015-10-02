@@ -40,7 +40,6 @@ public class ImageServlet extends HttpServlet {
 		// 接收資料
 		String imageId = req.getParameter("imageId");
 		String name = req.getParameter("imageName");
-		String path = req.getParameter("imagePath");
 		String imgCategoryName = req.getParameter("imgCategoryName");
 		String action = req.getParameter("action");
 
@@ -82,6 +81,15 @@ public class ImageServlet extends HttpServlet {
 			if (parseImageId == 0) {
 				if ("selectByImgCategoryName".equals(action)) {
 					List<Map<String, Object>> result = service.selectByImgCategoryName(imgCategoryName);
+					jObj.put("results", result);
+					out.print(jObj);
+					return;
+				}
+			}
+			if (parseImageId == 0) {
+				if ("selectByType".equals(action)) {
+					List<Map<String, Object>> result = service.selectByType();
+					jObj.put("success", true);
 					jObj.put("results", result);
 					out.print(jObj);
 					return;

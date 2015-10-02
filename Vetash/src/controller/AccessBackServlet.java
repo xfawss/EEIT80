@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
@@ -31,6 +33,7 @@ public class AccessBackServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");
+		PrintWriter out = resp.getWriter();
 		String bigWave = req.getParameter("account");
 		String passKey = req.getParameter("password");
 		String newPass1 = req.getParameter("newPass1");
@@ -45,33 +48,37 @@ public class AccessBackServlet extends HttpServlet {
 		} else if(task.equals("login")) {
 			if(service.login(bigWave, passKey)){
 				session.setAttribute("Login", true);
-				resp.sendRedirect("/Vetash/backend_main.html");
+				req.getRequestDispatcher("/backend_main.html").forward(req, resp);
 				return;
 			} else {
 				errs.put("warning4", "Fail");
-				session.setAttribute("Login", false);
-				resp.sendRedirect("/Vetash/ye/login.html");
+				req.setAttribute("isLoginSuccess", false);
+				req.getRequestDispatcher("/backend_login.jsp").forward(req, resp);
 				return;
 			}
 		} else if(task.equals("changePass")) {
+			JSONObject jObj = new JSONObject();
 			if(newPass1.equals(newPass2)) {
 				if(service.changePassKey(bigWave, passKey, newPass1)) {
-					resp.sendRedirect("/Vetash/ye/login.html");
+					jObj.put("state", "success");
+					out.print(jObj);
 					return;
 				} else {
-					resp.sendRedirect("/Vetash/ye/login.html");
+					jObj.put("state", "fail");
+					out.print(jObj);
 					return;
 				}
 			} else {
-				resp.sendRedirect("/Vetash/ye/login.html");
+				jObj.put("state", "fail");
+				out.print(jObj);
 				return;
 			}
 		} else if(task.equals("insert")) {
 			service.insert(bigWave, passKey);
 			return;
-		} else if(task.equals("login")) {
+		} else if(task.equals("logout")) {
 			session.setAttribute("Login", false);
-			resp.sendRedirect("/Vetash/backend_main.html");
+			req.getRequestDispatcher("/backend_login.jsp").forward(req, resp);
 			return;
 		}
 	}

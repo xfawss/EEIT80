@@ -55,15 +55,18 @@
 		<div class="ui menu">
 			<img src="images/logo_l.png" class="ui middle aligned image" style="max-height:30px;margin:10px">
 			<div class="right menu">
-				<div class="item">
-					<div class="ui primary button">Logout</div>
+				<div class="item logoutBlock">
+					<div class="ui primary button ">Logout</div>
+					<form action="./accessback" method="post" style="display:none">
+						<input type="hidden" name="task" value="logout">
+					</form>
 				</div>
 			</div>
 		</div>
 	</div>
 
 	<div class="ui container" id="mainContainer">
-		<div class="ui nine item pointing top attached tabular menu" id="mainMenu">
+		<div class="ui nine item pointing top attached blue tabular menu" id="mainMenu">
 			<a class="item active" data-tab="tab-name1" id="tab-name1">零件</a>
 			<a class="item" data-tab="tab-name2" id="tab-name2">顧客</a>
 			<a class="item" data-tab="tab-name3" id="tab-name3">供應商</a>
@@ -106,7 +109,7 @@
 					</div>
 				</div><!-- buttons -->
 
-				<table class="ui selectable celed table"><!-- table -->
+				<table class="ui selectable celed blue table"><!-- table -->
 					<thead>
 						<tr>
 							<th>
@@ -144,8 +147,8 @@
 								</div>
 								<div class="field" id="productTypeField">
 									<label>種類</label>
-									<input name="productType" type="text" placeholder="">
-									<!-- <div class="ui selection dropdown">
+									<!-- <input name="productType" type="text" placeholder=""> -->
+									<div class="ui selection dropdown">
 										<input name="productType" type="hidden">
 										<i class="dropdown icon"></i>
 										<div class="default text">請輸入種類</div>
@@ -153,9 +156,10 @@
 											<div class="item" data-value="框體">框體</div>
 											<div class="item" data-value="搖桿">搖桿</div>
 											<div class="item" data-value="按鍵">按鍵</div>
-											待增加
+											<div class="item" data-value="機板">機板</div>
+											<div class="item" data-value="OTHER">OTHER</div>
 										</div>
-									</div> -->
+									</div>
 								</div>
 								<div class="field">
 									<label>品名</label>
@@ -185,7 +189,6 @@
 								<div class="right aligned column">
 									<div class="field actions">
 										<div class="ui tiny blue approve button">Submit</div>
-										<div class="ui tiny reset button">Reset</div>
 										<div class="ui tiny reset button btnFormCancel">Cancel</div>
 									</div>
 								</div>
@@ -231,7 +234,7 @@
 					</div>
 				</div><!-- buttons -->
 
-				<table class="ui selectable celed table"><!-- table -->
+				<table class="ui selectable celed blue table"><!-- table -->
 					<thead>
 						<tr>
 							<th>
@@ -303,7 +306,6 @@
 								<div class="right aligned column">
 									<div class="field actions">
 										<div class="ui tiny blue approve button">Submit</div>
-										<div class="ui tiny reset button">Reset</div>
 										<div class="ui tiny reset button btnFormCancel">Cancel</div>
 									</div>
 								</div>
@@ -345,7 +347,7 @@
 					</div>
 				</div><!-- buttons -->
 
-				<table class="ui selectable celed table"><!-- table -->
+				<table class="ui selectable celed blue table"><!-- table -->
 					<thead>
 						<tr>
 							<th>
@@ -353,12 +355,9 @@
 							</th>
 							<th>編號</th>
 							<th>公司名</th>
-							<th>統一編號</th>
 							<th>聯絡人</th>
 							<th>電話</th>
-							<th>地址</th>
 							<th>匯款帳號</th>
-							<th>首次交易日</th>
 							<th>備註</th>
 						</tr>
 					</thead>
@@ -413,7 +412,7 @@
 								</div>
 								<div class="four wide field">
 									<label>首次交易日</label>
-									<input type="text" name="supplierDate" placeholder="">
+									<input type="date" name="supplierDate" placeholder="yyyy-MM-dd">
 								</div>
 							</div>
 							<div class="field">
@@ -425,7 +424,6 @@
 								<div class="right aligned column">
 									<div class="field actions">
 										<div class="ui tiny blue approve button">Submit</div>
-										<div class="ui tiny reset button">Reset</div>
 										<div class="ui tiny reset button btnFormCancel">Cancel</div>
 									</div>
 								</div>
@@ -468,7 +466,7 @@
 					</div>
 				</div><!-- buttons -->
 
-				<table class="ui selectable celed table"><!-- table -->
+				<table class="ui selectable celed blue table"><!-- table -->
 					<thead>
 						<tr>
 							<th>
@@ -507,7 +505,7 @@
 										</div>
 										<div class="field">
 											<label>下訂日期</label>
-											<input name="orderDate" type="text" placeholder="">
+											<input name="orderDate" type="datetime" placeholder="">
 										</div>
 										<div class="field">
 											<label>成交價格</label>
@@ -534,7 +532,7 @@
 										</div>
 										<div class="field">
 											<label>到貨日期</label>
-											<input type="text" name="deliveryDate" placeholder="">
+											<input type="date" name="deliveryDate" placeholder="yyyy-MM-dd">
 										</div>
 									</div>
 								</div>
@@ -769,7 +767,7 @@
 					</div>
 				</div><!-- buttons -->
 
-				<table class="ui selectable celed table"><!-- table -->
+				<table class="ui selectable celed blue table"><!-- table -->
 					<thead>
 						<tr>
 							<th>
@@ -814,7 +812,7 @@
 								</div>
 								<div class="field">
 									<label>使用期限</label>
-									<input type="text" name="deadline" placeholder="yyyy-MM-dd">
+									<input type="date" name="deadline" placeholder="yyyy-MM-dd">
 								</div>
 								<div class="field">
 									<label>使用次數</label>
@@ -829,7 +827,6 @@
 								<div class="right aligned column">
 									<div class="field actions">
 										<div class="ui tiny blue approve button" id="couponFormSubmit">Submit</div>
-										<div class="ui tiny reset button">Reset</div>
 										<div class="ui tiny reset button" id="couponModalFormCancel">Cancel</div>
 									</div>
 								</div>
@@ -893,7 +890,7 @@
 					</div>
 				</div><!-- buttons -->
 
-				<table class="ui selectable celed table"><!-- table -->
+				<table class="ui selectable celed blue table"><!-- table -->
 					<thead>
 						<tr>
 							<th>編號</th>
@@ -928,7 +925,7 @@
 								</div>
 								<div class="disabled two wide field">
 									<label>日期</label>
-									<input type="text" name="date" disabled="" placeholder="">
+									<input type="date" name="date" disabled="" placeholder="yyyy-MM-dd">
 								</div>
 							</div>
 
@@ -943,7 +940,7 @@
 								</div>
 								<div class="field">
 									<label>數量</label>
-									<input type="text" name="number" placeholder="請輸入正數">
+									<input type="text" name="number" placeholder="">
 								</div>
 								<div class="field purchaseTypeField">
 									<label>種類</label>
@@ -983,8 +980,164 @@
 				</div><!-- modal -->
 			</div>
 		</div><!-- Purchase -->
-		<div class="ui bottom attached segment tab" data-tab="tab-name7">tab7</div>
-		<div class="ui bottom attached segment tab" data-tab="tab-name8">tab8</div>
+		<div class="ui bottom attached segment tab" data-tab="tab-name7"><!-- Image -->
+			<div id="Image" class="ui segment">
+				<div class="top attached segment"><!-- buttons -->
+					<div class="ui grid">
+						<div class="row">
+							<div class="left floated six wide column">
+								<div class="ui checkbox">
+									<input type="checkbox" class="checkboxControl">
+									<label></label>
+								</div>
+								<button class="ui icon button btnRefresh">
+									<i class="refresh icon"></i>
+								</button>
+								<div class="ui icon buttons">
+									<button class="ui icon button btnInsert">
+										<i class="plus icon"></i>
+									</button>
+									<button class="ui icon button btnDelete">
+										<i class="remove icon"></i>
+									</button>
+								</div>
+							</div>
+							<div class="right floated right aligned ten wide column searchBlock">
+								<div class="ui action input">
+									<input placeholder="Search..." type="text">
+									<select class="ui compact selection dropdown">
+										<option selected="selected" value="selectByImgCategoryName">類別</option>
+										<option value="selectByName">名稱</option>
+									</select>
+									<div class="ui button">Search</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div><!-- buttons -->
+
+				<div class="ui six stackable cards">
+					<!-- <div class="ui card">
+						<div class="image">
+							<div class="ui ribbon label">
+								<input type="checkbox">
+							</div>
+							<img src="images/profile/Model 5th-0531.jpg">
+						</div>
+						<div class="content">
+							<div class="imgId" style="display:none"></div>
+							<a class="header">Profile01</a>
+							<div class="meta">
+								<span class="date">2015/10/1</span>
+							</div>
+						</div>
+					</div> -->
+				</div>
+
+				<div class="ui small modal" id="Image_modal"><!-- modal -->
+					<div class="ui segment">
+						<h2 class="ui header">
+							<i class=" write icon"></i>
+							<div class="content">
+								Image
+								<div class="sub header"></div>
+							</div>
+						</h2>
+
+						<div class="ui item imageItem">
+							<div class="ui center aligned grid pure">
+								<div class="ui image">
+									<img src="" style="max-height:30vh">
+								</div>
+							</div>
+						</div>
+
+						<form class="ui form">
+							<div class="three fields">
+								<input type="hidden" name="imageId">
+								<div class="field">
+									<label>名稱</label>
+									<input type="text" name="imageName" placeholder="">
+								</div>
+								<div class="field">
+									<label>類別</label>
+									<div class="ui selection dropdown">
+										<input name="imgCategoryName" type="hidden">
+										<i class="dropdown icon"></i>
+										<div class="default text">請選擇類別</div>
+										<div class="menu">
+											<div class="item" data-value="相簿">相簿</div>
+											<div class="item" data-value="面板圖">面板圖</div>
+											<div class="item" data-value="其他">其他</div>
+											<div class="item" data-value="首頁">首頁</div>
+										</div>
+									</div>
+								</div>
+								<div class="field imageDateField">
+									<label>新增日期</label>
+									<input type="text" name="imageDate" placeholder="">
+								</div>
+							</div>
+
+							<div class="field">
+								<label>網址</label>
+								<input type="text" name="imagePath" placeholder="">
+							</div>
+
+							<input type="hidden" name="task"><!-- insert or update -->
+							<div class="ui grid">
+								<div class="right aligned column">
+									<div class="field actions">
+										<div class="ui tiny blue approve button">Submit</div>
+										<div class="ui tiny reset button btnFormCancel">Cancel</div>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div><!-- modal -->
+			</div>
+		</div><!-- Image -->
+		<div class="ui bottom attached segment tab" data-tab="tab-name8">
+			<div class="ui segment" id="Setting">
+				<div class="ui middle aligned center aligned grid">
+					<div class="column" style="max-width:450px">
+						<form class="ui large form">
+							<div class="ui segment">
+								<div class="field">
+									<div class="ui left icon input">
+										<i class="user icon"></i>
+										<input name="account" placeholder="請輸入帳號" type="text">
+									</div>
+								</div>
+								<div class="field">
+									<div class="ui left icon input">
+										<i class="lock icon"></i>
+										<input name="password" placeholder="請輸入舊密碼" type="password">
+									</div>
+								</div>
+								<div class="field">
+									<div class="ui left icon input">
+										<i class="lock icon"></i>
+										<input name="newPass1" placeholder="請輸入新密碼" type="password">
+									</div>
+								</div>
+								<div class="field">
+									<div class="ui left icon input">
+										<i class="lock icon"></i>
+										<input name="newPass2" placeholder="請再次輸入新密碼" type="password">
+									</div>
+								</div>
+								<div class="ui fluid large blue button">修改密碼</div>
+							</div>
+							<div class="ui negative message" style="display:none">
+								修改失敗
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 
 <script>
@@ -1050,6 +1203,11 @@
 
 			function coupon_getAllCoupons(){
 				console.log("coupon_getAllCoupons() called");
+
+				$('#Coupons').addClass('loading');/*loading start*/
+				$('#Coupons .btnRefresh').addClass('loading');
+				$('#Coupons .searchBlock .button').addClass('loading');
+
 				$.ajax({
 					url:'./coupon',
 					type:'get',
@@ -1064,6 +1222,11 @@
 
 			function coupon_showCoupons(allCoupons){
 				console.log("coupon_showCoupons() called");
+
+				$('#Coupons').addClass('loading');/*loading start*/
+				$('#Coupons .btnRefresh').addClass('loading');
+				$('#Coupons .searchBlock .button').addClass('loading');
+
 				console.log(allCoupons);
 				$('#Coupons .table > tbody').empty();
 				$.each(allCoupons.results,function(i,coupon){
@@ -1099,6 +1262,9 @@
 						.click(function(){coupon_updateCoupon(couponData);})
 						.appendTo($('#Coupons .table > tbody tr:nth-child('+index+')'));
 				});
+				$('#Coupons').removeClass('loading');/*loading end*/
+				$('#Coupons .btnRefresh').removeClass('loading');
+				$('#Coupons .searchBlock .button').removeClass('loading');
 			}
 
 			function coupon_getSelectedCouponsToDelete(){
@@ -1379,6 +1545,11 @@
 
 			function Supplier_getAll(){
 				console.log("Supplier_getAll() called");
+
+				$('#Supplier').addClass('loading');/*loading start*/
+				$('#Supplier .btnRefresh').addClass('loading');
+				$('#Supplier .searchBlock .button').addClass('loading');
+
 				$.ajax({
 					url:'./suppliers',
 					type:'get',
@@ -1395,6 +1566,11 @@
 
 			function Supplier_show(all){
 				console.log("Supplier_show() called");
+
+				$('#Supplier').addClass('loading');/*loading start*/
+				$('#Supplier .btnRefresh').addClass('loading');
+				$('#Supplier .searchBlock .button').addClass('loading');
+
 				console.log(all);
 				$('#Supplier .table > tbody').empty();
 				$.each(all.results,function(i,one){
@@ -1426,10 +1602,6 @@
 						.addClass("addCursor")
 						.click(function(){Supplier_update(row);})
 						.appendTo($('#Supplier .table > tbody tr:nth-child('+index+')'));
-					$('<td>',{html:one.supplierTax})
-						.addClass("addCursor")
-						.click(function(){Supplier_update(row);})
-						.appendTo($('#Supplier .table > tbody tr:nth-child('+index+')'));
 					$('<td>',{html:one.supplierContact})
 						.addClass("addCursor")
 						.click(function(){Supplier_update(row);})
@@ -1438,15 +1610,7 @@
 						.addClass("addCursor")
 						.click(function(){Supplier_update(row);})
 						.appendTo($('#Supplier .table > tbody tr:nth-child('+index+')'));
-					$('<td>',{html:one.supplierAddr})
-						.addClass("addCursor")
-						.click(function(){Supplier_update(row);})
-						.appendTo($('#Supplier .table > tbody tr:nth-child('+index+')'));
 					$('<td>',{html:one.supplierAcct})
-						.addClass("addCursor")
-						.click(function(){Supplier_update(row);})
-						.appendTo($('#Supplier .table > tbody tr:nth-child('+index+')'));
-					$('<td>',{html:one.supplierDate})
 						.addClass("addCursor")
 						.click(function(){Supplier_update(row);})
 						.appendTo($('#Supplier .table > tbody tr:nth-child('+index+')'));
@@ -1455,6 +1619,9 @@
 						.click(function(){Supplier_update(row);})
 						.appendTo($('#Supplier .table > tbody tr:nth-child('+index+')'));
 				});
+				$('#Supplier').removeClass('loading');/*loading end*/
+				$('#Supplier .btnRefresh').removeClass('loading');
+				$('#Supplier .searchBlock .button').removeClass('loading');
 			}
 
 			function Supplier_update(row){
@@ -1543,7 +1710,7 @@
 							prompt : '請輸入首次交易日'
 						},
 						{
-							type   : 'regExp[/^((19|20|21)?[0-9]{2}[/ .](0?[1-9]|1[012])[/ .](0?[1-9]|[12][0-9]|3[01]))*$/]',
+							type   : 'regExp[/^((19|20|21)?[0-9]{2}[- .](0?[1-9]|1[012])[- .](0?[1-9]|[12][0-9]|3[01]))*$/]',
 							prompt : '日期格式必須如範例:2015-01-01 (西元年4碼-月2碼-日2碼)'
 						}
 						]
@@ -1619,6 +1786,11 @@
 
 			function Customer_getAll(){
 				console.log("Customer_getAll() called");
+
+				$('#Customer').addClass('loading');/*loading start*/
+				$('#Customer .btnRefresh').addClass('loading');
+				$('#Customer .searchBlock .button').addClass('loading');
+
 				$.ajax({
 					url:'./customers',
 					type:'get',
@@ -1636,6 +1808,11 @@
 
 			function Customer_show(all){
 				console.log("Customer_show() called");
+
+				$('#Customer').addClass('loading');/*loading start*/
+				$('#Customer .btnRefresh').addClass('loading');
+				$('#Customer .searchBlock .button').addClass('loading');
+
 				console.log(all);
 				$('#Customer .table > tbody').empty();
 				$.each(all.results,function(i,one){
@@ -1686,6 +1863,9 @@
 						.click(function(){Customer_update(row);})
 						.appendTo($('#Customer .table > tbody tr:nth-child('+index+')'));
 				});
+				$('#Customer').removeClass('loading');/*loading end*/
+				$('#Customer .btnRefresh').removeClass('loading');
+				$('#Customer .searchBlock .button').removeClass('loading');
 			}
 
 		/*insert*/
@@ -2054,6 +2234,11 @@
 
 			function Product_getAll(){
 				console.log("Product_getAll() called");
+
+				$('#Product').addClass('loading');/*loading start*/
+				$('#Product .btnRefresh').addClass('loading');
+				$('#Product .searchBlock .button').addClass('loading');
+
 				$.ajax({
 					url:'./products',
 					type:'get',
@@ -2070,6 +2255,11 @@
 
 			function Product_show(all){
 				console.log("Product_show() called");
+
+				$('#Product').addClass('loading');/*loading start*/
+				$('#Product .btnRefresh').addClass('loading');
+				$('#Product .searchBlock .button').addClass('loading');
+
 				console.log(all);
 				$('#Product .table > tbody').empty();
 				$.each(all.results,function(i,one){
@@ -2120,6 +2310,9 @@
 						.click(function(){Product_update(row);})
 						.appendTo($('#Product .table > tbody tr:nth-child('+index+')'));
 				});
+				$('#Product').removeClass('loading');/*loading end*/
+				$('#Product .btnRefresh').removeClass('loading');
+				$('#Product .searchBlock .button').removeClass('loading');
 			}
 
 		/*insert*/
@@ -2295,7 +2488,7 @@
 			}
 
 		/*form element initializing*/
-			/*$('#Product_modal .form .selection.dropdown').dropdown();*/
+			$('#Product_modal .form .selection.dropdown').dropdown();
 
 		/*form validation setting*/
 			$('#Product_modal .form').form({
@@ -2436,6 +2629,11 @@
 
 			function Purchase_getAll(){
 				console.log("Purchase_getAll() called");
+
+				$('#Purchase').addClass('loading');/*loading start*/
+				$('#Purchase .btnRefresh').addClass('loading');
+				$('#Purchase .searchBlock .button').addClass('loading');
+
 				$.ajax({
 					url:'./purchase',
 					type:'get',
@@ -2452,6 +2650,11 @@
 
 			function Purchase_show(all){
 				console.log("Purchase_show() called");
+
+				$('#Purchase').addClass('loading');/*loading start*/
+				$('#Purchase .btnRefresh').addClass('loading');
+				$('#Purchase .searchBlock .button').addClass('loading');
+
 				console.log(all);
 				$('#Purchase .table > tbody').empty();
 				$.each(all.results,function(i,one){
@@ -2500,6 +2703,9 @@
 						.click(function(){Purchase_detail(row);})
 						.appendTo($('#Purchase .table > tbody tr:nth-child('+index+')'));
 				});
+				$('#Purchase').removeClass('loading');/*loading end*/
+				$('#Purchase .btnRefresh').removeClass('loading');
+				$('#Purchase .searchBlock .button').removeClass('loading');
 			}
 
 		/*insert*/
@@ -2777,6 +2983,9 @@
 			});
 
 			function Order_getAll(){
+				$('#Order').addClass('loading');/*loading start*/
+				$('#Order .btnRefresh').addClass('loading');
+				$('#Order .searchBlock .button').addClass('loading');
 				console.log("Order_getAll() called");
 				$.ajax({
 					url:'./OrderCommand',
@@ -2839,6 +3048,10 @@
 			}
 
 			function Order_show(all){
+				$('#Order').addClass('loading');/*loading start*/
+				$('#Order .btnRefresh').addClass('loading');
+				$('#Order .searchBlock .button').addClass('loading');
+
 				console.log("Order_show() called");
 				console.log(all);
 				$('#Order .table > tbody').empty();
@@ -2927,6 +3140,9 @@
 						.click(function(){Order_update(row);})
 						.appendTo($('#Order .table > tbody tr:nth-child('+index+')'));
 				});
+				$('#Order').removeClass('loading');/*loading end*/
+				$('#Order .btnRefresh').removeClass('loading');
+				$('#Order .searchBlock .button').removeClass('loading');
 			}
 
 		/*update*/
@@ -3226,6 +3442,427 @@
 			});
 	/*Order*/
 
+	/*Image*/
+		/*tab behaviour*/
+		$('#tab-name7').tab({
+			evaluateScripts:true,
+			alwaysRefresh:true,
+			cache:false,
+			onLoad:function(){
+				Image_getAll();
+			}
+		});
+
+		/*refresh*/
+		$('#Image .btnRefresh').click(function(){
+			console.log("btnRefresh clicked");
+			Image_getAll();
+		});
+
+		function Image_getAll(){
+			$('#Image').addClass('loading');/*loading start*/
+			$('#Image .btnRefresh').addClass('loading');
+			$('#Image .searchBlock .button').addClass('loading');
+			console.log("Image_getAll() called");
+			$.ajax({
+				url:'./image',
+				type:'get',
+				data:{
+					"action":"selectAll"
+				},
+				dataType:"json",
+				success:function(all){
+					console.log("Image_getAll() successed");
+					Image_show(all);
+				}
+			});
+		}
+
+		function Image_show(all){
+			$('#Image').addClass('loading');/*loading start*/
+			$('#Image .btnRefresh').addClass('loading');
+			$('#Image .searchBlock .button').addClass('loading');
+
+			console.log("Image_show() called");
+			console.log(all);
+			$('#Image .cards').empty();
+			$.each(all.results,function(i,one){
+				var index = i+1;
+				var card = {Title:"Edit an exist Image.",
+					imageId:one.imageId,
+					imageName:one.imageName,
+					imageDate:one.imageDate,
+					imagePath:one.imagePath,
+					imgCategoryName:one.imgCategoryName,
+					task:"update"
+				};
+
+
+				/*<div class="ui six stackable cards">
+					<div class="ui card">
+						<div class="image">
+							<div class="ui ribbon label"><input type="checkbox"></div>
+							<img src="images/profile/Model 5th-0531.jpg">
+						</div>
+						<div class="content">
+							<a class="header">Profile01</a>
+							<div class="meta">
+								<span class="date">2015/10/1</span>
+							</div>
+						</div>
+					</div>
+				</div>*/
+
+				$('<div />',{
+					'class':'ui blue card',
+					html:'<div class="image"><div class="ui ribbon label"><input type="checkbox"></div><img src='+one.imagePath+'></div><div class="content"><div class="imgId" style="display:none">'+one.imageId+'</div><a class="ui description">'+one.imageName+'</a><div class="meta"><span class="date">'+one.imgCategoryName+'</span></div></div>'
+				})
+				.addClass("addCursor")
+				.appendTo($('#Image .cards'));
+
+				/*$('<div />',{
+					'class':'ui ribbon label',
+					html:'<input type="checkbox">'
+				}).appendTo($('#Image .cards .card:nth-child('+index+') > .image'));*/
+
+				$('#Image .cards .card:nth-child('+index+') > .content').click(function(){Image_update(card);});
+
+			});
+
+			$('#Image').removeClass('loading');/*loading complete*/
+			$('#Image .btnRefresh').removeClass('loading');
+			$('#Image .searchBlock .button').removeClass('loading');
+		}
+
+		/*insert*/
+			$('#Image .btnInsert').click(function(){
+				console.log("btnInsert clicked");
+				Image_insert();
+			});
+
+			function Image_insert(){
+				console.log("Image_insert() called");
+				var card = {Title:"Add a new Image.",
+					imageId:"",
+					imageName:"",
+					imageDate:"",
+					imagePath:"",
+					imgCategoryName:"",
+					task:"insert"
+				};
+				$('#imageDateField').addClass('disabled');
+				$('#Image_modal .form input[name="imageDate"]').prop('disabled',true);
+				Image_showModal(card);
+			}
+
+			function Image_update(card){
+				console.log("Image_update() called");
+				Image_showModal(card);
+			}
+
+		/*delete*/
+			$('#Image .btnDelete').click(function(){
+				console.log("btnDelete clicked");
+				Image_getSelectedToDelete();
+			});
+
+			function Image_getSelectedToDelete(){
+				console.log("Image_getSelectedToDelete() called");
+				var checkboxes = $('#Image .cards input');
+				$.each(checkboxes,function(i,checkbox){
+					if($(checkbox).prop('checked')){
+						console.log($(checkbox));
+						console.log($('#Image .cards .card:nth-child('+(i+1)+') .header').text());
+						var selectedCard = $('#Image .cards .card:nth-child('+(i+1)+') .imgId').text();
+						console.log(selectedCard);
+						Image_delete(selectedCard);
+					}
+				})
+			}
+
+			function Image_delete(selectedCard){
+				console.log("Image_delete() called");
+				$.ajax({
+					url:'./image',
+					type:'post',
+					data:{
+						"action":"delete",
+						"imageId":selectedCard
+					},
+					success:function(results){
+						console.log("Image_delete() successed");
+						console.log(results.state);
+						console.log(results.errors);
+						Image_getAll();
+					}
+				});
+			}
+
+		/*search*/
+			$('#Image .searchBlock .dropdown').dropdown();
+			$('#Image .searchBlock .button').click(function(){
+				$('#Image').addClass('loading');/*loading start*/
+				$('#Image .btnRefresh').addClass('loading');
+				var keyword = $('#Image .searchBlock input').val();
+				var by = $('#Image .searchBlock select').val();
+				console.log(keyword);
+				console.log(by);
+				if("selectByImgCategoryName"===by){
+					$.ajax({
+						url:'./image',
+						type:'get',
+						data:{
+							"action":"selectByImgCategoryName",
+							"imgCategoryName":keyword
+						},
+						dataType:"json",
+						success:function(datas){
+							console.log("search by selectByImgCategoryName successed");
+							console.log(datas);
+							Image_show(datas);
+						}
+					});
+				} else if("selectByName"===by){
+					$.ajax({
+						url:'./image',
+						type:'get',
+						data:{
+							"action":"selectByName",
+							"imageName":keyword
+						},
+						dataType:"json",
+						success:function(datas){
+							console.log("search by selectByName successed");
+							console.log(datas);
+							Image_show(datas);
+						}
+					});
+				}
+			});
+
+		/*Modal initializing*/
+			/*notice! modal elements MUST assign an ID*/
+			$('#Image_modal').modal({
+				allowMultiple: true,
+				debug:false,
+				closable:false,
+				onApprove : function() {
+					$('#Image_modal .form').form('validate form');
+					return false;
+				}
+			});
+
+			$('#Image_modal .btnFormCancel').click(function(){
+				$('#Image_modal .form').form('set values', {
+					imageId:"",
+					imageName:"",
+					imageDate:"",
+					imagePath:"",
+					imgCategoryName:""
+				});
+				$('#imageDateField').removeClass('disabled');
+				$('#Image_modal .form input[name="imageDate"]').prop('disabled',false);
+				$('#Image_modal').modal("hide");
+			});
+
+			$('#Image_modal .form input[name="imagePath"]').blur(function(){
+				$('#Image_modal .imageItem img').attr('src',$('#Image_modal .form input[name="imagePath"]').val());
+			});
+
+			function Image_showModal(card){
+				console.log("Image_showModal() called");
+
+				if("update"===card.task){
+				} else if("insert"===card.task){
+				}
+
+				$('#Image_modal .sub.header').html(card.Title);
+				$('#Image_modal .imageItem img').attr('src',card.imagePath);
+				$('#Image_modal .form input[name="imageId"]').val(card.imageId);
+				$('#Image_modal .form input[name="imageName"]').val(card.imageName);
+				$('#Image_modal .form input[name="imageDate"]').val(card.imageDate);
+				$('#Image_modal .form input[name="imagePath"]').val(card.imagePath);
+				$('#Image_modal .form input[name="imgCategoryName"]').val(card.imgCategoryName);
+				$('#Image_modal .form input[name="task"]').val(card.task);
+
+				$('#Image_modal').modal("show");
+			}
+
+		/*form element initializing*/
+			$('#Image_modal .form .selection.dropdown').dropdown();
+
+		/*form validation setting*/
+			$('#Image_modal .form').form({
+				inline:true,
+				fields: {
+					imageName: {
+						identifier: 'imageName',
+						rules: [
+						{
+							type   : 'empty',
+							prompt : '請輸入名稱'
+						}
+						]
+					},
+					imgCategoryName: {
+						identifier: 'imgCategoryName',
+						rules: [
+						{
+							type   : 'empty',
+							prompt : '請選擇種類'
+						}
+						]
+					},
+					imagePath: {
+						identifier: 'imagePath',
+						rules: [
+						{
+							type   : 'empty',
+							prompt : '請輸入網址'
+						}
+						]
+					}
+				},
+				onSuccess:function(){
+					console.log("validation successed");
+					console.log("do ajax");
+					var $form = $('#Image_modal .form');
+					var valuesToSubmit = $form.form('get values');
+					console.log(valuesToSubmit.task);
+					console.log(valuesToSubmit.imageId);
+
+					$.ajax({
+						url:'./image',
+						type:'post',
+						data:{
+							"action":valuesToSubmit.task,
+							"imageId":valuesToSubmit.imageId,
+							"imageName":valuesToSubmit.imageName,
+							"imageDate":valuesToSubmit.imageDate,
+							"imagePath":valuesToSubmit.imagePath,
+							"imgCategoryName":valuesToSubmit.imgCategoryName,
+						},
+						success:function(results){
+							console.log("Image_modal .form ajax successed");
+							$('#Image_modal').modal("hide");
+							console.log(results.state);
+							console.log(results.errors);
+							Image_getAll();
+						}
+					});
+				}
+			});
+
+		/*checkbox behaviour*/
+			$('#Image .checkboxControl').change(function(){
+				console.log("#Image .checkboxControl changed");
+				var isChecked = $('#Image .checkboxControl').prop('checked');
+				console.log(isChecked);
+				if(isChecked){
+					$.each($('#Image .cards :checkbox'),function(){
+						$(this).prop("checked",true);
+					});
+				} else{
+					$.each($('#Image .cards :checkbox'),function(){
+						$(this).prop("checked",false);
+					});
+				}
+			});
+	/*Image*/
+
+	/*setting*/
+		$('#tab-name8').tab({
+			evaluateScripts:true,
+			alwaysRefresh:true,
+			cache:false,
+		});
+
+		$('#Setting .form').form({
+			inline:true,
+			fields:{
+				account: {
+					identifier: 'account',
+					rules: [
+					{
+						type   : 'empty',
+						prompt : '請輸入帳號'
+					}
+					]
+				},
+				password: {
+					identifier: 'password',
+					rules: [
+					{
+						type   : 'empty',
+						prompt : '請輸入舊密碼'
+					}
+					]
+				},
+				newPass1: {
+					identifier: 'newPass1',
+					rules: [
+					{
+						type   : 'empty',
+						prompt : '請輸入新密碼'
+					}
+					]
+				},
+				newPass2: {
+					identifier: 'newPass2',
+					rules: [
+					{
+						type   : 'empty',
+						prompt : '請再次輸入新密碼'
+					},
+					{
+						type   : 'match[newPass1]',
+						prompt : '兩次密碼不相同'
+					}
+					]
+				}
+			},
+			onSuccess:function(){
+				console.log("validation successed");
+				var valuesToSubmit = $('#Setting .form').form('get values');
+
+				$.ajax({
+					url:'./accessback',
+					type:'post',
+					data:{
+						"task":'changePass',
+						'account':valuesToSubmit.account,
+						'password':valuesToSubmit.password,
+						'newPass1':valuesToSubmit.newPass1,
+						'newPass2':valuesToSubmit.newPass2
+					},
+					dataType:"json",
+					success:function(data){
+						console.log("changePass .form ajax successed");
+						if("success"===data.state){
+							/*changePass success*/
+							console.log('changePass success');
+							location.replace("./backend_login.jsp");
+						} else if("fail"===data.state){
+							console.log('changePass fail');
+							$('#Setting .form .negative.message').show();
+							return false;
+						}
+					}
+				});
+			}
+		});
+
+		$('#Setting .button').click(function(){
+			$('#Setting .form .negative.message').hide();
+			$('#Setting .form').form('validate form');
+		})
+
+	/*setting*/
+
+	/*logout*/
+		$('.logoutBlock .button').click(function(){
+			$('.logoutBlock form').form('submit');
+		})
 </script>
 </body>
 </html>

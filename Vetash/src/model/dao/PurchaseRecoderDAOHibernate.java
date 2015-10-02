@@ -32,27 +32,27 @@ public class PurchaseRecoderDAOHibernate implements PurchaseRecoderDAO {
 
 	@Override
 	public List<PurchaseRecordBean> select() {
-		Query query = this.getSession().createQuery("from PurchaseRecordBean");
+		Query query = this.getSession().createQuery("from PurchaseRecordBean order by Date DESC");
 		return (List<PurchaseRecordBean>)query.list();
 	}
 
 	@Override
 	public List<PurchaseRecordBean> selectByDate(String date) {
-		Query query = this.getSession().createQuery("from PurchaseRecordBean where Date like ?");
+		Query query = this.getSession().createQuery("from PurchaseRecordBean where Date like ? order by Date DESC");
 		query.setParameter(0, "%"+date+"%");
 		return (List<PurchaseRecordBean>)query.list();
 	}
 
 	@Override
 	public List<PurchaseRecordBean> selectByType(String type) {
-		Query query = this.getSession().createQuery("from PurchaseRecordBean where Type=?");
+		Query query = this.getSession().createQuery("from PurchaseRecordBean where Type=? order by Date DESC");
 		query.setParameter(0, type);
 		return (List<PurchaseRecordBean>)query.list();
 	}
 
 	@Override
 	public List<PurchaseRecordBean> selectByProductId(String productId) {
-		Query query = this.getSession().createQuery("from PurchaseRecordBean where ProductId like ?");
+		Query query = this.getSession().createQuery("from PurchaseRecordBean where ProductId like ? order by Date DESC");
 		query.setParameter(0, "%"+productId+"%");
 		return (List<PurchaseRecordBean>)query.list();
 	}

@@ -45,6 +45,19 @@ public class ImageService {
 		}
 		return result;
 	}
+	
+	public List<Map<String, Object>> selectByType() {
+		List<Map<String, Object>> result = new LinkedList<Map<String, Object>>();
+		List<String> beans = imgDao.selectByType();
+
+		for (String a : beans) {
+			Map<String, Object> map1 = new LinkedHashMap<String, Object>();
+			map1.put("name", a);
+			map1.put("value", a);
+			result.add(map1);
+		}
+		return result;
+	}
  
 	public List<Map<String, Object>> selectByName(String imageName) {
 		List<Map<String, Object>> result = new LinkedList<Map<String, Object>>();

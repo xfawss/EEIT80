@@ -17,5 +17,7 @@ public interface ImageDAO {
 	public abstract int update(String imageName, String imagePath, String imageCategoryname, int imageId);
 
 	public abstract int delete(int imageId);
+	
+	public abstract List<String> selectByType();
 
 }

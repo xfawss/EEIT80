@@ -20,13 +20,10 @@ public class LoginFilter implements Filter {
 		HttpServletResponse resp = (HttpServletResponse)response;
 		HttpSession session = req.getSession(true);
 		Object login = session.getAttribute("Login");
-		System.out.println("login"+login);
 		if(login!=null && (boolean)login) {
-			//resp.sendRedirect("/Vetash/backend_main.html");
 			req.getRequestDispatcher("/backend_main.html").forward(req, resp);
 		} else {
-			//resp.sendRedirect("/Vetash/ye/login.html");
-			req.getRequestDispatcher("/ye/login.html").forward(req, resp);
+			req.getRequestDispatcher("/backend_login.jsp").forward(req, resp);
 			return;
 		}
 		chain.doFilter(request, response);

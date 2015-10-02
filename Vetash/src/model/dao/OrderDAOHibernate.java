@@ -68,27 +68,27 @@ public class OrderDAOHibernate implements OrderDAO {
 
 	@Override
 	public List<OrderBean> selectAll() {
-		Query query = this.getSession().createQuery("from OrderBean");
+		Query query = this.getSession().createQuery("from OrderBean order by OrderDate DESC");
 		return (List<OrderBean>)query.list();
 	}
 
 	@Override
 	public List<OrderBean> selectByDate(String orderDate) {
-		Query query = this.getSession().createQuery("from OrderBean where CONVERT(VARCHAR, OrderDate , 120) like ?");
+		Query query = this.getSession().createQuery("from OrderBean where CONVERT(VARCHAR, OrderDate , 120) like ? order by OrderDate DESC");
 		query.setParameter(0, "%"+orderDate+"%");
 		return (List<OrderBean>)query.list();
 	}
 
 	@Override
 	public List<OrderBean> selectByTel(String customerTel) {
-		Query query = this.getSession().createQuery("from OrderBean where CustomerTel like ?");
+		Query query = this.getSession().createQuery("from OrderBean where CustomerTel like ? order by OrderDate DESC");
 		query.setParameter(0, "%"+customerTel+"%");
 		return (List<OrderBean>)query.list();
 	}
 
 	@Override
 	public List<OrderBean> selectByNote(String bossNotes) {
-		Query query = this.getSession().createQuery("from OrderBean where BossNotes like ?");
+		Query query = this.getSession().createQuery("from OrderBean where BossNotes like ? order by OrderDate DESC");
 		query.setParameter(0, "%"+bossNotes+"%");
 		return (List<OrderBean>)query.list();
 	}

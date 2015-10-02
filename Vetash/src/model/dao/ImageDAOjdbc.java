@@ -105,6 +105,24 @@ public class ImageDAOjdbc implements ImageDAO {
 		return result;
 	}
 
+	private static final String SELECT_TYPE = "select DISTINCT ImgCategoryName from Image";
+	
+	@Override
+	public List<String> selectByType() {
+		List<String> result = null;
+		try (Connection conn = dataSource.getConnection();
+				PreparedStatement stmt = conn.prepareStatement(SELECT_TYPE);
+				ResultSet rset = stmt.executeQuery();) {
+			result = new ArrayList<String>();
+			while (rset.next()) {
+				result.add(rset.getString("ImgCategoryName"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
 	private static final String INSERT = "insert into Image (ImageName, ImageDate, ImagePath, ImgCategoryName) values (?,?,?,?)";
 
 	@Override
