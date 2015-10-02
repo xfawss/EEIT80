@@ -26,7 +26,7 @@ import model.dao.ImageDAOjdbc;
 public class ImageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ImageService service;
- 
+
 	@Override
 	public void init() throws ServletException {
 		service = new ImageService();
@@ -41,14 +41,11 @@ public class ImageServlet extends HttpServlet {
 		String imageId = req.getParameter("imageId");
 		String name = req.getParameter("name");
 		String path = req.getParameter("path");
-		String imgCategoryId = req.getParameter("imgCategoryId");
+		String imgCategoryName = req.getParameter("imgCategoryName");
 		String action = req.getParameter("action");
 
 		// 轉換資料
-		int parseImgCategoryId = 0;
-		if (imgCategoryId != null && imgCategoryId.length() != 0) {
-			parseImgCategoryId = Parse.convertInt(imgCategoryId);
-		}
+		
 		int parseImageId = 0;
 		if (imageId != null && imageId.length() != 0) {
 			parseImageId = Parse.convertInt(imageId);
@@ -59,33 +56,32 @@ public class ImageServlet extends HttpServlet {
 
 		if (action != null) {
 			if (name != null && name.length() != 0) {
-				if ("select".equals(action)) {
+				if ("selectByName".equals(action)) {
 					List<Map<String, Object>> result = service.selectByName(name);
 					jObj.put("results", result);
 					out.print(jObj);
 					return;
 				}
 			}
-			if (parseImgCategoryId != 0) {
-				if ("select".equals(action)) {
-					List<Map<String, Object>> result = service.selectByImgCategoryId(parseImgCategoryId);
-					System.out.println(result);
-					jObj.put("results", result);
-					out.print(jObj);
-					return;
-				}
-			}
 			if (parseImageId != 0) {
-				if ("select".equals(action)) {
-					Map<String, Object> result = service.selectById(parseImageId);
+				if ("selectById".equals(action)) {
+					List<Map<String, Object>> result = service.selectById(parseImageId);
 					jObj.put("results", result);
 					out.print(jObj);
 					return;
 				}
 			}
-			if (parseImgCategoryId == 0 && parseImageId == 0) {
-				if ("select".equals(action)) {
+			if (parseImageId == 0) {
+				if ("selectAll".equals(action)) {
 					List<Map<String, Object>> result = service.selectAll();
+					jObj.put("results", result);
+					out.print(jObj);
+					return;
+				}
+			}
+			if (parseImageId == 0) {
+				if ("selectByImgCategoryName".equals(action)) {
+					List<Map<String, Object>> result = service.selectByImgCategoryName(imgCategoryName);
 					jObj.put("results", result);
 					out.print(jObj);
 					return;
@@ -94,101 +90,7 @@ public class ImageServlet extends HttpServlet {
 		}
 	}
 
-	// ImageService ser = new ImageService();
-	// ImageBean bean = new ImageBean();
-	// ImageDAOjdbc jdbc = new ImageDAOjdbc();
-	// List<ImageBean> re = jdbc.selectByImgCategoryId(5);
-	// System.out.println(re);
-	// select by imgCategoryId
-	// List<Map<String, Object>> result = ser.selectByImgCategoryId(5);
-	// System.out.println(result);
-	// }
 
-	// ImageDAOjdbc jdbc = new ImageDAOjdbc();
-	// //select by id
-
-	// ImageBean bean = jdbc.select(3);
-	// System.out.println(bean);
-
-	// slelct like name
-
-	// List<ImageBean> result = jdbc.selectName("人");
-	// System.out.println(result);
-
-	// // select all
-	////
-	// List<ImageBean> result = jdbc.select();
-	// System.out.println(result);
-	//
-	//
-	//// insert
-
-	// ImageBean bean = new ImageBean();
-	// bean.setImageName("貓6");
-	// bean.setImagePath("img/cat1.jpg");
-	// bean.setImgCategoryId(2);
-	// jdbc.insert(bean);
-	// System.out.println(bean);
-	////
-	//
-	// // update
-	//
-	// ImageBean bean = new ImageBean();
-	// jdbc.update("貓66666", 6);
-	// System.out.println(bean);
-	////
-	//
-	// // delete
-	////
-	// boolean b = jdbc.delete(6);
-	// System.out.println(b);
-
-	// select lastId
-
-	// String id = jdbc.selectLastId();
-	// System.out.println(id);
-
-	// ImageService ser = new ImageService();
-	// ImageBean bean = new ImageBean();
-
-	// select by imageId (Service)
-	// bean.setImageId(4);
-	// List<ImageBean> result =ser.select(bean);
-	// System.out.println(result);
-
-	// select all (Service)
-	// List<ImageBean> result =ser.select(bean);
-	// System.out.println(result);
-
-	// select like name (Service)
-
-	// List<ImageBean> result = ser.selectName("鐵");
-	// System.out.println(result);
-
-	// insert (Service)
-	// Timestamp ts = new Timestamp(System.currentTimeMillis());
-	// bean.setImageName("超人");
-	// bean.setImageDate(ts);
-	// bean.setImagePath("http://tw.yahoo.com");
-	// bean.setImgCategoryId(2);
-	// int q = ser.insert(bean);
-	// System.out.println(q);
-
-	// // update (Service)
-
-	// bean.setImageName("超人的哥哥叫超哥");
-	// bean.setImageId(7);
-	// bean = ser.update(bean);
-	// System.out.println(bean);
-
-	// // delete (Service)
-	// bean.setImageId(7);
-	// boolean result = ser.delete(bean);
-	// System.out.println(result);
-
-	// select last (Service)
-	// String result = ser.selectLast();
-	// System.out.println(result);
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse rsp) throws ServletException, IOException {
 
@@ -198,7 +100,7 @@ public class ImageServlet extends HttpServlet {
 		String imageId = req.getParameter("imageId");
 		String name = req.getParameter("name");
 		String path = req.getParameter("path");
-		String imgCategoryId = req.getParameter("imgCategoryId");
+		String imgCategoryName = req.getParameter("imgCategoryName");
 		String action = req.getParameter("action");
 
 		// 驗證資料
@@ -211,7 +113,10 @@ public class ImageServlet extends HttpServlet {
 			if ("insert".equals(action) || "update".equals(action)) {
 				System.out.println("error");
 				if (name == null || name.length() == 0) {
-					errors.add("請輸入圖片名稱");
+					errors.add("請輸入名稱");
+				}
+				if(path == null || path.length() == 0){
+					errors.add("請輸入圖片連結路徑");
 				}
 			}
 		}
@@ -227,17 +132,12 @@ public class ImageServlet extends HttpServlet {
 			parseImageId = Parse.convertInt(imageId);
 		}
 
-		int parseCategoryId = 0;
-		if (imgCategoryId != null && imgCategoryId.length() != 0) {
-			parseCategoryId = Parse.convertInt(imgCategoryId);
-		}
-
 		// 呼叫model
 		ImageBean bean = new ImageBean();
 		bean.setImageId(parseImageId);
 		bean.setImageName(name);
 		bean.setImagePath(path);
-		bean.setImgCategoryId(parseCategoryId);
+		bean.setImgCategoryName(imgCategoryName);
 
 		// 根據Model執行結果導向View
 		int result = 0;
@@ -275,42 +175,4 @@ public class ImageServlet extends HttpServlet {
 	}
 }
 
-// 上傳多個檔案
 
-// DiskFileUpload fu = new DiskFileUpload();
-// fu.setSizeMax(10000000); // 上傳的檔案最大可以有1000000 bytes
-// fu.setSizeThreshold(4096); // 最多可以在memery中有4096 bytes的cache
-// fu.setRepositoryPath("/"); // 檔案大於getSizeThreshold時的暫存路徑
-// List fileItems = null;
-// try {
-// fileItems = fu.parseRequest(request);
-// } catch (FileUploadException e) {
-// e.printStackTrace();
-// }
-// Iterator i = fileItems.iterator();
-// while (i.hasNext()) {
-// FileItem fi = (FileItem) i.next();
-// String fileName = getFilename(fi.getName());
-// //得到的是包含路徑的檔名
-// fi.getName() ;
-// File f = new File("C:/Spring/workspace/Project/WebContent/img/" +
-// fileName);
-// try {
-// fi.write(f); // 將檔案寫到磁碟
-// } catch (Exception e1) {
-// e1.printStackTrace();
-// }
-// }
-// System.out.println("the best");
-// }
-//
-// // 將路徑過濾掉，只傳回檔名
-// public String getFilename(String fullname) {
-// String filename = null;
-//
-// fullname = fullname.replace('\\', '/');
-// StringTokenizer token = new StringTokenizer(fullname, "/");
-// while (token.hasMoreTokens()) {
-// filename = token.nextToken();
-// }
-// return filename;

@@ -11,10 +11,10 @@
 
 <%String path = request.getContextPath(); %>
 
-<a href="<%=path %>/image?action=select">selectAll</a><br/>
-<a href="<%=path %>/image?name=人&action=select">selectByName(人)</a><br/>
-<a href="<%=path %>/image?imageId=3&action=select">selectByImageId(3)</a><br/>
-<a href="<%=path %>/image?imgCategoryId=5&action=select">selectByImgCategoryId(5)</a><br/>
+<a href="<%=path %>/image?action=selectAll">selectAll</a><br/>
+<a href="<%=path %>/image?name=神&action=selectByName">selectByName(神)</a><br/>
+<a href="<%=path %>/image?imageId=3&action=selectById">selectByImageId(3)</a><br/>
+<a href="<%=path %>/image?imgCategoryId=2&action=selectByImgCategoryId">selectByImgCategoryId(2)</a><br/>
 
  
 <hr>
@@ -36,6 +36,10 @@
 <form action="<%=path %>/image" method="POST"><br>
 	imageName<br>
 	<input type="text" name="name" value="${param.name}"><br>
+		imagePath<br>
+	<input type="text" name="path" value="${param.path}"><br>
+	imageCategoryId<br>
+	<input type="text" name="imgCategoryId" value="${param.imgCategoryId}"><br>
 	imageId<br>
 	<input type="text" name="imageId" value="${param.imageId}"><br>	
 	<input type="hidden" name="action" value="update">

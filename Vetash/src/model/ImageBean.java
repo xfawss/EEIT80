@@ -1,6 +1,6 @@
 package model;
 
-import java.util.Arrays;
+
 
 public class ImageBean {
 	
@@ -8,14 +8,8 @@ public class ImageBean {
 	private String imageName;
 	private java.util.Date imageDate;
 	private String imagePath;
-	private int imgCategoryId;
+	private String imgCategoryName;
 	
-	@Override
-	public String toString() {
-		return "ImageBean [imageId=" + imageId + ", imageName=" + imageName + ", imageDate=" + imageDate
-				+ ", imagePath=" + imagePath + ", imgCategoryId=" + imgCategoryId + ", toString()=" + super.toString()
-				+ "]";
-	}
 
 	public int getImageId() {
 		return imageId;
@@ -49,12 +43,12 @@ public class ImageBean {
 		this.imagePath = imagePath;
 	}
 
-	public int getImgCategoryId() {
-		return imgCategoryId;
+	public String getImgCategoryName() {
+		return imgCategoryName;
 	}
 
-	public void setImgCategoryId(int imgCategoryId) {
-		this.imgCategoryId = imgCategoryId;
+	public void setImgCategoryName(String imgCategoryName) {
+		this.imgCategoryName = imgCategoryName;
 	}
 
 }
