@@ -155,7 +155,7 @@
 						</button>
 					</div>
 					<div class="right aligned column">
-						<button class="ui green large button">
+						<button class="ui green large button" id="customBtn">
 							立即訂製
 						</button>
 						<button class="ui violet large button" id="checkOrderBtn">
@@ -189,9 +189,11 @@
 				</div>
 			</div>
 			<div class="sixteen wide column">
-				<div class="ui inverted input">
-					<input type="text" name="recordNo" placeholder="">
-				</div>
+				<form action="" method="post" id="checkOrderForm">
+					<div class="ui inverted input">
+						<input type="text" name="recordNo">
+					</div>
+				</form>
 			</div>
 			<div class="six wide column">
 				<div class="actions">
@@ -273,7 +275,37 @@
 		title:'回公館快打'
 	});
 
+	$('#backBtn').click(function(){
+		location.assign("./frontend_main.html");
+	});
+
+	$('#customBtn').click(function(){
+		location.assign("./front_custom.html");
+	});
+
 	/*checkOrderModal*/
+	$('#checkOrderForm').form({
+		inline:true,
+		fields: {
+			recordNo: {
+				identifier: 'recordNo',
+				rules: [
+				{
+					type   : 'empty',
+					prompt : '請輸入訂單編號'
+				}
+				]
+			}
+		}
+	});
+
+	$('#checkOrderModal').modal({
+		onApprove:function(){
+			$('#checkOrderForm').form('submit');
+			return false;
+		}
+	});
+
 	$('#checkOrderBtn').click(function(){
 		$('#checkOrderModal').modal('show');
 	});

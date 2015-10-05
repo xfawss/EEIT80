@@ -19,12 +19,14 @@ public class ImageService {
 		Map<String, Object> map1 = new LinkedHashMap<String, Object>();
 		if (imageId != 0) {
 			ImageBean bean = imgDao.selectById(imageId);
-			map1.put("imageId", bean.getImageId());
-			map1.put("imageName", bean.getImageName());
-			map1.put("imageDate", Parse.dateToString(bean.getImageDate()));
-			map1.put("imagePath", bean.getImagePath());
-			map1.put("imgCategoryName", bean.getImgCategoryName());
-			result.add(map1);
+			if(bean != null){
+				map1.put("imageId", bean.getImageId());
+				map1.put("imageName", bean.getImageName());
+				map1.put("imageDate", Parse.dateToString(bean.getImageDate()));
+				map1.put("imagePath", bean.getImagePath());
+				map1.put("imgCategoryName", bean.getImgCategoryName());
+				result.add(map1);
+			}
 		}
 		return result;
 	}

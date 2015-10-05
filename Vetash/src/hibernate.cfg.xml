@@ -16,6 +16,7 @@
 		<mapping class="model.AccessBackBean" />
 		<mapping class="model.PurchaseRecordBean" />
 		<mapping class="model.OrderBean" />
+		<mapping class="model.CustomerBean" />
        
 	</session-factory>
 </hibernate-configuration>

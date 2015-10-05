@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
@@ -40,17 +42,23 @@ public class OrderCheckedServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");
-		List<String> errs = new ArrayList<String>();
+		PrintWriter out = resp.getWriter();
+		JSONObject jObj = new JSONObject();
+		
 		
 		HttpSession session = req.getSession(false);
 		if(session==null){
-			errs.add("流程錯誤");
-			req.getRequestDispatcher("/front_custom.html").forward(req, resp);
+			jObj.put("result", "fail");
+			out.print(jObj);
 		}
 		OrderBean bean = (OrderBean)session.getAttribute("joystick");
 		int coupon = service2.updateUse(bean.getCoupon());
 		bean.setCoupon(Integer.toString(coupon));
 		bean = service.insert(bean);
+		if(bean != null) {
+			jObj.put("result", "success");
+			out.print(jObj);
+		}
 	}
 
 }

@@ -97,6 +97,11 @@
 				margin: 0px !important;
 				background-color: rgb(103,160,223);
 			}
+			.customBtn{
+				position: fixed;
+				top: 50%;
+				left: 95%;
+			}
 			/* the menu */
 				#theMenu{
 					height: 70px;
@@ -128,6 +133,7 @@
 			/* the sections */
 				.section{
 					width:100%;
+					min-height: 90vh;
 				}
 				.section > .grid{
 					margin-top: 50px !important;
@@ -142,9 +148,13 @@
 				.sectionHeaderHr{
 					border: 1px solid black;
 				}
-				.card{
+				.productCard{
 					box-shadow:none !important;
 					background: rgba(255, 255, 255, 0.4) !important;
+				}
+				.serviceCard{
+					box-shadow:none !important;
+					background: rgba(255, 255, 255, 0) !important;
 				}
 	</style>
 </head>
@@ -197,6 +207,9 @@
 	</div><!-- the intro page -->
 
 	<div class="main">
+		<div class="ui violet circular icon button customBtn" style="display:none" data-position="top center">
+			<i class="large chevron right icon"></i>
+		</div>
 
 		<div id="theMenu"><!-- theMenu -->
 			<div class="ui two column stackable grid">
@@ -291,7 +304,7 @@
 				</div>
 				<div class="two column row"><!-- two products -->
 					<div class="column">
-						<div class="ui centered card addCursor" id="main_Products_product1">
+						<div class="ui centered card addCursor productCard" id="main_Products_product1">
 							<img class="ui rounded image" src="" id="image_products1">
 							<div class="content">
 								<div class="header">狩人魂</div>
@@ -305,7 +318,7 @@
 						</div>
 					</div>
 					<div class="column">
-						<div class="ui centered card addCursor" id="main_Products_product2">
+						<div class="ui centered card addCursor productCard" id="main_Products_product2">
 							<img class="ui rounded image" src="" id="image_products2">
 							<div class="content">
 								<div class="header">音速小子</div>
@@ -376,23 +389,20 @@
 						<p></p>
 					</div>
 				</div>
+				<div class="sixteen wide column"></div>
+				<div class="sixteen wide column"></div>
+				<div class="sixteen wide column"></div>
+				<div class="sixteen wide column"></div>
 				<div class="four column row"><!-- services -->
 					<div class="column">
-						<div class="ui centered card" id="main_Services_service1">
-							<img class="ui rounded image" src="images/fakeImg_M.png">
-							<div class="content">
-								<div class="header">訂製</div>
-								<div class="description">
-									我希望讓玩家能有一把稱手的大搖，也希望做得美觀或是凸顯玩家個人風格。
+						<div class="ui centered card serviceCard">
+							<h2 class="ui icon header">
+								<i class="edit icon"></i>
+								<div class="content">
+								訂製
 								</div>
-							</div>
-						</div>
-					</div>
-					<div class="column">
-						<div class="ui centered card" id="main_Services_service2">
-							<img class="ui rounded image" src="images/fakeImg_M.png">
+							</h2>
 							<div class="content">
-								<div class="header">維修</div>
 								<div class="description">
 									大搖用久了，零件也是會老化的。<br>
 									故障的問題就交給我處理吧。
@@ -401,10 +411,30 @@
 						</div>
 					</div>
 					<div class="column">
-						<div class="ui centered card" id="main_Services_service3">
-							<img class="ui rounded image" src="images/fakeImg_M.png">
+						<div class="ui centered card serviceCard">
+							<h2 class="ui icon header">
+								<i class="configure icon"></i>
+								<div class="content">
+								維修
+								</div>
+							</h2>
 							<div class="content">
-								<div class="header">升級</div>
+								<div class="description">
+									大搖用久了，零件也是會老化的。<br>
+									故障的問題就交給我處理吧。
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="column">
+						<div class="ui centered card serviceCard">
+							<h2 class="ui icon header">
+								<i class="upload icon"></i>
+								<div class="content">
+								升級
+								</div>
+							</h2>
+							<div class="content">
 								<div class="description">
 									玩家更換主機，搖桿不想花錢再買一組怎麼辦？<br>
 									找公館換裝系統吧～
@@ -413,10 +443,14 @@
 						</div>
 					</div>
 					<div class="column">
-						<div class="ui centered card" id="main_Services_service4">
-							<img class="ui rounded image" src="images/fakeImg_M.png">
+						<div class="ui centered card serviceCard">
+							<h2 class="ui icon header">
+								<i class="wizard icon"></i>
+								<div class="content">
+								改裝
+								</div>
+							</h2>
 							<div class="content">
-								<div class="header">改裝</div>
 								<div class="description">
 									按鍵怕吵嗎？搖桿不靈敏嗎？希望用老派的水滴搖桿或是美國按鍵呢？<br>
 									可以找公館改裝喔～
@@ -457,34 +491,26 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="ui center aligned grid" style="width:100%;margin:0px;"> <!-- inline grid -->
-						<div class="two wide column">
-							<div class="ui centered card addCursor" id="main_Player_twitch">
-								<img class="ui image" src="images/twitch.png">
-								<div class="content">
-										twitch
-								</div>
-							</div>
-						</div>
-						<div class="column"></div><!-- for separating -->
-						<div class="two wide column">
-							<div class="ui centered card addCursor" id="main_Player_twitter">
-								<img class="ui image" src="images/twitter.png">
-								<div class="content">
-										twitter
-								</div>
-							</div>
-						</div>
-						<div class="column"></div><!-- for separating -->
-						<div class="two wide column">
-							<div class="ui centered card addCursor" id="main_Player_facebook">
-								<img class="ui image" src="images/facebook.png">
-								<div class="content">
-										facebook
-								</div>
-							</div>
-						</div>
+					<div class="column"></div>
+				</div>
+				<div class="row">
+					<div class="five wide column"></div>
+					<div class="two wide column">
+						<button class="ui circular facebook icon button" id="main_Player_facebook">
+							<i class="facebook icon"></i>
+						</button>
 					</div>
+					<div class="two wide column">
+						<button class="ui circular twitter icon button" id="main_Player_twitter">
+							<i class="twitter icon"></i>
+						</button>
+					</div>
+					<div class="two wide column">
+						<button class="ui circular purple icon button" id="main_Player_twitch">
+							<i class="tumblr icon"></i>
+						</button>
+					</div>
+					<div class="five wide column"></div>
 				</div>
 			</div>
 		</div><!-- main_Player -->
@@ -584,6 +610,14 @@
 				$('#theMenu_Contact').removeClass("active");
 			}
 
+			$('.customBtn').popup({
+				title:'立即訂製'
+			});
+
+			$('.customBtn').click(function(){
+				location.assign("./front_custom_intro.html");
+			});
+
 			$('.covervid-overlay').visibility({
 				once:false,
 				continuous:false,
@@ -595,6 +629,7 @@
 					$(".main").stop().animate({
 						backgroundColor:color_chunli_blue
 					});
+					$('.customBtn').stop().show();
 				},
 				onBottomPassedReverse:function(){
 					$('#theMenu').removeClass("theMenu_Fixed");
@@ -604,6 +639,7 @@
 					$(".main").animate({
 						backgroundColor:color_chunli_blue
 					});
+					$('.customBtn').stop().hide();
 				}
 			});
 
@@ -919,9 +955,9 @@
 						.appendTo($('#main_Album .albumImageBlock'));
 
 						$('<div />',{
-							'class':'ui small modal',
+							'class':'ui small basic modal',
 							id:'main_Album_modal_'+albumImageId,
-							src:albumImagePath,
+							src:albumImagePath,/**/
 							html:'<div class="ui center aligned grid pure"><div class="ui image"><img style="max-height:50vh" src="'+albumImagePath+'"></div></div>'
 						})
 						.appendTo($('#main_Album'));

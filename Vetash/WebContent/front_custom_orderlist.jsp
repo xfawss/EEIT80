@@ -234,13 +234,14 @@
 					</div>
 				</div>
 
-				<div class="row">
-					<div class="center aligned column">
-						<button class="ui red button">
+				<div class="two column row">
+					<div class="right aligned column">
+						<button class="ui circular red icon button" id="backBtn">
 							<i class="reply icon"></i>
-							Back
 						</button>
-						<button class="ui green button submitBtn">
+					</div>
+					<div class="left aligned column">
+						<button class="ui green button" id="allpayBtn" style="display:none">
 							前往歐付寶結帳&nbsp;&nbsp;
 							<i class="share icon"></i>
 						</button>
@@ -254,7 +255,7 @@
 						</div>
 					</div>
 				</div>
-				
+
 				<form action="http://payment-stage.allpay.com.tw/Cashier/AioCheckOut" method="post" class="ui form allpayForm" style="display:none">
 					<input type="text"  name="MerchantID" value="${MerchantID}" /><br/>
 					<input type="text"  name="MerchantTradeNo" value="${MerchantTradeNo}" /><br/>
@@ -276,64 +277,22 @@
 
 </body>
 <script>
-	$(".submitBtn").click(function(){
+	var allpay = '${AllPay}';
+	if("true"===allpay){
+		$("#allpayBtn").show();
+	}
+
+	$("#allpayBtn").click(function(){
 		$.get("/Vetash/orderChecked")
 		$(".allpayForm").form('submit');
-	})
-	
-	/*action="/Vetash/order" method="post"*/
-	$('#orderForm').form({
-		inline:true,
-		fields:{
-			customerName: {
-				identifier: 'customerName',
-				rules: [
-				{
-					type   : 'empty',
-					prompt : '請輸入姓名'
-				}
-				]
-			},
-			customerTel: {
-				identifier: 'customerTel',
-				rules: [
-				{
-					type   : 'empty',
-					prompt : '請輸入電話'
-				},
-				{
-					type   : 'regExp[/\\+?\\d{1,4}-?(\\d{4,15})(#\\d{1,5}){0,1}/]',
-					prompt : '輸入資料錯誤，電話號碼不能有中文或英文，如:02-27450475#123'
-
-				}
-				]
-			},
-			customerMail: {
-				identifier: 'customerMail',
-				rules: [
-				{
-					type   : 'email',
-					prompt : 'E-mail格式不正確'
-				}
-				]
-			},
-			customerAddr: {
-				identifier: 'customerAddr',
-				rules: [
-				{
-					type   : 'empty',
-					prompt : '請輸入收件地址'
-				}
-				]
-			}
-		},
-		onSuccess:function(){
-			 $('#orderForm').form('submit');
-		}
 	});
 
 	$('#backBtn').popup({
-		title:'回公館快打'
+		title:'回訂製首頁'
+	});
+
+	$('#backBtn').click(function(){
+		location.assign("./front_custom_intro.html");
 	});
 
 </script>

@@ -1,4 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -78,25 +77,25 @@
 									<div class="two fields">
 										<div class="required field">
 											<label>姓名</label>
-											<input type="text" name="customerName" value="Gamer">
+											<input type="text" name="customerName">
 										</div>
 										<div class="required field">
 											<label>電話</label>
-											<input type="text" name="customerTel" value="099999999">
+											<input type="text" name="customerTel">
 										</div>
 									</div>
 									<div class="field">
 										<label>E-mail</label>
-										<input type="text" name="customerMail" value="abc@abc.com">
+										<input type="text" name="customerMail">
 									</div>
 									<div class="two fields">
 										<div class="field">
 											<label>Line</label>
-											<input type="text" name="customerLine" value="">
+											<input type="text" name="customerLine">
 										</div>
 										<div class="field">
 											<label>FB</label>
-											<input type="text" name="customerFb" value="">
+											<input type="text" name="customerFb">
 										</div>
 									</div>
 									<h4 class="ui dividing header">收件資訊</h4>
@@ -111,7 +110,7 @@
 										</div>
 										<div class="required field">
 											<label>收件地址</label>
-											<input type="text" name="customerAddr" value="" placeholder="若為便利商店取貨請填寫門市名稱，若為自取請填寫自取。">
+											<input type="text" name="customerAddr" placeholder="若為便利商店取貨請填寫門市名稱。">
 										</div>
 									</div>
 									<div class="two fields">
@@ -158,20 +157,10 @@
 </body>
 <script>
 
-	/*var receiveType = ${joystick.receiveType};
-	if(""===receiveType){
-		$('#orderForm select[name="receiveType"] option:first-child').prop('selected', true);
-	} else if(""===receiveType){
-		$('#orderForm select[name="receiveType"] option:nth-child(2)').prop('selected', true);
-	} else if(""===receiveType){
-		$('#orderForm select[name="receiveType"] option:nth-child(3)').prop('selected', true);
-	}*/
-
-
 	$('.submitBtn').click(function(){
 		 $('#orderForm').form('submit');
 		/*$('#orderForm').form('validate form');*/
-	})
+	});
 
 	/*action="/Vetash/order" method="post"*/
 	$('#orderForm').form({
@@ -202,6 +191,7 @@
 			},
 			customerMail: {
 				identifier: 'customerMail',
+				optional: true,
 				rules: [
 				{
 					type   : 'email',

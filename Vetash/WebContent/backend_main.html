@@ -121,7 +121,6 @@
 							<th>售價</th>
 							<th>成本</th>
 							<th>庫存</th>
-							<th>內容</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -143,7 +142,7 @@
 							<div class="three fields">
 								<div class="field" id="productIdField">
 									<label>料號</label>
-									<input type="text" name="productId" placeholder="">
+									<input type="text" name="productId">
 								</div>
 								<div class="field" id="productTypeField">
 									<label>種類</label>
@@ -178,6 +177,34 @@
 								<div class="field">
 									<label>庫存</label>
 									<input type="text" name="productQty" placeholder="">
+								</div>
+							</div>
+							<div class="fields">
+								<div class="five wide field" id="productColorField">
+									<label>顯示顏色</label>
+									<div class="ui selection dropdown">
+										<input name="productColor" type="hidden">
+										<i class="dropdown icon"></i>
+										<div class="default text">請選擇顏色</div>
+										<div class="menu">
+											<div class="item" data-value="red">紅</div>
+											<div class="item" data-value="blue">藍</div>
+											<div class="item" data-value="dblue">深藍</div>
+											<div class="item" data-value="black">黑</div>
+											<div class="item" data-value="purple">紫</div>
+											<div class="item" data-value="orange">橙</div>
+											<div class="item" data-value="dorange">深橙</div>
+											<div class="item" data-value="white">白</div>
+											<div class="item" data-value="grey">灰</div>
+											<div class="item" data-value="yellow">黃</div>
+											<div class="item" data-value="pink">粉</div>
+											<div class="item" data-value="green">綠</div>
+										</div>
+									</div>
+								</div>
+								<div class="eleven wide field">
+									<label>圖片網址</label>
+									<input type="text" name="productImgPath">
 								</div>
 							</div>
 							<div class="field">
@@ -609,13 +636,12 @@
 											<input type="text"  name="rocker" />
 										</div>
 										<div class="field">
-											<label>面板圖</label>
-											<input type="text"  name="coverImg" />
-										</div>
-										<div class="field">
 											<label>系統</label>
 											<input type="text"  name="board" />
 										</div>
+										<h5 class="ui dividing header">面板圖</h5>
+										<img src="images/fakeImg_L.png" class="ui image coverImg">
+										<input type="text" name="coverImg" />
 									</div>
 									<div class="five wide column">
 										<h5 class="ui dividing header">主按鍵</h5>
@@ -710,9 +736,7 @@
 												<input type="text"  name="touch" />
 											</div>
 										</div>
-										<h5 class="ui dividing header">面板</h5>
-										<img src="images/fakeImg_L.png" class="ui image">
-										<input type="text" name="coverImg" />
+										
 									</div>
 								</div>
 							</div>
@@ -2271,6 +2295,8 @@
 						productPrice:one.productPrice,
 						productCost:one.productCost,
 						productQty:one.productQty,
+						productColor:one.productColor,
+						productImgPath:one.productImgPath,
 						productNote:one.productNote,
 						task:"update"
 					};
@@ -2305,10 +2331,6 @@
 						.addClass("addCursor")
 						.click(function(){Product_update(row);})
 						.appendTo($('#Product .table > tbody tr:nth-child('+index+')'));
-					$('<td>',{html:one.productNote})
-						.addClass("addCursor")
-						.click(function(){Product_update(row);})
-						.appendTo($('#Product .table > tbody tr:nth-child('+index+')'));
 				});
 				$('#Product').removeClass('loading');/*loading end*/
 				$('#Product .btnRefresh').removeClass('loading');
@@ -2330,9 +2352,13 @@
 					productPrice:"",
 					productCost:"",
 					productQty:"",
+					productColor:"",
+					productImgPath:"",
 					productNote:"",
 					task:"insert"
 				};
+				$('#productTypeField .default.text').text("");
+				$('#productColorField .default.text').text("");
 				Product_showModal(row);
 			}
 
@@ -2456,8 +2482,12 @@
 					productPrice:"",
 					productCost:"",
 					productQty:"",
+					productColor:"",
+					productImgPath:"",
 					productNote:""
 				});
+				$('#productTypeField .default.text').text("");
+				$('#productColorField .default.text').text("");
 				$('#Product_modal').modal("hide");
 			});
 
@@ -2476,11 +2506,43 @@
 
 				$('#Product_modal .sub.header').html(row.Title);
 				$('#Product_modal .form input[name="productId"]').val(row.productId);
+				$('#productTypeField .default.text').text(row.productType);
 				$('#Product_modal .form input[name="productType"]').val(row.productType);
 				$('#Product_modal .form input[name="productName"]').val(row.productName);
 				$('#Product_modal .form input[name="productPrice"]').val(row.productPrice);
 				$('#Product_modal .form input[name="productCost"]').val(row.productCost);
 				$('#Product_modal .form input[name="productQty"]').val(row.productQty);
+
+				var productColorName="請選擇顏色";
+				if("red"===row.productColor){
+					productColorName="紅";
+				} else if("blue"===row.productColor){
+					productColorName="藍";
+				} else if("dblue"===row.productColor){
+					productColorName="深藍";
+				} else if("black"===row.productColor){
+					productColorName="黑";
+				} else if("purple"===row.productColor){
+					productColorName="紫";
+				} else if("orange"===row.productColor){
+					productColorName="橙";
+				} else if("dorange"===row.productColor){
+					productColorName="深橙";
+				} else if("white"===row.productColor){
+					productColorName="白";
+				} else if("grey"===row.productColor){
+					productColorName="灰";
+				} else if("yellow"===row.productColor){
+					productColorName="黃";
+				} else if("pink"===row.productColor){
+					productColorName="粉";
+				} else if("green"===row.productColor){
+					productColorName="綠";
+				}
+				$('#Product_modal .form input[name="productColor"]').val(row.productColor);
+				$('#productColorField .default.text').text(productColorName);
+
+				$('#Product_modal .form input[name="productImgPath"]').val(row.productImgPath);
 				$('#Product_modal .form textarea[name="productNote"]').val(row.productNote);
 				$('#Product_modal .form input[name="task"]').val(row.task);
 
@@ -3013,38 +3075,45 @@
 				/*先用一個新的物件存，此物件代表最後含有顧客資料的物件*/
 				var all=Orders;
 
-				/*準備while迴圈*/
-				var doNext=true;	/*內部ajax成功時才能做下一圈，用doNext控制*/
-				var i=0;	/*while counter*/
-				while(doNext===true&&i<all.results.length){
-					doNext=false;
-					var customerTel = all.results[i].customerTel;	/*拿order表格裡面的customerTel去查customer表格裡面的單筆*/
-					/*執行ajax*/
-					$.ajax({
-						url:'./customers',
-						type:'get',
-						data:{
-							"action":"customerTel",
-							"customerTel":customerTel
-						},
-						dataType:"json",
-						success:function(oneCustomer){
-							/*成功後拿到一筆customer資料oneCustomer*/
-							/*開始把顧客資料也塞進all物件裡，與訂單資料同一層級，用key跟val(js物件的屬性與屬性值)的方式*/
-							all.results[i].customerName=oneCustomer.customerName;
-							all.results[i].customerLine=oneCustomer.customerLine;
-							all.results[i].customerFb=oneCustomer.customerFb;
-							all.results[i].customerMail=oneCustomer.customerMail;
-							all.results[i].customerAddr=oneCustomer.customerAddr;
-							all.results[i].customerNote=oneCustomer.customerNote;
-							/*做到這一步代表可以開始找下一筆*/
-							doNext=true;
-							i++;
-						}
-					});
+				/*準備迴圈*/
+				var i=0;	/*counter*/
+				getNext();
+				function getNext(){
+					if(i<all.results.length){
+						var customerTel = all.results[i].customerTel;	/*拿order表格裡面的customerTel去查customer表格裡面的單筆*/
+						/*執行ajax*/
+						$.ajax({
+							url:'./customers',
+							type:'get',
+							data:{
+								"action":"customerTel",
+								"customerTel":customerTel
+							},
+							dataType:"json",
+							success:function(oneCustomer){
+								console.log("success "+i);
+								/*成功後拿到一筆customer資料oneCustomer*/
+								/*開始把顧客資料也塞進all物件裡，與訂單資料同一層級，用key跟val(js物件的屬性與屬性值)的方式*/
+								if(oneCustomer.results.length!=0){
+									all.results[i].customerName=oneCustomer.results[0].customerName;
+									all.results[i].customerLine=oneCustomer.results[0].customerLine;
+									all.results[i].customerFb=oneCustomer.results[0].customerFb;
+									all.results[i].customerMail=oneCustomer.results[0].customerMail;
+									all.results[i].customerAddr=oneCustomer.results[0].customerAddr;
+									all.results[i].customerNote=oneCustomer.results[0].customerNote;
+									i++;
+									getNext();
+								} else{
+									i++;
+									getNext();
+								}
+								/*內部ajax成功時才能做下一圈*/
+							}
+						});
+					} else{
+						Order_show(all);/*此時all物件裡的資料才是真正要顯示在modal裡的資料*/
+					}
 				}
-				/*此時all物件裡的資料才是真正要顯示在modal裡的資料*/
-				Order_show(all);
 			}
 
 			function Order_show(all){
@@ -3351,11 +3420,26 @@
 				$('#Order_modal .form input[name="start"]').val(row.start);
 				$('#Order_modal .form input[name="selecter"]').val(row.selecter);
 				$('#Order_modal .form input[name="touch"]').val(row.touch);
-				$('#Order_modal .form input[name="coverImg"]').val(row.coverImg);
 				$('#Order_modal .form input[name="board"]').val(row.board);
 
 				$('#Order_modal .form input[name="task"]').val(row.task);
 
+				$('#Order_modal .form input[name="coverImg"]').val(row.coverImg);
+
+				$('#Order_modal .form .coverImg').attr('src',"");
+
+				$.ajax({
+					url:'./image',
+					type:'get',
+					data:{
+						"action":"selectById",
+						"imageId":row.coverImg
+					},
+					dataType:"json",
+					success:function(data){
+						$('#Order_modal .form .coverImg').attr('src',data.results[0].imagePath);
+					}
+				});
 				$('#Order_modal').modal("show");
 			}
 
@@ -3550,6 +3634,7 @@
 					imgCategoryName:"",
 					task:"insert"
 				};
+
 				$('#imageDateField').addClass('disabled');
 				$('#Image_modal .form input[name="imageDate"]').prop('disabled',true);
 				Image_showModal(card);
@@ -3678,6 +3763,7 @@
 					imagePath:"",
 					imgCategoryName:""
 				});
+				$('#Image_modal .dropdown .default.text').text("");
 
 				if("update"===card.task){
 				} else if("insert"===card.task){

@@ -53,20 +53,19 @@ public class OrderReturnServlet extends HttpServlet {
 		String simulatePaid = req.getParameter("SimulatePaid");
 		String checkMacValue = req.getParameter("CheckMacValue");
 		
-		System.out.println("id="+merchantID);
-		
 		System.out.println("code="+checkMacValue);
 		if(AllPayCheckMacValue.merchantID.equals(merchantID)) {
-			if(Parse.convertInt(rtnCode) == 1) {
+			if(Parse.convertInt(rtnCode) == 1) {//模擬付款
 				if(AllPayCheckMacValue.checkMacValueReturn(merchantTradeNo, rtnCode, rtnMsg,
 						tradeNo, tradeAmt, paymentDate, paymentType, paymentTypeChargeFee,
 						tradeDate, simulatePaid, checkMacValue)) {
-					OrderBean bean = (OrderBean)service.selectByOrderNo(merchantTradeNo);
+					OrderBean bean = new OrderBean();
+					bean.setOrderNo(merchantTradeNo);
 					bean.setPaymentType(paymentType);
 					bean.setPaymentTypeChargeFee(Parse.convertInt(paymentTypeChargeFee));
 					bean.setAllPayTradeNo(tradeNo);
 					bean.setOrderState("已結帳");
-					service.update(bean);
+					service.update2(bean);
 					out.print("1|OK");
 					return;
 				} else {

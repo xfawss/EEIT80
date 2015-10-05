@@ -2,17 +2,38 @@ package model;
 
 import java.io.IOException;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
+@Entity
+@Table(name="Customer")
 public class CustomerBean {
 
-    private String customerName;
+    @Column(name="CustomerName")
+	private String customerName;
+    
+    @Id
+    @Column(name="CustomerTel")
     private String customerTel;
+    
+    @Column(name="CustomerLine")
     private String customerLine;
+    
+    @Column(name="CustomerFb")
     private String customerFb;
+    
+    @Column(name="CustomerMail")
     private String customerMail;
+    
+    @Column(name="CustomerAddr")
     private String customerAddr;
+    
+    @Column(name="CustomerNote")
     private String customerNote;
     
     

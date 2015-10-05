@@ -19,7 +19,7 @@
 	</style>
 	<style>
 		*{
-			border: 1px solid green;
+			/* border: 1px solid green; */
 		}
 		.pure{
 			margin: 0px !important;
@@ -27,6 +27,9 @@
 		}
 		.purePaded{
 			margin: 0px !important;
+		}
+		.topZero{
+			margin-top:0px !important;
 		}
 		.cursorPointer{
 			cursor:pointer;
@@ -56,6 +59,7 @@
 			height: 10%;
 			margin: 0px !important;
 			padding: 0px !important;
+			background-color: rgb(253,253,247);
 		}
 		.theMenu .divider{
 			margin-top:3px;
@@ -72,8 +76,6 @@
 			margin: 0px !important;
 			padding: 0px !important;
 		}
-		.theTabs .grid .column{
-		}
 		.theView{
 			height: 60%;
 			margin: 0px !important;
@@ -84,9 +86,9 @@
 <body>
 	<div class="ui center aligned grid mainGrid">
 		<div class="middle aligned row theMenu">
-			<div class="three wide column"></div>
+			<div class="two wide column"></div>
 			<div class="nine wide middle aligned column">
-				<a class="ui orange large label lab1" data-tab="tab1">框體</a>
+				<a class="ui grey large label lab1" data-tab="tab1">框體</a>
 				<i class="plus icon"></i>
 				<a class="ui grey disabled mini label lab2" data-tab="tab2">搖桿</a>
 				<i class="plus icon"></i>
@@ -99,176 +101,194 @@
 				<a class="ui grey disabled mini label lab6" data-tab="tab6">系統</a>
 				<div class="ui divider"></div>
 			</div>
-			<div class="four wide middle aligned column">
-				<div class="ui left labeled button" tabindex="0">
-					<a class="ui basic red label">
-					<i class="dollar icon"></i>
-						3600
-					</a>
-					<div class="ui red button" id="btnConfirm">
-						確認訂單
+			<div class="two wide middle aligned column priceBlock"><!-- priceBlock -->
+				<div class="content">
+					<i class="red dollar icon"></i>
+					<span>0</span>
+				</div>
+			</div>
+			<div class="three wide column"><!-- submitBlock -->
+				<div class="ui buttons">
+					<div class="ui red button" id="btnConfirmS">
+						特別訂製
+					</div>
+					<div class="ui disabled grey button" id="btnConfirmN">
+						一般訂製
 					</div>
 				</div>
 			</div>
 			<div class="ui modal" id="productModal"><!-- productModal -->
-				<div class="header">
-					確認搖桿配置
-				</div>
-				<form class="ui form" id="porductForm" action="/Vetash/joystick" method="post">
-					<div class="ui grid purePaded">
-						<div class="row">
-							<div class="six wide column">
-								<div class="field">
-									<label>框體</label>
-									<input type="text"  name="housing" />
-								</div>
-								<div class="field">
-									<label>搖桿</label>
-									<input type="text"  name="rocker" />
-								</div>
-								<div class="field">
-									<label>面板圖</label>
-									<input type="text"  name="coverImg" />
-								</div>
-								<div class="field">
-									<label>系統</label>
-									<input type="text"  name="board" />
-								</div>
-							</div>
-							<div class="five wide column">
-								<h5 class="ui dividing header">主按鍵</h5>
-								<div class="field">
-									<div class="ui labeled input">
-										<div class="ui label">
-											L1
-										</div>
-										<input type="text"  name="l1" />
-									</div>
-								</div>
-								<div class="field">
-									<div class="ui labeled input">
-										<div class="ui label">
-											L2
-										</div>
-										<input type="text"  name="l2" />
-									</div>
-								</div>
-								<div class="field">
-									<div class="ui labeled input">
-										<div class="ui label">
-											R1
-										</div>
-										<input type="text"  name="r1" />
-									</div>
-								</div>
-								<div class="field">
-									<div class="ui labeled input">
-										<div class="ui label">
-											R2
-										</div>
-										<input type="text"  name="r2" />
-									</div>
-								</div>
-								<div class="field">
-									<div class="ui labeled input">
-										<div class="ui label">
-											◎
-										</div>
-										<input type="text"  name="o" />
-									</div>
-								</div>
-								<div class="field">
-									<div class="ui labeled input">
-										<div class="ui label">
-											X
-										</div>
-										<input type="text"  name="x" />
-									</div>
-								</div>
-								<div class="field">
-									<div class="ui labeled input">
-										<div class="ui label">
-											◇
-										</div>
-										<input type="text"  name="square" />
-									</div>
-								</div>
-								<div class="field">
-									<div class="ui labeled input">
-										<div class="ui label">
-											△
-										</div>
-										<input type="text"  name="triangle" />
-									</div>
-								</div>
-							</div>
-							<div class="five wide column">
-								<h5 class="ui dividing header">副按鍵</h5>
-								<div class="field">
-									<div class="ui labeled input">
-										<div class="ui label">
-											Start
-										</div>
-										<input type="text"  name="start" />
-									</div>
-								</div>
-								<div class="field">
-									<div class="ui labeled input">
-										<div class="ui label">
-											Select
-										</div>
-										<input type="text"  name="selecter" />
-									</div>
-								</div>
-								<div class="field">
-									<div class="ui labeled input">
-										<div class="ui label">
-											Touch
-										</div>
-										<input type="text"  name="touch" />
-									</div>
-								</div>
-								<h5 class="ui dividing header">面板</h5>
-								<img src="images/fakeImg_L.png" class="ui image">
-								<input type="text" name="coverImg" />
-							</div>
+				<div class="ui segment">
+					<div class="ui grid container">
+						<div class="sixteen wide column">
+							<h4 class="ui dividing header productModalHeadder"></h4>
 						</div>
-						<div class="row">
-							<div class="six wide column"></div>
-							<div class="fight aligned five wide column">
-								<div class="field">
-									<label>折扣碼</label>
-									<div class="ui icon input">
-										<i class="checkmark icon"></i>
-										<input placeholder="" type="text" name="coupon">
-										<!-- <input type="hidden" name="couponDiscount">for coupon check -->
+						<div class="eight wide column">
+							<div class="ui divided list">
+								<div class="item">
+									<div class="content" id="productModal_housing">
+										<div class="header">框體</div>
+										<span></span>
 									</div>
 								</div>
-							</div>
-
-							<input type="hidden" name="orderType" value="0">
-
-							<div class="right aligned five wide middle aligned column">
-								<div class="actions">
-									<div class="ui deny button">Cancel</div>
-									<div class="ui approve button">OK</div>
+								<div class="item">
+									<div class="content" id="productModal_rocker">
+										<div class="header">搖桿</div>
+										<span></span>
+									</div>
+								</div>
+								<div class="item">
+									<div class="content" id="productModal_coverImgName">
+										<div class="header">面板圖名稱</div>
+										<span></span>
+									</div>
+								</div>
+								<div class="item">
+									<div class="content" id="productModal_coverImgPath">
+										<div class="header">面板圖</div>
+										<div class="ui small image">
+											<img src="images/fakeImg_L.png">
+										</div>
+									</div>
+								</div>
+								<div class="item">
+									<div class="content" id="productModal_board">
+										<div class="header">系統</div>
+										<span></span>
+									</div>
+								</div>
+								<div class="item">
+									<div class="content" id="productModal_price">
+										<div class="header">原價</div>
+										<span></span>
+									</div>
 								</div>
 							</div>
 						</div>
-					</form>
+						<div class="eight wide column">
+							<div class="ui divided list">
+								<div class="item">
+									<div class="content" id="productModal_l1">
+										<div class="header">L1</div>
+										<span></span>
+									</div>
+								</div>
+								<div class="item">
+									<div class="content" id="productModal_l2">
+										<div class="header">L2</div>
+										<span></span>
+									</div>
+								</div>
+								<div class="item">
+									<div class="content" id="productModal_r1">
+										<div class="header">R1</div>
+										<span></span>
+									</div>
+								</div>
+								<div class="item">
+									<div class="content" id="productModal_r2">
+										<div class="header">R2</div>
+										<span></span>
+									</div>
+								</div>
+								<div class="item">
+									<div class="content" id="productModal_o">
+										<div class="header">O</div>
+										<span></span>
+									</div>
+								</div>
+								<div class="item">
+									<div class="content" id="productModal_x">
+										<div class="header">X</div>
+										<span></span>
+									</div>
+								</div>
+								<div class="item">
+									<div class="content" id="productModal_square">
+										<div class="header">[ ]</div>
+										<span></span>
+									</div>
+								</div>
+								<div class="item">
+									<div class="content" id="productModal_triangle">
+										<div class="header">Λ</div>
+										<span></span>
+									</div>
+								</div>
+								<div class="item">
+									<div class="content" id="productModal_start">
+										<div class="header">Start</div>
+										<span></span>
+									</div>
+								</div>
+								<div class="item">
+									<div class="content" id="productModal_selecter">
+										<div class="header">Select</div>
+										<span></span>
+									</div>
+								</div>
+								<div class="item">
+									<div class="content" id="productModal_touch">
+										<div class="header">Touch</div>
+										<span></span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="sixteen wide column">
+							<form class="ui form" id="porductForm" action="/Vetash/joystick" method="post">
+								<input type="hidden"  name="housing" />
+								<input type="hidden"  name="rocker" />
+								<input type="hidden"  name="coverImg" />
+								<input type="hidden"  name="board" />
+								<input type="hidden"  name="l1" />
+								<input type="hidden"  name="l2" />
+								<input type="hidden"  name="r1" />
+								<input type="hidden"  name="r2" />
+								<input type="hidden"  name="o" />
+								<input type="hidden"  name="x" />
+								<input type="hidden"  name="square" />
+								<input type="hidden"  name="triangle" />
+								<input type="hidden"  name="start" />
+								<input type="hidden"  name="selecter" />
+								<input type="hidden"  name="touch" />
+								<input type="hidden" name="coverImg" />
+								<input type="hidden" name="orderType" value="">
+								<div class="fields">
+									<div class="eleven wide field">
+										<label>訂單備註</label>
+										<textarea name="orderNotes" cols="20" rows="5" placeholder="若選擇特別訂製，請務必仔細填寫此欄位。"></textarea>
+									</div>
+									<div class="five widefield">
+										<label>折扣碼</label>
+										<div class="ui icon input">
+											<input placeholder="" type="text" name="coupon">
+											<!-- <input type="hidden" name="couponDiscount">for coupon check -->
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="sixteen wide right aligned column">
+							<div class="actions">
+								<div class="ui approve button">填寫購買資訊</div>
+								<div class="ui deny button">取消</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div><!-- productModal -->
 		</div>
 		<div class="row theTabs"><!-- theTabs -->
-			<div class="ui tab active" data-tab="tab1" id="theTabs_Model">
+			<div class="ui tab active" data-tab="tab1" id="theTabs_Model"><!-- theTabs_Model -->
 				<div class="ui center aligned grid">
 					<div class="two wide middle aligned right aligned column">
 					</div>
-					<div class="nine wide left aligned column">
+					<div class="nine wide left aligned column infoBlock"><!-- info -->
 						<div class="ui items">
 							<div class="item">
 								<a class="ui small image">
-									<img src="images/fakeImg_L.png">
+									<img src="images/model_five.jpg">
 								</a>
 								<div class="content">
 									<a class="header">新五號機</a>
@@ -281,19 +301,28 @@
 								</div>
 							</div>
 						</div>
+						<div class="ui small basic modal" id="theTabs_Model_infoModal">
+							<div class="ui center aligned grid container">
+								<div class="column">
+									<div class="ui image">
+										<img style="max-height:50vh" src="images/model_five.jpg">
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
-					<div class="three wide column">
-						<h4 class="ui dividing header">框體顏色</h4>
-						<div class="ui selection dropdown">
-							<input name="" type="hidden">
+					<div class="three wide column controlBlock"><!-- control -->
+						<h4 class="ui dividing header">框體</h4>
+						<div class="ui dropdown button housing">
+							<input type="hidden">
+							<span class="text productName">請選擇框體</span>
 							<i class="dropdown icon"></i>
-							<div class="default text">請選擇顏色</div>
 							<div class="menu">
-								<div class="item">
+								<!-- <div class="item" data-value="red">
 									<div class="ui red empty circular label"></div>
 									紅
 								</div>
-								<div class="item">
+								<div class="item" data-value="blue">
 									<div class="ui blue empty circular label"></div>
 									藍
 								</div>
@@ -324,7 +353,7 @@
 								<div class="item">
 									<div class="ui green empty circular label"></div>
 									綠
-								</div>
+								</div> -->
 							</div>
 						</div>
 					</div>
@@ -333,117 +362,102 @@
 					</div>
 				</div>
 			</div>
-			<div class="ui tab" data-tab="tab2" id="theTabs_Stick">
+			<div class="ui tab" data-tab="tab2" id="theTabs_Stick"><!-- theTabs_Stick -->
 				<div class="ui center aligned grid">
 					<div class="two wide middle aligned right aligned column">
 						<i class="circular big grey chevron left icon cursorPointer" data-tab="tab1"></i>
 					</div>
-					<div class="three wide column">
-						<h5 class="ui dividing header">搖桿</h5>
-						<div class="ui selection dropdown">
-							<input name="housing" type="hidden">
-							<i class="dropdown icon"></i>
-							<div class="default text">請選擇種類</div>
-							<div class="menu">
-								<div class="item" data-value="sanwa">
-									<div class="ui empty circular label"></div>
-									三和搖桿
+					<div class="nine wide column pure infoBlock"><!-- info -->
+						<div class="ui center aligned grid pure" style="width:100%">
+							<div class="fourteen wide left aligned column">
+								<div class="ui items">
+									<div class="item infoItem1 topZero">
+										<a class="ui small image">
+											<img src="images/stick_sanwa.jpg">
+										</a>
+										<div class="content">
+											<div class="header">三和搖桿</div>
+											<div class="description">
+												<p>
+													廣受歡迎的日製搖桿，街機主流，手感輕巧易上手，最推薦使用。
+												</p>
+											</div>
+										</div>
+									</div>
+									<div class="item infoItem2 topZero" style="display:none;">
+										<a class="ui small image">
+											<img src="images/stick_fanta.jpg">
+										</a>
+										<div class="content">
+											<div class="header">韓國搖 Fanta</div>
+											<div class="description">
+												<p>
+													韓國人設計的搖桿，水滴頭、彈性高與無擋板是其特色，適合鐵拳或VF玩家使用。需搭配客製面板，無法自行換裝。
+												</p>
+											</div>
+										</div>
+									</div>
+									<div class="item infoItem3 topZero" style="display:none;">
+										<a class="ui small image">
+											<img src="images/stick_crown.jpg">
+										</a>
+										<div class="content">
+											<div class="header">韓國搖 Crown</div>
+											<div class="description">
+												<p>
+													與Fanta類似的韓國搖，一樣是水滴頭、高彈性無擋板，但採用平鐵設計，可安裝在一般大搖上。
+												</p>
+											</div>
+										</div>
+									</div>
 								</div>
-								<div class="item" data-value="fanta">
-									<div class="ui empty circular label"></div>
-									韓國搖 Fanta
-								</div>
-								<div class="item" data-value="crown">
-									<div class="ui empty circular label"></div>
-									韓國搖 Crown
+							</div>
+							<div class="two wide middle aligned column">
+								<div class="ui vertical icon buttons">
+									<button class="ui button btnUp">
+										<i class="angle up icon"></i>
+									</button>
+									<button class="ui button btnDown">
+										<i class="angle down icon"></i>
+									</button>
 								</div>
 							</div>
 						</div>
-						<div class="ui divider"></div>
-						<div class="ui selection dropdown">
-							<input name="" type="hidden">
-							<i class="dropdown icon"></i>
-							<div class="default text">請選擇顏色</div>
-							<div class="menu">
-								<div class="item">
-									<div class="ui red empty circular label"></div>
-									紅
+						<div class="ui small basic modal" id="theTabs_Stick_infoModal1">
+							<div class="ui center aligned grid container">
+								<div class="column">
+									<div class="ui image">
+										<img style="max-height:50vh" src="images/stick_sanwa.jpg">
+									</div>
 								</div>
-								<div class="item">
-									<div class="ui blue empty circular label"></div>
-									藍
+							</div>
+						</div>
+						<div class="ui small basic modal" id="theTabs_Stick_infoModal2">
+							<div class="ui center aligned grid container">
+								<div class="column">
+									<div class="ui image">
+										<img style="max-height:50vh" src="images/stick_fanta.jpg">
+									</div>
 								</div>
-								<div class="item">
-									<div class="ui black empty circular label"></div>
-									黑
-								</div>
-								<div class="item">
-									<div class="ui purple empty circular label"></div>
-									紫
-								</div>
-								<div class="item">
-									<div class="ui orange empty circular label"></div>
-									橙
-								</div>
-								<div class="item">
-									<div class="ui empty circular label"></div>
-									白
-								</div>
-								<div class="item">
-									<div class="ui yellow empty circular label"></div>
-									黃
-								</div>
-								<div class="item">
-									<div class="ui pink empty circular label"></div>
-									粉
-								</div>
-								<div class="item">
-									<div class="ui green empty circular label"></div>
-									綠
+							</div>
+						</div>
+						<div class="ui small basic modal" id="theTabs_Stick_infoModal3">
+							<div class="ui center aligned grid container">
+								<div class="column">
+									<div class="ui image">
+										<img style="max-height:50vh" src="images/stick_crown.jpg">
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="nine wide left aligned column">
-						<div class="ui items">
-							<div class="item sanwa" style="display:none;margin-top:0px">
-								<a class="ui small image">
-									<img src="images/fakeImg_L.png">
-								</a>
-								<div class="content">
-									<div class="header">三和搖桿</div>
-									<div class="description">
-										<p>
-											廣受歡迎的日製搖桿，街機主流，手感輕巧易上手，最推薦使用。
-										</p>
-									</div>
-								</div>
-							</div>
-							<div class="item fanta" style="display:none;margin-top:0px">
-								<a class="ui small image">
-									<img src="images/fakeImg_L.png">
-								</a>
-								<div class="content">
-									<div class="header">韓國搖 Fanta</div>
-									<div class="description">
-										<p>
-											韓國人設計的搖桿，水滴頭、彈性高與無擋板是其特色，適合鐵拳或VF玩家使用。需搭配客製面板，無法自行換裝。
-										</p>
-									</div>
-								</div>
-							</div>
-							<div class="item crown" style="display:none;margin-top:0px">
-								<a class="ui small image">
-									<img src="images/fakeImg_L.png">
-								</a>
-								<div class="content">
-									<div class="header">韓國搖 Crown</div>
-									<div class="description">
-										<p>
-											與Fanta類似的韓國搖，一樣是水滴頭、高彈性無擋板，但採用平鐵設計，可安裝在一般大搖上。
-										</p>
-									</div>
-								</div>
+					<div class="three wide column controlBlock"><!-- control -->
+						<h4 class="ui dividing header">搖桿</h4>
+						<div class="ui scrolling dropdown button rocker">
+							<input type="hidden">
+							<span class="text productName">請選擇搖桿</span>
+							<i class="dropdown icon"></i>
+							<div class="menu">
 							</div>
 						</div>
 					</div>
@@ -452,782 +466,156 @@
 					</div>
 				</div>
 			</div>
-			<div class="ui tab" data-tab="tab3" id="theTabs_Btn1">
+			<div class="ui tab" data-tab="tab3" id="theTabs_Btn1"><!-- theTabs_Btn1 -->
 				<div class="ui center aligned grid">
 					<div class="two wide middle aligned right aligned column">
 						<i class="circular big grey chevron left icon cursorPointer" data-tab="tab2"></i>
 					</div>
-					<div class="eight wide left aligned column">
-						<div class="ui grid pure" style="width:100%;height:100%">
-						<h5 class="ui dividing header">主按鍵</h5>
-							<div class="four column row">
-								<div class="column">
-									<label>L1</label>
-									<div class="ui dropdown mini button">
-										<input name="" type="hidden">
-										<div class="default text">請選擇按鍵</div>
-										<i class="dropdown icon"></i>
-										<div class="menu">
-											<div class="item">
-												<i class="dropdown icon"></i>
-												<span class="text">三和按鍵</span>
-												<div class="menu">
-													<div class="item" data-value="sanwaBtn">
-														<div class="ui red empty circular label"></div>
-														三和按鍵(紅)
-													</div>
-													<div class="item">
-														<div class="ui blue empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(藍)
-													</div>
-													<div class="item">
-														<div class="ui black empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(黑)
-													</div>
-													<div class="item">
-														<div class="ui purple empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(紫)
-													</div>
-													<div class="item">
-														<div class="ui orange empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(橙)
-													</div>
-													<div class="item">
-														<div class="ui empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(白)
-													</div>
-													<div class="item">
-														<div class="ui yellow empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(黃)
-													</div>
-													<div class="item">
-														<div class="ui pink empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(粉)
-													</div>
-													<div class="item">
-														<div class="ui green empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(綠)
-													</div>
-												</div>
-											</div>
-											<div class="item">
-												<i class="dropdown icon"></i>
-												<span class="text">靜音按鍵</span>
-												<div class="menu">
-													<div class="item">
-														<div class="ui red empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(紅)
-													</div>
-													<div class="item">
-														<div class="ui blue empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(藍)
-													</div>
-													<div class="item">
-														<div class="ui black empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(黑)
-													</div>
-													<div class="item">
-														<div class="ui purple empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(紫)
-													</div>
-													<div class="item">
-														<div class="ui orange empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(橙)
-													</div>
-													<div class="item">
-														<div class="ui empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(白)
-													</div>
-													<div class="item">
-														<div class="ui yellow empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(黃)
-													</div>
-													<div class="item">
-														<div class="ui pink empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(粉)
-													</div>
-													<div class="item">
-														<div class="ui green empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(綠)
-													</div>
-												</div>
+					<div class="six wide left aligned column infoBlock"><!-- info -->
+						<div class="ui grid pure" style="width:100%">
+							<div class="fourteen wide left aligned column pure">
+								<div class="ui items">
+									<div class="item infoItem1 topZero">
+										<a class="ui small image">
+											<img src="images/btn_sanwa.jpg">
+										</a>
+										<div class="content">
+											<div class="header">三和按鍵</div>
+											<div class="description">
+												廣受歡迎的日製按鍵，街機標準品，觸感輕巧，靈敏度高，格鬥遊戲玩家最愛。
 											</div>
 										</div>
 									</div>
-								</div>
-								<div class="column">
-									<div class="ui dropdown mini button">
-										<input name="" type="hidden">
-										<div class="default text">請選擇按鍵</div>
-										<i class="dropdown icon"></i>
-										<div class="menu">
-											<div class="item">
-												<i class="dropdown icon"></i>
-												<span class="text">三和按鍵</span>
-												<div class="menu">
-													<div class="item" data-value="sanwaBtn">
-														<div class="ui red empty circular label"></div>
-														三和按鍵(紅)
-													</div>
-													<div class="item">
-														<div class="ui blue empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(藍)
-													</div>
-													<div class="item">
-														<div class="ui black empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(黑)
-													</div>
-													<div class="item">
-														<div class="ui purple empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(紫)
-													</div>
-													<div class="item">
-														<div class="ui orange empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(橙)
-													</div>
-													<div class="item">
-														<div class="ui empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(白)
-													</div>
-													<div class="item">
-														<div class="ui yellow empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(黃)
-													</div>
-													<div class="item">
-														<div class="ui pink empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(粉)
-													</div>
-													<div class="item">
-														<div class="ui green empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(綠)
-													</div>
-												</div>
-											</div>
-											<div class="item">
-												<i class="dropdown icon"></i>
-												<span class="text">靜音按鍵</span>
-												<div class="menu">
-													<div class="item">
-														<div class="ui red empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(紅)
-													</div>
-													<div class="item">
-														<div class="ui blue empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(藍)
-													</div>
-													<div class="item">
-														<div class="ui black empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(黑)
-													</div>
-													<div class="item">
-														<div class="ui purple empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(紫)
-													</div>
-													<div class="item">
-														<div class="ui orange empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(橙)
-													</div>
-													<div class="item">
-														<div class="ui empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(白)
-													</div>
-													<div class="item">
-														<div class="ui yellow empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(黃)
-													</div>
-													<div class="item">
-														<div class="ui pink empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(粉)
-													</div>
-													<div class="item">
-														<div class="ui green empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(綠)
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="column">
-									<div class="ui dropdown mini button">
-										<input name="" type="hidden">
-										<div class="default text">請選擇按鍵</div>
-										<i class="dropdown icon"></i>
-										<div class="menu">
-											<div class="item">
-												<i class="dropdown icon"></i>
-												<span class="text">三和按鍵</span>
-												<div class="menu">
-													<div class="item" data-value="sanwaBtn">
-														<div class="ui red empty circular label"></div>
-														三和按鍵(紅)
-													</div>
-													<div class="item">
-														<div class="ui blue empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(藍)
-													</div>
-													<div class="item">
-														<div class="ui black empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(黑)
-													</div>
-													<div class="item">
-														<div class="ui purple empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(紫)
-													</div>
-													<div class="item">
-														<div class="ui orange empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(橙)
-													</div>
-													<div class="item">
-														<div class="ui empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(白)
-													</div>
-													<div class="item">
-														<div class="ui yellow empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(黃)
-													</div>
-													<div class="item">
-														<div class="ui pink empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(粉)
-													</div>
-													<div class="item">
-														<div class="ui green empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(綠)
-													</div>
-												</div>
-											</div>
-											<div class="item">
-												<i class="dropdown icon"></i>
-												<span class="text">靜音按鍵</span>
-												<div class="menu">
-													<div class="item">
-														<div class="ui red empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(紅)
-													</div>
-													<div class="item">
-														<div class="ui blue empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(藍)
-													</div>
-													<div class="item">
-														<div class="ui black empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(黑)
-													</div>
-													<div class="item">
-														<div class="ui purple empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(紫)
-													</div>
-													<div class="item">
-														<div class="ui orange empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(橙)
-													</div>
-													<div class="item">
-														<div class="ui empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(白)
-													</div>
-													<div class="item">
-														<div class="ui yellow empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(黃)
-													</div>
-													<div class="item">
-														<div class="ui pink empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(粉)
-													</div>
-													<div class="item">
-														<div class="ui green empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(綠)
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="column">
-									<div class="ui dropdown mini button">
-										<input name="" type="hidden">
-										<div class="default text">請選擇按鍵</div>
-										<i class="dropdown icon"></i>
-										<div class="menu">
-											<div class="item">
-												<i class="dropdown icon"></i>
-												<span class="text">三和按鍵</span>
-												<div class="menu">
-													<div class="item" data-value="sanwaBtn">
-														<div class="ui red empty circular label"></div>
-														三和按鍵(紅)
-													</div>
-													<div class="item">
-														<div class="ui blue empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(藍)
-													</div>
-													<div class="item">
-														<div class="ui black empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(黑)
-													</div>
-													<div class="item">
-														<div class="ui purple empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(紫)
-													</div>
-													<div class="item">
-														<div class="ui orange empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(橙)
-													</div>
-													<div class="item">
-														<div class="ui empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(白)
-													</div>
-													<div class="item">
-														<div class="ui yellow empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(黃)
-													</div>
-													<div class="item">
-														<div class="ui pink empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(粉)
-													</div>
-													<div class="item">
-														<div class="ui green empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(綠)
-													</div>
-												</div>
-											</div>
-											<div class="item">
-												<i class="dropdown icon"></i>
-												<span class="text">靜音按鍵</span>
-												<div class="menu">
-													<div class="item">
-														<div class="ui red empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(紅)
-													</div>
-													<div class="item">
-														<div class="ui blue empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(藍)
-													</div>
-													<div class="item">
-														<div class="ui black empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(黑)
-													</div>
-													<div class="item">
-														<div class="ui purple empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(紫)
-													</div>
-													<div class="item">
-														<div class="ui orange empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(橙)
-													</div>
-													<div class="item">
-														<div class="ui empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(白)
-													</div>
-													<div class="item">
-														<div class="ui yellow empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(黃)
-													</div>
-													<div class="item">
-														<div class="ui pink empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(粉)
-													</div>
-													<div class="item">
-														<div class="ui green empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(綠)
-													</div>
-												</div>
+									<div class="item infoItem2 topZero" style="display:none">
+										<a class="ui small image">
+											<img src="images/btn_silent.jpg">
+										</a>
+										<div class="content">
+											<div class="header">靜音按鍵</div>
+											<div class="description">
+												來自台灣GamerFingers設計製造的靜音按鍵，採用機械Cherry紅軸搭配緩沖墊，有效降低按鍵的嘈雜聲音。
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-							<div class="four column row">
+							<div class="two wide middle aligned column pure">
+								<div class="ui vertical icon buttons">
+									<button class="ui button btnUp">
+										<i class="angle up icon"></i>
+									</button>
+									<button class="ui button btnDown">
+										<i class="angle down icon"></i>
+									</button>
+								</div>
+							</div>
+						</div>
+						<div class="ui small basic modal" id="theTabs_Btn1_infoModal1">
+							<div class="ui center aligned grid container">
 								<div class="column">
-									<div class="ui dropdown mini button">
-										<input name="" type="hidden">
-										<div class="default text">請選擇按鍵</div>
-										<i class="dropdown icon"></i>
-										<div class="menu">
-											<div class="item">
-												<i class="dropdown icon"></i>
-												<span class="text">三和按鍵</span>
-												<div class="menu">
-													<div class="item" data-value="sanwaBtn">
-														<div class="ui red empty circular label"></div>
-														三和按鍵(紅)
-													</div>
-													<div class="item">
-														<div class="ui blue empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(藍)
-													</div>
-													<div class="item">
-														<div class="ui black empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(黑)
-													</div>
-													<div class="item">
-														<div class="ui purple empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(紫)
-													</div>
-													<div class="item">
-														<div class="ui orange empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(橙)
-													</div>
-													<div class="item">
-														<div class="ui empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(白)
-													</div>
-													<div class="item">
-														<div class="ui yellow empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(黃)
-													</div>
-													<div class="item">
-														<div class="ui pink empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(粉)
-													</div>
-													<div class="item">
-														<div class="ui green empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(綠)
-													</div>
-												</div>
-											</div>
-											<div class="item">
-												<i class="dropdown icon"></i>
-												<span class="text">靜音按鍵</span>
-												<div class="menu">
-													<div class="item">
-														<div class="ui red empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(紅)
-													</div>
-													<div class="item">
-														<div class="ui blue empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(藍)
-													</div>
-													<div class="item">
-														<div class="ui black empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(黑)
-													</div>
-													<div class="item">
-														<div class="ui purple empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(紫)
-													</div>
-													<div class="item">
-														<div class="ui orange empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(橙)
-													</div>
-													<div class="item">
-														<div class="ui empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(白)
-													</div>
-													<div class="item">
-														<div class="ui yellow empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(黃)
-													</div>
-													<div class="item">
-														<div class="ui pink empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(粉)
-													</div>
-													<div class="item">
-														<div class="ui green empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(綠)
-													</div>
-												</div>
-											</div>
-										</div>
+									<div class="ui image">
+										<img style="max-height:50vh" src="images/btn_sanwa.jpg">
 									</div>
 								</div>
+							</div>
+						</div>
+						<div class="ui small basic modal" id="theTabs_Btn1_infoModal2">
+							<div class="ui center aligned grid container">
 								<div class="column">
-									<div class="ui dropdown mini button">
-										<input name="" type="hidden">
-										<div class="default text">請選擇按鍵</div>
-										<i class="dropdown icon"></i>
-										<div class="menu">
-											<div class="item">
-												<i class="dropdown icon"></i>
-												<span class="text">三和按鍵</span>
-												<div class="menu">
-													<div class="item" data-value="sanwaBtn">
-														<div class="ui red empty circular label"></div>
-														三和按鍵(紅)
-													</div>
-													<div class="item">
-														<div class="ui blue empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(藍)
-													</div>
-													<div class="item">
-														<div class="ui black empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(黑)
-													</div>
-													<div class="item">
-														<div class="ui purple empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(紫)
-													</div>
-													<div class="item">
-														<div class="ui orange empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(橙)
-													</div>
-													<div class="item">
-														<div class="ui empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(白)
-													</div>
-													<div class="item">
-														<div class="ui yellow empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(黃)
-													</div>
-													<div class="item">
-														<div class="ui pink empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(粉)
-													</div>
-													<div class="item">
-														<div class="ui green empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(綠)
-													</div>
-												</div>
-											</div>
-											<div class="item">
-												<i class="dropdown icon"></i>
-												<span class="text">靜音按鍵</span>
-												<div class="menu">
-													<div class="item">
-														<div class="ui red empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(紅)
-													</div>
-													<div class="item">
-														<div class="ui blue empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(藍)
-													</div>
-													<div class="item">
-														<div class="ui black empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(黑)
-													</div>
-													<div class="item">
-														<div class="ui purple empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(紫)
-													</div>
-													<div class="item">
-														<div class="ui orange empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(橙)
-													</div>
-													<div class="item">
-														<div class="ui empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(白)
-													</div>
-													<div class="item">
-														<div class="ui yellow empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(黃)
-													</div>
-													<div class="item">
-														<div class="ui pink empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(粉)
-													</div>
-													<div class="item">
-														<div class="ui green empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(綠)
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="column">
-									<div class="ui dropdown mini button">
-										<input name="" type="hidden">
-										<div class="default text">請選擇按鍵</div>
-										<i class="dropdown icon"></i>
-										<div class="menu">
-											<div class="item">
-												<i class="dropdown icon"></i>
-												<span class="text">三和按鍵</span>
-												<div class="menu">
-													<div class="item" data-value="sanwaBtn">
-														<div class="ui red empty circular label"></div>
-														三和按鍵(紅)
-													</div>
-													<div class="item">
-														<div class="ui blue empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(藍)
-													</div>
-													<div class="item">
-														<div class="ui black empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(黑)
-													</div>
-													<div class="item">
-														<div class="ui purple empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(紫)
-													</div>
-													<div class="item">
-														<div class="ui orange empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(橙)
-													</div>
-													<div class="item">
-														<div class="ui empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(白)
-													</div>
-													<div class="item">
-														<div class="ui yellow empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(黃)
-													</div>
-													<div class="item">
-														<div class="ui pink empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(粉)
-													</div>
-													<div class="item">
-														<div class="ui green empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(綠)
-													</div>
-												</div>
-											</div>
-											<div class="item">
-												<i class="dropdown icon"></i>
-												<span class="text">靜音按鍵</span>
-												<div class="menu">
-													<div class="item">
-														<div class="ui red empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(紅)
-													</div>
-													<div class="item">
-														<div class="ui blue empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(藍)
-													</div>
-													<div class="item">
-														<div class="ui black empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(黑)
-													</div>
-													<div class="item">
-														<div class="ui purple empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(紫)
-													</div>
-													<div class="item">
-														<div class="ui orange empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(橙)
-													</div>
-													<div class="item">
-														<div class="ui empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(白)
-													</div>
-													<div class="item">
-														<div class="ui yellow empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(黃)
-													</div>
-													<div class="item">
-														<div class="ui pink empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(粉)
-													</div>
-													<div class="item">
-														<div class="ui green empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(綠)
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="column">
-									<div class="ui dropdown mini button">
-										<input name="" type="hidden">
-										<div class="default text">請選擇按鍵</div>
-										<i class="dropdown icon"></i>
-										<div class="menu">
-											<div class="item">
-												<i class="dropdown icon"></i>
-												<span class="text">三和按鍵</span>
-												<div class="menu">
-													<div class="item" data-value="sanwaBtn">
-														<div class="ui red empty circular label"></div>
-														三和按鍵(紅)
-													</div>
-													<div class="item">
-														<div class="ui blue empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(藍)
-													</div>
-													<div class="item">
-														<div class="ui black empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(黑)
-													</div>
-													<div class="item">
-														<div class="ui purple empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(紫)
-													</div>
-													<div class="item">
-														<div class="ui orange empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(橙)
-													</div>
-													<div class="item">
-														<div class="ui empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(白)
-													</div>
-													<div class="item">
-														<div class="ui yellow empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(黃)
-													</div>
-													<div class="item">
-														<div class="ui pink empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(粉)
-													</div>
-													<div class="item">
-														<div class="ui green empty circular label" data-value="sanwaBtn"></div>
-														三和按鍵(綠)
-													</div>
-												</div>
-											</div>
-											<div class="item">
-												<i class="dropdown icon"></i>
-												<span class="text">靜音按鍵</span>
-												<div class="menu">
-													<div class="item">
-														<div class="ui red empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(紅)
-													</div>
-													<div class="item">
-														<div class="ui blue empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(藍)
-													</div>
-													<div class="item">
-														<div class="ui black empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(黑)
-													</div>
-													<div class="item">
-														<div class="ui purple empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(紫)
-													</div>
-													<div class="item">
-														<div class="ui orange empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(橙)
-													</div>
-													<div class="item">
-														<div class="ui empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(白)
-													</div>
-													<div class="item">
-														<div class="ui yellow empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(黃)
-													</div>
-													<div class="item">
-														<div class="ui pink empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(粉)
-													</div>
-													<div class="item">
-														<div class="ui green empty circular label" data-value="silentBtn"></div>
-														靜音按鍵(綠)
-													</div>
-												</div>
-											</div>
-										</div>
+									<div class="ui image">
+										<img style="max-height:50vh" src="images/btn_silent.jpg">
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="four wide left aligned column">
-						<div class="ui items">
-							<div class="item sanwaBtn">
-								<img class="ui image" src="images/fakeImg_L.png" height="70" width="70" style="display:inline">
-								<div class="content" style="display:inline">
-									<div class="header">三和按鍵</div>
-									<div class="description">
-										廣受歡迎的日製按鍵，街機標準品，觸感輕巧，靈敏度高，格鬥遊戲玩家最愛。
+					<div class="six wide left aligned column pure controlBlock"><!-- control -->
+						<div class="ui grid pure" style="width:100%">
+							<div class="middle aligned eight wide column pure">
+								<h5 class="ui header" style="display:inline">[ ]</h5>
+								<div class="ui inline icon scrolling dropdown button square" tabindex="0">
+									<input type="hidden">
+									<span class="default text productName">請選擇按鍵</span>
+									<i class="dropdown icon"></i>
+									<div class="menu">
+										<!-- selections appends here -->
 									</div>
 								</div>
 							</div>
-							<div class="item silentBun">
-								<img class="ui image" src="images/fakeImg_L.png" height="70" width="70" style="display:inline">
-								<div class="content" style="display:inline">
-									<div class="header">靜音按鍵</div>
-									<div class="description">
-										來自台灣GamerFingers設計製造的靜音按鍵，採用機械Cherry紅軸搭配緩沖墊，有效降低按鍵的嘈雜聲音。
+							<div class="middle aligned eight wide column pure">
+								<h5 class="ui header" style="display:inline">Λ</h5>
+								<div class="ui inline icon scrolling dropdown button triangle" tabindex="0">
+									<input type="hidden">
+									<span class="default text productName">請選擇按鍵</span>
+									<i class="dropdown icon"></i>
+									<div class="menu">
+										<!-- selections appends here -->
+									</div>
+								</div>
+							</div>
+							<div class="middle aligned eight wide column pure">
+								<h5 class="ui header" style="display:inline">X</h5>
+								<div class="ui inline icon scrolling dropdown button x" tabindex="0">
+									<input type="hidden">
+									<span class="default text productName">請選擇按鍵</span>
+									<i class="dropdown icon"></i>
+									<div class="menu">
+										<!-- selections appends here -->
+									</div>
+								</div>
+							</div>
+							<div class="middle aligned eight wide column pure">
+								<h5 class="ui header" style="display:inline">O</h5>
+								<div class="ui inline icon scrolling dropdown button o" tabindex="0">
+									<input type="hidden">
+									<span class="default text productName">請選擇按鍵</span>
+									<i class="dropdown icon"></i>
+									<div class="menu">
+										<!-- selections appends here -->
+									</div>
+								</div>
+							</div>
+							<div class="middle aligned eight wide column pure">
+								<h5 class="ui header" style="display:inline">R1</h5>
+								<div class="ui inline icon scrolling dropdown button r1" tabindex="0">
+									<input type="hidden">
+									<span class="default text productName">請選擇按鍵</span>
+									<i class="dropdown icon"></i>
+									<div class="menu">
+										<!-- selections appends here -->
+									</div>
+								</div>
+							</div>
+							<div class="middle aligned eight wide column pure">
+								<h5 class="ui header" style="display:inline">L1</h5>
+								<div class="ui inline icon scrolling dropdown button l1" tabindex="0">
+									<input type="hidden">
+									<span class="default text productName">請選擇按鍵</span>
+									<i class="dropdown icon"></i>
+									<div class="menu">
+										<!-- selections appends here -->
+									</div>
+								</div>
+							</div>
+							<div class="middle aligned eight wide column pure">
+								<h5 class="ui header" style="display:inline">R2</h5>
+								<div class="ui inline icon scrolling dropdown button r2" tabindex="0">
+									<input type="hidden">
+									<span class="default text productName">請選擇按鍵</span>
+									<i class="dropdown icon"></i>
+									<div class="menu">
+										<!-- selections appends here -->
+									</div>
+								</div>
+							</div>
+							<div class="middle aligned eight wide column pure">
+								<h5 class="ui header" style="display:inline">L2</h5>
+								<div class="ui inline icon scrolling dropdown button l2" tabindex="0">
+									<input type="hidden">
+									<span class="default text productName">請選擇按鍵</span>
+									<i class="dropdown icon"></i>
+									<div class="menu">
+										<!-- selections appends here -->
 									</div>
 								</div>
 							</div>
@@ -1238,57 +626,255 @@
 					</div>
 				</div>
 			</div>
-			<div class="ui tab" data-tab="tab4" id="theTabs_Btn2">
+			<div class="ui tab" data-tab="tab4" id="theTabs_Btn2"><!-- theTabs_Btn2 -->
 				<div class="ui center aligned grid">
 					<div class="two wide middle aligned right aligned column">
 						<i class="circular big grey chevron left icon cursorPointer" data-tab="tab3"></i>
 					</div>
-					<div class="three wide column">
-						
+					<div class="six wide left aligned column infoBlock"><!-- info -->
+						<div class="ui grid pure" style="width:100%">
+							<div class="fourteen wide left aligned column pure">
+								<div class="ui items">
+									<div class="item infoItem1 topZero">
+										<a class="ui small image">
+											<img src="images/btn_sanwa.jpg">
+										</a>
+										<div class="content">
+											<div class="header">三和按鍵</div>
+											<div class="description">
+												廣受歡迎的日製按鍵，街機標準品，觸感輕巧，靈敏度高，格鬥遊戲玩家最愛。
+											</div>
+										</div>
+									</div>
+									<div class="item infoItem2 topZero" style="display:none">
+										<a class="ui small image">
+											<img src="images/btn_silent.jpg">
+										</a>
+										<div class="content">
+											<div class="header">靜音按鍵</div>
+											<div class="description">
+												來自台灣GamerFingers設計製造的靜音按鍵，採用機械Cherry紅軸搭配緩沖墊，有效降低按鍵的嘈雜聲音。
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="two wide middle aligned column pure">
+								<div class="ui vertical icon buttons">
+									<button class="ui button btnUp">
+										<i class="angle up icon"></i>
+									</button>
+									<button class="ui button btnDown">
+										<i class="angle down icon"></i>
+									</button>
+								</div>
+							</div>
+						</div>
+						<div class="ui small basic modal" id="theTabs_Btn2_infoModal1">
+							<div class="ui center aligned grid container">
+								<div class="column">
+									<div class="ui image">
+										<img style="max-height:50vh" src="images/btn_sanwa.jpg">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="ui small basic modal" id="theTabs_Btn2_infoModal2">
+							<div class="ui center aligned grid container">
+								<div class="column">
+									<div class="ui image">
+										<img style="max-height:50vh" src="images/btn_silent.jpg">
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
-					<div class="six wide column pure">
-						
-					</div>
-					<div class="three wide column">
-						
+					<div class="six wide left aligned column pure controlBlock"><!-- control -->
+						<div class="ui three column grid pure" style="width:100%">
+							<div class="middle aligned column">
+								<h5 class="ui header">Start</h5>
+								<div class="ui icon scrolling dropdown button start" tabindex="0">
+									<input type="hidden">
+									<span class="default text productName">請選擇按鍵</span>
+									<i class="dropdown icon"></i>
+									<div class="menu">
+										<!-- selections appends here -->
+									</div>
+								</div>
+							</div>
+							<div class="middle aligned column">
+								<h5 class="ui header">Select</h5>
+								<div class="ui icon scrolling dropdown button selecter" tabindex="0">
+									<input type="hidden">
+									<span class="default text productName">請選擇按鍵</span>
+									<i class="dropdown icon"></i>
+									<div class="menu">
+										<!-- selections appends here -->
+									</div>
+								</div>
+							</div>
+							<div class="middle aligned column">
+								<h5 class="ui header">Touch</h5>
+								<div class="ui icon scrolling dropdown button touch" tabindex="0">
+									<input type="hidden">
+									<span class="default text productName">請選擇按鍵</span>
+									<i class="dropdown icon"></i>
+									<div class="menu">
+										<!-- selections appends here -->
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 					<div class="two wide middle aligned left aligned column">
 						<i class="circular big grey chevron right icon cursorPointer" data-tab="tab5"></i>
 					</div>
 				</div>
 			</div>
-			<div class="ui tab" data-tab="tab5" id="theTabs_Surface">
+			<div class="ui tab" data-tab="tab5" id="theTabs_Surface"><!-- theTabs_Surface -->
 				<div class="ui center aligned grid">
 					<div class="two wide middle aligned right aligned column">
 						<i class="circular big grey chevron left icon cursorPointer" data-tab="tab4"></i>
 					</div>
-					<div class="three wide column">
-						
+					<div class="nine wide middle aligned column infoBlock"><!-- info -->
+						<div class="ui small image previewImage">
+							<img src="images/surface.jpg">
+						</div>
+						<div class="previewImageName"></div>
+						<div class="previewImageId" style="display:none"></div>
+						<div class="previewImagePath" style="display:none"></div>
+						<div class="ui small basic modal" id="theTabs_Surface_infoModal">
+							<div class="ui center aligned grid container">
+								<div class="column">
+									<div class="ui image">
+										<img style="max-height:50vh" src="images/surface.jpg">
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
-					<div class="six wide column pure">
-						
-					</div>
-					<div class="three wide column">
-						
+					<div class="three wide column controlBlock"><!-- control -->
+						<h4 class="ui dividing header">面板圖</h4>
+						<div class="ui button btnSelectSurface">
+							<span class="text">選擇面板圖</span>
+						</div>
 					</div>
 					<div class="two wide middle aligned left aligned column">
 						<i class="circular big grey chevron right icon cursorPointer" data-tab="tab6"></i>
 					</div>
 				</div>
+				<div class="ui modal" id="theTabs_Surface_Modal"><!-- theTabs_Surface_Modal -->
+					<div class="ui six stackable cards">
+						<!-- <div class="ui card">
+							<div class="image">
+								<img src='+one.imagePath+'>
+							</div>
+							<div class="content">
+								<div class="imgId" style="display:none">'+one.imageId+'</div>
+								<a class="ui description">'+one.imageName+'</a>
+							</div>
+						</div> -->
+					</div>
+				</div>
 			</div>
-			<div class="ui tab" data-tab="tab6" id="theTabs_System">
+			<div class="ui tab" data-tab="tab6" id="theTabs_System"><!-- theTabs_System -->
 				<div class="ui center aligned grid">
 					<div class="two wide middle aligned right aligned column">
 						<i class="circular big grey chevron left icon cursorPointer" data-tab="tab5"></i>
 					</div>
-					<div class="three wide column">
-						
+					<div class="nine wide column pure infoBlock"><!-- info -->
+						<div class="ui center aligned grid pure" style="width:100%">
+							<div class="fourteen wide left aligned column">
+								<div class="ui items">
+									<div class="item infoItem1 topZero">
+										<a class="ui small image">
+											<img src="images/fakeImg_L.png">
+										</a>
+										<div class="content">
+											<div class="header">PS3 機板</div>
+											<div class="description">
+												<p>
+													早期用拳霸的PS3機板，近年自己與朋友開發。
+												</p>
+											</div>
+										</div>
+									</div>
+									<div class="item infoItem2 topZero" style="display:none;">
+										<a class="ui small image">
+											<img src="images/fakeImg_L.png">
+										</a>
+										<div class="content">
+											<div class="header">PS4/PS3 機板</div>
+											<div class="description">
+												<p>
+													無線：拆去PS4原廠無線手把外殼。<br>
+													有線：以HORI PS4-025觸控有線手把內部機板製作。
+												</p>
+											</div>
+										</div>
+									</div>
+									<div class="item infoItem3 topZero" style="display:none;">
+										<a class="ui small image">
+											<img src="images/fakeImg_L.png">
+										</a>
+										<div class="content">
+											<div class="header">XBOX360 機板</div>
+											<div class="description">
+												<p>
+													無線：拆去360原廠無線手把外殼。<br>
+													有線：購自拳霸。
+												</p>
+											</div>
+										</div>
+									</div>
+									<div class="item infoItem4 topZero" style="display:none;">
+										<a class="ui small image">
+											<img src="images/fakeImg_L.png">
+										</a>
+										<div class="content">
+											<div class="header">PS3/360 機板</div>
+											<div class="description">
+												<p>
+													購自拳霸，與Q4機板相同。
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="two wide middle aligned column">
+								<div class="ui vertical icon buttons">
+									<button class="ui button btnUp">
+										<i class="angle up icon"></i>
+									</button>
+									<button class="ui button btnDown">
+										<i class="angle down icon"></i>
+									</button>
+								</div>
+							</div>
+						</div>
 					</div>
-					<div class="six wide column pure">
-						
-					</div>
-					<div class="three wide column">
-						
+					<div class="three wide column controlBlock"><!-- control -->
+						<h4 class="ui dividing header">系統</h4>
+						<div class="ui dropdown button board">
+							<input type="hidden">
+							<span class="text productName">請選擇系統</span>
+							<i class="dropdown icon"></i>
+							<div class="menu">
+								<!-- <div class="item">
+									<span class="text">PS3 機板</span>
+								</div>
+								<div class="item">
+									<span class="text">PS4/PS3 機板</span>
+								</div>
+								<div class="item">
+									<span class="text">XBOX360 機板</span>
+								</div>
+								<div class="item">
+									<span class="text">PS3/360 機板</span>
+								</div> -->
+							</div>
+						</div>
 					</div>
 					<div class="two wide middle aligned left aligned column">
 					</div>
@@ -1301,6 +887,482 @@
 	</div>
 </body>
 <script>
+
+	/*資料庫導入零件資料並準備選項*/
+		/*theTabs_Model*/
+			Model_getProduct();
+
+			function Model_getProduct(){
+				console.log('Model_getProduct() called');
+				$.ajax({
+					url:'./products',
+					type:'get',
+					data:{
+						"action":"select",
+						"productType":"框體"
+					},
+					dataType:"json",
+					success:function(datas){
+						console.log("Model_getProduct() successed");
+						console.log(datas);
+						Model_setProduct(datas);
+					}
+				});
+			}
+			function Model_setProduct(datas){
+				console.log('Model_setProduct() called');
+
+				$.each(datas.results,function(i,one){
+					var index = i+1;
+					var row = {
+						productId:one.productId,
+						productName:one.productName,
+						productPrice:one.productPrice,
+						productColor:one.productColor
+					};
+
+					var colorClass;
+
+					if("white"===row.productColor){
+						colorClass="";
+					} else if("dblue"===row.productColor){
+						colorClass="blue";
+					} else if("dorange"===row.productColor){
+						colorClass="orange";
+					} else{
+						colorClass=row.productColor;
+					}
+
+					/*<div class="item" data-value="red">
+						<div class="ui red empty circular label"></div>
+						紅
+					</div>*/
+
+					$('<div />',{
+						'class':'item',
+						'data-value':row.productId+"|"+row.productPrice,
+						html:'<div class="ui '+colorClass+' empty circular label"></div>'+row.productName
+					})
+					.appendTo($('#theTabs_Model .housing .menu'));
+				});
+
+				Model_initialDropdown();
+			}
+
+			function Model_initialDropdown(){
+				$('#theTabs_Model .dropdown').dropdown({
+					onChange:function(){
+						modelIsSelected = true;
+						$('.theMenu .lab1').removeClass('grey');
+						$('.theMenu .lab1').addClass('green');
+						calculatePrice();
+					}
+				});
+			}
+
+		/*theTabs_Stick*/
+			Stick_getProduct();
+
+			function Stick_getProduct(){
+				console.log('Stick_getProduct() called');
+				$.ajax({
+					url:'./products',
+					type:'get',
+					data:{
+						"action":"select",
+						"productType":"搖桿"
+					},
+					dataType:"json",
+					success:function(datas){
+						console.log("Stick_getProduct() successed");
+						console.log(datas);
+						Stick_setProduct(datas);
+					}
+				});
+			}
+			function Stick_setProduct(datas){
+				console.log('Stick_setProduct() called');
+
+				$.each(datas.results,function(i,one){
+					var index = i+1;
+					var row = {
+						productId:one.productId,
+						productName:one.productName,
+						productPrice:one.productPrice,
+						productColor:one.productColor
+					};
+
+					var colorClass;
+
+					if("white"===row.productColor){
+						colorClass="";
+					} else if("dblue"===row.productColor){
+						colorClass="blue";
+					} else if("dorange"===row.productColor){
+						colorClass="orange";
+					} else{
+						colorClass=row.productColor;
+					}
+
+					/*<div class="item" data-value="red">
+						<div class="ui red empty circular label"></div>
+						紅
+					</div>*/
+
+					$('<div />',{
+						'class':'item',
+						'data-value':row.productId+"|"+row.productPrice,
+						html:'<div class="ui '+colorClass+' empty circular label"></div>'+row.productName
+					})
+					.appendTo($('#theTabs_Stick .rocker .menu'));
+				});
+
+				Stick_initialDropdown();
+			}
+
+			function Stick_initialDropdown(){
+				$('#theTabs_Stick .dropdown').dropdown({
+					onChange:function(){
+						stickIsSelected=true;
+						$('.theMenu .lab2').removeClass('grey');
+						$('.theMenu .lab2').addClass('green');
+						calculatePrice();
+					}
+				});
+			}
+
+		/*theTabs_Btn1*//*theTabs_Btn2*/
+			Btn_getProduct();
+
+			function Btn_getProduct(){
+				console.log('Btn_getProduct() called');
+				$.ajax({
+					url:'./products',
+					type:'get',
+					data:{
+						"action":"select",
+						"productType":"按鍵"
+					},
+					dataType:"json",
+					success:function(datas){
+						console.log("Btn_getProduct() successed");
+						console.log(datas);
+						Btn_setProduct(datas);
+					}
+				});
+			}
+			function Btn_setProduct(datas){
+				console.log('Btn_setProduct() called');
+
+				$.each(datas.results,function(i,one){
+					var index = i+1;
+					var row = {
+						productId:one.productId,
+						productName:one.productName,
+						productPrice:one.productPrice,
+						productColor:one.productColor
+					};
+
+					var colorClass;
+
+					if("white"===row.productColor){
+						colorClass="";
+					} else if("dblue"===row.productColor){
+						colorClass="blue";
+					} else if("dorange"===row.productColor){
+						colorClass="orange";
+					} else{
+						colorClass=row.productColor;
+					}
+
+					/*<div class="item" data-value="red">
+						<div class="ui red empty circular label"></div>
+						紅
+					</div>*/
+
+					$('<div />',{
+						'class':'item',
+						'data-value':row.productId+"|"+row.productPrice,
+						html:'<div class="ui '+colorClass+' empty circular label"></div>'+row.productName
+					}).appendTo($('#theTabs_Btn1 .l1 .menu'));
+
+					$('<div />',{
+						'class':'item',
+						'data-value':row.productId+"|"+row.productPrice,
+						html:'<div class="ui '+colorClass+' empty circular label"></div>'+row.productName
+					}).appendTo($('#theTabs_Btn1 .l2 .menu'));
+
+					$('<div />',{
+						'class':'item',
+						'data-value':row.productId+"|"+row.productPrice,
+						html:'<div class="ui '+colorClass+' empty circular label"></div>'+row.productName
+					}).appendTo($('#theTabs_Btn1 .r1 .menu'));
+
+					$('<div />',{
+						'class':'item',
+						'data-value':row.productId+"|"+row.productPrice,
+						html:'<div class="ui '+colorClass+' empty circular label"></div>'+row.productName
+					}).appendTo($('#theTabs_Btn1 .r2 .menu'));
+
+					$('<div />',{
+						'class':'item',
+						'data-value':row.productId+"|"+row.productPrice,
+						html:'<div class="ui '+colorClass+' empty circular label"></div>'+row.productName
+					}).appendTo($('#theTabs_Btn1 .o .menu'));
+
+					$('<div />',{
+						'class':'item',
+						'data-value':row.productId+"|"+row.productPrice,
+						html:'<div class="ui '+colorClass+' empty circular label"></div>'+row.productName
+					}).appendTo($('#theTabs_Btn1 .x .menu'));
+
+					$('<div />',{
+						'class':'item',
+						'data-value':row.productId+"|"+row.productPrice,
+						html:'<div class="ui '+colorClass+' empty circular label"></div>'+row.productName
+					}).appendTo($('#theTabs_Btn1 .square .menu'));
+
+					$('<div />',{
+						'class':'item',
+						'data-value':row.productId+"|"+row.productPrice,
+						html:'<div class="ui '+colorClass+' empty circular label"></div>'+row.productName
+					}).appendTo($('#theTabs_Btn1 .triangle .menu'));
+
+					$('<div />',{
+						'class':'item',
+						'data-value':row.productId+"|"+row.productPrice,
+						html:'<div class="ui '+colorClass+' empty circular label"></div>'+row.productName
+					}).appendTo($('#theTabs_Btn2 .touch .menu'));
+
+					$('<div />',{
+						'class':'item',
+						'data-value':row.productId+"|"+row.productPrice,
+						html:'<div class="ui '+colorClass+' empty circular label"></div>'+row.productName
+					}).appendTo($('#theTabs_Btn2 .start .menu'));
+
+					$('<div />',{
+						'class':'item',
+						'data-value':row.productId+"|"+row.productPrice,
+						html:'<div class="ui '+colorClass+' empty circular label"></div>'+row.productName
+					}).appendTo($('#theTabs_Btn2 .selecter .menu'));
+
+
+				});
+
+				Btn_initialDropdown();
+			}
+
+			function Btn_initialDropdown(){
+				$('#theTabs_Btn1 .dropdown').dropdown({
+					onChange:function(){
+						Btn1_checkSelect();
+						calculatePrice();
+					}
+				});
+				$('#theTabs_Btn2 .dropdown').dropdown({
+					onChange:function(){
+						Btn2_checkSelect();
+						calculatePrice();
+					}
+				});
+			}
+
+		/*theTabs_System*/
+			System_getProduct();
+
+			function System_getProduct(){
+				console.log('System_getProduct() called');
+				$.ajax({
+					url:'./products',
+					type:'get',
+					data:{
+						"action":"select",
+						"productType":"機板"
+					},
+					dataType:"json",
+					success:function(datas){
+						console.log("System_getProduct() successed");
+						console.log(datas);
+						System_setProduct(datas);
+					}
+				});
+			}
+			function System_setProduct(datas){
+				console.log('System_setProduct() called');
+
+				$.each(datas.results,function(i,one){
+					var index = i+1;
+					var row = {
+						productId:one.productId,
+						productName:one.productName,
+						productPrice:one.productPrice,
+					};
+
+					/*<div class="item" data-value="red">
+						<div class="ui red empty circular label"></div>
+						紅
+					</div>*/
+
+					$('<div />',{
+						'class':'item',
+						'data-value':row.productId+"|"+row.productPrice,
+						html:row.productName
+					})
+					.appendTo($('#theTabs_System .board .menu'));
+				});
+
+				System_initialDropdown();
+			}
+
+			function System_initialDropdown(){
+				$('#theTabs_System .dropdown').dropdown({
+					onChange:function(){
+						systemIsSelected=true;
+						$('.theMenu .lab6').removeClass('grey');
+						$('.theMenu .lab6').addClass('green');
+						calculatePrice();
+					}
+				});
+			}
+
+	/*order behaviour*/
+		/*price*/
+		function calculatePrice(){
+			var housingPrice=0;
+			if(""===$('#theTabs_Model .housing input').val()){
+			} else{
+				var housing = $('#theTabs_Model .housing input').val().split('|');
+				housingPrice=Number(housing[1]);
+			}
+
+			var rockerPrice=0;
+			if(""===$('#theTabs_Stick .rocker input').val()){
+			} else{
+				var rocker = $('#theTabs_Stick .rocker input').val().split('|');
+				rockerPrice=Number(rocker[1]);
+			}
+
+			var l1Price=0;
+			if(""===$('#theTabs_Btn1 .l1 input').val()){
+			} else{
+				var l1 = $('#theTabs_Btn1 .l1 input').val().split('|');
+				l1Price=Number(l1[1]);
+			}
+			var l2Price=0;
+			if(""===$('#theTabs_Btn1 .l2 input').val()){
+			} else{
+				var l2 = $('#theTabs_Btn1 .l2 input').val().split('|');
+				l2Price=Number(l2[1]);
+			}
+			var r1Price=0;
+			if(""===$('#theTabs_Btn1 .r1 input').val()){
+			} else{
+				var r1 = $('#theTabs_Btn1 .r1 input').val().split('|');
+				r1Price=Number(r1[1]);
+			}
+			var r2Price=0;
+			if(""===$('#theTabs_Btn1 .r2 input').val()){
+			} else{
+				var r2 = $('#theTabs_Btn1 .r2 input').val().split('|');
+				r2Price=Number(r2[1]);
+			}
+			var oPrice=0;
+			if(""===$('#theTabs_Btn1 .o input').val()){
+			} else{
+				var o = $('#theTabs_Btn1 .o input').val().split('|');
+				oPrice=Number(o[1]);
+			}
+			var xPrice=0;
+			if(""===$('#theTabs_Btn1 .x input').val()){
+			} else{
+				var x = $('#theTabs_Btn1 .x input').val().split('|');
+				xPrice=Number(x[1]);
+			}
+			var squarePrice=0;
+			if(""===$('#theTabs_Btn1 .square input').val()){
+			} else{
+				var square = $('#theTabs_Btn1 .square input').val().split('|');
+				squarePrice=Number(square[1]);
+			}
+			var trianglePrice=0;
+			if(""===$('#theTabs_Btn1 .triangle input').val()){
+			} else{
+				var triangle = $('#theTabs_Btn1 .triangle input').val().split('|');
+				trianglePrice=Number(triangle[1]);
+			}
+			var touchPrice=0;
+			if(""===$('#theTabs_Btn2 .touch input').val()){
+			} else{
+				var touch = $('#theTabs_Btn2 .touch input').val().split('|');
+				touchPrice=Number(touch[1]);
+			}
+			var startPrice=0;
+			if(""===$('#theTabs_Btn2 .start input').val()){
+			} else{
+				var start = $('#theTabs_Btn2 .start input').val().split('|');
+				startPrice=Number(start[1]);
+			}
+			var selecterPrice=0;
+			if(""===$('#theTabs_Btn2 .selecter input').val()){
+			} else{
+				var selecter = $('#theTabs_Btn2 .selecter input').val().split('|');
+				selecterPrice=Number(selecter[1]);
+			}
+
+			var boardPrice=0;
+			if(""===$('#theTabs_System .board input').val()){
+			} else{
+				var board = $('#theTabs_System .board input').val().split('|');
+				boardPrice=Number(board[1]);
+			}
+
+			var price = 0;
+			price = 700+housingPrice+rockerPrice+l1Price+l2Price+r1Price+r2Price+oPrice+xPrice+squarePrice+trianglePrice+touchPrice+startPrice+selecterPrice+boardPrice;
+			$('.priceBlock span').text(price);
+
+			if(modelIsSelected&&stickIsSelected&&btn1IsSelected&&btn2IsSelected&&systemIsSelected){
+				$('#btnConfirmN').removeClass('grey');
+				$('#btnConfirmN').removeClass('disabled');
+				$('#btnConfirmN').addClass('green');
+			}
+		}
+
+		/*isAllSelected*/
+			var modelIsSelected = false;
+			var stickIsSelected = false;
+			var btn1IsSelected = false;
+			var btn2IsSelected = false;
+			var systemIsSelected = false;
+
+			function Btn1_checkSelect(){
+				if(
+					""!=$('#theTabs_Btn1 .l1 input').val()&&
+					""!=$('#theTabs_Btn1 .l2 input').val()&&
+					""!=$('#theTabs_Btn1 .r1 input').val()&&
+					""!=$('#theTabs_Btn1 .r2 input').val()&&
+					""!=$('#theTabs_Btn1 .o input').val()&&
+					""!=$('#theTabs_Btn1 .x input').val()&&
+					""!=$('#theTabs_Btn1 .square input').val()&&
+					""!=$('#theTabs_Btn1 .triangle input').val()
+				){
+					btn1IsSelected=true;
+					$('.theMenu .lab3').removeClass('grey');
+					$('.theMenu .lab3').addClass('green');
+				}
+			}
+
+			function Btn2_checkSelect(){
+				if(
+					""!=$('#theTabs_Btn2 .touch input').val()&&
+					""!=$('#theTabs_Btn2 .start input').val()&&
+					""!=$('#theTabs_Btn2 .selecter input').val()
+				){
+					btn2IsSelected=true;
+					$('.theMenu .lab4').removeClass('grey');
+					$('.theMenu .lab4').addClass('green');
+				}
+			}
+
 	/*theMenu behaviour*/
 		function disableAllLabels(){
 			$('.theMenu .lab1').removeClass('large');
@@ -1328,54 +1390,42 @@
 		$('.theMenu .lab1').tab({
 			onLoad:function(){
 				disableAllLabels();
-				$('.theMenu .lab1').removeClass('grey');
 				$('.theMenu .lab1').removeClass('disabled');
-				$('.theMenu .lab1').addClass('orange');
 				$('.theMenu .lab1').addClass('large');
 			}
 		});
 		$('.theMenu .lab2').tab({
 			onLoad:function(){
 				disableAllLabels();
-				$('.theMenu .lab2').removeClass('grey');
 				$('.theMenu .lab2').removeClass('disabled');
-				$('.theMenu .lab2').addClass('orange');
 				$('.theMenu .lab2').addClass('large');
 			}
 		});
 		$('.theMenu .lab3').tab({
 			onLoad:function(){
 				disableAllLabels();
-				$('.theMenu .lab3').removeClass('grey');
 				$('.theMenu .lab3').removeClass('disabled');
-				$('.theMenu .lab3').addClass('orange');
 				$('.theMenu .lab3').addClass('large');
 			}
 		});
 		$('.theMenu .lab4').tab({
 			onLoad:function(){
 				disableAllLabels();
-				$('.theMenu .lab4').removeClass('grey');
 				$('.theMenu .lab4').removeClass('disabled');
-				$('.theMenu .lab4').addClass('orange');
 				$('.theMenu .lab4').addClass('large');
 			}
 		});
 		$('.theMenu .lab5').tab({
 			onLoad:function(){
 				disableAllLabels();
-				$('.theMenu .lab5').removeClass('grey');
 				$('.theMenu .lab5').removeClass('disabled');
-				$('.theMenu .lab5').addClass('orange');
 				$('.theMenu .lab5').addClass('large');
 			}
 		});
 		$('.theMenu .lab6').tab({
 			onLoad:function(){
 				disableAllLabels();
-				$('.theMenu .lab6').removeClass('grey');
 				$('.theMenu .lab6').removeClass('disabled');
-				$('.theMenu .lab6').addClass('orange');
 				$('.theMenu .lab6').addClass('large');
 			}
 		});
@@ -1383,206 +1433,607 @@
 		$('#theTabs_Model .right.icon').tab({
 			onLoad:function(){
 				disableAllLabels();
-				$('.theMenu .lab2').removeClass('grey');
 				$('.theMenu .lab2').removeClass('disabled');
-				$('.theMenu .lab2').addClass('orange');
 				$('.theMenu .lab2').addClass('large');
 			}
 		});
 		$('#theTabs_Stick .left.icon').tab({
 			onLoad:function(){
 				disableAllLabels();
-				$('.theMenu .lab1').removeClass('grey');
 				$('.theMenu .lab1').removeClass('disabled');
-				$('.theMenu .lab1').addClass('orange');
 				$('.theMenu .lab1').addClass('large');
 			}
 		});
 		$('#theTabs_Stick .right.icon').tab({
 			onLoad:function(){
 				disableAllLabels();
-				$('.theMenu .lab3').removeClass('grey');
 				$('.theMenu .lab3').removeClass('disabled');
-				$('.theMenu .lab3').addClass('orange');
 				$('.theMenu .lab3').addClass('large');
 			}
 		});
 		$('#theTabs_Btn1 .left.icon').tab({
 			onLoad:function(){
 				disableAllLabels();
-				$('.theMenu .lab2').removeClass('grey');
 				$('.theMenu .lab2').removeClass('disabled');
-				$('.theMenu .lab2').addClass('orange');
 				$('.theMenu .lab2').addClass('large');
 			}
 		});
 		$('#theTabs_Btn1 .right.icon').tab({
 			onLoad:function(){
 				disableAllLabels();
-				$('.theMenu .lab4').removeClass('grey');
 				$('.theMenu .lab4').removeClass('disabled');
-				$('.theMenu .lab4').addClass('orange');
 				$('.theMenu .lab4').addClass('large');
 			}
 		});
 		$('#theTabs_Btn2 .left.icon').tab({
 			onLoad:function(){
 				disableAllLabels();
-				$('.theMenu .lab3').removeClass('grey');
 				$('.theMenu .lab3').removeClass('disabled');
-				$('.theMenu .lab3').addClass('orange');
 				$('.theMenu .lab3').addClass('large');
 			}
 		});
 		$('#theTabs_Btn2 .right.icon').tab({
 			onLoad:function(){
 				disableAllLabels();
-				$('.theMenu .lab5').removeClass('grey');
 				$('.theMenu .lab5').removeClass('disabled');
-				$('.theMenu .lab5').addClass('orange');
 				$('.theMenu .lab5').addClass('large');
 			}
 		});
 		$('#theTabs_Surface .left.icon').tab({
 			onLoad:function(){
 				disableAllLabels();
-				$('.theMenu .lab4').removeClass('grey');
 				$('.theMenu .lab4').removeClass('disabled');
-				$('.theMenu .lab4').addClass('orange');
 				$('.theMenu .lab4').addClass('large');
 			}
 		});
 		$('#theTabs_Surface .right.icon').tab({
 			onLoad:function(){
 				disableAllLabels();
-				$('.theMenu .lab6').removeClass('grey');
 				$('.theMenu .lab6').removeClass('disabled');
-				$('.theMenu .lab6').addClass('orange');
 				$('.theMenu .lab6').addClass('large');
 			}
 		});
 		$('#theTabs_System .left.icon').tab({
 			onLoad:function(){
 				disableAllLabels();
-				$('.theMenu .lab5').removeClass('grey');
 				$('.theMenu .lab5').removeClass('disabled');
-				$('.theMenu .lab5').addClass('orange');
 				$('.theMenu .lab5').addClass('large');
 			}
 		});
 
-	$('#btnConfirm').click(function(){
-		/*引入所有的表格欄位*/
-		$('#productModal').modal('show');
-	});
-
-	$('#productModal').modal({
-		allowMultiple: true,
-		debug:false,
-		closable:false,
-		onApprove : function() {
-			/*var coupon = $('#porductForm').form('get value', 'coupon');
-			console.log(coupon);
-			$.ajax({
-				url:'./coupon',
-				type:'get',
-				data:{
-					"task":"find",
-					"coupon":coupon
-				},
-				dataType:"json",
-				success:function(results){
-					var discount = results.discount;
-					if(discount===0){
-						$('#porductForm').form('set value', 'couponDiscount', 'fail');
-						console.log($('#porductForm').form('get value', 'couponDiscount'));
-						$('#porductForm').form('validate form');
-						return false;
-					} else{
-						$('#porductForm').form('set value', 'couponDiscount', 'success');
-						$('#porductForm').form('validate form');
-						return false;
-					}
-				}
-			});*/
-			/*$('#porductForm').form('validate form');*/
-			$('#porductForm').form('submit');
-			return false;
-		}
-	});
-
-	$('#porductForm').form({
-		inline:true,
-		/*fields:{
-			couponDiscount: {
-				identifier: 'couponDiscount',
-				rules: [
-				{
-					type   : 'isExactly[success]',
-					prompt : '無效的折扣碼'
-				}
-				]
+	/*productModal*/
+		$('#btnConfirmS').click(function(){
+			/*特殊流程*/
+			var datas={
+				housing:"",
+				rocker:"",
+				l1:"",
+				l2:"",
+				r1:"",
+				r2:"",
+				o:"",
+				x:"",
+				square:"",
+				triangle:"",
+				touch:"",
+				start:"",
+				selecter:"",
+				coverImg:"",
+				board:"",
+				orderType:""
 			}
-		},*/
-		/*onSuccess:function(){
-			console.log("validation successed");
-			var valuesToSubmit = $('#porductForm').form('get values');
-			$.post(
-				"/Vetash/joystick",
-				{
-					housing: valuesToSubmit.housing,
-					rocker: valuesToSubmit.rocker,
-					l1: valuesToSubmit.l1,
-					l2: valuesToSubmit.l2,
-					r1: valuesToSub？mit.r1,
-					r2: valuesToSubmit.r2,
-					o: valuesToSubmit.o,
-					x: valuesToSubmit.x,
-					square: valuesToSubmit.square,
-					triangle: valuesToSubmit.triangle,
-					start: valuesToSubmit.start,
-					selecter: valuesToSubmit.selecter,
-					touch: valuesToSubmit.touch,
-					coverImg: valuesToSubmit.coverImg,
-					board: valuesToSubmit.board,
-					coupon: valuesToSubmit.coupon
-				}
-			);
-		}*/
-	});
+
+			var housing = $('#theTabs_Model .housing input').val().split('|');
+			var rocker = $('#theTabs_Stick .rocker input').val().split('|');
+			var l1 = $('#theTabs_Btn1 .l1 input').val().split('|');
+			var l2 = $('#theTabs_Btn1 .l2 input').val().split('|');
+			var r1 = $('#theTabs_Btn1 .r1 input').val().split('|');
+			var r2 = $('#theTabs_Btn1 .r2 input').val().split('|');
+			var o = $('#theTabs_Btn1 .o input').val().split('|');
+			var x = $('#theTabs_Btn1 .x input').val().split('|');
+			var square = $('#theTabs_Btn1 .square input').val().split('|');
+			var triangle = $('#theTabs_Btn1 .triangle input').val().split('|');
+			var touch = $('#theTabs_Btn2 .touch input').val().split('|');
+			var start = $('#theTabs_Btn2 .start input').val().split('|');
+			var selecter = $('#theTabs_Btn2 .selecter input').val().split('|');
+			var board = $('#theTabs_System .board input').val().split('|');
+			var coverImg = $('#theTabs_Surface .previewImageId').text();
+
+			datas.housing = housing[0];
+			datas.rocker = rocker[0];
+			datas.l1 = l1[0];
+			datas.l2 = l2[0];
+			datas.r1 = r1[0];
+			datas.r2 = r2[0];
+			datas.o = o[0];
+			datas.x = x[0];
+			datas.square = square[0];
+			datas.triangle = triangle[0];
+			datas.touch = touch[0];
+			datas.start = start[0];
+			datas.selecter = selecter[0];
+			datas.board = board[0];
+			datas.coverImg = coverImg;
+			datas.orderType ="0";
+
+			var texts={
+				housing:"未選擇",
+				rocker:"未選擇",
+				l1:"未選擇",
+				l2:"未選擇",
+				r1:"未選擇",
+				r2:"未選擇",
+				o:"未選擇",
+				x:"未選擇",
+				square:"未選擇",
+				triangle:"未選擇",
+				touch:"未選擇",
+				start:"未選擇",
+				selecter:"未選擇",
+				coverImgName:"未選擇",
+				coverImgPath:"",
+				board:"未選擇",
+				price:"",
+			}
+			if(""!=datas.housing){
+				texts.housing=$('#theTabs_Model .housing .productName').text();
+			}
+			if(""!=datas.rocker){
+				texts.rocker=$('#theTabs_Stick .rocker .productName').text();
+			}
+			if(""!=datas.l1){
+				texts.l1=$('#theTabs_Btn1 .l1 .productName').text();
+			}
+			if(""!=datas.l2){
+				texts.l2=$('#theTabs_Btn1 .l2 .productName').text();
+			}
+			if(""!=datas.r1){
+				texts.r1=$('#theTabs_Btn1 .r1 .productName').text();
+			}
+			if(""!=datas.r2){
+				texts.r2=$('#theTabs_Btn1 .r2 .productName').text();
+			}
+			if(""!=datas.o){
+				texts.o=$('#theTabs_Btn1 .o .productName').text();
+			}
+			if(""!=datas.x){
+				texts.x=$('#theTabs_Btn1 .x .productName').text();
+			}
+			if(""!=datas.square){
+				texts.square=$('#theTabs_Btn1 .square .productName').text();
+			}
+			if(""!=datas.triangle){
+				texts.triangle=$('#theTabs_Btn1 .triangle .productName').text();
+			}
+			if(""!=datas.touch){
+				texts.touch=$('#theTabs_Btn2 .touch .productName').text();
+			}
+			if(""!=datas.start){
+				texts.start=$('#theTabs_Btn2 .start .productName').text();
+			}
+			if(""!=datas.selecter){
+				texts.selecter=$('#theTabs_Btn2 .selecter .productName').text();
+			}
+			if(""!=datas.board){
+				texts.board=$('#theTabs_System .board .productName').text();
+			}
+			if(""!=datas.coverImg){
+				texts.coverImgName=$('#theTabs_Surface .previewImageName').text();
+			}
+
+			texts.coverImgPath=$('#theTabs_Surface .previewImagePath').text();
+			texts.price=$('.priceBlock span').text();
+
+			$('.productModalHeadder').text('特殊訂製');
+			setModal(texts,datas);
+		});
+
+		$('#btnConfirmN').click(function(){
+			/*正常流程*/
+			var datas={
+				housing:"",
+				rocker:"",
+				l1:"",
+				l2:"",
+				r1:"",
+				r2:"",
+				o:"",
+				x:"",
+				square:"",
+				triangle:"",
+				touch:"",
+				start:"",
+				selecter:"",
+				coverImg:"",
+				board:"",
+				orderType:""
+			}
+
+			var housing = $('#theTabs_Model .housing input').val().split('|');
+			var rocker = $('#theTabs_Stick .rocker input').val().split('|');
+			var l1 = $('#theTabs_Btn1 .l1 input').val().split('|');
+			var l2 = $('#theTabs_Btn1 .l2 input').val().split('|');
+			var r1 = $('#theTabs_Btn1 .r1 input').val().split('|');
+			var r2 = $('#theTabs_Btn1 .r2 input').val().split('|');
+			var o = $('#theTabs_Btn1 .o input').val().split('|');
+			var x = $('#theTabs_Btn1 .x input').val().split('|');
+			var square = $('#theTabs_Btn1 .square input').val().split('|');
+			var triangle = $('#theTabs_Btn1 .triangle input').val().split('|');
+			var touch = $('#theTabs_Btn2 .touch input').val().split('|');
+			var start = $('#theTabs_Btn2 .start input').val().split('|');
+			var selecter = $('#theTabs_Btn2 .selecter input').val().split('|');
+			var board = $('#theTabs_System .board input').val().split('|');
+			var coverImg = $('#theTabs_Surface .previewImageId').text();
+
+			datas.housing = housing[0];
+			datas.rocker = rocker[0];
+			datas.l1 = l1[0];
+			datas.l2 = l2[0];
+			datas.r1 = r1[0];
+			datas.r2 = r2[0];
+			datas.o = o[0];
+			datas.x = x[0];
+			datas.square = square[0];
+			datas.triangle = triangle[0];
+			datas.touch = touch[0];
+			datas.start = start[0];
+			datas.selecter = selecter[0];
+			datas.board = board[0];
+			datas.coverImg = coverImg;
+			datas.orderType ="1";
+
+			var texts={
+				housing:"未選擇",
+				rocker:"未選擇",
+				l1:"未選擇",
+				l2:"未選擇",
+				r1:"未選擇",
+				r2:"未選擇",
+				o:"未選擇",
+				x:"未選擇",
+				square:"未選擇",
+				triangle:"未選擇",
+				touch:"未選擇",
+				start:"未選擇",
+				selecter:"未選擇",
+				coverImgName:"未選擇",
+				coverImgPath:"",
+				board:"未選擇",
+				price:"",
+			}
+			if(""!=datas.housing){
+				texts.housing=$('#theTabs_Model .housing .productName').text();
+			}
+			if(""!=datas.rocker){
+				texts.rocker=$('#theTabs_Stick .rocker .productName').text();
+			}
+			if(""!=datas.l1){
+				texts.l1=$('#theTabs_Btn1 .l1 .productName').text();
+			}
+			if(""!=datas.l2){
+				texts.l2=$('#theTabs_Btn1 .l2 .productName').text();
+			}
+			if(""!=datas.r1){
+				texts.r1=$('#theTabs_Btn1 .r1 .productName').text();
+			}
+			if(""!=datas.r2){
+				texts.r2=$('#theTabs_Btn1 .r2 .productName').text();
+			}
+			if(""!=datas.o){
+				texts.o=$('#theTabs_Btn1 .o .productName').text();
+			}
+			if(""!=datas.x){
+				texts.x=$('#theTabs_Btn1 .x .productName').text();
+			}
+			if(""!=datas.square){
+				texts.square=$('#theTabs_Btn1 .square .productName').text();
+			}
+			if(""!=datas.triangle){
+				texts.triangle=$('#theTabs_Btn1 .triangle .productName').text();
+			}
+			if(""!=datas.touch){
+				texts.touch=$('#theTabs_Btn2 .touch .productName').text();
+			}
+			if(""!=datas.start){
+				texts.start=$('#theTabs_Btn2 .start .productName').text();
+			}
+			if(""!=datas.selecter){
+				texts.selecter=$('#theTabs_Btn2 .selecter .productName').text();
+			}
+			if(""!=datas.board){
+				texts.board=$('#theTabs_System .board .productName').text();
+			}
+			if(""!=datas.coverImg){
+				texts.coverImgName=$('#theTabs_Surface .previewImageName').text();
+			}
+
+			texts.coverImgPath=$('#theTabs_Surface .previewImagePath').text();
+			texts.price=$('.priceBlock span').text();
+
+			$('.productModalHeadder').text('一般訂製');
+			setModal(texts,datas);
+		});
+
+		function setModal(texts,datas){
+			$('#productModal_housing span').text(texts.housing);
+			$('#productModal_rocker span').text(texts.rocker);
+			$('#productModal_l1 span').text(texts.l1);
+			$('#productModal_l2 span').text(texts.l2);
+			$('#productModal_r1 span').text(texts.r1);
+			$('#productModal_r2 span').text(texts.r2);
+			$('#productModal_o span').text(texts.o);
+			$('#productModal_x span').text(texts.x);
+			$('#productModal_square span').text(texts.square);
+			$('#productModal_triangle span').text(texts.triangle);
+			$('#productModal_touch span').text(texts.touch);
+			$('#productModal_start span').text(texts.start);
+			$('#productModal_selecter span').text(texts.selecter);
+			$('#productModal_coverImgName span').text(texts.coverImgName);
+			$('#productModal_coverImgPath img').attr('src',texts.coverImgPath);
+			$('#productModal_board span').text(texts.board);
+			$('#productModal_price span').text(texts.price);
+			$('#porductForm').form('set values',{
+				housing:datas.housing,
+				rocker:datas.rocker,
+				l1:datas.l1,
+				l2:datas.l2,
+				r1:datas.r1,
+				r2:datas.r2,
+				o:datas.o,
+				x:datas.x,
+				square:datas.square,
+				triangle:datas.triangle,
+				touch:datas.touch,
+				start:datas.start,
+				selecter:datas.selecter,
+				coverImg:datas.coverImg,
+				board:datas.board,
+				orderType:datas.orderType
+			});
+			$('#productModal').modal('show');
+		}
+
+		$('#productModal').modal({
+			allowMultiple: true,
+			debug:false,
+			closable:false,
+			onApprove : function() {
+				$('#productModal .approve.button').addClass('loading');
+				$('#productModal .approve.button').addClass('disabled');
+				$('#porductForm').form('submit');
+				/*loading*/
+				return false;
+			}
+		});
+
+		$('#porductForm').form({
+			inline:true
+		});
 
 	/*theTabs_Model*/
-		$('#theTabs_Model .dropdown').dropdown();
+		$('#theTabs_Model_infoModal').modal();
+		$('#theTabs_Model .infoBlock .items > .item img').click(function(){
+			$('#theTabs_Model_infoModal').modal('show');
+		});
 
 	/*theTabs_Stick*/
-		$('#theTabs_Stick .dropdown').dropdown({
-			onChange:function(){
-				var housing = $('#theTabs_Stick input[name="housing"]').val();
-				if("sanwa"===housing){
-					$('#theTabs_Stick .sanwa').show();
-					$('#theTabs_Stick .fanta').hide();
-					$('#theTabs_Stick .crown').hide();
-				} else if("fanta"===housing){
-					$('#theTabs_Stick .sanwa').hide();
-					$('#theTabs_Stick .fanta').show();
-					$('#theTabs_Stick .crown').hide();
-				} else if("crown"===housing){
-					$('#theTabs_Stick .sanwa').hide();
-					$('#theTabs_Stick .fanta').hide();
-					$('#theTabs_Stick .crown').show();
-				}
+		$('#theTabs_Stick .infoBlock .btnUp').click(function(){
+			var position = $('#theTabs_Stick .infoBlock .item:visible .header').html();
+			if("三和搖桿"===position){
+
+			}else if("韓國搖 Fanta"===position){
+				$('#theTabs_Stick .infoBlock .infoItem1').show();
+				$('#theTabs_Stick .infoBlock .infoItem2').hide();
+			}else if("韓國搖 Crown"===position){
+				$('#theTabs_Stick .infoBlock .infoItem2').show();
+				$('#theTabs_Stick .infoBlock .infoItem3').hide();
 			}
+		});
+
+		$('#theTabs_Stick .infoBlock .btnDown').click(function(){
+			var position = $('#theTabs_Stick .infoBlock .item:visible .header').html();
+			if("三和搖桿"===position){
+				$('#theTabs_Stick .infoBlock .infoItem1').hide();
+				$('#theTabs_Stick .infoBlock .infoItem2').show();
+			}else if("韓國搖 Fanta"===position){
+				$('#theTabs_Stick .infoBlock .infoItem2').hide();
+				$('#theTabs_Stick .infoBlock .infoItem3').show();
+			}else if("韓國搖 Crown"===position){
+
+			}
+		});
+
+		$('#theTabs_Stick_infoModal1').modal();
+		$('#theTabs_Stick_infoModal2').modal();
+		$('#theTabs_Stick_infoModal3').modal();
+		$('#theTabs_Stick .infoBlock .items > .item:nth-child(1) img').click(function(){
+			$('#theTabs_Stick_infoModal1').modal('show');
+		});
+		$('#theTabs_Stick .infoBlock .items > .item:nth-child(2) img').click(function(){
+			$('#theTabs_Stick_infoModal2').modal('show');
+		});
+		$('#theTabs_Stick .infoBlock .items > .item:nth-child(3) img').click(function(){
+			$('#theTabs_Stick_infoModal3').modal('show');
 		});
 
 	/*theTabs_Btn1*/
-		$('#theTabs_Btn1 .dropdown').dropdown({
-			onChange:function(){
-				var btn1 = $('#theTabs_Stick input[name="housing"]').val();
+
+		$('#theTabs_Btn1_infoModal1').modal();
+		$('#theTabs_Btn1_infoModal2').modal();
+		$('#theTabs_Btn1 .infoBlock .items > .item:nth-child(1) img').click(function(){
+			$('#theTabs_Btn1_infoModal1').modal('show');
+		});
+		$('#theTabs_Btn1 .infoBlock .items > .item:nth-child(2) img').click(function(){
+			$('#theTabs_Btn1_infoModal2').modal('show');
+		});
+
+		$('#theTabs_Btn1 .infoBlock .btnUp').click(function(){
+			var position = $('#theTabs_Btn1 .infoBlock .item:visible .header').html();
+			if("三和按鍵"===position){
+
+			}else if("靜音按鍵"===position){
+				$('#theTabs_Btn1 .infoBlock .infoItem1').show();
+				$('#theTabs_Btn1 .infoBlock .infoItem2').hide();
 			}
 		});
 
+		$('#theTabs_Btn1 .infoBlock .btnDown').click(function(){
+			var position = $('#theTabs_Btn1 .infoBlock .item:visible .header').html();
+			if("三和按鍵"===position){
+				$('#theTabs_Btn1 .infoBlock .infoItem1').hide();
+				$('#theTabs_Btn1 .infoBlock .infoItem2').show();
+			}else if("靜音按鍵"===position){
+			}
+		});
+
+	/*theTabs_Btn2*/
+		$('#theTabs_Btn2_infoModal1').modal();
+		$('#theTabs_Btn2_infoModal2').modal();
+		$('#theTabs_Btn2 .infoBlock .items > .item:nth-child(1) img').click(function(){
+			$('#theTabs_Btn2_infoModal1').modal('show');
+		});
+		$('#theTabs_Btn2 .infoBlock .items > .item:nth-child(2) img').click(function(){
+			$('#theTabs_Btn2_infoModal2').modal('show');
+		});
+
+		$('#theTabs_Btn2 .infoBlock .btnUp').click(function(){
+			var position = $('#theTabs_Btn2 .infoBlock .item:visible .header').html();
+			if("三和按鍵"===position){
+
+			}else if("靜音按鍵"===position){
+				$('#theTabs_Btn2 .infoBlock .infoItem1').show();
+				$('#theTabs_Btn2 .infoBlock .infoItem2').hide();
+			}
+		});
+
+		$('#theTabs_Btn2 .infoBlock .btnDown').click(function(){
+			var position = $('#theTabs_Btn2 .infoBlock .item:visible .header').html();
+			if("三和按鍵"===position){
+				$('#theTabs_Btn2 .infoBlock .infoItem1').hide();
+				$('#theTabs_Btn2 .infoBlock .infoItem2').show();
+			}else if("靜音按鍵"===position){
+			}
+		});
+
+	/*theTabs_Surface*/
+		$('#theTabs_Surface_infoModal').modal();
+		$('#theTabs_Surface .previewImage').click(function(){
+			$('#theTabs_Surface_infoModal').modal('show');
+		});
+
+		$('#theTabs_Surface .btnSelectSurface').click(function(){
+			theTabs_Surface_getAll();
+		});
+
+		function theTabs_Surface_getAll(){
+			$('#theTabs_Surface .btnSelectSurface').addClass('loading');/*loading start*/
+
+			console.log("theTabs_Surface_getAll() called");
+			$.ajax({
+				url:'./image',
+				type:'get',
+				data:{
+					"action":"selectByImgCategoryName",
+					"imgCategoryName":'面板圖'
+				},
+				dataType:"json",
+				success:function(datas){
+					console.log('theTabs_Surface_getAll success');
+					theTabs_Surface_show(datas);
+				}
+			});
+		}
+
+		function theTabs_Surface_show(all){
+			console.log("theTabs_Surface_show() called");
+			console.log(all);
+			$('#Image .cards').empty();
+			$.each(all.results,function(i,one){
+				var index = i+1;
+				var card = {
+					imageId:one.imageId,
+					imageName:one.imageName,
+					imagePath:one.imagePath
+				};
 
 
+				/*<div class="ui six stackable cards">
+					<div class="ui card">
+						<div class="image">
+							<img src="images/profile/Model 5th-0531.jpg">
+						</div>
+						<div class="content">
+							<a class="header">Profile01</a>
+						</div>
+					</div>
+				</div>*/
+
+				$('<div />',{
+					'class':'ui blue card',
+					html:'<div class="image"><img src='+one.imagePath+'></div><div class="content"><div class="imgId" style="display:none">'+one.imageId+'</div><a class="ui description">'+one.imageName+'</a></div>'
+				})
+				.addClass("cursorPointer")
+				.appendTo($('#theTabs_Surface_Modal .cards'))
+				.click(function(){
+					$('#theTabs_Surface .previewImage img').attr('src',one.imagePath);
+					$('#theTabs_Surface .previewImageName').text(one.imageName);
+					$('#theTabs_Surface .previewImageId').text(one.imageId);
+					$('#theTabs_Surface .previewImagePath').text(one.imagePath);
+					$('#theTabs_Surface_infoModal img').attr('src',one.imagePath);
+					$('.theMenu .lab5').removeClass('grey');
+					$('.theMenu .lab5').addClass('green');
+					$('#theTabs_Surface_Modal').modal('hide');
+				})
+			});
+
+			$('#theTabs_Surface .btnSelectSurface').removeClass('loading');
+			theTabs_Surface_showModal();
+		}
+
+		$('#theTabs_Surface_Modal').modal();
+
+		function theTabs_Surface_showModal(){
+			$('#theTabs_Surface_Modal').modal('show');
+		}
+
+	/*theTabs_System*/
+		$('#theTabs_System .dropdown').dropdown();
+
+		$('#theTabs_System .infoBlock .btnUp').click(function(){
+			var position = $('#theTabs_System .infoBlock .item:visible .header').html();
+			if("PS3 機板"===position){
+
+			}else if("PS4/PS3 機板"===position){
+				$('#theTabs_System .infoBlock .infoItem1').show();
+				$('#theTabs_System .infoBlock .infoItem2').hide();
+			}else if("XBOX360 機板"===position){
+				$('#theTabs_System .infoBlock .infoItem2').show();
+				$('#theTabs_System .infoBlock .infoItem3').hide();
+			}else if("PS3/360 機板"===position){
+				$('#theTabs_System .infoBlock .infoItem3').show();
+				$('#theTabs_System .infoBlock .infoItem4').hide();
+			}
+		});
+
+		$('#theTabs_System .infoBlock .btnDown').click(function(){
+			var position = $('#theTabs_System .infoBlock .item:visible .header').html();
+			if("PS3 機板"===position){
+				$('#theTabs_System .infoBlock .infoItem1').hide();
+				$('#theTabs_System .infoBlock .infoItem2').show();
+			}else if("PS4/PS3 機板"===position){
+				$('#theTabs_System .infoBlock .infoItem2').hide();
+				$('#theTabs_System .infoBlock .infoItem3').show();
+			}else if("XBOX360 機板"===position){
+				$('#theTabs_System .infoBlock .infoItem3').hide();
+				$('#theTabs_System .infoBlock .infoItem4').show();
+			}else if("PS3/360 機板"===position){
+
+			}
+		});
 
 </script>
 </html>
+
+
+
+

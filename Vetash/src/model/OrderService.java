@@ -59,6 +59,57 @@ public class OrderService {
 		return result;
 	}
 	
+	private List<Map<String, Object>> jfomat3(List<Object[]> beans){
+		List<Map<String, Object>> result = new LinkedList<Map<String, Object>>();
+		for(Object[] bean : beans) {
+			Map<String, Object> map = new LinkedHashMap<String, Object>();
+			OrderBean orderBean = (OrderBean)bean[0];
+			CustomerBean customerBean = (CustomerBean)bean[1];
+			map.put("orderNo", orderBean.getOrderNo());
+			map.put("customerTel", orderBean.getCustomerTel());
+			map.put("receiveType", orderBean.getReceiveType());
+			map.put("customerAddr", orderBean.getCustomerAddr());
+			map.put("receiveNotes", orderBean.getReceiveNotes());
+			map.put("orderDate", Parse.dateToString2(orderBean.getOrderDate()));
+			map.put("orderNotes", orderBean.getOrderNotes());
+			map.put("coupon", orderBean.getCoupon());
+			map.put("price", orderBean.getPrice());
+			map.put("bossNotes", orderBean.getBossNotes());
+			map.put("orderState", orderBean.getOrderState());
+			map.put("housing", orderBean.getHousing());
+			map.put("rocker", orderBean.getRocker());
+			map.put("l1", orderBean.getL1());
+			map.put("l2", orderBean.getL2());
+			map.put("r1", orderBean.getR1());
+			map.put("r2", orderBean.getR2());
+			map.put("o", orderBean.getO());
+			map.put("x", orderBean.getX());
+			map.put("square", orderBean.getSquare());
+			map.put("triangle", orderBean.getTriangle());
+			map.put("start", orderBean.getStart());
+			map.put("selecter", orderBean.getSelecter());
+			map.put("touch", orderBean.getTouch());
+			map.put("coverImg", orderBean.getCoverImg());
+			map.put("board", orderBean.getBoard());
+			if(orderBean.getDeliveryDate()!=null){
+				map.put("deliveryDate;", Parse.dateToString(orderBean.getDeliveryDate()));
+			} else {
+				map.put("deliveryDate;", "");
+			}
+			map.put("paymentType", orderBean.getPaymentType());
+			map.put("paymentTypeChargeFee", orderBean.getPaymentTypeChargeFee());
+			map.put("allPayTradeNo", orderBean.getAllPayTradeNo());
+			map.put("customerName", customerBean.getCustomerName());
+			map.put("customerLine", customerBean.getCustomerLine());
+			map.put("customerFb", customerBean.getCustomerFb());
+			map.put("customerMail", customerBean.getCustomerMail());
+			map.put("customerAddr", customerBean.getCustomerAddr());
+			map.put("customerNote", customerBean.getCustomerNote());
+			result.add(map);
+		}
+		return result;
+	}
+	
 	private List<Map<String, Object>> jfomat2(OrderBean bean){
 		List<Map<String, Object>> result = new LinkedList<Map<String, Object>>();
 		Map<String, Object> map = new LinkedHashMap<String, Object>();
@@ -109,6 +160,10 @@ public class OrderService {
 
 	public OrderBean update(OrderBean bean) {
 		return (OrderBean) dao.update(bean);
+	}
+	
+	public OrderBean update2(OrderBean bean) {
+		return (OrderBean) dao.update2(bean);
 	}
 
 	public boolean delete(String orderNo) {

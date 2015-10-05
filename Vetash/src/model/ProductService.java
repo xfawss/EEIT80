@@ -1,5 +1,6 @@
 package model;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -22,6 +23,91 @@ public class ProductService {
 
 	public int price(String productId) {		
 		return productDAO.price(productId);
+	}
+	
+	public int price2(OrderBean bean) {
+		int result = 0;
+		List<ProductBean> beans = productDAO.getAll();
+		Map<String, Integer> map1 = new HashMap<String, Integer>();
+		for (ProductBean temp1 : beans) {
+			map1.put(temp1.getProductId(), temp1.getProductPrice());
+		}
+		try {
+			result += map1.get(bean.getHousing());
+		} catch (Exception e) {
+			result += 0;
+		}
+		try {
+			result += map1.get(bean.getRocker());
+		} catch (Exception e) {
+			result += 0;
+		}
+		try {
+			result += map1.get(bean.getL1());
+		} catch (Exception e) {
+			result += 0;
+		}
+		try {
+			result += map1.get(bean.getL2());
+		} catch (Exception e) {
+			result += 0;
+		}
+		try {
+			result += map1.get(bean.getR1());
+		} catch (Exception e) {
+			result += 0;
+		}
+		try {
+			result += map1.get(bean.getR2());
+		} catch (Exception e) {
+			result += 0;
+		}
+		try {
+			result += map1.get(bean.getO());
+		} catch (Exception e) {
+			result += 0;
+		}
+		try {
+			result += map1.get(bean.getX());
+		} catch (Exception e) {
+			result += 0;
+		}
+		try {
+			result += map1.get(bean.getSquare());
+		} catch (Exception e) {
+			result += 0;
+		}
+		try {
+			result += map1.get(bean.getTriangle());
+		} catch (Exception e) {
+			result += 0;
+		}
+		try {
+			result += map1.get(bean.getStart());
+		} catch (Exception e) {
+			result += 0;
+		}
+		try {
+			result += map1.get(bean.getSelecter());
+		} catch (Exception e) {
+			result += 0;
+		}
+		try {
+			result += map1.get(bean.getTouch());
+		} catch (Exception e) {
+			result += 0;
+		}
+		try {
+			result += map1.get(bean.getBoard());
+		} catch (Exception e) {
+			result += 0;
+		}
+		try {
+			result += map1.get("000");
+		} catch (Exception e) {
+			result += 0;
+		}
+		return result;
 	}
 
 	public ProductBean update(ProductBean bean) {

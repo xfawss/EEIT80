@@ -9,10 +9,10 @@ public class AllPayCheckMacValue {
 	public static String paymentType = "aio";
 	public static String tradeDesc = "客製化搖桿";//客製化搖桿
 	public static String itemName = "客製化搖桿";//客製化搖桿
-	public static String returnURL = "http://vetash.cloudapp.net:8080/Vetash/OrderReturn";
+	public static String returnURL = "http://vetash.cloudapp.net/Vetash/OrderReturn";
 	public static String choosePayment = "ALL";
 	public static String ignorePayment = "Alipay#Tenpay";
-	public static String clientBackURL = "http://vetash.cloudapp.net:8080/Vetash";
+	public static String clientBackURL = "http://vetash.cloudapp.net/Vetash/front_custom_intro.html";
 	public static String hashKey = "5294y06JbISpM5x9"; //0wMgoGtlxbsgmrk8
 	public static String hashIV = "v77hoKGq4kWxNNIS";//lsHiApLhbobvzew3
 	

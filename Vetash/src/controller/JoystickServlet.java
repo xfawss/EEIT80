@@ -83,28 +83,9 @@ public class JoystickServlet extends HttpServlet {
 		bean.setTouch(touch);
 		bean.setCoverImg(coverImg);
 		bean.setBoard(board);
-		
-		int price = 0;
-//		if(orderType!=null && orderType.equals("1")) {
-			price += (int)service.price(housing);
-			price += (int)service.price(rocker);
-			price += (int)service.price(l1);
-			price += (int)service.price(l2);
-			price += (int)service.price(r1);
-			price += (int)service.price(r2);
-			price += (int)service.price(o);
-			price += (int)service.price(x);
-			price += (int)service.price(square);
-			price += (int)service.price(triangle);
-			price += (int)service.price(start);
-			price += (int)service.price(selecter);
-			price += (int)service.price(touch);
-			price += (int)service.price(board);
-			price += (int)service.price("000");//工錢
-			if(coupon!=null && coupon.length()!=0) {
-				price -= service2.select(coupon);
-			}
-//		}
+
+		int price = service.price2(bean);
+
 		System.out.println(price);
 		bean.setCoupon(coupon);
 		bean.setPrice(price);

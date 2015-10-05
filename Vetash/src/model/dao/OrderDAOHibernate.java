@@ -9,6 +9,8 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import misc.Parse;
+import model.CustomerBean;
 import model.OrderBean;
 import model.OrderDAO;
 
@@ -68,6 +70,7 @@ public class OrderDAOHibernate implements OrderDAO {
 
 	@Override
 	public List<OrderBean> selectAll() {
+		//SELECT * FROM Orderlist left outer join Customer on (Orderlist.CustomerTel = Customer.CustomerTel) order by OrderDate DESC
 		Query query = this.getSession().createQuery("from OrderBean order by OrderDate DESC");
 		return (List<OrderBean>)query.list();
 	}
@@ -99,5 +102,20 @@ public class OrderDAOHibernate implements OrderDAO {
 		query.setParameter(0, orderNo);
 		return (OrderBean)query.list();
 	}
+
+	@Override
+	public OrderBean update2(OrderBean bean) {
+		OrderBean result = (OrderBean)this.getSession().get(OrderBean.class, bean.getOrderNo());
+		if(result != null) {
+			result.setPaymentType(bean.getPaymentType());
+			result.setPaymentTypeChargeFee(bean.getPaymentTypeChargeFee());
+			result.setAllPayTradeNo(bean.getAllPayTradeNo());
+			result.setOrderState("已結帳");
+			return bean;
+		}
+		return null;
+	}
+	
+	
 
 }

@@ -20,4 +20,6 @@ public interface OrderDAO {
 	
 	public abstract OrderBean selectByOrderNo(String orderNo);
 	
+	public abstract OrderBean update2(OrderBean bean);
+	
 }
