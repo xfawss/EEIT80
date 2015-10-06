@@ -189,9 +189,10 @@
 				</div>
 			</div>
 			<div class="sixteen wide column">
-				<form action="" method="post" id="checkOrderForm">
+				<form action="./OrderCommand" method="post" id="checkOrderForm">
 					<div class="ui inverted input">
-						<input type="text" name="recordNo">
+						<input type="hidden" name="task" value="checkOrder">
+						<input type="text" name="orderNo">
 					</div>
 				</form>
 			</div>

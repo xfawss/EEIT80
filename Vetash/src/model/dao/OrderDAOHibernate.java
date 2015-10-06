@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import misc.Parse;
+import model.CouponBean;
 import model.CustomerBean;
 import model.OrderBean;
 import model.OrderDAO;
@@ -53,6 +54,7 @@ public class OrderDAOHibernate implements OrderDAO {
 			result.setBoard(bean.getBoard());
 			result.setBossNotes(bean.getBossNotes());
 			result.setOrderState(bean.getOrderState());
+			result.setPrice(bean.getPrice());
 			return bean;
 		}
 		return null;
@@ -98,9 +100,11 @@ public class OrderDAOHibernate implements OrderDAO {
 
 	@Override
 	public OrderBean selectByOrderNo(String orderNo) {
-		Query query = this.getSession().createQuery("from OrderBean where OrderNo = ?");
-		query.setParameter(0, orderNo);
-		return (OrderBean)query.list();
+		OrderBean result = null;
+		if(orderNo!=null && orderNo.length()!=0){
+			result = (OrderBean) this.getSession().get(OrderBean.class, orderNo);
+		}
+		return result;
 	}
 
 	@Override

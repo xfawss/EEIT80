@@ -540,12 +540,14 @@
 										</div>
 									</div>
 									<div class="eight wide column">
-										<div class="field">
+										<div class="field orderStateField">
 											<div class="ui selection dropdown">
 												<input name="orderState" type="hidden">
 												<i class="dropdown icon"></i>
 												<div class="default text">訂單狀態</div>
 												<div class="menu">
+													<div class="item" data-value="已下訂(特殊)" style="display:none">已下訂(特殊)</div>
+													<div class="item" data-value="已下訂(普通)" style="display:none">已下訂(普通)</div>
 													<div class="item confirmed" data-value="已確認">已確認</div>
 													<div class="item payed" data-value="已結帳">已結帳</div>
 													<div class="item send" data-value="已出貨">已出貨</div>
@@ -1218,6 +1220,8 @@
 				debug:false,
 				closable:false,
 				onApprove : function() {
+					$('#couponFormSubmit').addClass('loading');
+					$('#couponFormSubmit').addClass('disabled');
 					$('#couponModalForm').form('validate form');
 					return false;
 				}
@@ -1339,6 +1343,8 @@
 
 			function coupon_showModal(couponData){
 				console.log("coupon_showModal() called");
+				$('#couponFormSubmit').removeClass('disabled');
+				$('#couponFormSubmit').removeClass('loading');
 				$('#couponModalSubHeader').html(couponData.Title);
 				$('#couponModalForm input[name="coupon"]').val(couponData.Coupon);
 				$('#couponModalForm input[name="discount"]').val(couponData.discount);
@@ -1399,6 +1405,10 @@
 							coupon_getAllCoupons();
 						}
 					});
+				},
+				onFailure:function(){
+					$('#couponFormSubmit').removeClass('disabled');
+					$('#couponFormSubmit').removeClass('loading');
 				}
 			});
 
@@ -1546,6 +1556,8 @@
 				closable:false,
 				onApprove : function() {
 					$('#Supplier_modal .form').form('validate form');
+					$('#Supplier_modal .approve.button').addClass('disabled');
+					$('#Supplier_modal .approve.button').addClass('loading');
 					return false;
 				}
 			});
@@ -1655,6 +1667,8 @@
 
 			function Supplier_showModal(row){
 				console.log("Supplier_showModal() called");
+				$('#Supplier_modal .approve.button').removeClass('disabled');
+				$('#Supplier_modal .approve.button').removeClass('loading');
 
 				if("insert"===row.task){
 					$('#supplierIdField').addClass('disabled');
@@ -1771,6 +1785,10 @@
 							Supplier_getAll();
 						}
 					});
+				},
+				onFailure:function(){
+					$('#Supplier_modal .approve.button').removeClass('disabled');
+					$('#Supplier_modal .approve.button').removeClass('loading');
 				}
 			});
 
@@ -2109,6 +2127,8 @@
 				closable:false,
 				onApprove : function() {
 					$('#Customer_modal .form').form('validate form');
+					$('#Customer_modal .approve.button').addClass('disabled');
+					$('#Customer_modal .approve.button').addClass('loading');
 					return false;
 				}
 			});
@@ -2128,6 +2148,8 @@
 
 			function Customer_showModal(row){
 				console.log("Customer_showModal() called");
+				$('#Customer_modal .approve.button').removeClass('disabled');
+				$('#Customer_modal .approve.button').removeClass('loading');
 
 				if("update"===row.task){
 					$('#customerTelField input').prop("disabled",true);
@@ -2219,6 +2241,10 @@
 							Customer_getAll();
 						}
 					});
+				},
+				onFailure:function(){
+					$('#Customer_modal .approve.button').removeClass('disabled');
+					$('#Customer_modal .approve.button').removeClass('loading');
 				}
 			});
 
@@ -2470,6 +2496,8 @@
 				closable:false,
 				onApprove : function() {
 					$('#Product_modal .form').form('validate form');
+					$('#Product_modal .approve.button').addClass('disabled');
+					$('#Product_modal .approve.button').addClass('loading');
 					return false;
 				}
 			});
@@ -2493,6 +2521,9 @@
 
 			function Product_showModal(row){
 				console.log("Product_showModal() called");
+
+				$('#Product_modal .approve.button').removeClass('disabled');
+				$('#Product_modal .approve.button').removeClass('loading');
 
 				if("update"===row.task){
 					$('#productIdField input').prop("disabled",true);
@@ -2652,6 +2683,10 @@
 							Product_getAll();
 						}
 					});
+				},
+				onFailure:function(){
+					$('#Product_modal .approve.button').removeClass('disabled');
+					$('#Product_modal .approve.button').removeClass('loading');
 				}
 			});
 
@@ -2878,6 +2913,8 @@
 				closable:false,
 				onApprove : function() {
 					$('#Purchase_modal .form').form('validate form');
+					$('#Purchase_modal .approve.button').addClass('disabled');
+					$('#Purchase_modal .approve.button').addClass('loading');
 					return false;
 				}
 			});
@@ -2897,6 +2934,9 @@
 
 			function Purchase_showModal(row){
 				console.log("Purchase_showModal() called");
+
+				$('#Purchase_modal .approve.button').removeClass('disabled');
+				$('#Purchase_modal .approve.button').removeClass('loading');
 
 				$('#Purchase_modal .sub.header').html(row.Title);
 				$('#Purchase_modal .form input[name="recordNo"]').val(row.recordNo);
@@ -3023,6 +3063,10 @@
 							Purchase_getAll();
 						}
 					});
+				},
+				onFailure:function(){
+					$('#Purchase_modal .approve.button').removeClass('disabled');
+					$('#Purchase_modal .approve.button').removeClass('loading');
 				}
 			});
 	/*Purchase*/
@@ -3342,6 +3386,8 @@
 				closable:false,
 				onApprove : function() {
 					$('#Order_modal .form').form('validate form');
+					$('#Order_modal .approve.button').addClass('disabled');
+					$('#Order_modal .approve.button').addClass('loading');
 					return false;
 				}
 			});
@@ -3382,17 +3428,23 @@
 					coverImg:"",
 					board:""
 				});
+				$('#Order_modal .orderStateField .default.text').text("");
 				$('#Order_modal').modal("hide");
 			});
 
 			function Order_showModal(row){
 				console.log("Order_showModal() called");
 
+				$('#Order_modal .approve.button').removeClass('disabled');
+				$('#Order_modal .approve.button').removeClass('loading');
+
 				$('#Order_modal .sub.header').html(row.Title);
 				$('#Order_modal .form input[name="orderNo"]').val(row.orderNo);
 				$('#Order_modal .form input[name="orderDate"]').val(row.orderDate);
 				$('#Order_modal .form input[name="price"]').val(row.price);
 				$('#Order_modal .form input[name="orderState"]').val(row.orderState);
+				console.log($('#Order_modal .orderStateField .default.text'))
+				$('#Order_modal .orderStateField .default.text').text(row.orderState);
 				$('#Order_modal .form input[name="coupon"]').val(row.coupon);
 				$('#Order_modal .form input[name="deliveryDate"]').val(row.deliveryDate);
 				$('#Order_modal .form textarea[name="bossNotes"]').val(row.bossNotes);
@@ -3506,6 +3558,10 @@
 							Order_getAll();
 						}
 					});
+				},
+				onFailure:function(){
+					$('#Order_modal .approve.button').removeClass('disabled');
+					$('#Order_modal .approve.button').removeClass('loading');
 				}
 			});
 
@@ -3733,6 +3789,8 @@
 				closable:false,
 				onApprove : function() {
 					$('#Image_modal .form').form('validate form');
+					$('#Image_modal .approve.button').addClass('disabled');
+					$('#Image_modal .approve.button').addClass('loading');
 					return false;
 				}
 			});
@@ -3768,6 +3826,9 @@
 				if("update"===card.task){
 				} else if("insert"===card.task){
 				}
+
+				$('#Image_modal .approve.button').removeClass('disabled');
+				$('#Image_modal .approve.button').removeClass('loading');
 
 				$('#Image_modal .sub.header').html(card.Title);
 				$('#Image_modal .imageItem img').attr('src',card.imagePath);
@@ -3843,6 +3904,10 @@
 							Image_getAll();
 						}
 					});
+				},
+				onFailure:function(){
+					$('#Image_modal .approve.button').removeClass('disabled');
+					$('#Image_modal .approve.button').removeClass('loading');
 				}
 			});
 

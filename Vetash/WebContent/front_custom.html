@@ -18,75 +18,136 @@
 		}
 	</style>
 	<style>
-		*{
-			/* border: 1px solid green; */
-		}
-		.pure{
-			margin: 0px !important;
-			padding: 0px !important;
-		}
-		.purePaded{
-			margin: 0px !important;
-		}
-		.topZero{
-			margin-top:0px !important;
-		}
-		.cursorPointer{
-			cursor:pointer;
-		}
-		#custom{
-			position: absolute;
-			height: 60vh;
-			width: 120vh;
-			top: 70vh;
-			left: 50vw;
-			transform : translate(-60vh,-30vh);
-			background-color: #333333;
-			margin:0px;
-			padding:0px;
-		}
-		.mainGrid{
-			height: 100%;
-			width: 100%;
-			position: absolute;
-			top: 0px;
-			left: 0px;
-			margin: 0px !important;
-			padding: 0px !important;
-			background-color: rgb(253,253,247);
-		}
-		.theMenu{
-			height: 10%;
-			margin: 0px !important;
-			padding: 0px !important;
-			background-color: rgb(253,253,247);
-		}
-		.theMenu .divider{
-			margin-top:3px;
-			margin-bottom: 5px;
-		}
-		.theTabs{
-			height: 30%;
-			margin: 0px !important;
-			padding: 0px !important;
-		}
-		.theTabs .grid{
-			height: 30vh;
-			width: 100vw;
-			margin: 0px !important;
-			padding: 0px !important;
-		}
-		.theView{
-			height: 60%;
-			margin: 0px !important;
-			padding: 0px !important;
-		}
+
+		/**/
+			*{
+				/* border: 1px solid green; */
+			}
+			.pure{
+				margin: 0px !important;
+				padding: 0px !important;
+			}
+			.purePaded{
+				margin: 0px !important;
+			}
+			.topZero{
+				margin-top:0px !important;
+			}
+			.cursorPointer{
+				cursor:pointer;
+			}
+			.mainGrid{
+				height: 100%;
+				width: 100%;
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				margin: 0px !important;
+				padding: 0px !important;
+				background-color: rgb(253,253,247);
+			}
+			.theMenu{
+				height: 10%;
+				margin: 0px !important;
+				padding: 0px !important;
+				background-color: rgb(253,253,247);
+			}
+			.theMenu .divider{
+				margin-top:3px;
+				margin-bottom: 5px;
+			}
+			.theTabs{
+				height: 30%;
+				margin: 0px !important;
+				padding: 0px !important;
+			}
+			.theTabs .grid{
+				height: 30vh;
+				width: 100vw;
+				margin: 0px !important;
+				padding: 0px !important;
+			}
+			.theView{
+				height: 60%;
+				margin: 0px !important;
+				padding: 0px !important;
+			}
+
+		/* custom */
+			#custom{
+				position: absolute;
+				width: 120vh;
+				height: 60vh;
+				left: 50vw;
+				top: 70vh;
+				transform : translate(-60vh,-30vh);
+				margin:0px;
+				padding:0px;
+			}
+			.customPosition{
+				position: absolute;
+				width: 120vh;
+				height: 60vh;
+				left: 0px;
+				top: 0px;
+				margin:0px;
+				padding:0px;
+			}
+			.customPosition_Surface{
+				position: absolute;
+				width: 92.625vh;
+				height: 44.351vh;
+				left: 13.426vh;
+				top: 2.407vh;
+				margin:0px;
+				padding:0px;
+			}
+			#custom_Mask{
+				z-index: 100;
+			}
+			#custom_Model{
+				z-index: 99;
+			}
+			#custom_Stick{
+				z-index: 98;
+			}
+			#custom_Square{
+				z-index: 98;
+			}
+			#custom_Triangle{
+				z-index: 98;
+			}
+			#custom_X{
+				z-index: 98;
+			}
+			#custom_O{
+				z-index: 98;
+			}
+			#custom_R1{
+				z-index: 98;
+			}
+			#custom_L1{
+				z-index: 98;
+			}
+			#custom_R2{
+				z-index: 98;
+			}
+			#custom_L2{
+				z-index: 98;
+			}
+			#custom_Surface{
+				z-index: 97;
+			}
 	</style>
 </head>
 <body>
 	<div class="ui center aligned grid mainGrid">
 		<div class="middle aligned row theMenu">
-			<div class="two wide column"></div>
+			<div class="one wide column">
+				<button class="ui circular violet icon button" id="backBtn">
+					<i class="reply icon"></i>
+				</button>
+			</div>
 			<div class="nine wide middle aligned column">
 				<a class="ui grey large label lab1" data-tab="tab1">框體</a>
 				<i class="plus icon"></i>
@@ -102,12 +163,9 @@
 				<div class="ui divider"></div>
 			</div>
 			<div class="two wide middle aligned column priceBlock"><!-- priceBlock -->
-				<div class="content">
-					<i class="red dollar icon"></i>
-					<span>0</span>
-				</div>
+				<h1 style="color:red;">700</h1>
 			</div>
-			<div class="three wide column"><!-- submitBlock -->
+			<div class="right aligned three wide column"><!-- submitBlock -->
 				<div class="ui buttons">
 					<div class="ui red button" id="btnConfirmS">
 						特別訂製
@@ -117,6 +175,7 @@
 					</div>
 				</div>
 			</div>
+			<div class="one wide column"></div>
 			<div class="ui modal" id="productModal"><!-- productModal -->
 				<div class="ui segment">
 					<div class="ui grid container">
@@ -298,6 +357,7 @@
 										目前的新五號機，有壓克力面板、收線盒等設計，搭配側邊的切換開關，可以訂做為支援多系統的大搖。
 										</p>
 									</div>
+									<div class="meta">單價:2000元</div>
 								</div>
 							</div>
 						</div>
@@ -382,6 +442,7 @@
 													廣受歡迎的日製搖桿，街機主流，手感輕巧易上手，最推薦使用。
 												</p>
 											</div>
+											<div class="meta">單價:550元</div>
 										</div>
 									</div>
 									<div class="item infoItem2 topZero" style="display:none;">
@@ -395,6 +456,7 @@
 													韓國人設計的搖桿，水滴頭、彈性高與無擋板是其特色，適合鐵拳或VF玩家使用。需搭配客製面板，無法自行換裝。
 												</p>
 											</div>
+											<div class="meta">單價:1000元</div>
 										</div>
 									</div>
 									<div class="item infoItem3 topZero" style="display:none;">
@@ -408,6 +470,7 @@
 													與Fanta類似的韓國搖，一樣是水滴頭、高彈性無擋板，但採用平鐵設計，可安裝在一般大搖上。
 												</p>
 											</div>
+											<div class="meta">單價:1000元</div>
 										</div>
 									</div>
 								</div>
@@ -484,6 +547,7 @@
 											<div class="description">
 												廣受歡迎的日製按鍵，街機標準品，觸感輕巧，靈敏度高，格鬥遊戲玩家最愛。
 											</div>
+											<div class="meta">單價:55元</div>
 										</div>
 									</div>
 									<div class="item infoItem2 topZero" style="display:none">
@@ -495,6 +559,7 @@
 											<div class="description">
 												來自台灣GamerFingers設計製造的靜音按鍵，採用機械Cherry紅軸搭配緩沖墊，有效降低按鍵的嘈雜聲音。
 											</div>
+											<div class="meta">單價:150元</div>
 										</div>
 									</div>
 								</div>
@@ -533,7 +598,7 @@
 						<div class="ui grid pure" style="width:100%">
 							<div class="middle aligned eight wide column pure">
 								<h5 class="ui header" style="display:inline">[ ]</h5>
-								<div class="ui inline icon scrolling dropdown button square" tabindex="0">
+								<div class="ui inline icon scrolling dropdown button square" tabindex="0" id="controlSquare">
 									<input type="hidden">
 									<span class="default text productName">請選擇按鍵</span>
 									<i class="dropdown icon"></i>
@@ -544,7 +609,7 @@
 							</div>
 							<div class="middle aligned eight wide column pure">
 								<h5 class="ui header" style="display:inline">Λ</h5>
-								<div class="ui inline icon scrolling dropdown button triangle" tabindex="0">
+								<div class="ui inline icon scrolling dropdown button triangle" tabindex="0" id="controlTriangle">
 									<input type="hidden">
 									<span class="default text productName">請選擇按鍵</span>
 									<i class="dropdown icon"></i>
@@ -555,7 +620,7 @@
 							</div>
 							<div class="middle aligned eight wide column pure">
 								<h5 class="ui header" style="display:inline">X</h5>
-								<div class="ui inline icon scrolling dropdown button x" tabindex="0">
+								<div class="ui inline icon scrolling dropdown button x" tabindex="0" id="controlX">
 									<input type="hidden">
 									<span class="default text productName">請選擇按鍵</span>
 									<i class="dropdown icon"></i>
@@ -566,7 +631,7 @@
 							</div>
 							<div class="middle aligned eight wide column pure">
 								<h5 class="ui header" style="display:inline">O</h5>
-								<div class="ui inline icon scrolling dropdown button o" tabindex="0">
+								<div class="ui inline icon scrolling dropdown button o" tabindex="0" id="controlO">
 									<input type="hidden">
 									<span class="default text productName">請選擇按鍵</span>
 									<i class="dropdown icon"></i>
@@ -577,7 +642,7 @@
 							</div>
 							<div class="middle aligned eight wide column pure">
 								<h5 class="ui header" style="display:inline">R1</h5>
-								<div class="ui inline icon scrolling dropdown button r1" tabindex="0">
+								<div class="ui inline icon scrolling dropdown button r1" tabindex="0" id="controlR1">
 									<input type="hidden">
 									<span class="default text productName">請選擇按鍵</span>
 									<i class="dropdown icon"></i>
@@ -588,7 +653,7 @@
 							</div>
 							<div class="middle aligned eight wide column pure">
 								<h5 class="ui header" style="display:inline">L1</h5>
-								<div class="ui inline icon scrolling dropdown button l1" tabindex="0">
+								<div class="ui inline icon scrolling dropdown button l1" tabindex="0" id="controlL1">
 									<input type="hidden">
 									<span class="default text productName">請選擇按鍵</span>
 									<i class="dropdown icon"></i>
@@ -599,7 +664,7 @@
 							</div>
 							<div class="middle aligned eight wide column pure">
 								<h5 class="ui header" style="display:inline">R2</h5>
-								<div class="ui inline icon scrolling dropdown button r2" tabindex="0">
+								<div class="ui inline icon scrolling dropdown button r2" tabindex="0" id="controlR2">
 									<input type="hidden">
 									<span class="default text productName">請選擇按鍵</span>
 									<i class="dropdown icon"></i>
@@ -610,7 +675,7 @@
 							</div>
 							<div class="middle aligned eight wide column pure">
 								<h5 class="ui header" style="display:inline">L2</h5>
-								<div class="ui inline icon scrolling dropdown button l2" tabindex="0">
+								<div class="ui inline icon scrolling dropdown button l2" tabindex="0" id="controlL2">
 									<input type="hidden">
 									<span class="default text productName">請選擇按鍵</span>
 									<i class="dropdown icon"></i>
@@ -644,6 +709,7 @@
 											<div class="description">
 												廣受歡迎的日製按鍵，街機標準品，觸感輕巧，靈敏度高，格鬥遊戲玩家最愛。
 											</div>
+											<div class="meta">單價:55元</div>
 										</div>
 									</div>
 									<div class="item infoItem2 topZero" style="display:none">
@@ -655,6 +721,7 @@
 											<div class="description">
 												來自台灣GamerFingers設計製造的靜音按鍵，採用機械Cherry紅軸搭配緩沖墊，有效降低按鍵的嘈雜聲音。
 											</div>
+											<div class="meta">單價:150元</div>
 										</div>
 									</div>
 								</div>
@@ -788,7 +855,7 @@
 								<div class="ui items">
 									<div class="item infoItem1 topZero">
 										<a class="ui small image">
-											<img src="images/fakeImg_L.png">
+											<img src="images/board_ps3.jpg">
 										</a>
 										<div class="content">
 											<div class="header">PS3 機板</div>
@@ -797,11 +864,12 @@
 													早期用拳霸的PS3機板，近年自己與朋友開發。
 												</p>
 											</div>
+											<div class="meta">單價:600元</div>
 										</div>
 									</div>
 									<div class="item infoItem2 topZero" style="display:none;">
 										<a class="ui small image">
-											<img src="images/fakeImg_L.png">
+											<img src="images/board_ps4.jpg">
 										</a>
 										<div class="content">
 											<div class="header">PS4/PS3 機板</div>
@@ -811,11 +879,12 @@
 													有線：以HORI PS4-025觸控有線手把內部機板製作。
 												</p>
 											</div>
+											<div class="meta">單價:1600元</div>
 										</div>
 									</div>
 									<div class="item infoItem3 topZero" style="display:none;">
 										<a class="ui small image">
-											<img src="images/fakeImg_L.png">
+											<img src="images/board_360.jpg">
 										</a>
 										<div class="content">
 											<div class="header">XBOX360 機板</div>
@@ -825,11 +894,12 @@
 													有線：購自拳霸。
 												</p>
 											</div>
+											<div class="meta">單價:800元</div>
 										</div>
 									</div>
 									<div class="item infoItem4 topZero" style="display:none;">
 										<a class="ui small image">
-											<img src="images/fakeImg_L.png">
+											<img src="images/board_q4.jpg">
 										</a>
 										<div class="content">
 											<div class="header">PS3/360 機板</div>
@@ -838,6 +908,7 @@
 													購自拳霸，與Q4機板相同。
 												</p>
 											</div>
+											<div class="meta">單價:1600元</div>
 										</div>
 									</div>
 								</div>
@@ -884,6 +955,18 @@
 		<div class="row theView"></div>
 	</div>
 	<div id="custom">
+		<img class="customPosition" id="custom_Mask" src="images/custom/Mask.png">
+		<img class="customPosition" id="custom_Model" src="images/custom/model/model_black.png">
+		<img class="customPosition_Surface" id="custom_Surface" src="images/custom/surface_default.jpg">
+		<img class="customPosition" id="custom_Stick" src="images/custom/stick/stick_red.png">
+		<img class="customPosition" id="custom_Square" src="images/custom/btn/Square/blue.png">
+		<img class="customPosition" id="custom_Triangle" src="images/custom/btn/Triangle/yellow.png">
+		<img class="customPosition" id="custom_X" src="images/custom/btn/X/green.png">
+		<img class="customPosition" id="custom_O" src="images/custom/btn/O/red.png">
+		<img class="customPosition" id="custom_R1" src="images/custom/btn/R1/white.png">
+		<img class="customPosition" id="custom_L1" src="images/custom/btn/L1/white.png">
+		<img class="customPosition" id="custom_R2" src="images/custom/btn/R2/white.png">
+		<img class="customPosition" id="custom_L2" src="images/custom/btn/L2/white.png">
 	</div>
 </body>
 <script>
@@ -940,7 +1023,7 @@
 
 					$('<div />',{
 						'class':'item',
-						'data-value':row.productId+"|"+row.productPrice,
+						'data-value':row.productId+"|"+row.productPrice+"|"+row.productColor,
 						html:'<div class="ui '+colorClass+' empty circular label"></div>'+row.productName
 					})
 					.appendTo($('#theTabs_Model .housing .menu'));
@@ -956,8 +1039,50 @@
 						$('.theMenu .lab1').removeClass('grey');
 						$('.theMenu .lab1').addClass('green');
 						calculatePrice();
+						changeModelColor();
 					}
 				});
+			}
+
+			function changeModelColor(){
+
+				var model = $('#theTabs_Model .housing input').val().split('|');
+				var color = model[2];
+
+				if("red"===color){
+					$('#custom_Model').attr('src','images/custom/model/model_red.png')
+				}if("blue"===color){
+					$('#custom_Model').attr('src','images/custom/model/model_blue.png')
+				}
+				if("dblue"===color){
+					$('#custom_Model').attr('src','images/custom/model/model_dblue.png')
+				}
+				if("black"===color){
+					$('#custom_Model').attr('src','images/custom/model/model_black.png')
+				}
+				if("purple"===color){
+					$('#custom_Model').attr('src','images/custom/model/model_purple.png')
+				}
+				if("orange"===color){
+					$('#custom_Model').attr('src','images/custom/model/model_orange.png')
+				}
+				if("dorange"===color){
+					$('#custom_Model').attr('src','images/custom/model/model_dorange.png')
+				}
+				if("white"===color){
+					$('#custom_Model').attr('src','images/custom/model/model_white.png')
+				}
+				if("grey"===color){
+					$('#custom_Model').attr('src','images/custom/model/model_grey.png')
+				}if("yellow"===color){
+					$('#custom_Model').attr('src','images/custom/model/model_yellow.png')
+				}
+				if("pink"===color){
+					$('#custom_Model').attr('src','images/custom/model/model_pink.png')
+				}
+				if("green"===color){
+					$('#custom_Model').attr('src','images/custom/model/model_green.png')
+				}
 			}
 
 		/*theTabs_Stick*/
@@ -1011,7 +1136,7 @@
 
 					$('<div />',{
 						'class':'item',
-						'data-value':row.productId+"|"+row.productPrice,
+						'data-value':row.productId+"|"+row.productPrice+"|"+row.productColor,
 						html:'<div class="ui '+colorClass+' empty circular label"></div>'+row.productName
 					})
 					.appendTo($('#theTabs_Stick .rocker .menu'));
@@ -1027,8 +1152,40 @@
 						$('.theMenu .lab2').removeClass('grey');
 						$('.theMenu .lab2').addClass('green');
 						calculatePrice();
+						changeStickColor();
 					}
 				});
+			}
+
+			function changeStickColor(){
+				var stick = $('#theTabs_Stick .rocker input').val().split('|');
+				var color = stick[2];
+
+				if("red"===color){
+					$('#custom_Stick').attr('src','images/custom/stick/stick_red.png')
+				}else if("blue"===color){
+					$('#custom_Stick').attr('src','images/custom/stick/stick_blue.png')
+				}else if("dblue"===color){
+					$('#custom_Stick').attr('src','images/custom/stick/stick_dblue.png')
+				}else if("black"===color){
+					$('#custom_Stick').attr('src','images/custom/stick/stick_black.png')
+				}else if("purple"===color){
+					$('#custom_Stick').attr('src','images/custom/stick/stick_purple.png')
+				}else if("orange"===color){
+					$('#custom_Stick').attr('src','images/custom/stick/stick_orange.png')
+				}else if("dorange"===color){
+					$('#custom_Stick').attr('src','images/custom/stick/stick_dorange.png')
+				}else if("white"===color){
+					$('#custom_Stick').attr('src','images/custom/stick/stick_white.png')
+				}else if("grey"===color){
+					$('#custom_Stick').attr('src','images/custom/stick/stick_grey.png')
+				}else if("yellow"===color){
+					$('#custom_Stick').attr('src','images/custom/stick/stick_yellow.png')
+				}else if("pink"===color){
+					$('#custom_Stick').attr('src','images/custom/stick/stick_pink.png')
+				}else if("green"===color){
+					$('#custom_Stick').attr('src','images/custom/stick/stick_green.png')
+				}
 			}
 
 		/*theTabs_Btn1*//*theTabs_Btn2*/
@@ -1082,49 +1239,49 @@
 
 					$('<div />',{
 						'class':'item',
-						'data-value':row.productId+"|"+row.productPrice,
+						'data-value':row.productId+"|"+row.productPrice+"|"+row.productColor,
 						html:'<div class="ui '+colorClass+' empty circular label"></div>'+row.productName
 					}).appendTo($('#theTabs_Btn1 .l1 .menu'));
 
 					$('<div />',{
 						'class':'item',
-						'data-value':row.productId+"|"+row.productPrice,
+						'data-value':row.productId+"|"+row.productPrice+"|"+row.productColor,
 						html:'<div class="ui '+colorClass+' empty circular label"></div>'+row.productName
 					}).appendTo($('#theTabs_Btn1 .l2 .menu'));
 
 					$('<div />',{
 						'class':'item',
-						'data-value':row.productId+"|"+row.productPrice,
+						'data-value':row.productId+"|"+row.productPrice+"|"+row.productColor,
 						html:'<div class="ui '+colorClass+' empty circular label"></div>'+row.productName
 					}).appendTo($('#theTabs_Btn1 .r1 .menu'));
 
 					$('<div />',{
 						'class':'item',
-						'data-value':row.productId+"|"+row.productPrice,
+						'data-value':row.productId+"|"+row.productPrice+"|"+row.productColor,
 						html:'<div class="ui '+colorClass+' empty circular label"></div>'+row.productName
 					}).appendTo($('#theTabs_Btn1 .r2 .menu'));
 
 					$('<div />',{
 						'class':'item',
-						'data-value':row.productId+"|"+row.productPrice,
+						'data-value':row.productId+"|"+row.productPrice+"|"+row.productColor,
 						html:'<div class="ui '+colorClass+' empty circular label"></div>'+row.productName
 					}).appendTo($('#theTabs_Btn1 .o .menu'));
 
 					$('<div />',{
 						'class':'item',
-						'data-value':row.productId+"|"+row.productPrice,
+						'data-value':row.productId+"|"+row.productPrice+"|"+row.productColor,
 						html:'<div class="ui '+colorClass+' empty circular label"></div>'+row.productName
 					}).appendTo($('#theTabs_Btn1 .x .menu'));
 
 					$('<div />',{
 						'class':'item',
-						'data-value':row.productId+"|"+row.productPrice,
+						'data-value':row.productId+"|"+row.productPrice+"|"+row.productColor,
 						html:'<div class="ui '+colorClass+' empty circular label"></div>'+row.productName
 					}).appendTo($('#theTabs_Btn1 .square .menu'));
 
 					$('<div />',{
 						'class':'item',
-						'data-value':row.productId+"|"+row.productPrice,
+						'data-value':row.productId+"|"+row.productPrice+"|"+row.productColor,
 						html:'<div class="ui '+colorClass+' empty circular label"></div>'+row.productName
 					}).appendTo($('#theTabs_Btn1 .triangle .menu'));
 
@@ -1157,6 +1314,8 @@
 					onChange:function(){
 						Btn1_checkSelect();
 						calculatePrice();
+						console.log($(this).attr('id'));
+						changeBtnColor($(this).attr('id'));
 					}
 				});
 				$('#theTabs_Btn2 .dropdown').dropdown({
@@ -1165,6 +1324,221 @@
 						calculatePrice();
 					}
 				});
+			}
+
+			function changeBtnColor(id){
+				var btn = $('#'+id+' input').val().split('|');
+				var color = btn[2];
+
+				if("controlSquare"===id){
+					if("red"===color){
+						$('#custom_Square').attr('src','images/custom/btn/Square/red.png')
+					}else if("blue"===color){
+						$('#custom_Square').attr('src','images/custom/btn/Square/blue.png')
+					}else if("dblue"===color){
+						$('#custom_Square').attr('src','images/custom/btn/Square/dblue.png')
+					}else if("black"===color){
+						$('#custom_Square').attr('src','images/custom/btn/Square/black.png')
+					}else if("purple"===color){
+						$('#custom_Square').attr('src','images/custom/btn/Square/purple.png')
+					}else if("orange"===color){
+						$('#custom_Square').attr('src','images/custom/btn/Square/orange.png')
+					}else if("dorange"===color){
+						$('#custom_Square').attr('src','images/custom/btn/Square/dorange.png')
+					}else if("white"===color){
+						$('#custom_Square').attr('src','images/custom/btn/Square/white.png')
+					}else if("grey"===color){
+						$('#custom_Square').attr('src','images/custom/btn/Square/grey.png')
+					}else if("yellow"===color){
+						$('#custom_Square').attr('src','images/custom/btn/Square/yellow.png')
+					}else if("pink"===color){
+						$('#custom_Square').attr('src','images/custom/btn/Square/pink.png')
+					}else if("green"===color){
+						$('#custom_Square').attr('src','images/custom/btn/Square/green.png')
+					}
+				} else if("controlTriangle"===id){
+					if("red"===color){
+						$('#custom_Triangle').attr('src','images/custom/btn/Triangle/red.png')
+					}else if("blue"===color){
+						$('#custom_Triangle').attr('src','images/custom/btn/Triangle/blue.png')
+					}else if("dblue"===color){
+						$('#custom_Triangle').attr('src','images/custom/btn/Triangle/dblue.png')
+					}else if("black"===color){
+						$('#custom_Triangle').attr('src','images/custom/btn/Triangle/black.png')
+					}else if("purple"===color){
+						$('#custom_Triangle').attr('src','images/custom/btn/Triangle/purple.png')
+					}else if("orange"===color){
+						$('#custom_Triangle').attr('src','images/custom/btn/Triangle/orange.png')
+					}else if("dorange"===color){
+						$('#custom_Triangle').attr('src','images/custom/btn/Triangle/dorange.png')
+					}else if("white"===color){
+						$('#custom_Triangle').attr('src','images/custom/btn/Triangle/white.png')
+					}else if("grey"===color){
+						$('#custom_Triangle').attr('src','images/custom/btn/Triangle/grey.png')
+					}else if("yellow"===color){
+						$('#custom_Triangle').attr('src','images/custom/btn/Triangle/yellow.png')
+					}else if("pink"===color){
+						$('#custom_Triangle').attr('src','images/custom/btn/Triangle/pink.png')
+					}else if("green"===color){
+						$('#custom_Triangle').attr('src','images/custom/btn/Triangle/green.png')
+					}
+				} else if("controlX"===id){
+					if("red"===color){
+						$('#custom_X').attr('src','images/custom/btn/X/red.png')
+					}else if("blue"===color){
+						$('#custom_X').attr('src','images/custom/btn/X/blue.png')
+					}else if("dblue"===color){
+						$('#custom_X').attr('src','images/custom/btn/X/dblue.png')
+					}else if("black"===color){
+						$('#custom_X').attr('src','images/custom/btn/X/black.png')
+					}else if("purple"===color){
+						$('#custom_X').attr('src','images/custom/btn/X/purple.png')
+					}else if("orange"===color){
+						$('#custom_X').attr('src','images/custom/btn/X/orange.png')
+					}else if("dorange"===color){
+						$('#custom_X').attr('src','images/custom/btn/X/dorange.png')
+					}else if("white"===color){
+						$('#custom_X').attr('src','images/custom/btn/X/white.png')
+					}else if("grey"===color){
+						$('#custom_X').attr('src','images/custom/btn/X/grey.png')
+					}else if("yellow"===color){
+						$('#custom_X').attr('src','images/custom/btn/X/yellow.png')
+					}else if("pink"===color){
+						$('#custom_X').attr('src','images/custom/btn/X/pink.png')
+					}else if("green"===color){
+						$('#custom_X').attr('src','images/custom/btn/X/green.png')
+					}
+				} else if("controlO"===id){
+					if("red"===color){
+						$('#custom_O').attr('src','images/custom/btn/O/red.png')
+					}else if("blue"===color){
+						$('#custom_O').attr('src','images/custom/btn/O/blue.png')
+					}else if("dblue"===color){
+						$('#custom_O').attr('src','images/custom/btn/O/dblue.png')
+					}else if("black"===color){
+						$('#custom_O').attr('src','images/custom/btn/O/black.png')
+					}else if("purple"===color){
+						$('#custom_O').attr('src','images/custom/btn/O/purple.png')
+					}else if("orange"===color){
+						$('#custom_O').attr('src','images/custom/btn/O/orange.png')
+					}else if("dorange"===color){
+						$('#custom_O').attr('src','images/custom/btn/O/dorange.png')
+					}else if("white"===color){
+						$('#custom_O').attr('src','images/custom/btn/O/white.png')
+					}else if("grey"===color){
+						$('#custom_O').attr('src','images/custom/btn/O/grey.png')
+					}else if("yellow"===color){
+						$('#custom_O').attr('src','images/custom/btn/O/yellow.png')
+					}else if("pink"===color){
+						$('#custom_O').attr('src','images/custom/btn/O/pink.png')
+					}else if("green"===color){
+						$('#custom_O').attr('src','images/custom/btn/O/green.png')
+					}
+				} else if("controlR1"===id){
+					if("red"===color){
+						$('#custom_R1').attr('src','images/custom/btn/R1/red.png')
+					}else if("blue"===color){
+						$('#custom_R1').attr('src','images/custom/btn/R1/blue.png')
+					}else if("dblue"===color){
+						$('#custom_R1').attr('src','images/custom/btn/R1/dblue.png')
+					}else if("black"===color){
+						$('#custom_R1').attr('src','images/custom/btn/R1/black.png')
+					}else if("purple"===color){
+						$('#custom_R1').attr('src','images/custom/btn/R1/purple.png')
+					}else if("orange"===color){
+						$('#custom_R1').attr('src','images/custom/btn/R1/orange.png')
+					}else if("dorange"===color){
+						$('#custom_R1').attr('src','images/custom/btn/R1/dorange.png')
+					}else if("white"===color){
+						$('#custom_R1').attr('src','images/custom/btn/R1/white.png')
+					}else if("grey"===color){
+						$('#custom_R1').attr('src','images/custom/btn/R1/grey.png')
+					}else if("yellow"===color){
+						$('#custom_R1').attr('src','images/custom/btn/R1/yellow.png')
+					}else if("pink"===color){
+						$('#custom_R1').attr('src','images/custom/btn/R1/pink.png')
+					}else if("green"===color){
+						$('#custom_R1').attr('src','images/custom/btn/R1/green.png')
+					}
+				} else if("controlL1"===id){
+					if("red"===color){
+						$('#custom_L1').attr('src','images/custom/btn/L1/red.png')
+					}else if("blue"===color){
+						$('#custom_L1').attr('src','images/custom/btn/L1/blue.png')
+					}else if("dblue"===color){
+						$('#custom_L1').attr('src','images/custom/btn/L1/dblue.png')
+					}else if("black"===color){
+						$('#custom_L1').attr('src','images/custom/btn/L1/black.png')
+					}else if("purple"===color){
+						$('#custom_L1').attr('src','images/custom/btn/L1/purple.png')
+					}else if("orange"===color){
+						$('#custom_L1').attr('src','images/custom/btn/L1/orange.png')
+					}else if("dorange"===color){
+						$('#custom_L1').attr('src','images/custom/btn/L1/dorange.png')
+					}else if("white"===color){
+						$('#custom_L1').attr('src','images/custom/btn/L1/white.png')
+					}else if("grey"===color){
+						$('#custom_L1').attr('src','images/custom/btn/L1/grey.png')
+					}else if("yellow"===color){
+						$('#custom_L1').attr('src','images/custom/btn/L1/yellow.png')
+					}else if("pink"===color){
+						$('#custom_L1').attr('src','images/custom/btn/L1/pink.png')
+					}else if("green"===color){
+						$('#custom_L1').attr('src','images/custom/btn/L1/green.png')
+					}
+				} else if("controlR2"===id){
+					if("red"===color){
+						$('#custom_R2').attr('src','images/custom/btn/R2/red.png')
+					}else if("blue"===color){
+						$('#custom_R2').attr('src','images/custom/btn/R2/blue.png')
+					}else if("dblue"===color){
+						$('#custom_R2').attr('src','images/custom/btn/R2/dblue.png')
+					}else if("black"===color){
+						$('#custom_R2').attr('src','images/custom/btn/R2/black.png')
+					}else if("purple"===color){
+						$('#custom_R2').attr('src','images/custom/btn/R2/purple.png')
+					}else if("orange"===color){
+						$('#custom_R2').attr('src','images/custom/btn/R2/orange.png')
+					}else if("dorange"===color){
+						$('#custom_R2').attr('src','images/custom/btn/R2/dorange.png')
+					}else if("white"===color){
+						$('#custom_R2').attr('src','images/custom/btn/R2/white.png')
+					}else if("grey"===color){
+						$('#custom_R2').attr('src','images/custom/btn/R2/grey.png')
+					}else if("yellow"===color){
+						$('#custom_R2').attr('src','images/custom/btn/R2/yellow.png')
+					}else if("pink"===color){
+						$('#custom_R2').attr('src','images/custom/btn/R2/pink.png')
+					}else if("green"===color){
+						$('#custom_R2').attr('src','images/custom/btn/R2/green.png')
+					}
+				} else if("controlL2"===id){
+					if("red"===color){
+						$('#custom_L2').attr('src','images/custom/btn/L2/red.png')
+					}else if("blue"===color){
+						$('#custom_L2').attr('src','images/custom/btn/L2/blue.png')
+					}else if("dblue"===color){
+						$('#custom_L2').attr('src','images/custom/btn/L2/dblue.png')
+					}else if("black"===color){
+						$('#custom_L2').attr('src','images/custom/btn/L2/black.png')
+					}else if("purple"===color){
+						$('#custom_L2').attr('src','images/custom/btn/L2/purple.png')
+					}else if("orange"===color){
+						$('#custom_L2').attr('src','images/custom/btn/L2/orange.png')
+					}else if("dorange"===color){
+						$('#custom_L2').attr('src','images/custom/btn/L2/dorange.png')
+					}else if("white"===color){
+						$('#custom_L2').attr('src','images/custom/btn/L2/white.png')
+					}else if("grey"===color){
+						$('#custom_L2').attr('src','images/custom/btn/L2/grey.png')
+					}else if("yellow"===color){
+						$('#custom_L2').attr('src','images/custom/btn/L2/yellow.png')
+					}else if("pink"===color){
+						$('#custom_L2').attr('src','images/custom/btn/L2/pink.png')
+					}else if("green"===color){
+						$('#custom_L2').attr('src','images/custom/btn/L2/green.png')
+					}
+				}
 			}
 
 		/*theTabs_System*/
@@ -1318,7 +1692,7 @@
 
 			var price = 0;
 			price = 700+housingPrice+rockerPrice+l1Price+l2Price+r1Price+r2Price+oPrice+xPrice+squarePrice+trianglePrice+touchPrice+startPrice+selecterPrice+boardPrice;
-			$('.priceBlock span').text(price);
+			$('.priceBlock h1').text(price);
 
 			if(modelIsSelected&&stickIsSelected&&btn1IsSelected&&btn2IsSelected&&systemIsSelected){
 				$('#btnConfirmN').removeClass('grey');
@@ -1980,6 +2354,7 @@
 					$('#theTabs_Surface .previewImageId').text(one.imageId);
 					$('#theTabs_Surface .previewImagePath').text(one.imagePath);
 					$('#theTabs_Surface_infoModal img').attr('src',one.imagePath);
+					$('#custom_Surface').attr('src',one.imagePath);
 					$('.theMenu .lab5').removeClass('grey');
 					$('.theMenu .lab5').addClass('green');
 					$('#theTabs_Surface_Modal').modal('hide');
@@ -2031,9 +2406,13 @@
 			}
 		});
 
+	$('#backBtn').popup({
+		title:'回訂製首頁'
+	});
+
+	$('#backBtn').click(function(){
+		location.assign("./front_custom_intro.html");
+	});
+
 </script>
 </html>
-
-
-
-

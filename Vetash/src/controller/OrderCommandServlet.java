@@ -122,6 +122,7 @@ public class OrderCommandServlet extends HttpServlet {
 				int temp = Parse.convertInt(price);
 				if(temp > 1) {
 					bean.setPrice(temp);
+					System.out.println(temp);
 				} else {
 					errs.add("價錢型態錯誤");
 				}
@@ -190,7 +191,7 @@ public class OrderCommandServlet extends HttpServlet {
 				errs.add("沒有關鍵字");
 			} else {
 				bean = service.selectByOrderNo(orderNo);
-				HttpSession session = req.getSession(false);
+				HttpSession session = req.getSession(true);
 				session.setAttribute("joystick", bean);
 				if(bean.getOrderState().equals("已確認")) {
 					String orderDate2 = Parse.dateToString3(bean.getOrderDate());

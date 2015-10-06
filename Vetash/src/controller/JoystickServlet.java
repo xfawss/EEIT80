@@ -85,7 +85,9 @@ public class JoystickServlet extends HttpServlet {
 		bean.setBoard(board);
 
 		int price = service.price2(bean);
-
+		if(coupon!=null && coupon.length()!=0) {
+			price -= service2.select(coupon);
+		}
 		System.out.println(price);
 		bean.setCoupon(coupon);
 		bean.setPrice(price);
