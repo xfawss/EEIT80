@@ -604,7 +604,7 @@
 										</div>
 										<div class="four wide field">
 											<label>到貨日期</label>
-											<input type="date" name="deliveryDate" placeholder="yyyy-MM-dd">
+											<input type="date" name="deliveryDate">
 										</div>
 									</div>
 									<div class="field">
@@ -2421,14 +2421,11 @@
 					productNote:"",
 					task:"insert"
 				};
-				$('#productTypeField .default.text').text("");
-				$('#productColorField .default.text').text("");
 				Product_showModal(row);
 			}
 
 			function Product_update(row){
 				console.log("Product_update() called");
-
 				Product_showModal(row);
 			}
 
@@ -2555,13 +2552,16 @@
 					productImgPath:"",
 					productNote:""
 				});
-				$('#productTypeField .default.text').text("");
-				$('#productColorField .default.text').text("");
+				$('#productTypeField .text').val("");
+				$('#productColorField .text').val("");
 				$('#Product_modal').modal("hide");
 			});
 
 			function Product_showModal(row){
 				console.log("Product_showModal() called");
+
+				$('#Product_modal .form input[name="productColor"]').val("");
+				$('#productColorField .text').val("");
 
 				$('#Product_modal .approve.button').removeClass('disabled');
 				$('#Product_modal .approve.button').removeClass('loading');
@@ -2578,7 +2578,7 @@
 
 				$('#Product_modal .sub.header').html(row.Title);
 				$('#Product_modal .form input[name="productId"]').val(row.productId);
-				$('#productTypeField .default.text').text(row.productType);
+				$('#productTypeField .text').text(row.productType);
 				$('#Product_modal .form input[name="productType"]').val(row.productType);
 				$('#Product_modal .form input[name="productName"]').val(row.productName);
 				$('#Product_modal .form input[name="productPrice"]').val(row.productPrice);
@@ -2610,9 +2610,11 @@
 					productColorName="粉";
 				} else if("green"===row.productColor){
 					productColorName="綠";
+				} else{
+					productColorName="";
 				}
 				$('#Product_modal .form input[name="productColor"]').val(row.productColor);
-				$('#productColorField .default.text').text(productColorName);
+				$('#productColorField .text').text(productColorName);
 
 				$('#Product_modal .form input[name="productImgPath"]').val(row.productImgPath);
 				$('#Product_modal .form textarea[name="productNote"]').val(row.productNote);
@@ -2710,6 +2712,8 @@
 							"action":valuesToSubmit.task,
 							"productId":valuesToSubmit.productId,
 							"productType":valuesToSubmit.productType,
+							"productColor":valuesToSubmit.productColor,
+							"productImgPath":valuesToSubmit.productImgPath,
 							"productName":valuesToSubmit.productName,
 							"productPrice":valuesToSubmit.productPrice,
 							"productCost":valuesToSubmit.productCost,
@@ -3225,6 +3229,7 @@
 						orderDate:one.orderDate,
 						price:one.price,
 						orderState:one.orderState,
+						orderNotes:one.orderNotes,
 						coupon:one.coupon,
 						deliveryDate:one.deliveryDate,
 						bossNotes:one.bossNotes,
@@ -3454,6 +3459,7 @@
 					orderDate:"",
 					price:"",
 					orderState:"",
+					orderNotes:"",
 					coupon:"",
 					deliveryDate:"",
 					bossNotes:"",
@@ -3488,7 +3494,7 @@
 					coverImg:"",
 					board:""
 				});
-				$('#Order_modal .orderStateField .default.text').text("");
+				$('#Order_modal .orderStateField .text').text("");
 				$('#Order_modal').modal("hide");
 			});
 
@@ -3503,8 +3509,8 @@
 				$('#Order_modal .form input[name="orderDate"]').val(row.orderDate);
 				$('#Order_modal .form input[name="price"]').val(row.price);
 				$('#Order_modal .form input[name="orderState"]').val(row.orderState);
-				console.log($('#Order_modal .orderStateField .default.text'))
-				$('#Order_modal .orderStateField .default.text').text(row.orderState);
+				console.log($('#Order_modal .orderStateField .text'))
+				$('#Order_modal .orderStateField .text').text(row.orderState);
 				$('#Order_modal .form input[name="coupon"]').val(row.coupon);
 				$('#Order_modal .form input[name="deliveryDate"]').val(row.deliveryDate);
 				$('#Order_modal .form textarea[name="bossNotes"]').val(row.bossNotes);
@@ -3607,7 +3613,6 @@
 						success:function(results){
 							console.log("Order_modal .form ajax successed");
 							$('#Order_modal').modal("hide");
-							console.log(results);
 							Order_getAll();
 						}
 					});
@@ -3873,7 +3878,7 @@
 					imagePath:"",
 					imgCategoryName:""
 				});
-				$('#Image_modal .dropdown .default.text').text("");
+				$('#Image_modal .dropdown .text').text("");
 
 				if("update"===card.task){
 					$('.imageDateField').removeClass('disabled');

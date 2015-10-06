@@ -1,4 +1,4 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -103,11 +103,16 @@
 									<div class="two fields">
 										<div class="required field">
 											<label>收件方式</label>
-											<select name="receiveType">
-												<option value="便利商店取貨">便利商店取貨</option>
-												<option value="宅配">宅配</option>
-												<option value="自取">自取</option>
-											</select>
+											<div class="ui selection dropdown">
+												<input name="receiveType" type="hidden">
+												<i class="dropdown icon"></i>
+												<div class="default text">請選擇收件方式</div>
+												<div class="menu">
+													<div class="item" data-value="便利商店取貨">便利商店取貨</div>
+													<div class="item" data-value="宅配">宅配</div>
+													<div class="item" data-value="自取">自取</div>
+												</div>
+											</div>
 										</div>
 										<div class="required field">
 											<label>收件地址</label>
@@ -132,13 +137,8 @@
 
 				<div class="row">
 					<div class="center aligned column">
-						<button class="ui red button">
-							<i class="reply icon"></i>
-							回訂製頁面
-						</button>
 						<button class="ui green button submitBtn">
-							送出訂單&nbsp;&nbsp;
-							<i class="share icon"></i>
+							送出訂單
 						</button>
 					</div>
 				</div>
@@ -162,6 +162,14 @@
 		 $('#orderForm').form('submit');
 		/*$('#orderForm').form('validate form');*/
 	});
+
+	$('#orderForm .dropdown').dropdown({
+		onChange:function(){
+			if("自取"===$('#orderForm input[name="receiveType"]').val()){
+				$('#orderForm input[name="customerAddr"]').val("自取");
+			}
+		}
+	})
 
 	/*action="/Vetash/order" method="post"*/
 	$('#orderForm').form({
