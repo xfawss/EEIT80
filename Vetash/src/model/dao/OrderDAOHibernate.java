@@ -55,6 +55,7 @@ public class OrderDAOHibernate implements OrderDAO {
 			result.setBossNotes(bean.getBossNotes());
 			result.setOrderState(bean.getOrderState());
 			result.setPrice(bean.getPrice());
+			result.setDeliveryDate(bean.getDeliveryDate());
 			return bean;
 		}
 		return null;

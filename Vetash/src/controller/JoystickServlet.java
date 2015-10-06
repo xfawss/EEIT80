@@ -96,9 +96,9 @@ public class JoystickServlet extends HttpServlet {
 		session.setAttribute("joystick", bean);
 		session.setAttribute("receiveCost", 0);
 		if(orderType!=null && orderType.equals("1")) {
-			req.getRequestDispatcher("/front_custom_order1.html").forward(req, resp);
+			req.getRequestDispatcher("/front_custom_order1.jsp").forward(req, resp);
 		} else {
-			req.getRequestDispatcher("/front_custom_order0.html").forward(req, resp);
+			req.getRequestDispatcher("/front_custom_order0.jsp").forward(req, resp);
 		}
 	}
 

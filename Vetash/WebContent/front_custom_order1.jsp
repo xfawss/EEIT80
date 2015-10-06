@@ -1,3 +1,4 @@
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -120,7 +121,7 @@
 										</div>
 										<div class="field">
 											<label>訂單備註</label>
-											<textarea name="orderNotes" cols="20" rows="5" placeholder="若有其他事情必須與通知公館，可填寫於此欄位"></textarea>
+											<textarea name="orderNotes" cols="20" rows="5" placeholder="若有其他事情必須與通知公館，可填寫於此欄位">${joystick.orderNotes}</textarea>
 										</div>
 									</div>
 								</form>

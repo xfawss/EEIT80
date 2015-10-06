@@ -77,7 +77,7 @@ public class OrderSelectServlet extends HttpServlet {
 		bean.setOrderNotes(orderNotes);
 		bean.setPrice(0);
 		bean = service2.insert(bean);
-		req.getRequestDispatcher("/front_custom_intro.html").forward(req, resp);
+		req.getRequestDispatcher("/front_custom_success.html").forward(req, resp);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

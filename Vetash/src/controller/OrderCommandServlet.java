@@ -122,7 +122,6 @@ public class OrderCommandServlet extends HttpServlet {
 				int temp = Parse.convertInt(price);
 				if(temp > 1) {
 					bean.setPrice(temp);
-					System.out.println(temp);
 				} else {
 					errs.add("價錢型態錯誤");
 				}
@@ -193,14 +192,18 @@ public class OrderCommandServlet extends HttpServlet {
 				bean = service.selectByOrderNo(orderNo);
 				HttpSession session = req.getSession(true);
 				session.setAttribute("joystick", bean);
+				String orderDate2 = Parse.dateToString3(bean.getOrderDate());
+				String pricess = Integer.toString(bean.getPrice());
+				
+				System.out.println(bean.getDeliveryDate());
+				
+				req.setAttribute("MerchantTradeNo", orderNo);
+				req.setAttribute("MerchantTradeDate", orderDate2);
+				req.setAttribute("TotalAmount", pricess);
+				System.out.println(bean.getOrderState());
 				if(bean.getOrderState().equals("已確認")) {
-					String orderDate2 = Parse.dateToString3(bean.getOrderDate());
-					String pricess = Integer.toString(bean.getPrice());
 					req.setAttribute("MerchantID", AllPayCheckMacValue.merchantID);
-					req.setAttribute("MerchantTradeNo", orderNo);
-					req.setAttribute("MerchantTradeDate", orderDate2);
 					req.setAttribute("PaymentType", AllPayCheckMacValue.paymentType);
-					req.setAttribute("TotalAmount", pricess);
 					req.setAttribute("TradeDesc", AllPayCheckMacValue.tradeDesc);
 					req.setAttribute("ItemName", AllPayCheckMacValue.itemName);
 					req.setAttribute("ReturnURL", AllPayCheckMacValue.returnURL);
@@ -208,9 +211,12 @@ public class OrderCommandServlet extends HttpServlet {
 					req.setAttribute("IgnorePayment", AllPayCheckMacValue.ignorePayment);
 					req.setAttribute("ClientBackURL", AllPayCheckMacValue.clientBackURL);
 					req.setAttribute("CheckMacValue", AllPayCheckMacValue.checkMacValue(orderNo, orderDate2, pricess));
-					req.setAttribute("AllPay", true);
+					req.getRequestDispatcher("/front_custom_orderlist1.jsp").forward(req, resp);
+					return;
+				} else {
+					req.getRequestDispatcher("/front_custom_orderlist.jsp").forward(req, resp);
+					return;
 				}
-				req.getRequestDispatcher("/front_custom_orderlist.jsp").forward(req, resp);
 			}
 		}
 	}

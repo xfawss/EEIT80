@@ -1947,7 +1947,7 @@
 				coverImgName:"未選擇",
 				coverImgPath:"",
 				board:"未選擇",
-				price:"",
+				price:"由公館確認後提供",
 			}
 			if(""!=datas.housing){
 				texts.housing=$('#theTabs_Model .housing .productName').text();
@@ -1996,7 +1996,6 @@
 			}
 
 			texts.coverImgPath=$('#theTabs_Surface .previewImagePath').text();
-			texts.price=$('.priceBlock span').text();
 
 			$('.productModalHeadder').text('特殊訂製');
 			setModal(texts,datas);
@@ -2122,7 +2121,7 @@
 			}
 
 			texts.coverImgPath=$('#theTabs_Surface .previewImagePath').text();
-			texts.price=$('.priceBlock span').text();
+			texts.price=$('.priceBlock h1').text();
 
 			$('.productModalHeadder').text('一般訂製');
 			setModal(texts,datas);

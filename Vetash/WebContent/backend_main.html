@@ -407,7 +407,7 @@
 							<div class="fields">
 								<div class="two wide field" id="supplierIdField">
 									<label>編號</label>
-									<input type="text" disabled="" name="supplierId" placeholder="">
+									<input type="text" readonly="" name="supplierId" placeholder="">
 								</div>
 								<div class="eight wide field">
 									<label>公司名</label>
@@ -525,52 +525,91 @@
 						<form class="ui form">
 							<div class="ui grid purePaded">
 								<div class="row">
-									<div class="eight wide column">
-										<div class="field">
-											<label>訂單編號</label>
-											<input type="text" name="orderNo" placeholder="">
-										</div>
-										<div class="field">
-											<label>下訂日期</label>
-											<input name="orderDate" type="datetime" placeholder="">
-										</div>
-										<div class="field">
-											<label>成交價格</label>
-											<input type="text" name="price" placeholder="">
-										</div>
-									</div>
-									<div class="eight wide column">
-										<div class="field orderStateField">
-											<div class="ui selection dropdown">
-												<input name="orderState" type="hidden">
-												<i class="dropdown icon"></i>
-												<div class="default text">訂單狀態</div>
-												<div class="menu">
-													<div class="item" data-value="已下訂(特殊)" style="display:none">已下訂(特殊)</div>
-													<div class="item" data-value="已下訂(普通)" style="display:none">已下訂(普通)</div>
-													<div class="item confirmed" data-value="已確認">已確認</div>
-													<div class="item payed" data-value="已結帳">已結帳</div>
-													<div class="item send" data-value="已出貨">已出貨</div>
+									<div class="column">
+										<div class="ui three fields">
+											<div class="field">
+												<label>訂單編號</label>
+												<input type="text" name="orderNo" placeholder="">
+											</div>
+											<div class="field">
+												<label>下訂日期</label>
+												<input name="orderDate" type="text" placeholder="" readonly="">
+											</div>
+											<div class="field orderStateField">
+												<label>訂單狀態</label>
+												<div class="ui selection dropdown">
+													<input name="orderState" type="hidden">
+													<i class="dropdown icon"></i>
+													<div class="default text"></div>
+													<div class="menu">
+														<div class="item" data-value="已下訂(特殊)" style="display:none">已下訂(特殊)</div>
+														<div class="item" data-value="已下訂(普通)" style="display:none">已下訂(普通)</div>
+														<div class="item confirmed" data-value="已確認">已確認</div>
+														<div class="item payed" data-value="已結帳">已結帳</div>
+														<div class="item send" data-value="已出貨">已出貨</div>
+													</div>
 												</div>
 											</div>
 										</div>
-
-										<div class="field">
-											<label>折扣碼</label>
-											<input type="text" name="coupon" placeholder="">
+										<div class="ui fields">
+											<div class="four wide field">
+												<label>成交價格</label>
+												<input type="text" name="price" placeholder="">
+											</div>
+											<div class="four wide field">
+												<label>折扣價</label>
+												<input type="text" name="coupon" placeholder="" readonly="">
+											</div>
 										</div>
-										<div class="field">
+										<div class="ui three fields">
+											<div class="field">
+												<label>付款方式</label>
+												<input type="text" name="paymentType" placeholder="" readonly="">
+											</div>
+											<div class="field">
+												<label>歐付寶編號</label>
+												<input type="text" name="allPayTradeNo" placeholder="" readonly="">
+											</div>
+											<div class="field">
+												<label>歐付寶手續費</label>
+												<input type="text" name="paymentTypeChargeFee" placeholder="" readonly="">
+											</div>
+										</div>
+										<div class="ui two fields">
+											<div class="field">
+												<label>訂單備註</label>
+												<textarea name="orderNotes" cols="20" rows="5" readonly=""></textarea>
+											</div>
+											<div class="field">
+												<label>業者備註</label>
+												<textarea name="bossNotes" cols="20" rows="5"></textarea>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="ui header">
+								寄送資訊
+							</div>
+							<div class="ui grid purePaded">
+								<div class="column">
+									<div class="ui fields">
+										<div class="four wide field">
+											<label>取件方式</label>
+											<input type="text" name="receiveType" placeholder="" readonly="">
+										</div>
+										<div class="eight wide field">
+											<label>取件地址</label>
+											<input type="text" name="customerAddr" placeholder="" readonly="">
+										</div>
+										<div class="four wide field">
 											<label>到貨日期</label>
 											<input type="date" name="deliveryDate" placeholder="yyyy-MM-dd">
 										</div>
 									</div>
-								</div>
-								<div class="row">
-									<div class="column">
-										<div class="field">
-											<label>業者備註</label>
-											<textarea name="bossNotes" cols="20" rows="5"></textarea>
-										</div>
+									<div class="field">
+										<label>取件備註</label>
+										<textarea name="receiveNotes" cols="20" rows="5" readonly=""></textarea>
 									</div>
 								</div>
 							</div>
@@ -579,49 +618,35 @@
 								顧客資料
 							</div>
 							<div class="ui grid purePaded">
-								<div class="row">
-									<div class="eight wide column">
-										<div class="field">
-											<label>名稱</label>
-											<input type="text" name="customerName" placeholder="">
-										</div>
-										<div class="field">
-											<label>電話</label>
-											<input type="text" name="customerTel" placeholder="">
-										</div>
-										<div class="field">
-											<label>Line ID</label>
-											<input type="text" name="customerLine" placeholder="">
-										</div>
-										<div class="field">
-											<label>facebook</label>
-											<input type="text" name="customerFb" placeholder="">
-										</div>
-										<div class="field">
-											<label>E-mail</label>
-											<input type="text" name="customerMail" placeholder="">
-										</div>
-										<div class="field">
-											<label>顧客備註</label>
-											<textarea name="customerNote" cols="20" rows="5"></textarea>
-										</div>
+								<div class="column">
+									<div class="field">
+										<label>名稱</label>
+										<input type="text" name="customerName" placeholder="" readonly="">
 									</div>
-									<div class="eight wide column">
-										<div class="field">
-											<label>取件方式</label>
-											<input type="text" name="receiveType" placeholder="">
-										</div>
-										<div class="field">
-											<label>取件地址</label>
-											<input type="text" name="customerAddr" placeholder="">
-										</div>
-										<div class="field">
-											<label>取件備註</label>
-											<textarea name="receiveNotes" cols="20" rows="5"></textarea>
-										</div>
+									<div class="field">
+										<label>電話</label>
+										<input type="text" name="customerTel" placeholder="" readonly="">
+									</div>
+									<div class="field">
+										<label>Line ID</label>
+										<input type="text" name="customerLine" placeholder="" readonly="">
+									</div>
+									<div class="field">
+										<label>facebook</label>
+										<input type="text" name="customerFb" placeholder="" readonly="">
+									</div>
+									<div class="field">
+										<label>E-mail</label>
+										<input type="text" name="customerMail" placeholder="" readonly="">
+									</div>
+									<div class="field">
+										<label>顧客備註</label>
+										<textarea name="customerNote" cols="20" rows="5" readonly=""></textarea>
 									</div>
 								</div>
 							</div>
+
+
 
 							<div class="ui header">
 								訂單明細
@@ -738,7 +763,6 @@
 												<input type="text"  name="touch" />
 											</div>
 										</div>
-										
 									</div>
 								</div>
 							</div>
@@ -945,13 +969,13 @@
 
 						<form class="ui form">
 							<div class="fields">
-								<div class="disabled two wide field">
+								<div class="two wide field">
 									<label>編號</label>
-									<input type="text" name="recordNo" disabled="" placeholder="">
+									<input type="text" name="recordNo" readonly="" placeholder="">
 								</div>
-								<div class="disabled two wide field">
+								<div class="four wide field">
 									<label>日期</label>
-									<input type="date" name="date" disabled="" placeholder="yyyy-MM-dd">
+									<input type="text" name="date" readonly="">
 								</div>
 							</div>
 
@@ -1101,7 +1125,7 @@
 								</div>
 								<div class="field imageDateField">
 									<label>新增日期</label>
-									<input type="text" name="imageDate" placeholder="">
+									<input type="text" name="imageDate" placeholder="" readonly="">
 								</div>
 							</div>
 
@@ -1215,13 +1239,17 @@
 			});
 
 		/*coupon modal initializing*/
+
+			$('#couponFormSubmit').click(function(){
+				$('#couponFormSubmit').addClass('loading');
+				$('#couponFormSubmit').addClass('disabled');
+			});
+
 			$('#Coupons .modal').modal({
 				allowMultiple: true,
 				debug:false,
 				closable:false,
 				onApprove : function() {
-					$('#couponFormSubmit').addClass('loading');
-					$('#couponFormSubmit').addClass('disabled');
 					$('#couponModalForm').form('validate form');
 					return false;
 				}
@@ -1550,14 +1578,18 @@
 
 		/*Supplier modal initializing*/
 			/*notice! modal elements MUST assign an ID*/
+
+			$('#Supplier_modal .approve.button').click(function(){
+				$('#Supplier_modal .approve.button').addClass('disabled');
+				$('#Supplier_modal .approve.button').addClass('loading');
+			});
+
 			$('#Supplier_modal').modal({
 				allowMultiple: true,
 				debug:false,
 				closable:false,
 				onApprove : function() {
 					$('#Supplier_modal .form').form('validate form');
-					$('#Supplier_modal .approve.button').addClass('disabled');
-					$('#Supplier_modal .approve.button').addClass('loading');
 					return false;
 				}
 			});
@@ -1671,9 +1703,11 @@
 				$('#Supplier_modal .approve.button').removeClass('loading');
 
 				if("insert"===row.task){
-					$('#supplierIdField').addClass('disabled');
+					$('supplierIdField').addClass('disabled');
+					$('supplierIdField input').addClass('disabled');
 				}else if("update"===row.task){
-					$('#supplierIdField').removeClass('disabled');
+					$('supplierIdField').removeClass('disabled');
+					$('supplierIdField input').removeClass('disabled');
 				}
 
 				$('#Supplier_modal .sub.header').html(row.Title);
@@ -2127,10 +2161,12 @@
 				closable:false,
 				onApprove : function() {
 					$('#Customer_modal .form').form('validate form');
-					$('#Customer_modal .approve.button').addClass('disabled');
-					$('#Customer_modal .approve.button').addClass('loading');
 					return false;
 				}
+			});
+			$('#Customer_modal .approve.button').click(function(){
+				$('#Customer_modal .approve.button').addClass('disabled');
+				$('#Customer_modal .approve.button').addClass('loading');
 			});
 
 			$('#Customer_modal .btnFormCancel').click(function(){
@@ -2152,9 +2188,9 @@
 				$('#Customer_modal .approve.button').removeClass('loading');
 
 				if("update"===row.task){
-					$('#customerTelField input').prop("disabled",true);
+					$('#customerTelField input').prop("readonly",true);
 				} else if("insert"===row.task){
-					$('#customerTelField input').prop("disabled",false);
+					$('#customerTelField input').prop("readonly",false);
 				}
 
 				$('#Customer_modal .sub.header').html(row.Title);
@@ -2243,6 +2279,8 @@
 					});
 				},
 				onFailure:function(){
+					console.log("123");
+					console.log($('#Customer_modal .approve.button'));
 					$('#Customer_modal .approve.button').removeClass('disabled');
 					$('#Customer_modal .approve.button').removeClass('loading');
 				}
@@ -2490,14 +2528,17 @@
 
 		/*Modal initializing*/
 			/*notice! modal elements MUST assign an ID*/
+			$('#Product_modal .approve.button').click(function(){
+				$('#Product_modal .approve.button').addClass('disabled');
+				$('#Product_modal .approve.button').addClass('loading');
+			});
+
 			$('#Product_modal').modal({
 				allowMultiple: true,
 				debug:false,
 				closable:false,
 				onApprove : function() {
 					$('#Product_modal .form').form('validate form');
-					$('#Product_modal .approve.button').addClass('disabled');
-					$('#Product_modal .approve.button').addClass('loading');
 					return false;
 				}
 			});
@@ -2526,13 +2567,13 @@
 				$('#Product_modal .approve.button').removeClass('loading');
 
 				if("update"===row.task){
-					$('#productIdField input').prop("disabled",true);
-					$('#productTypeField input').prop("disabled",true);
-					$('#productCostField input').prop("disabled",true);
+					$('#productIdField input').prop("readonly",true);
+					$('#productTypeField input').prop("readonly",true);
+					$('#productCostField input').prop("readonly",true);
 				} else if("insert"===row.task){
-					$('#productIdField input').prop("disabled",false);
-					$('#productTypeField input').prop("disabled",false);
-					$('#productCostField input').prop("disabled",false);
+					$('#productIdField input').prop("readonly",false);
+					$('#productTypeField input').prop("readonly",false);
+					$('#productCostField input').prop("readonly",false);
 				}
 
 				$('#Product_modal .sub.header').html(row.Title);
@@ -2764,7 +2805,8 @@
 						productId:one.productId,
 						number:one.number,
 						prize:one.prize,
-						notes:one.notes
+						notes:one.notes,
+						task:""
 					};
 
 					console.log($('#Purchase .table > tbody tr:nth-child('+index+')'));
@@ -2820,29 +2862,15 @@
 					productId:"",
 					number:"",
 					prize:"",
-					notes:""
+					notes:"",
+					task:"insert"
 				};
-				$('#Purchase_modal .approve').removeClass("disabled");
-				$('#Purchase_modal .purchaseTypeField').removeClass("disabled");
-				$('#Purchase_modal .purchaseTypeField .dropdown').removeClass("disabled");
-				$('#Purchase_modal .form input[name="prize"]').prop('disabled',false);
-				$('#Purchase_modal .form input[name="productId"]').prop('disabled',false);
-				$('#Purchase_modal .form input[name="number"]').prop('disabled',false);
-				$('#Purchase_modal .form input[name="prize"]').prop('disabled',false);
-				$('#Purchase_modal .form textarea[name="notes"]').prop('disabled',false);
 				Purchase_showModal(row);
 			}
 
 			function Purchase_detail(row){
 				console.log("Purchase_detail() called");
-				$('#Purchase_modal .approve').addClass("disabled");
-				$('#Purchase_modal .purchaseTypeField').addClass("disabled");
-				$('#Purchase_modal .purchaseTypeField .dropdown').addClass("disabled");
-				$('#Purchase_modal .form input[name="prize"]').prop('disabled',true);
-				$('#Purchase_modal .form input[name="productId"]').prop('disabled',true);
-				$('#Purchase_modal .form input[name="number"]').prop('disabled',true);
-				$('#Purchase_modal .form input[name="prize"]').prop('disabled',true);
-				$('#Purchase_modal .form textarea[name="notes"]').prop('disabled',true);
+				row.task="detail";
 				Purchase_showModal(row);
 			}
 
@@ -2907,14 +2935,18 @@
 
 		/*Modal initializing*/
 			/*notice! modal elements MUST assign an ID*/
+
+			$('#Purchase_modal .approve.button').click(function(){
+				$('#Purchase_modal .approve.button').addClass('disabled');
+				$('#Purchase_modal .approve.button').addClass('loading');
+			});
+
 			$('#Purchase_modal').modal({
 				allowMultiple: true,
 				debug:false,
 				closable:false,
 				onApprove : function() {
 					$('#Purchase_modal .form').form('validate form');
-					$('#Purchase_modal .approve.button').addClass('disabled');
-					$('#Purchase_modal .approve.button').addClass('loading');
 					return false;
 				}
 			});
@@ -2937,6 +2969,24 @@
 
 				$('#Purchase_modal .approve.button').removeClass('disabled');
 				$('#Purchase_modal .approve.button').removeClass('loading');
+
+				if("insert"===row.task){
+					$('#Purchase_modal .approve').removeClass("disabled");
+					$('#Purchase_modal .purchaseTypeField .dropdown').removeClass("disabled");
+					$('#Purchase_modal .form input[name="prize"]').prop('readonly',false);
+					$('#Purchase_modal .form input[name="productId"]').prop('readonly',false);
+					$('#Purchase_modal .form input[name="number"]').prop('readonly',false);
+					$('#Purchase_modal .form input[name="prize"]').prop('readonly',false);
+					$('#Purchase_modal .form textarea[name="notes"]').prop('readonly',false);
+				}else if("detail"===row.task){
+					$('#Purchase_modal .approve').addClass("disabled");
+					$('#Purchase_modal .purchaseTypeField .dropdown').addClass("disabled");
+					$('#Purchase_modal .form input[name="prize"]').prop('readonly',true);
+					$('#Purchase_modal .form input[name="productId"]').prop('readonly',true);
+					$('#Purchase_modal .form input[name="number"]').prop('readonly',true);
+					$('#Purchase_modal .form input[name="prize"]').prop('readonly',true);
+					$('#Purchase_modal .form textarea[name="notes"]').prop('readonly',true);
+				}
 
 				$('#Purchase_modal .sub.header').html(row.Title);
 				$('#Purchase_modal .form input[name="recordNo"]').val(row.recordNo);
@@ -3143,7 +3193,6 @@
 									all.results[i].customerLine=oneCustomer.results[0].customerLine;
 									all.results[i].customerFb=oneCustomer.results[0].customerFb;
 									all.results[i].customerMail=oneCustomer.results[0].customerMail;
-									all.results[i].customerAddr=oneCustomer.results[0].customerAddr;
 									all.results[i].customerNote=oneCustomer.results[0].customerNote;
 									i++;
 									getNext();
@@ -3189,6 +3238,10 @@
 						receiveType:one.receiveType,
 						customerAddr:one.customerAddr,
 						receiveNotes:one.receiveNotes,
+
+						paymentType:one.paymentType,
+						allPayTradeNo:one.allPayTradeNo,
+						paymentTypeChargeFee:one.paymentTypeChargeFee,
 
 						housing:one.housing,
 						rocker:one.rocker,
@@ -3379,6 +3432,11 @@
 
 
 		/*Modal initializing*/
+			$('#Order_modal .approve.button').click(function(){
+				$('#Order_modal .approve.button').addClass('disabled');
+				$('#Order_modal .approve.button').addClass('loading');
+			});
+
 			/*notice! modal elements MUST assign an ID*/
 			$('#Order_modal').modal({
 				allowMultiple: true,
@@ -3386,8 +3444,6 @@
 				closable:false,
 				onApprove : function() {
 					$('#Order_modal .form').form('validate form');
-					$('#Order_modal .approve.button').addClass('disabled');
-					$('#Order_modal .approve.button').addClass('loading');
 					return false;
 				}
 			});
@@ -3411,6 +3467,10 @@
 					receiveType:"",
 					customerAddr:"",
 					receiveNotes:"",
+
+					paymentType:"",
+					allPayTradeNo:"",
+					paymentTypeChargeFee:"",
 
 					housing:"",
 					rocker:"",
@@ -3458,6 +3518,11 @@
 				$('#Order_modal .form input[name="receiveType"]').val(row.receiveType);
 				$('#Order_modal .form input[name="customerAddr"]').val(row.customerAddr);
 				$('#Order_modal .form textarea[name="receiveNotes"]').val(row.receiveNotes);
+				$('#Order_modal .form textarea[name="orderNotes"]').val(row.orderNotes);
+
+				$('#Order_modal .form input[name="paymentType"]').val(row.paymentType);
+				$('#Order_modal .form input[name="allPayTradeNo"]').val(row.allPayTradeNo);
+				$('#Order_modal .form input[name="paymentTypeChargeFee"]').val(row.paymentTypeChargeFee);
 
 				$('#Order_modal .form input[name="housing"]').val(row.housing);
 				$('#Order_modal .form input[name="rocker"]').val(row.rocker);
@@ -3518,22 +3583,10 @@
 						data:{
 							"task":valuesToSubmit.task,
 							"orderNo":valuesToSubmit.orderNo,
-							"orderDate":valuesToSubmit.orderDate,
 							"price":valuesToSubmit.price,
 							"orderState":valuesToSubmit.orderState,
-							"coupon":valuesToSubmit.coupon,
 							"deliveryDate":valuesToSubmit.deliveryDate,
 							"bossNotes":valuesToSubmit.bossNotes,
-
-							"customerName":valuesToSubmit.customerName,
-							"customerTel":valuesToSubmit.customerTel,
-							"customerLine":valuesToSubmit.customerLine,
-							"customerFb":valuesToSubmit.customerFb,
-							"customerMail":valuesToSubmit.customerMail,
-							"customerNote":valuesToSubmit.customerNote,
-							"receiveType":valuesToSubmit.receiveType,
-							"receiveNotes":valuesToSubmit.receiveNotes,
-							"customerAddr":valuesToSubmit.customerAddr,
 
 							"housing":valuesToSubmit.housing,
 							"rocker":valuesToSubmit.rocker,
@@ -3691,8 +3744,6 @@
 					task:"insert"
 				};
 
-				$('#imageDateField').addClass('disabled');
-				$('#Image_modal .form input[name="imageDate"]').prop('disabled',true);
 				Image_showModal(card);
 			}
 
@@ -3783,14 +3834,17 @@
 
 		/*Modal initializing*/
 			/*notice! modal elements MUST assign an ID*/
+			$('#Image_modal .approve.button').click(function(){
+				$('#Image_modal .approve.button').addClass('disabled');
+				$('#Image_modal .approve.button').addClass('loading');
+			});
+
 			$('#Image_modal').modal({
 				allowMultiple: true,
 				debug:false,
 				closable:false,
 				onApprove : function() {
 					$('#Image_modal .form').form('validate form');
-					$('#Image_modal .approve.button').addClass('disabled');
-					$('#Image_modal .approve.button').addClass('loading');
 					return false;
 				}
 			});
@@ -3803,8 +3857,6 @@
 					imagePath:"",
 					imgCategoryName:""
 				});
-				$('#imageDateField').removeClass('disabled');
-				$('#Image_modal .form input[name="imageDate"]').prop('disabled',false);
 				$('#Image_modal').modal("hide");
 			});
 
@@ -3824,7 +3876,11 @@
 				$('#Image_modal .dropdown .default.text').text("");
 
 				if("update"===card.task){
+					$('.imageDateField').removeClass('disabled');
+					$('.imageDateField input').removeClass('disabled');
 				} else if("insert"===card.task){
+					$('.imageDateField').addClass('disabled');
+					$('.imageDateField input').addClass('disabled');
 				}
 
 				$('#Image_modal .approve.button').removeClass('disabled');

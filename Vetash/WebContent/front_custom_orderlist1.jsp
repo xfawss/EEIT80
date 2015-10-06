@@ -63,7 +63,7 @@
 					<div class="left floated left aligned ten wide column">
 						<h5 class="sectionSubTitle">Order</h5>
 						<h1 class="sectionTitle">
-							訂單確認
+							訂單查詢
 						</h1>
 						<hr>
 					</div>
@@ -93,102 +93,13 @@
 											${TotalAmount}
 										</div>
 									</div>
-								</div>
-
-								<h4 class="ui dividing header">訂單明細</h4>
-								<div class="ui divided list">
 									<div class="item">
 										<div class="content">
-											<div class="header">框體</div>
-											${joystick.housing}
-										</div>
-									</div>
-									<div class="item">
-										<div class="content">
-											<div class="header">搖桿</div>
-											${joystick.rocker}
-										</div>
-									</div>
-									<div class="item">
-										<div class="content">
-											<div class="header">L1</div>
-											${joystick.l1}
-										</div>
-									</div>
-									<div class="item">
-										<div class="content">
-											<div class="header">L2</div>
-											${joystick.l2}
-										</div>
-									</div>
-									<div class="item">
-										<div class="content">
-											<div class="header">R1</div>
-											${joystick.r1}
-										</div>
-									</div>
-									<div class="item">
-										<div class="content">
-											<div class="header">R2</div>
-											${joystick.r2}
-										</div>
-									</div>
-									<div class="item">
-										<div class="content">
-											<div class="header">◎</div>
-											${joystick.o}
-										</div>
-									</div>
-									<div class="item">
-										<div class="content">
-											<div class="header">X</div>
-											${joystick.x}
-										</div>
-									</div>
-									<div class="item">
-										<div class="content">
-											<div class="header">◇</div>
-											${joystick.square}
-										</div>
-									</div>
-									<div class="item">
-										<div class="content">
-											<div class="header">△</div>
-											${joystick.triangle}
-										</div>
-									</div>
-									<div class="item">
-										<div class="content">
-											<div class="header">start</div>
-											${joystick.start}
-										</div>
-									</div>
-									<div class="item">
-										<div class="content">
-											<div class="header">select</div>
-											${joystick.selecter}
-										</div>
-									</div>
-									<div class="item">
-										<div class="content">
-											<div class="header">touch</div>
-											${joystick.touch}
-										</div>
-									</div>
-									<div class="item">
-										<div class="content">
-											<div class="header">面板圖</div>
-											${joystick.coverImg}
-										</div>
-									</div>
-									<div class="item">
-										<div class="content">
-											<div class="header">系統</div>
-											${joystick.board}
+											<div class="header">預計到貨日</div>
+											${joystick.deliveryDate}
 										</div>
 									</div>
 								</div>
-								<div class="ui divider"></div>
 
 								<h4 class="ui dividing header">購買資訊</h4>
 								<div class="ui divided list">
@@ -196,12 +107,6 @@
 										<div class="content">
 											<div class="header">電話</div>
 											${joystick.customerTel}
-										</div>
-									</div>
-									<div class="item">
-										<div class="content">
-											<div class="header">折扣碼</div>
-											${joystick.coupon}
 										</div>
 									</div>
 									<div class="item">
@@ -241,7 +146,7 @@
 						</button>
 					</div>
 					<div class="left aligned column">
-						<button class="ui green button" id="allpayBtn" style="display:none">
+						<button class="ui green button" id="allpayBtn" >
 							前往歐付寶結帳&nbsp;&nbsp;
 							<i class="share icon"></i>
 						</button>
@@ -276,22 +181,10 @@
 
 </body>
 <script>
-	var allpay = '${AllPay}';
-	if("true"===allpay){
-		$("#allpayBtn").show();
-	}
+	
 
 	$("#allpayBtn").click(function(){
-		$.ajax({
-			url:'./orderChecked',
-			type:'post',
-			dataType:'json',
-			success:function(data){
-				if("success"===data.result){
-					$(".allpayForm").form('submit');
-				}
-			}
-		});
+		$(".allpayForm").form('submit');
 	});
 
 	$('#backBtn').popup({

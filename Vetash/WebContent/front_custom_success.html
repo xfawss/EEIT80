@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+	<title>orderintro</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+	<script src="semantic/dist/semantic.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+	<!-- additional -->
+	<style>
+		*{
+			/* border: 1px solid green; */
+		}
+		body{
+			background-color: rgb(253,253,247);
+		}
+		.pure{
+			margin: 0px !important;
+			padding: 0px !important;
+		}
+		.purePaded{
+			margin: 0px !important;
+		}
+		.cursorPointer{
+			cursor:pointer;
+		}
+		.theMenu{
+			height: 6%;
+			width: 100%;
+			margin: 0px !important;
+			padding: 0px !important;
+			position: absolute;
+		}
+		.theMenuPlaceholder{
+			height: 8vh;
+		}
+		.thePage{
+			height: 92vh;
+		}
+	</style>
+	<style type=text/css>
+		body{
+			font-family: "微軟正黑體", "Microsoft JhengHei" !important;
+		}
+		h1{
+			font-family: "微軟正黑體", "Microsoft JhengHei" !important;
+		}
+	</style>
+</head>
+<body>
+	<div class="middle aligned row theMenu">
+		<div class="three wide column"></div>
+		<div class="nine wide middle aligned column">
+		</div>
+		<div class="four wide middle aligned column">
+		</div>
+	</div>
+	<div class="ui grid container">
+		<div class="row theMenuPlaceholder"></div>
+		<div class="row thePage"><!-- thePage -->
+			<div class="ui stackable grid container">
+				<div class="row">
+					<div class="left floated left aligned ten wide column">
+						<h5 class="sectionSubTitle">Custom your own Joystick</h5>
+						<h1 class="sectionTitle">
+							訂製你的搖桿
+						</h1>
+						<hr>
+					</div>
+				</div>
+				<div class="row">
+					<div class="center aligned column">
+						<h2 class="ui icon header">
+							<i class="checkmark box icon"></i>
+							<div class="content">
+								訂購成功!
+								<div class="sub header">你可以透過查詢訂單功能查詢已下訂的訂單，或是繼續購買其他商品。</div>
+							</div>
+						</h2>
+					</div>
+				</div>
+
+				<div class="two column row">
+					<div class="column">
+						<button class="ui circular red icon button" id="backBtn">
+							<i class="reply icon"></i>
+						</button>
+					</div>
+					<div class="right aligned column">
+						<button class="ui green large button" id="customBtn">
+							回訂製首頁
+						</button>
+						<button class="ui violet large button" id="checkOrderBtn">
+							查詢訂單
+						</button>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="ui grid container" style="margin-bottom:0px;">
+						<div class="bottom aligned center aligned column">
+							Vetash Copyright © 2015, all rights reserved.
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<div class="ui basic modal" id="checkOrderModal">
+		<div class="ui center aligned grid container">
+			<div class="sixteen wide column">
+				<h1 class="ui inverted header">
+					請輸入訂單編號
+				</h1>
+			</div>
+			<div class="sixteen wide column">
+				<div class="ui image">
+					<i class="massive edit icon"></i>
+				</div>
+			</div>
+			<div class="sixteen wide column">
+				<form action="./OrderCommand" method="post" id="checkOrderForm">
+					<div class="ui inverted input">
+						<input type="hidden" name="task" value="checkOrder">
+						<input type="text" name="orderNo">
+					</div>
+				</form>
+			</div>
+			<div class="six wide column">
+				<div class="actions">
+					<div class="two ui inverted buttons">
+						<div class="ui green basic inverted approve button">
+							<i class="checkmark icon"></i>
+							查詢
+						</div>
+						<div class="ui red basic inverted deny button">
+							<i class="remove icon"></i>
+							取消
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+<script>
+
+	$('#backBtn').popup({
+		title:'回公館快打'
+	});
+
+	$('#backBtn').click(function(){
+		location.assign("./frontend_main.html");
+	});
+
+	$('#customBtn').click(function(){
+		location.assign("./front_custom_intro.html");
+	});
+
+	/*checkOrderModal*/
+	$('#checkOrderForm').form({
+		inline:true,
+		fields: {
+			recordNo: {
+				identifier: 'recordNo',
+				rules: [
+				{
+					type   : 'empty',
+					prompt : '請輸入訂單編號'
+				}
+				]
+			}
+		}
+	});
+
+	$('#checkOrderModal').modal({
+		onApprove:function(){
+			$('#checkOrderForm').form('submit');
+			return false;
+		}
+	});
+
+	$('#checkOrderBtn').click(function(){
+		$('#checkOrderModal').modal('show');
+	});
+
+</script>
+</html>

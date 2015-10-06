@@ -38,8 +38,6 @@ public class OrderReturnServlet extends HttpServlet {
 		resp.setContentType("text/html");
 		PrintWriter out = resp.getWriter();
 		
-		System.out.println("YYYYYY");
-		
 		String merchantID = req.getParameter("MerchantID");
 		String merchantTradeNo = req.getParameter("MerchantTradeNo");
 		String rtnCode = req.getParameter("RtnCode");

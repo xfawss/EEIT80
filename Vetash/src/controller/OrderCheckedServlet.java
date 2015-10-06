@@ -55,6 +55,7 @@ public class OrderCheckedServlet extends HttpServlet {
 		int coupon = service2.updateUse(bean.getCoupon());
 		bean.setCoupon(Integer.toString(coupon));
 		bean = service.insert(bean);
+		
 		if(bean != null) {
 			jObj.put("result", "success");
 			out.print(jObj);

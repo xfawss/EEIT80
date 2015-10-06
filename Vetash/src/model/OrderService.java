@@ -47,9 +47,9 @@ public class OrderService {
 			map.put("coverImg", bean.getCoverImg());
 			map.put("board", bean.getBoard());
 			if(bean.getDeliveryDate()!=null){
-				map.put("deliveryDate;", Parse.dateToString(bean.getDeliveryDate()));
+				map.put("deliveryDate", Parse.dateToString(bean.getDeliveryDate()));
 			} else {
-				map.put("deliveryDate;", "");
+				map.put("deliveryDate", "");
 			}
 			map.put("paymentType", bean.getPaymentType());
 			map.put("paymentTypeChargeFee", bean.getPaymentTypeChargeFee());
@@ -92,9 +92,9 @@ public class OrderService {
 			map.put("coverImg", orderBean.getCoverImg());
 			map.put("board", orderBean.getBoard());
 			if(orderBean.getDeliveryDate()!=null){
-				map.put("deliveryDate;", Parse.dateToString(orderBean.getDeliveryDate()));
+				map.put("deliveryDate", Parse.dateToString(orderBean.getDeliveryDate()));
 			} else {
-				map.put("deliveryDate;", "");
+				map.put("deliveryDate", "");
 			}
 			map.put("paymentType", orderBean.getPaymentType());
 			map.put("paymentTypeChargeFee", orderBean.getPaymentTypeChargeFee());
@@ -137,9 +137,9 @@ public class OrderService {
 		map.put("coverImg", bean.getCoverImg());
 		map.put("board", bean.getBoard());
 		if(bean.getDeliveryDate()!=null){
-			map.put("deliveryDate;", Parse.dateToString(bean.getDeliveryDate()));
+			map.put("deliveryDate", Parse.dateToString(bean.getDeliveryDate()));
 		} else {
-			map.put("deliveryDate;", "");
+			map.put("deliveryDate", "");
 		}
 		map.put("MerchantID", AllPayCheckMacValue.merchantID);
 		map.put("PaymentType", AllPayCheckMacValue.paymentType);
