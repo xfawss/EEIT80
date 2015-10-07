@@ -282,7 +282,16 @@
 	}
 
 	$("#allpayBtn").click(function(){
-		$(".allpayForm").form('submit');
+		$.ajax({
+			url:'./orderChecked',
+			type:'post',
+			dataType:'json',
+			success:function(data){
+				if("success"===data.result){
+					$(".allpayForm").form('submit');
+				}
+			}
+		});
 	});
 
 	$('#backBtn').popup({

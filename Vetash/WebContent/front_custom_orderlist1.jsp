@@ -96,7 +96,7 @@
 									<div class="item">
 										<div class="content">
 											<div class="header">預計到貨日</div>
-											${joystick.deliveryDate}
+											${deliveryDate}
 										</div>
 									</div>
 								</div>
@@ -145,12 +145,7 @@
 							<i class="reply icon"></i>
 						</button>
 					</div>
-					<div class="left aligned column">
-						<button class="ui green button" id="allpayBtn" >
-							前往歐付寶結帳&nbsp;&nbsp;
-							<i class="share icon"></i>
-						</button>
-					</div>
+					
 				</div>
 
 				<div class="row">
@@ -160,20 +155,7 @@
 						</div>
 					</div>
 				</div>
-				<form action="http://payment-stage.allpay.com.tw/Cashier/AioCheckOut" method="post" class="ui form allpayForm" style="display:none">
-					<input type="text"  name="MerchantID" value="${MerchantID}" /><br/>
-					<input type="text"  name="MerchantTradeNo" value="${MerchantTradeNo}" /><br/>
-					<input type="text"  name="MerchantTradeDate" value="${MerchantTradeDate}" /><br/>
-					<input type="text"  name="PaymentType" value="${PaymentType}" /><br/>
-					<input type="text" name="TotalAmount" value="${TotalAmount}" /><br/>
-					<input type="text" name="TradeDesc" value="${TradeDesc}" /><br/>
-					<input type="text" name="ItemName" value="${ItemName}" /><br/>
-					<input type="text" name="ReturnURL" value="${ReturnURL}" /><br/>
-					<input type="text" name="ChoosePayment" value="${ChoosePayment}" /><br/>
-					<input type="text" name="IgnorePayment" value="${IgnorePayment}" /><br/>
-					<input type="text" name="ClientBackURL" value="${ClientBackURL}" /><br/>
-					<input type="text" name="CheckMacValue" value="${CheckMacValue}" /><br/>
-				</form>
+				
 
 			</div>
 		</div>
@@ -183,9 +165,6 @@
 <script>
 	
 
-	$("#allpayBtn").click(function(){
-		$(".allpayForm").form('submit');
-	});
 
 	$('#backBtn').popup({
 		title:'回訂製首頁'

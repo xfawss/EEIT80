@@ -108,21 +108,25 @@ public class PurchaseRecoderServlet extends HttpServlet {
 			if(num>0 && pri>0) {
 				service2.updateQty(productId, num, pri);
 				service.insert(bean);
+				return;
 			}
 		} else if(type.equals("退貨")){
 			if(num>0 && pri>0) {
 				service2.updateQty(productId, -num, -pri);
 				service.insert(bean);
+				return;
 			}
 		} else if(type.equals("修改(增加)")){
 			if(num > 0) {
 				service2.updateQty2(productId, num);
 				service.insert(bean);
+				return;
 			}
 		} else if(type.equals("修改(減少)")){
 			if(num > 0) {
 				service2.updateQty2(productId, -num);
 				service.insert(bean);
+				return;
 			}
 		}
 	}

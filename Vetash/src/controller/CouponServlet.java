@@ -71,7 +71,6 @@ public class CouponServlet extends HttpServlet {
 			
 			if(task.equals("delete")){
 				service.delete(coupon);
-				req.getRequestDispatcher("/backend_main.html").forward(req, resp);
 				return;
 			}
 		}
@@ -117,7 +116,6 @@ public class CouponServlet extends HttpServlet {
 		
 		if(task.equals("createOrUpdate")){
 			service.createOrUpdate(coupon, discount, deadline, times, notes);
-			req.getRequestDispatcher("/backend_main.html").forward(req, resp);
 			return;
 		}
 	}
